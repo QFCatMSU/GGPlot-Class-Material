@@ -40,6 +40,14 @@
          y = "Count");
   plot(plotData);
 
+  # create a factor for biMonth column so that they are plotted in order or month
+  # as opposed to alphabetical order (this is only need for the facet, not
+  # for the stacked histogram) -- this is not in the lesson but will be added
+  # at some point
+  weatherData$biMonth = factor(weatherData$biMonth,
+                               levels = c("JanFeb","MarApr","MayJun",
+                                          "JulAug","SepOct","NovDec"));
+  
   plotData = ggplot( data=weatherData ) +
     geom_histogram(mapping=aes(x=relHum, y=..count..),
                    bins=40,
