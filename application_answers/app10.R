@@ -23,7 +23,10 @@
     geom_vline(mapping=aes(xintercept=median(snowAve)),
                color="red",
                size=1) +
-    geom_text(x=-5, y=8, label="Average tempDept = 5.01", color='red') +
+    geom_text(x=-5, 
+              y=8, 
+              label="Average tempDept = 5.01", 
+              color='red') +
     labs(title = "TempDept for Snowy Days",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature Departure",
@@ -40,7 +43,10 @@
     geom_vline(mapping=aes(xintercept=median(tsAve)),
                color="red",
                size=1) +
-    geom_text(x=-1, y=5, label="Average tempDept = 7.43", color='red') +
+    geom_text(x=-1, 
+              y=5, 
+              label="Average tempDept = 7.43", 
+              color='red') +
     labs(title = "TempDept for Thunderstorm Days",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature Departure",
@@ -57,7 +63,10 @@
     geom_vline(mapping=aes(xintercept=median(fogAve)),
                color="red",
                size=1) +
-    geom_text(x=-10, y=3, label="Average tempDept = 2.58", color='red') +
+    geom_text(x=-10, 
+              y=3, 
+              label="Average tempDept = 2.58", 
+              color='red') +
     labs(title = "TempDept for Foggy Days",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature Departure",
@@ -82,7 +91,10 @@
     geom_vline(mapping=aes(xintercept=median(snowAndTSAve)),
                color="red",
                size=1) +
-    geom_text(x=-2, y=4.5, label="Average tempDept = 7.45", color='red') +
+    geom_text(x=-2, 
+              y=4.5, 
+              label="Average tempDept = 7.45", 
+              color='red') +
     labs(title = "TempDept for Snow and TS Days",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature Departure",
@@ -99,7 +111,10 @@
     geom_vline(mapping=aes(xintercept=median(snowOrFogAve)),
                color="red",
                size=1) +
-    geom_text(x=-2, y=4.5, label="Average tempDept = 4.25", color='red') +
+    geom_text(x=-2, 
+              y=4.5, 
+              label="Average tempDept = 4.25", 
+              color='red') +
     labs(title = "TempDept for Snow or Foggy Days",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature Departure",
