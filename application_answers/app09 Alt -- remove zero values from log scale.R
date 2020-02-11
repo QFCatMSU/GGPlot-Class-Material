@@ -18,8 +18,10 @@
   }
   weatherData$precipNum = as.numeric(weatherData$precipNum);
   
+  rainyDays = which(weatherData$precipNum > 0);
+  
   #### Part 11: Change legend position
-  thePlot = ggplot(data=weatherData) +
+  thePlot = ggplot(data=weatherData[rainyDays,]) +
     geom_text(mapping=aes(x=relHum, y=precipNum,
                           color=maxTemp, label=avgTemp),
               size=3.5) +

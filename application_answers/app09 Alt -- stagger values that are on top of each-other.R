@@ -1,8 +1,12 @@
 {
+  #### The plot in this script will probably not display in an RStudio Plots Window,
+  #    Click on Zoom (underneath Plots tab) to view the plot in a new window
+  
   source(file="scripts/reference.R");  
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                        stringsAsFactors = FALSE);
-
+  library(package="ggrepel");   # to stagger overlapping values on the plot
+  
   # go through all rows in weatherData
   for(i in 1:nrow(weatherData))
   {
@@ -17,12 +21,14 @@
     }
   }
   weatherData$precipNum = as.numeric(weatherData$precipNum);
+  rainyDays = which(weatherData$precipNum > 0);
   
-  #### Part 11: Change legend position
-  thePlot = ggplot(data=weatherData) +
-    geom_text(mapping=aes(x=relHum, y=precipNum,
-                          color=maxTemp, label=avgTemp),
-              size=3.5) +
+  thePlot = ggplot(data=weatherData[rainyDays,]) +
+    # mapping is the same as geom_text()
+    geom_text_repel(mapping=aes(x=relHum, y=precipNum, 
+                                color=maxTemp, label=avgTemp),
+                    size = 2,
+                    segment.color = "blue") +
     scale_color_gradientn(colors=c("blue","darkgreen","red")) +
     theme_bw() +
     theme(panel.grid.major = element_blank(),
