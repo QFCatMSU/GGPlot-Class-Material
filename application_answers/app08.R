@@ -7,12 +7,16 @@
   months = format(dates, format="%b");     # extract the month -- save to vector
   weatherData[,"month"] = months;          # save months to data frame as new column
   
-  vect = weatherData$weatherType
+  wType = weatherData$weatherType
   
-  vect = substr(vect, start = 1, stop = 2)
+  # save only the first two characters in the weatherType
+  wType = substr(wType, start = 1, stop = 2);
+
+  # put in value of "--" for wType that have no value 
+  wType[which(wType=="")] = "--";
   
   thePlot = ggplot(data=weatherData) +
-    geom_col(mapping=aes(x=month, y=coolDays, fill=vect),
+    geom_col(mapping=aes(x=month, y=coolDays, fill=wType),
              width=0.6) +
     scale_x_discrete(limits = month.abb) +
     scale_fill_manual(values = c('cyan4', 'blue', 'deepskyblue', 'cyan', 
@@ -26,7 +30,7 @@
   plot(thePlot);
   
   thePlot = ggplot(data=weatherData) +
-    geom_col(mapping=aes(x=month, y=heatDays, fill=vect),
+    geom_col(mapping=aes(x=month, y=heatDays, fill=wType),
              width=0.6) +
     scale_x_discrete(limits = month.abb) +
     scale_fill_manual(values = c('cyan4', 'blue', 'deepskyblue', 'cyan', 
