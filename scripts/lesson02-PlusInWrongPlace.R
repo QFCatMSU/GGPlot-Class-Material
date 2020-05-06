@@ -1,6 +1,6 @@
 {
-  # read in the lines of code from helper.r
-  source("scripts/helper.r");   
+  # read in the lines of code from reference.r
+  source("scripts/reference.r");   
 
   # read in CSV file and save the content to packageData
   packageData = read.csv("data/CRANpackages.csv");

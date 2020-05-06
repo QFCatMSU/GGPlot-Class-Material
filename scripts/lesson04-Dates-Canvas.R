@@ -5,9 +5,9 @@
 
   #### Part 1: Add year to date values ####
   # a) save the date vector from the data frame to the variable theDate
-  theDate = weatherData[ , "date"];
+  theDate = weatherData$date; 
   # theDate = weatherData[["date"]];  # equivalent to previous line
-  # theDate = weatherData$date;       # equivalent to previous 2 lines
+  # theDate = weatherData[ , "date"]; # equivalent to previous 2 lines in base R not equivalent in TidyVerse
   
   # b) append (paste) "-2016" to all values in theDate
   theDate = paste(theDate, "-2016", sep="");
@@ -17,9 +17,9 @@
   theDate = as.Date(theDate, format="%m-%d-%Y");
 
   # d) Save theDate back to the data frame as a new column
-  weatherData[, "dateYr"] = theDate;
-  # weatherData[["dateYr"]] = theDate; # equivalent to previous line
-  # weatherData$dateYr = theDate;      # equivalent to previous 2 lines
+  weatherData$dateYr = theDate;  weatherData[, "dateYr"] = theDate;
+  # weatherData[["dateYr"]] = theDate;  # equivalent to previous line
+  # weatherData[, "dateYr"] = theDate;  # equivalent to previous 2 lines
 
   #### Part 2: Make two line plots of temperature vs date ###
   plotData = ggplot(data=weatherData) +

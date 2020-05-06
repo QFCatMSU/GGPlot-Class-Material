@@ -4,10 +4,10 @@
                           stringsAsFactors = FALSE );
   
   #### Part 1: Add year to date vector and save back to data frame
-  theDate = weatherData[ , "date"];               # save date column to vector
+  theDate = weatherData$date;                     # save date column to vector
   theDate = paste(theDate, "-2016", sep="");      # append -2016 to vector
   theDate = as.Date(theDate, format="%m-%d-%Y");  # format vector as Date
-  weatherData[, "dateYr"] = theDate;              # save vector to Data Frame
+  weatherData$dateYr = theDate;                   # save vector to Data Frame
   
   #### Part 2: Get the index values for each season
   springIndex = which(theDate > as.Date("03-21-2016", format="%m-%d-%Y") &
@@ -24,13 +24,13 @@
                       theDate <= as.Date("03-21-2016", format="%m-%d-%Y"));
   
   #### Part 3: Create a season column in weatherData
-  weatherData[, "season"] = "";     # create a new column called season
+  weatherData$season = "";     # create a new column called season
   
   # set the values in the new column to one of the seasons
-  weatherData[springIndex, "season"] = "Spring";  # set index 82-173 to spring 
-  weatherData[summerIndex, "season"] = "Summer";  # set index 174-265 to summer
-  weatherData[fallIndex, "season"] = "Fall";      # set index 266-356 to fall
-  weatherData[winterIndex, "season"] = "Winter";  # set 1-81, 357-366 to winter
+  weatherData$season[springIndex] = "Spring";  # set index 82-173 to spring 
+  weatherData$season[summerIndex] = "Summer";  # set index 174-265 to summer
+  weatherData$season[fallIndex] = "Fall";      # set index 266-356 to fall
+  weatherData$season[winterIndex] = "Winter";  # set 1-81, 357-366 to winter
   
   #### Part 4: Create a histogram of temperatures for the year
   plotData = ggplot( data=weatherData ) +

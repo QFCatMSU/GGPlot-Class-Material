@@ -4,50 +4,50 @@
                          stringsAsFactors = FALSE);
   
   #### Part 1: Create a wind direction column
-  windSpeedQuant = quantile(weatherData[,"windSpeed"], probs=c(.30, .70));
+  windSpeedQuant = quantile(weatherData$windSpeed, probs=c(.30, .70));
   
   for(day in 1:nrow(weatherData))
   {
     ## Adding a column that gives relative wind speed for the day
     # Winds less than 6.4 miles/hour -- label as "Low"
-    if(weatherData[day,"windSpeed"] <= windSpeedQuant[1])
+    if(weatherData$windSpeed[day] <= windSpeedQuant[1])
     {
-      weatherData[day,"windSpeedLevel"] = "Low";
+      weatherData$windSpeedLevel[day] = "Low";
     }
     # Winds greater than 10.2 miles/hour -- label as "High"
-    else if(weatherData[day,"windSpeed"] >= windSpeedQuant[2])
+    else if(weatherData$windSpeed[day] >= windSpeedQuant[2])
     {
-      weatherData[day,"windSpeedLevel"] = "High";
+      weatherData$windSpeedLevel[day] = "High";
     }
     else # wind speeds between 6.4 and 10.2 miles/hour -- label as "Medium"
     {
-      weatherData[day,"windSpeedLevel"] = "Medium";
+      weatherData$windSpeedLevel[day] = "Medium";
     }
   }
   for(day in 1:nrow(weatherData))
   {
     ## Adding a column that gives the cardinal wind direction
     # if the direction is greater than 315 OR less than 45 degrees
-    if(weatherData[day,"windSusDir"] >= 315 ||
-       weatherData[day,"windSusDir"] < 45)
+    if(weatherData$windSusDir[day] >= 315 ||
+       weatherData$windSusDir[day] < 45)
     {
-      weatherData[day,"windDir"] = "North";
+      weatherData$windDir[day] = "North";
     }
     # if the direction is greater than 45 AND less than 135 degrees
-    else if(weatherData[day,"windSusDir"] >= 45 &&
-            weatherData[day,"windSusDir"] < 135)
+    else if(weatherData$windSusDir[day] >= 45 &&
+            weatherData$windSusDir[day] < 135)
     {
-      weatherData[day,"windDir"] = "East";
+      weatherData$windDir[day] = "East";
     }
     # if the direction is greater than 135 AND less than 225 degrees
-    else if(weatherData[day,"windSusDir"] >= 135 &&
-            weatherData[day,"windSusDir"] < 225)
+    else if(weatherData$windSusDir[day] >= 135 &&
+            weatherData$windSusDir[day] < 225)
     {
-      weatherData[day,"windDir"] = "South";
+      weatherData$windDir[day] = "South";
     }
     else # the directions is between 225 and 315 degrees
     {
-      weatherData[day,"windDir"] = "West";
+      weatherData$windDir[day] = "West";
     }
   }
   for(day in 1:nrow(weatherData))
@@ -55,12 +55,12 @@
     ### Adding a changeMaxTemp column
     if(day == 1)
     {
-      weatherData[day,"changeMaxTemp"] = NA;
+      weatherData$changeMaxTemp[day] = NA;
     }
     else
     {
-      weatherData[day,"changeMaxTemp"] = weatherData[day,"maxTemp"] -
-                                         weatherData[day-1,"maxTemp"];
+      weatherData$changeMaxTemp[day] = weatherData$maxTemp[day] -
+                                       weatherData$maxTemp[day-1];
     }
   }
 

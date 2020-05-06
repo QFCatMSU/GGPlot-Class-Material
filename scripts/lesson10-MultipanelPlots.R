@@ -64,59 +64,59 @@
          x = "Degrees (Fahrenheit)",
          y = "Relative Humidity");
 
-  # ### Part 5: Arranging plots on one canvas by rows
-  # grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6,
-  #              nrow=3);
-  #
-  # #### Part 6: Arranging plots on canvas by columns
-  # grid.arrange(plot6, plot5, plot4, plot2, plot1,
-  #              ncol=3);
-  #
-  # ### Part 7: Customize arrangements using a matrix
-  # grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6,
-  #              layout_matrix = rbind(c(4,5,6),
-  #                                    c(3,2,1)));
-  #
-  # ### Part 8: Add empty spaces to customized arrangement
-  # grid.arrange(plot3, plot4, plot5,
-  #              layout_matrix = rbind(c(NA,1,2),
-  #                                    c(3,NA,NA)));
-  #
-  # #### Part 9: Extending plots across rows and columns
-  # grid.arrange(plot1, plot2, plot3, plot4,
-  #              layout_matrix = rbind(c(1,1,2),
-  #                                    c(1,1,NA),
-  #                                    c(4,3,3),
-  #                                    c(4,NA,NA)));
+  ### Part 5: Arranging plots on one canvas by rows
+  grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6,
+               nrow=3);
 
-  # #### Part 10a: Unused plot error (plot2 not used)
-  # grid.arrange(plot1, plot2, plot3, plot4, plot5,
-  #              layout_matrix = rbind(c(1,1,5),
-  #                                    c(1,1,NA),
-  #                                    c(4,3,3),
-  #                                    c(4,NA,NA)));
-  #
-  # #### Part 10b: Invalid index error (there is no 5th plot)
-  # grid.arrange(plot1, plot2, plot3, plot4,
-  #              layout_matrix = rbind(c(1,1,5),
-  #                                    c(1,1,NA),
-  #                                    c(4,3,2),
-  #                                    c(4,NA,NA)));
+  #### Part 6: Arranging plots on canvas by columns
+  grid.arrange(plot6, plot5, plot4, plot2, plot1,
+               ncol=3);
 
-  # #### Part 10c: Plots stretch across canvas to create a rectangle
-  # grid.arrange(plot1, plot2,
-  #              layout_matrix = rbind(c(1,NA,2),
-  #                                    c(NA,1,NA)));
-  #
-  # #### Part 10d: Overlapping plots
-  # grid.arrange(plot1, plot2,
-  #              layout_matrix = rbind(c(1,NA,2),
-  #                                    c(NA,NA,1)));
-  #
-  # #### Part 10e: Hidden plots
-  # grid.arrange(plot1, plot2,
-  #              layout_matrix = rbind(c(2,NA,1),
-  #                                    c(NA,NA,2)));
+  ### Part 7: Customize arrangements using a matrix
+  grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6,
+               layout_matrix = rbind(c(4,5,6),
+                                     c(3,2,1)));
+
+  ### Part 8: Add empty spaces to customized arrangement
+  grid.arrange(plot3, plot4, plot5,
+               layout_matrix = rbind(c(NA,1,2),
+                                     c(3,NA,NA)));
+
+  #### Part 9: Extending plots across rows and columns
+  grid.arrange(plot1, plot2, plot3, plot4,
+               layout_matrix = rbind(c(1,1,2),
+                                     c(1,1,NA),
+                                     c(4,3,3),
+                                     c(4,NA,NA)));
+
+  #### Part 10a: Unused plot error (plot2 not used)
+  grid.arrange(plot1, plot2, plot3, plot4, plot5,
+               layout_matrix = rbind(c(1,1,5),
+                                     c(1,1,NA),
+                                     c(4,3,3),
+                                     c(4,NA,NA)));
+
+  #### Part 10b: Invalid index error (there is no 5th plot)
+  grid.arrange(plot1, plot2, plot3, plot4,
+               layout_matrix = rbind(c(1,1,5),
+                                     c(1,1,NA),
+                                     c(4,3,2),
+                                     c(4,NA,NA)));
+
+  #### Part 10c: Plots stretch across canvas to create a rectangle
+  grid.arrange(plot1, plot2,
+               layout_matrix = rbind(c(1,NA,2),
+                                     c(NA,1,NA)));
+
+  #### Part 10d: Overlapping plots
+  grid.arrange(plot1, plot2,
+               layout_matrix = rbind(c(1,NA,2),
+                                     c(NA,NA,1)));
+
+  #### Part 10e: Hidden plots
+  grid.arrange(plot1, plot2,
+               layout_matrix = rbind(c(2,NA,1),
+                                     c(NA,NA,2)));
   
   #### Part 10f: Not consistent -- often gives time elapsed warning
   grid.arrange(plot1, plot2, plot3, plot4,
