@@ -5,20 +5,20 @@
   
   #### Part 1: Convert trace rain to the numeric value 0.005
   # Copy precip values to a new column, precipNum
-  weatherData[,"precipNum"] = weatherData[,"precip"];
+  weatherData$precipNum = weatherData$precip;
 
   # go through all rows in weatherData
   for(i in 1:nrow(weatherData))
   {
     # if the value is T, change to 0.05
-    if(weatherData[i,"precipNum"] == "T")
+    if(weatherData$precipNum[i] == "T")
     {
-      weatherData[i,"precipNum"] = 0.005;
+      weatherData$precipNum[i] = 0.005;
     }
   }
 
   # convert precipNum column to numeric
-  weatherData[,"precipNum"] = as.numeric(weatherData[,"precipNum"]);
+  weatherData$precipNum = as.numeric(weatherData$precipNum);
 
   #### Part 2: Plot the precipitation for each season
   thePlot = ggplot(data=weatherData) +
@@ -32,12 +32,12 @@
   plot(thePlot);
 
   #### Part 3: Creating a month column
-  dates = as.Date(weatherData[,"dateYr"]); # save the date column to a vector
-  months = format(dates, format="%b");     # extract the month -- save to vector
-  weatherData[,"month"] = months;          # save months to data frame as new column
+  dates = as.Date(weatherData$dateYr);  # save the date column to a vector
+  months = format(dates, format="%b");  # extract the month -- save to vector
+  weatherData$month = months;           # save months to data frame as new column
 
   # The above three lines could be written as:
-  # weatherData[,"month"]= format.Date(weatherData[,"dateYr"], format="%b");
+  # weatherData$month = format.Date(weatherData$dateYr, format="%b");
 
   #### Part 4: Plot precipitation for each month
   thePlot = ggplot(data=weatherData) +
