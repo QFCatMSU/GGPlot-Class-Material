@@ -17,6 +17,9 @@
     }
   }
 
+  ## The above for loop could be replaced with this code: 
+  # weatherData$precipNum[weatherData$precip == "T"] = 0.005;
+  
   # convert precipNum column to numeric
   weatherData$precipNum = as.numeric(weatherData$precipNum);
 
@@ -115,7 +118,7 @@
   plot(thePlot);
 
   #### Part 9: Change fill color and legend title
-  reorderedData = weatherData[order(weatherData$stnPressure),];
+  # uses reorderedData created in last section
   thePlot = ggplot(data=reorderedData) +
     geom_col(aes(x=month, y=precipNum, fill=stnPressure), width=0.4) +
     scale_x_discrete(limits = month.abb) +

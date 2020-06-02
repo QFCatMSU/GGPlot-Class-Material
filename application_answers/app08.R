@@ -48,16 +48,16 @@
          y = "Heat Days");
   plot(thePlot);
   
-  monthNum = as.numeric(factor(weatherData$month, 
-                               levels=unique(weatherData$month)));
-  
+
   thePlot = ggplot(data=weatherData) +
-    geom_col(mapping=aes(x=monthNum -0.2, y=heatDays),  
+    geom_col(mapping=aes(x=month, y=heatDays),  
              fill = "red",
-             width=0.4) +
-    geom_col(mapping=aes(x=monthNum +0.2, y=coolDays),  
+             width=0.4,
+             position=position_nudge(after_stat(x=-0.2))) +
+    geom_col(mapping=aes(x=month, y=coolDays),  
              fill = "blue",
-             width=0.4) +
+             width=0.4,
+             position=position_nudge(after_stat(x=0.2))) +
     scale_x_discrete(limits = month.abb) +
     theme_bw() +
     labs(title = "Heating and Cooling Days",
