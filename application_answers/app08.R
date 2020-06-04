@@ -53,11 +53,11 @@
     geom_col(mapping=aes(x=month, y=heatDays),  
              fill = "red",
              width=0.4,
-             position=position_nudge(after_stat(x=-0.2))) +
+             position=after_stat(position_nudge(x=-0.2)))  +
     geom_col(mapping=aes(x=month, y=coolDays),  
              fill = "blue",
              width=0.4,
-             position=position_nudge(after_stat(x=0.2))) +
+             position=after_stat(position_nudge(x=0.2))) +
     scale_x_discrete(limits = month.abb) +
     theme_bw() +
     labs(title = "Heating and Cooling Days",
