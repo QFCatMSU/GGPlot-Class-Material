@@ -27,7 +27,7 @@
   plot2 = ggplot(data=weatherData[rainyDays,]) +
     geom_point(mapping=aes(x=avgTemp, y=relHum)) +
     theme_classic() +
-    labs(title = "Humidity vs. Tempertaure (Rainy Days)",
+    labs(title = "Humidity vs. Temperature (Rainy Days)",
          subtitle = "Lansing, Michigan: 2016",
          x = "Degrees (Fahrenheit)",
          y = "Relative Humidity");
@@ -89,39 +89,41 @@
                                      c(4,3,3),
                                      c(4,NA,NA)));
 
-  #### Part 10a: Unused plot error (plot2 not used)
-  grid.arrange(plot1, plot2, plot3, plot4, plot5,
-               layout_matrix = rbind(c(1,1,5),
-                                     c(1,1,NA),
-                                     c(4,3,3),
-                                     c(4,NA,NA)));
-
-  #### Part 10b: Invalid index error (there is no 5th plot)
-  grid.arrange(plot1, plot2, plot3, plot4,
-               layout_matrix = rbind(c(1,1,5),
-                                     c(1,1,NA),
-                                     c(4,3,2),
-                                     c(4,NA,NA)));
-
-  #### Part 10c: Plots stretch across canvas to create a rectangle
+  # #### Part 10a: Unused plot error (plot2 not used)
+  # grid.arrange(plot1, plot2, plot3, plot4, plot5,
+  #              layout_matrix = rbind(c(1,1,5),
+  #                                    c(1,1,NA),
+  #                                    c(4,3,3),
+  #                                    c(4,NA,NA)));
+  # 
+  # #### Part 10b: Causes invalid index error (there is no 5th plot)
+  # grid.arrange(plot1, plot2, plot3, plot4,
+  #              layout_matrix = rbind(c(1,1,5),
+  #                                    c(1,1,NA),
+  #                                    c(4,3,2),
+  #                                    c(4,NA,NA)));
+  # 
+  #### Part 10c: Plot1 stretches across 2 rows and 2 columns
   grid.arrange(plot1, plot2,
                layout_matrix = rbind(c(1,NA,2),
                                      c(NA,1,NA)));
 
-  #### Part 10d: Overlapping plots
+  #### Part 10d: Plot  overlaps plot 1 in top-right corner
   grid.arrange(plot1, plot2,
                layout_matrix = rbind(c(1,NA,2),
                                      c(NA,NA,1)));
 
-  #### Part 10e: Hidden plots
+  #### Part 10e: Plot 1 hidden behind plot 2
   grid.arrange(plot1, plot2,
                layout_matrix = rbind(c(2,NA,1),
                                      c(NA,NA,2)));
-  
-  #### Part 10f: Not consistent -- often gives time elapsed warning
-  grid.arrange(plot1, plot2, plot3, plot4,
-               layout_matrix = rbind(c(1,1,4),
-                                     c(1,1,NA),
-                                     c(4,3,2),
-                                     c(4,NA,NA)));
+
+  # #### Part 10f: This arrangement gives inconsistent results
+  #                - sometimes gives time elapsed warning
+  #                - sometimes it just plots #1
+  # grid.arrange(plot1, plot2, plot3, plot4,
+  #              layout_matrix = rbind(c(1,1,4),
+  #                                    c(1,1,NA),
+  #                                    c(4,3,2),
+  #                                    c(4,NA,NA)));
 }
