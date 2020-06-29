@@ -1,4 +1,6 @@
 {
+  ##### This script will be fixed up and added to lesson 10
+  
   source(file="scripts/reference.R");  
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
                        stringsAsFactors = FALSE);
