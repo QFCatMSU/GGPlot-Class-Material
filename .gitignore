@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+.gitignore
+GGPlot-Class-Material.Rproj
