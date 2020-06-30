@@ -11,7 +11,8 @@
   # transition by category
   plot1 = ggplot(data=weatherData) +
     geom_point(mapping=aes(x=avgTemp, y=relHum)) +
-     labs(title = 'Temp vs Hum in {closest_state}', 
+     labs(title = 'Temperature vs. Humidity in {closest_state}',
+          subtitle = 'Lansing, MI - 2016',
           x = 'Average Temp', 
           y = 'Humidity') +
     transition_states(states=season, transition_length = 1,
