@@ -20,12 +20,12 @@
                                              color=rgb(red=.8, green=.3, blue=0)),
                    plot.subtitle=element_text(face="bold.italic",
                                               color ="brown")) +
-             # default confidence level is 95%
              geom_smooth(mapping=aes(x=abs(tempDept), y=windSpeed), 
                          method="lm",
                          color="purple", 
                          size=1.2, 
                          linetype=5, 
-                         fill="yellow");   
+                         fill="yellow",
+                         level=.99);   # confidence level changed to 99% (default in 95%)
   plot(plotData);
 }  
