@@ -7,7 +7,7 @@
   plot1 = ggplot(data=weatherData) +
           geom_point(mapping=aes(x=avgTemp, y=relHum),
                      color="darkgreen", 
-                     size=2.5, 
+        #             size=2.5, 
                      shape=17, 
                      alpha = 0.4 ) +
           theme_bw() +
@@ -17,10 +17,10 @@
                y = "Humidity (%)");
   plot(plot1);
 
-  ggsave(filename = "images/sizedPlot.png",  
+  ggsave(filename = "images/sizedPlot2.png",  
          plot = plot1,
-         width = 12,
-         height = 10,
+         width = 6,
+         height = 5,
          units = "cm");   # can also use "in" or "mm"
 
 }  
