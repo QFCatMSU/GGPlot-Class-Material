@@ -22,13 +22,13 @@
   # weatherData[, "dateYr"] = theDate;  # equivalent to previous 2 lines
 
   #### Part 2: Make two line plots of temperature vs date ###
-  plotData = ggplot(data=weatherData) +
+  plot1 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=dateYr, y=maxTemp)) +
     geom_line(mapping=aes(x=dateYr, y=minTemp));
-  plot(plotData);
+  plot(plot1);
   
   #### Part 3: Add labels and colors ###
-  plotData = ggplot(data=weatherData) +
+  plot2 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=dateYr, y=maxTemp), 
               color="palevioletred1") +
     geom_line(mapping=aes(x=dateYr, y=minTemp), 
@@ -37,10 +37,10 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Date",
          y = "Temperature (F)");
-  plot(plotData);
+  plot(plot2);
   
   #### Part 4: Add average temperature and smooth it out ###
-  plotData = ggplot(data=weatherData) +
+  plot3 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=dateYr, y=maxTemp), 
               color="palevioletred1") +
     geom_line(mapping=aes(x=dateYr, y=minTemp), 
@@ -54,11 +54,11 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Date",
          y = "Temperature (F)");
-  plot(plotData);
+  plot(plot3);
   
   #### Part 5: Paneling changes ###
   # grey0 is black, grey100 is white, and numbers in between are shades of grey
-  plotData = ggplot(data=weatherData) +
+  plot4 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=dateYr, y=maxTemp), 
               color="palevioletred1") +
     geom_line(mapping=aes(x=dateYr, y=minTemp), 
@@ -77,10 +77,10 @@
                                           size=2, color="grey0"),
           panel.grid.minor = element_line(color="grey50", linetype=4),
           panel.grid.major = element_line(color="grey100"));
-  plot(plotData);
+  plot(plot4);
   
   #### Part 6: Making changes outside the panel ###
-  plotData = ggplot(data=weatherData) +
+  plot5 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=dateYr, y=maxTemp), 
               color="palevioletred1") +
     geom_line(mapping=aes(x=dateYr, y=minTemp),
@@ -103,10 +103,10 @@
           plot.title = element_text(hjust = 0.45),
           plot.subtitle = element_text(hjust = 0.42),
           axis.text = element_text(color="blue", family="mono", size=9));
-  plot(plotData);
+  plot(plot5);
   
   #### Part 7: Scaling continuous values ###
-  plotData = ggplot(data=weatherData) +
+  plot6 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=dateYr, y=maxTemp), 
               color="palevioletred1") +
     geom_line(mapping=aes(x=dateYr, y=minTemp), 
@@ -130,10 +130,10 @@
           axis.text = element_text(color="blue", family="mono", size=9))+
     scale_y_continuous(limits = c(-15,90),
                        breaks = seq(from=-15, to=90, by=20));
-  plot(plotData);
+  plot(plot6);
   
   #### Part 8: Scaling discrete values (dates) ###
-  plotData = ggplot(data=weatherData) +
+  plot7 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=dateYr, y=maxTemp),
               color="palevioletred1") +
     geom_line(mapping=aes(x=dateYr, y=minTemp), 
@@ -162,5 +162,5 @@
                  date_breaks = "6 weeks", 
                  date_labels = format("%m/%d"));
   
-  plot(plotData);
+  plot(plot7);
 }  

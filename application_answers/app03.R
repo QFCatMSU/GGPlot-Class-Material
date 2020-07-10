@@ -4,8 +4,8 @@
                          stringsAsFactors = FALSE);
 
   # This scatterplot show that...
-  plotData = ggplot(weatherData) +
-             geom_point(mapping = aes(x=abs(tempDept), y=windSpeed),
+  plotData = ggplot(data=weatherData) +
+             geom_point(mapping=aes(x=abs(tempDept), y=windSpeed),
                         color=rgb(red=0, green=.6, blue=.6), 
                         size=2, 
                         shape=23,
@@ -28,4 +28,11 @@
                          linetype=5, 
                          fill="yellow");   
   plot(plotData);
+  
+  ggsave(filename="images/plot.jpeg",
+         plot=plotData,
+         width = 5,
+         height = 10,
+         dpi = 360,
+         units = "cm");
 }  
