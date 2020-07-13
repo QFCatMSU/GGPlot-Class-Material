@@ -6,9 +6,9 @@ like RStudio, that want to use Git can easily find it's location.
 But, System Paths are used inconsistantly with two common problems being:
 1) Program not checking for changes in the System Path -- so RStudio might not
    know of an update to Git and it will use an old version 
-2) Uninstallers often forget to revert the System Path -- so RStudio might still think
-   that Git exists because the System Path still has it even though Git has been
-   uninstalled. 
+2) Uninstallers often forget to revert the System Path -- so RStudio might still 
+   think that Git exists because the System Path still has it even though Git has 
+   been uninstalled. 
    
-There are a lot of similarities to setwd() issues in R!
-
+This often happens with software that is developed for Linux first -- as 
+programming software often is.
