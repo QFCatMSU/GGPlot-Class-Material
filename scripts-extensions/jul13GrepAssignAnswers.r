@@ -1,6 +1,6 @@
 {
-  # execute the lines of code from reference.r 
-  source(file="scripts/reference.r");
+  # execute the lines of code from reference.r
+  source(file="scripts/reference.r")
   
   # read in CSV file and save the content to packageData
   classData = read.csv(file="data/grepData.csv",
@@ -27,9 +27,24 @@
   # 1) Find which rows in the temps column are Celsius (no unit means Fahrenheit)
   # 2) Extract the number from every row -- paid heed to signs and decimals
   # 3) Create a numeric vector from the extracted numbers
-  # 4) Challenge: Create a numeric temperature column in the data frame where all 
-  #               values are Fahrenheit.  formula: F = (9/5) * C + 32
-  # 5) Email belinsky@msu.edu this script with subject "grep"
+  # 4) Create a numeric temperature column in the data frame where all values are Fahrenheit
+  #     formula: F = (9/5) * C + 32
+  isCelsius  = grep(pattern = "c|C", x=classData$temp);
+
+  tempData = gsub(pattern = "[^0123456789.-]", replacement="", 
+                    x=classData$temp);
+  tempData2 = as.numeric(tempData);
+
+  tempDataFahr = tempData2;
+  
+  tempDataFahr[isCelsius] = (9/5) * tempDataFahr[isCelsius] + 32;
+  classData$FahrTemps = tempDataFahr;
+  
+  ## Change all to Celsius:
+  celsiusTemps = (5/9)*(tempDataFahr-32);
+  
+  ## Now change to Kelvin:
+  classData$KelvinTemps = celsiusTemps + 273;
 }
   
   

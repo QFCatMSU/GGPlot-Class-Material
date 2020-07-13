@@ -1,0 +1,6 @@
+App5: Wed 7/15 at 8am
+App6: Mon 7/20 at 8am
+App7: Sat 7/25 at 8am
+App8: Thu 7/30 at 8am
+App9: Tue 8/4 at 8am
+App10: Sat 8/8 at 8am
