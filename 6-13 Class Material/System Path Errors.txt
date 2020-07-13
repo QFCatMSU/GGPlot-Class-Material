@@ -1,0 +1,14 @@
+System Path Errors:
+When a program like Git installs on your computer, it will write it's location to
+a "file" on your computer called the System Path.  This is so that other programs, 
+like RStudio, that want to use Git can easily find it's location.  
+
+But, System Paths are used inconsistantly with two common problems being:
+1) Program not checking for changes in the System Path -- so RStudio might not
+   know of an update to Git and it will use an old version 
+2) Uninstallers often forget to revert the System Path -- so RStudio might still think
+   that Git exists because the System Path still has it even though Git has been
+   uninstalled. 
+   
+There are a lot of similarities to setwd() issues in R!
+

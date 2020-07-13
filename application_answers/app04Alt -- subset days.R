@@ -2,7 +2,6 @@
   source(file="scripts/reference.R");  
   weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
-
   
   #### Add year to date values --
   #    same as in lesson but using different methods ####
@@ -24,7 +23,7 @@
   weatherData[, "minTempC"] = minTemp;
   weatherData[, "avgTempC"] = avgTemp;
 
-  ### get the earliest and latest dates that we want to plot
+  ### get the earliest and latest index for the dates that we want to plot
   firstDateIndex = which(weatherData$dateYr == as.Date("2016-03-21")); 
   lastDateIndex = which(weatherData$dateYr == as.Date("2016-09-21")); 
   
