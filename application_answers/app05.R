@@ -18,15 +18,15 @@
   NovDec = which(theDate >= as.Date("11-01-2016", format="%m-%d-%Y"));
 
   #### Create a biMonth column in weatherData
-  weatherData[, "biMonth"] = "";     # create a new column called season
+  weatherData$biMonth = "";     # create a new column called season
   
   # set the values in the new column to one of the biMonths
-  weatherData[JanFeb, "biMonth"] = "JanFeb";  
-  weatherData[MarApr, "biMonth"] = "MarApr";  
-  weatherData[MayJun, "biMonth"] = "MayJun";  
-  weatherData[JulAug, "biMonth"] = "JulAug";  
-  weatherData[SepOct, "biMonth"] = "SepOct";  
-  weatherData[NovDec, "biMonth"] = "NovDec";  
+  weatherData$biMonth[JanFeb] = "JanFeb";  
+  weatherData$biMonth[MarApr] = "MarApr";  
+  weatherData$biMonth[MayJun] = "MayJun";  
+  weatherData$biMonth[JulAug] = "JulAug";  
+  weatherData$biMonth[SepOct] = "SepOct";  
+  weatherData$biMonth[NovDec] = "NovDec";  
   
   plotData = ggplot( data=weatherData ) +
     geom_histogram(mapping=aes(x=relHum, y=..count..),
