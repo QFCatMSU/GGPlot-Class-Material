@@ -3,6 +3,11 @@
   weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
   
+  ###############################
+  # This code is functionally the same as in app06.r but uses a different method
+  # for doing for loops -- a method I do not recommend
+  ###############################
+  
   #### Part 1: Create a pressure level column ####
   
   # find the 20%, 40%, 60%, and 80% quantile values of "stnPressure" column
