@@ -3,7 +3,7 @@
   weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
  
-  #### This will do the exact same thing as the for loop below
+  #### This will do the exact same thing as lines 14-27 below
   # weatherData$precipitaion = ifelse(grepl(x=weatherData$weatherType, pattern="RA|SN"),
   #                            yes = 1,
   #                            no = 0);
