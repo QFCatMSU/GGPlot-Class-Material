@@ -3,9 +3,9 @@
   weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
   
-  #### Part 1: Create a pressure level column
+  #### Part 1: Create a pressure level column ####
   
-  # find the 20%, 40%, 60%, and 80% quantile values of "stnPRessure" column
+  # find the 20%, 40%, 60%, and 80% quantile values of "stnPressure" column
   # so, pressureQuant will be a vector with 4 values
   pressureQuant = quantile(weatherData$stnPressure,    
                            probs=c(.20, .40, .60, .80));
@@ -37,10 +37,10 @@
     {
       weatherData$pressureLevel[day] = "Very High";
     }
-    day = day +1; #increment for the next loop (we need to get to day = 366)
+    day = day +1; # increment for the next loop (each val represents a new day)
   }
   
-  #### Part 2: Boxplot of the wind speed vs pressure level
+  #### Part 2: Boxplot of the wind speed vs pressure level ####
   
   #### For the three outliers...
   # index values for the windSusSpeed column in descending order 

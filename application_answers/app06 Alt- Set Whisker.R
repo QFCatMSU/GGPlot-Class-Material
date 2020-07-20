@@ -5,7 +5,7 @@
   
   #### Part 1: Create a pressure level column
   
-  # find the 20%, 40%, 60%, and 80% quantile values of "stnPRessure" column
+  # find the 20%, 40%, 60%, and 80% quantile values of "stnPressure" column
   # so, pressureQuant will be a vector with 4 values
   pressureQuant = quantile(weatherData$stnPressure,    
                            probs=c(.20, .40, .60, .80));
