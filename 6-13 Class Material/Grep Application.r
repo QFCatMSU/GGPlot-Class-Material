@@ -1,11 +1,11 @@
-### **** Summary of some of the structure Charlie uses in his code ***
+# ## **** Summary of some of the structure Charlie uses in his code ***
 # Source (instead of Run) your code -- forces you to structure it better
 # copy line: Control-Shift-D (Command-Shift-D on Mac)
 # comment out lines: Control-Shift-C (Command-Shift-C on Mac)
 # { } -- fixes an obscure if-else bug in R
 # = instead of <-: they do the same thing and = is standard in all programming languages
 # Semicolons: explicitly tells R this is an end-of-common -- good for debugging
-# 85 characters or less/line: 
+# 85 characters or less/line:
 #        Tools -> Global Options -> Code -> Display -> Margin Column = 85
 # Reference file: for code that gets repeated in multiple scripts
 #        For instance: a customized GGPlot theme

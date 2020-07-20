@@ -1,65 +1,85 @@
 {
   source(file="scripts/reference.R");  
-  weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
+  weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
   
-  #### Part 1: Create a wind direction column
-  pressureQuant = quantile(weatherData[,"stnPressure"], 
-                           probs=c(.20,.40, .60, .80));
+  #### Part 1: Create a pressure level column
+  
+  # find the 20%, 40%, 60%, and 80% quantile values of "stnPRessure" column
+  # so, pressureQuant will be a vector with 4 values
+  pressureQuant = quantile(weatherData$stnPressure,    
+                           probs=c(.20, .40, .60, .80));
 
-  for(day in 1:nrow(weatherData))
+  ## Creating a new column, called pressureLevel,
+  #  that gives relative pressure for the day (based on the quantile results)
+  for(day in 1:nrow(weatherData))  # the variable day will take on each value from 1 to 366
   {
-    ## Adding a column that gives relative wind speed for the day
-    # Winds less than 6.4 miles/hour -- label as "Low"
-    if(weatherData[day,"stnPressure"] <= pressureQuant[1])
+    # if the standard pressure of the day is less than or equal to the 0.20 quantile value
+    if(weatherData$stnPressure[day] <= pressureQuant[1])
     {
-      weatherData[day,"pressureLevel"] = "Very Low";
+      weatherData$pressureLevel[day] = "Very Low";  # set the pressure to very low
     }
-    # Winds greater than 10.2 miles/hour -- label as "High"
-    else if(weatherData[day,"stnPressure"] <= pressureQuant[2])
+    # if the standard pressure of the day is less than or equal to the 0.40 quantile value
+    else if(weatherData$stnPressure[day] <= pressureQuant[2])
     {
-      weatherData[day,"pressureLevel"] = "Low";
+      weatherData$pressureLevel[day] = "Low";       # set the pressure to low
     }
-    else if(weatherData[day,"stnPressure"] <= pressureQuant[3])
+    else if(weatherData$stnPressure[day] <= pressureQuant[3])
     {
-      weatherData[day,"pressureLevel"] = "Medium";
+      weatherData$pressureLevel[day] = "Medium";
     }
-    else if(weatherData[day,"stnPressure"] <= pressureQuant[4])
+    else if(weatherData$stnPressure[day] <= pressureQuant[4])
     {
-      weatherData[day,"pressureLevel"] = "High";
+      weatherData$pressureLevel[day] = "High";
     }
-    else
+    else  # all other values
     {
-      weatherData[day,"pressureLevel"] = "Very High";
+      weatherData$pressureLevel[day] = "Very High";
     }
   }
   
-  #### Part 2: Boxplot of the change in max temp vs wind direction
+  #### Part 2: Boxplot of the wind speed vs pressure level
   
+  #### For the three outliers...
   # index values for the windSusSpeed column in descending order 
-  speedOrderedIndex = order(weatherData$windSusSpeed, decreasing=TRUE);
+  descendingIndex = order(weatherData$windSusSpeed, decreasing=TRUE);
+  threeHigh = descendingIndex[1:3];   # the indeices the of three highest values
   # get the three highest wind speeds
-  highWindSpeeds = weatherData$windSusSpeed[speedOrderedIndex[1:3]];
+  highWindSpeeds = weatherData$windSusSpeed[threeHigh];
   # get the dates for the three highest wind speeds
-  highWindDates = weatherData$date[speedOrderedIndex[1:3]];
+  highWindDates = weatherData$date[threeHigh];
 
+  # Force the order by level (otherwise, it will be alphabetical)
   pressureFact = factor(weatherData$pressureLevel,
                        levels=c("Very Low", "Low", "Medium", "High", "Very High"));
   
+  
   thePlot = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=pressureFact, y=windSusSpeed),
-                 outlier.shape = 24, outlier.fill = "red", outlier.size = 3) +
+                 coef = 1.5,  # interquartile range (IQR) -- default is 1.5 (so, this changes nothing)
+                 outlier.shape = 24, 
+                 outlier.fill = "red", 
+                 outlier.size = 3) +
     theme_bw() +
-    annotate(geom="text", x=1.3, y=highWindSpeeds[1], color="blue",   
-             label=highWindDates[1] ) +
-    annotate(geom="text", x=0.7, y=highWindSpeeds[2], color="darkgreen",   
-             label=highWindDates[2] ) +
-    annotate(geom="text", x=1.3, y=highWindSpeeds[3], color="red",   
-             label=highWindDates[3] ) +
     labs(title = "Wind Speeds vs. Pressure Levels",
          subtitle = "Lansing, Michigan: 2016",
          x = "Pressure Level",
-         y = "Wind Speeds");
+         y = "Wind Speeds")  +
+    # the three annotate() are for the three outliers
+    annotate(geom="text", 
+             x=1.3, 
+             y=highWindSpeeds[1], 
+             color="blue",   
+             label=highWindDates[1] ) +
+    annotate(geom="text", 
+             x=0.7, 
+             y=highWindSpeeds[2], 
+             color="darkgreen",   
+             label=highWindDates[2] ) +
+    annotate(geom="text", 
+             x=1.3, 
+             y=highWindSpeeds[3], 
+             color="red",   
+             label=highWindDates[3] );
   plot(thePlot);
-
 }  
