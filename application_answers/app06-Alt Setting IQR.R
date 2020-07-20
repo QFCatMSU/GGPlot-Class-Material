@@ -56,7 +56,7 @@
   
   thePlot = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=pressureFact, y=windSusSpeed),
-                 coef = 2.5,  # interquartile range (IQR) -- increases the whisker size (and removes an outlier)
+                 coef = 2.5,  # multiplier for interquartile range (IQR) -- increases the whisker size (and removes an outlier)
                  outlier.shape = 24, 
                  outlier.fill = "red", 
                  outlier.size = 3) +

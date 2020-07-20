@@ -43,7 +43,7 @@
   #### For the three outliers...
   # index values for the windSusSpeed column in descending order 
   descendingIndex = order(weatherData$windSusSpeed, decreasing=TRUE);
-  threeHigh = descendingIndex[1:3];   # the indeices the of three highest values
+  threeHigh = descendingIndex[1:3];   # the indices the of three highest values
   # get the three highest wind speeds
   highWindSpeeds = weatherData$windSusSpeed[threeHigh];
   # get the dates for the three highest wind speeds
@@ -56,7 +56,7 @@
   
   thePlot = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=pressureFact, y=windSusSpeed),
-                 coef = 1.5,  # interquartile range (IQR) -- default is 1.5 (so, this changes nothing)
+                 # coef = 2.5,  # multiplier for interquartile range (IQR) -- default is 1.5 
                  outlier.shape = 24, 
                  outlier.fill = "red", 
                  outlier.size = 3) +
