@@ -1,18 +1,20 @@
 {
   source(file="scripts/reference.R");  
-  weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
+  weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
   
-  #### Part 1: Create a wind direction column
-  pressureQuant = quantile(weatherData[,"stnPressure"], 
-                           probs=c(.20,.40, .60, .80));  # 5 values in pressureQuant
+  #### Part 1: Create a pressure level column
+  
+  # find the 20%, 40%, 60%, and 80% quantile values of "stnPRessure" column
+  # so, pressureQuant will be a vector with 4 values
+  pressureQuant = quantile(weatherData$stnPressure,    
+                           probs=c(.20, .40, .60, .80));
 
   # "val" will take on each of the 366 values in the "day" column
   #  so, this for loop will execute 366 times for each value in the "day" column
-  #  This is not the preferred way to do for loops -- 
-  #      but you often see it done this way
+  #  This is not the preferred way to do for loops -- but you often see it done this way
   
-  day = 1;    # and you still need a count value...
+  day = 1;    # you still need a count value...
   for(val in weatherData$stnPressure)  # checking each values in stnPressure column
   {
     if(val <= pressureQuant[1])
@@ -38,73 +40,48 @@
     day = day +1; #increment for the next loop (we need to get to day = 366)
   }
   
+  #### Part 2: Boxplot of the wind speed vs pressure level
   
-  #### Manually find the quantiles
-  yIndices = which(weatherData$pressureLevel=="Very Low"); 
-  y = weatherData$windSusSpeed[yIndices];
-  y25 = quantile(y, prob=0.25);
-  y75 = quantile(y, prob=0.75);
+  #### For the three outliers...
+  # index values for the windSusSpeed column in descending order 
+  descendingIndex = order(weatherData$windSusSpeed, decreasing=TRUE);
+  threeHigh = descendingIndex[1:3];   # the indeices the of three highest values
+  # get the three highest wind speeds
+  highWindSpeeds = weatherData$windSusSpeed[threeHigh];
+  # get the dates for the three highest wind speeds
+  highWindDates = weatherData$date[threeHigh];
   
-  IQR = y75 - y25;
-  
-  outlierHigh = y75 + 1.5*IQR;
-  outlierLow = y25 - 1.5*IQR;
-  
-  # does not handle if there are no values...
-  maxWhisker = max(y[which(y <= outlierHigh & y > y75)]);  # break this down
-  minWhisker = min(y[which(y >= outlierLow & y < y25)]);   # break this down
-  
-  #### talk about piping %>%
-  
-  outlierIndexMax = which(y > outlierHigh);
-  outlierValues = y[outlierIndexMax];
-  outlierIndices = yIndices[outlierIndexMax];
-  outlierDates = weatherData$date[outlierIndices];
-  
-  padding = 5;
-  
-  a=ggplot() +   # no data because we are not asking GGPlot to use the dataset
-    geom_boxplot(mapping=aes(x=1, 
-                             ymin = minWhisker, 
-                             lower = y25, 
-                             middle = median(y), 
-                             upper = y75, 
-                             ymax = maxWhisker),
-                 stat="identity") +
-    geom_point(mapping = aes(x=1, y=outlierValues),
-               shape = "\u0259",
-               size=4,
-               color= rgb(red=0.8, green=0.4, blue=0)) + # red and part green make orange
-    geom_text(mapping = aes(x=1, y=outlierValues, label=outlierDates),
-              nudge_x = -0.05 + 0.10*outlierValues%%2) +
-    scale_y_continuous(limits = c( min(y)-padding, max(y)+padding )) +
-    scale_x_continuous(breaks = c(1),            # x=1, next box would be put at x=2
-                       labels = "Very Low");     # replace number with label
-  plot(a);
+  # Force the order by level (otherwise, it will be alphabetical)
+  pressureFact = factor(weatherData$pressureLevel,
+                        levels=c("Very Low", "Low", "Medium", "High", "Very High"));
   
   
-  #### Simplified
-  b=ggplot() +   # no data because we are not asking GGPlot to use the dataset
-    geom_boxplot(mapping=aes(x=1, 
-                             ymin = minWhisker, 
-                             lower = y25, 
-                             middle = median(y), 
-                             upper = y75, 
-                             ymax = maxWhisker),
-                 stat="identity") +
-    geom_point(mapping = aes(x=1, y=outlierValues),
-               color= "orange") + 
-    geom_text(mapping = aes(x=1, y=outlierValues, label=outlierDates),
-              nudge_x = 0.05) +
-    scale_y_continuous(limits = c(min(y), max(y))) +
-    scale_x_continuous(breaks = c(1),            # x=1, next box would be put at x=2
-                       labels = "Very Low");     # replace number with label
-  plot(b);
-  
-  
-  # create the other 4 plots
-  # add titles, labels to the plots
-  # change style
-  # add mean points to the plots
-  # do everything with a for()
+  thePlot = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=pressureFact, y=windSusSpeed),
+                 coef = 1.5,  # interquartile range (IQR) -- default is 1.5 (so, this changes nothing)
+                 outlier.shape = 24, 
+                 outlier.fill = "red", 
+                 outlier.size = 3) +
+    theme_bw() +
+    labs(title = "Wind Speeds vs. Pressure Levels",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Pressure Level",
+         y = "Wind Speeds")  +
+    # the three annotate() are for the three outliers
+    annotate(geom="text", 
+             x=1.3, 
+             y=highWindSpeeds[1], 
+             color="blue",   
+             label=highWindDates[1] ) +
+    annotate(geom="text", 
+             x=0.7, 
+             y=highWindSpeeds[2], 
+             color="darkgreen",   
+             label=highWindDates[2] ) +
+    annotate(geom="text", 
+             x=1.3, 
+             y=highWindSpeeds[3], 
+             color="red",   
+             label=highWindDates[3] );
+  plot(thePlot);
 }  

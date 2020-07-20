@@ -1,6 +1,6 @@
 {
   source(file="scripts/reference.R");  
-  weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
+  weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
   
   #### Part 1: Create a wind direction column
