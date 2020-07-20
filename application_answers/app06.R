@@ -11,10 +11,13 @@
   pressureQuant = quantile(weatherData$stnPressure,    
                            probs=c(.20, .40, .60, .80));
 
-  ## Creating a new column, called pressureLevel,
-  #  that gives relative pressure for the day (based on the quantile results)
-  for(day in 1:nrow(weatherData))  # the variable day will take on each value from 1 to 366
+  # the variable day will takes on values from 1 to 366
+  # the for loop iterates for each value of day (so, 366 iterations)
+  for(day in 1:nrow(weatherData))  
   {
+    ## Creating a new column, called pressureLevel,
+    #  that gives relative pressure for the day (based on the quantile results)
+    
     # if the standard pressure of the day is less than or equal to the 0.20 quantile value
     if(weatherData$stnPressure[day] <= pressureQuant[1])
     {
@@ -87,7 +90,7 @@
   #  Part 1: Practice with the breakpoints:  
   #    What is the breakpoint doing inside the for loops?
   #      note: you can add/remove breakpoints while debugging (especially useful when in for loops)
-  #    Put it multiple breakpoints and use Continue
+  #    Put it two (or more) breakpoints and use Continue
   #  Part 2: Humidity vs Precipitation boxplots
   #    Humidity goes on the y-axis
   #    Two boxes on the x-axis: (1) Days that had precip (2) Days that had no precip

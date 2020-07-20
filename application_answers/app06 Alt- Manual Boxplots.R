@@ -50,7 +50,7 @@
   y25 = quantile(y, probs = 0.25);
   y75 = quantile(y, probs = 0.75);
   
-  # interquantile range -- used to set the whiskers of the plot
+  # interquantile range -- the size of the box and used to find whiskers
   IQR = y75 - y25;
   
   # Find the low and high point of the whiskers (beyond are outliers) 
@@ -79,8 +79,8 @@
          subtitle = "Whiskers not standard, lost the lower whisker");
   plot(plot1);
   
-  # The high and low whisker points are the closest values to the whisker ends that do 
-  # not go beyond the whisker ends.  
+  # The high and low whisker points are the closest values to the whisker ends that  
+  # do not go beyond the whisker ends.  
   yHigh = y[y > y75 & y <= whiskerHigh]; # y such that y is between 3/4 and high whisker point
   whiskerHigh2 = max(yHigh);             # maximum of these values (becomes the high whisker point)
   yLow = y[y >= whiskerLow & y < y25];   # y such that y is between low whisker point and 1/4
@@ -104,7 +104,6 @@
          subtitle = "Whisker ends now standard -- missing outliers");
   plot(plot2);
 
-  
   ## Labeling the high outliers with the dates (we know there are no low outliers)
   outlierValues = y[y > whiskerHigh2];           # outliers are y values higher than whisker high      
   outlierIndex = yIndex[y > whiskerHigh2];       # the index of the outlier from the full data
@@ -170,6 +169,7 @@
   # 2) add appropriate labels and titles to the plots
   # 3) change background colors and style to match application 6
   # 4) add the mean points to the two boxes
+  # 5) add points at 1 and 2 standard deviations from mean 
   
   # Advanced
   # 1) Put all 5 boxes on canvas manually
