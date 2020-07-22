@@ -63,7 +63,9 @@
 
   plotData = ggplot( data=weatherData ) +
     geom_histogram(mapping=aes(x=relHum, y=..count.., fill=biMonth),
-                   bins=40, color="grey20", position="stack") +
+                   bins=40, 
+                   color="grey20", 
+                   position="stack") +
     theme_classic() +
     theme(legend.position=c(x=0.10, y=0.70)) +
     geom_vline(mapping=aes(xintercept=mean(weatherData[JanFeb, "relHum"])),

@@ -18,7 +18,7 @@
   # "val" will take on each of the 366 values in the "day" column
   #  so, this for loop will execute 366 times for each value in the "day" column
   #  This is not the preferred way to do for loops -- but you often see it done this way
-  
+
   day = 1;    # you still need a count value...
   for(val in weatherData$stnPressure)  # checking each values in stnPressure column
   {
@@ -50,7 +50,7 @@
   #### For the three outliers...
   # index values for the windSusSpeed column in descending order 
   descendingIndex = order(weatherData$windSusSpeed, decreasing=TRUE);
-  threeHigh = descendingIndex[1:3];   # the indeices the of three highest values
+  threeHigh = descendingIndex[1:3];   # the indices the of three highest values
   # get the three highest wind speeds
   highWindSpeeds = weatherData$windSusSpeed[threeHigh];
   # get the dates for the three highest wind speeds
