@@ -48,17 +48,30 @@
          y = "Heat Days");
   plot(thePlot);
   
+  ### GGPlot will not do a bar stack and nuge at the same time
+  
+  totalCool = aggregate(formula=coolDays~month, 
+                         data=weatherData, 
+                         FUN=sum);
 
-  thePlot = ggplot(data=weatherData) +
-    geom_col(mapping=aes(x=month, y=heatDays),  
+  totalHeat = aggregate(formula=heatDays~month, 
+                         data=weatherData, 
+                         FUN=sum);
+  
+  
+  thePlot = ggplot() +
+    geom_col(mapping=aes(x=totalHeat$month, y=totalHeat$heatDays),  
              fill = "red",
              width=0.4,
-             position=after_stat(position_nudge(x=-0.2)))  +
-    geom_col(mapping=aes(x=month, y=coolDays),  
+             position=position_nudge(x=-0.2))  +
+    geom_col(mapping=aes(x=totalCool$month, y=totalCool$coolDays),  
              fill = "blue",
              width=0.4,
-             position=after_stat(position_nudge(x=0.2))) +
+             position=position_nudge(x=0.2)) +
     scale_x_discrete(limits = month.abb) +
+    scale_y_continuous(
+      name = "Number of Heat Days (Red) and Cool Days (Blue)",
+    ) +
     theme_bw() +
     labs(title = "Heating and Cooling Days",
          subtitle = "Lansing, Michigan: 2016",
