@@ -29,14 +29,14 @@
   plot1 = ggplot(data=weatherData) +   
     geom_boxplot(mapping=aes(x=precipitation, y=relHum)) +
     theme_bw() +
-    scale_x_discrete(labels=c("No Precip", "Precip")) +
+    scale_x_discrete(labels=c("No Precip", "Precip")) +  # switches to scale_x_continuous with manual boxplots
     labs(title = "Relative Humidity vs. Precipitation",
          subtitle = "Lansing, Michigan: 2016",
          x = "Precipitation",
          y = "Humidity");
   plot(plot1);
   
-  ##### Instructions:
+  ##### Assignment:
   # - Make a copy of the above plot using manually created boxplots
   # - add a line to represent the mean value for each box
   # - add text to represent the standard deviations for each box
@@ -55,6 +55,7 @@
   # 6) Solve for actual whisker end:
   #    - high: the highest value in the data less than the high whisker value
   #    - low: the lowest value in the data greater than the low whisker value
+  # 7) Repeat 1-6 for relHum values for days where there is precipitation
   
   ##### Manually plot humidity vs precipitation ######
   plot2 = ggplot() +  
