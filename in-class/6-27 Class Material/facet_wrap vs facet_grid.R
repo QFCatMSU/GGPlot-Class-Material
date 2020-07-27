@@ -2,6 +2,12 @@
   source(file="scripts/reference.R");  
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv");
 
+  ###
+  # Differences:
+  # - facet_wrap() will not print plots without data
+  # - When x and y facets are used, facet_grid() creates a grid the plots by the facets
+  #   whereas fact_wrap() does not (easier to see than show...)
+  
   # facet_grid creates a 2D grid of plots whose x and y coordinates are the factors 
   #   of the facets (i.e., 4 seasons by 3 wind speeds)
   thePlot = ggplot(data=weatherData) +
