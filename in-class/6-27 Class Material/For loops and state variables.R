@@ -34,8 +34,6 @@
          y = "Precipitation (numeric values)");
   plot(thePlot);
   
-  # https://math.stackexchange.com/questions/1848349/shortcut-for-roots-of-quadratic-equation
-  
   # First 10 days of precipitaion (using precip3)
   precipAmount = 0;   # starts at zero (this is sometimes called a "state" variable)
 
