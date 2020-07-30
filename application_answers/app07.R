@@ -26,7 +26,8 @@
   
   thePlot = ggplot(data=weatherData) +
       geom_boxplot(mapping=aes(x=humidityLevel, y=stnPressure,
-                             fill=factor(windDir)),
+                               fill=factor(windDir, 
+                                         levels=c("North", "East", "South", "West"))),
                  na.rm=TRUE) +
       theme_bw() +
       theme(strip.text = element_text(size=9, color="darkgreen"),
