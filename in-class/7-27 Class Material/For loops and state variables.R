@@ -75,7 +75,7 @@
   #    - you will need three state variables
   # 2) Using one for loop:
   #    Find the total rainfall for the first three months and the last three months
-  #    - you can extend the grep pattern (i.e., pattern="RA|SN|FG"  
+  #    - you can extend the grep pattern (e.g., pattern="RA|SN|FG"  
   #                                             looks for rain, snow, or fog)
   # 3) Using one for loop:
   #    Find the month with the most amount of rain
