@@ -1,4 +1,6 @@
 {
+  library(ggplot2);
+  
   df = data.frame(year=c(2015,2016,2017,2018), 
                   rateMI=c(.2, .3, .4, .5),
                   rateOH=c(.1, .2, .3, .4),
@@ -35,6 +37,7 @@
              width=0.3,
              position=position_dodge()) +
     theme_bw();
+
   plot(thePlot);
 }
 
