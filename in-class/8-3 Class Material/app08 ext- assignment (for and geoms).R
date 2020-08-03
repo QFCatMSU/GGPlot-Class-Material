@@ -13,11 +13,11 @@
   ###############################################
   
   # create the heatDays and CoolDays dataframes
-  heatDayList = aggregate(formula=coolDays~month, 
-                          data=weatherData, 
+  heatDayList = aggregate(formula=coolDays~month,   # sum up the coolDays
+                          data=weatherData,         #  for every month
                           FUN=sum);
-  coolDayList = aggregate(formula=heatDays~month, 
-                          data=weatherData, 
+  coolDayList = aggregate(formula=heatDays~month,   # sum up the heatDays
+                          data=weatherData,         #  for every month
                           FUN=sum);
   
   # merge the two data frame together
@@ -50,6 +50,12 @@
   ###################################
   #### End of section to replace ####
   ###################################
+  
+  ####
+  # Notes: 
+  # - geom_col() is functionally equivalent to geom_bar(stat="identity")
+  # - with a melted dataframe, you fill one bar with two variable and dodge them
+  # - with a regular data frame, you place two bars and nudge them
   
   #### Four different plots -- same output
   # 1) geom_col() with regular data frame
