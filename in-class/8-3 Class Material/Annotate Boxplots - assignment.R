@@ -43,6 +43,11 @@
   # - get *one box* working fully before trying the second
   # - Challenge: get both boxes working with a for loops: for(i in 1:2) ...
   
+  #### There are three answers:
+  # 1) one box only
+  # 2) two boxes using for loops for the data
+  # 3) two boxes using for loops for both the plot and the data
+  
   ##### To manually get data for boxplots (don't read if you want a challenge)
   # 1) get all relHum values for days where there is no precipitation
   #    one way: weatherData$relHum[weatherData$precipitation==0]

@@ -21,8 +21,7 @@
   #### Part 11: Change legend position
   thePlot = ggplot(data=weatherData) +
     geom_text(mapping=aes(x=relHum, y=precipNum,
-                          color=maxTemp, label=avgTemp),
-              size=3.5) +
+                          size=avgTemp, label=avgTemp)) +
     scale_color_gradientn(colors=c("blue","darkgreen","red")) +
     theme_bw() +
     theme(panel.grid.major = element_blank(),
