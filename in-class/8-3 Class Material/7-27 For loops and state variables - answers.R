@@ -13,26 +13,26 @@
                              pattern="T", 
                              replacement="0.005"));
   
-  # ### Plot humidity vs. precip2 (precip2 is string value -- this will cause problems!) 
-  # thePlot = ggplot(data=weatherData) +
-  #   geom_point(mapping=aes(x=relHum, y=precip2)) +
-  #   theme_bw() +
-  #   labs(title = "Relative Humidity vs. Precipitation",
-  #        subtitle = "Lansing, Michigan: 2016",
-  #        x = "Humidity",
-  #        y = "Precipitation (string/character/factor/categorical values)");
-  # plot(thePlot);
-  # 
-  # 
-  # ### Plot humidity vs. precip3 (much better)  
-  # thePlot = ggplot(data=weatherData) +
-  #   geom_point(mapping=aes(x=relHum, y=precip3)) +
-  #   theme_bw() +
-  #   labs(title = "Relative Humidity vs. Precipitation",
-  #        subtitle = "Lansing, Michigan: 2016",
-  #        x = "Humidity",
-  #        y = "Precipitation (numeric values)");
-  # plot(thePlot);
+  ### Plot humidity vs. precip2 (precip2 is string value -- this will cause problems!)
+  thePlot = ggplot(data=weatherData) +
+    geom_point(mapping=aes(x=relHum, y=precip2)) +
+    theme_bw() +
+    labs(title = "Relative Humidity vs. Precipitation",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Humidity",
+         y = "Precipitation (string/character/factor/categorical values)");
+  plot(thePlot);
+
+
+  ### Plot humidity vs. precip3 (much better)
+  thePlot = ggplot(data=weatherData) +
+    geom_point(mapping=aes(x=relHum, y=precip3)) +
+    theme_bw() +
+    labs(title = "Relative Humidity vs. Precipitation",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Humidity",
+         y = "Precipitation (numeric values)");
+  plot(thePlot);
 
   # Find which month has the most rain (take one)
   precipEachMonth = c(rep(0,12));   # repeat zero 12 times, so c(0,0,0,0,0,0,0,0,0,0,0,0)
