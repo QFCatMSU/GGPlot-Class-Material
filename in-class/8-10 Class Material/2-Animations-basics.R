@@ -18,7 +18,7 @@
   
   # You need to use print() instead of plot() -- 
   # The animation is sent to the Viewer tab
-  print(plot1);  
+  #print(plot1);  
   
   # Note: animations take a lot of time to process -- you probably want
   #       to do the print() commands in Console or comment out most of them
