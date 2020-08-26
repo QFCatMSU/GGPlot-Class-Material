@@ -12,6 +12,6 @@
       quantIndex = which(xVar == i);
       quants[i] = quantile(yVar[quantIndex], percentile, na.rm=TRUE);
     }
-    return(quants)
+    return(quants);
   }
 }
