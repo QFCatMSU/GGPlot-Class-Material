@@ -31,9 +31,9 @@
          x = 'Average Temp', 
          y = 'Humidity') +
     theme_bw() +
-    transition_states(states = season, 
+    transition_states(states = season,       # season is a column in weatherData
                       transition_length = 1, # relative animation time (default: 1)  
                       state_length = 2,      # relative pause time (default: 1)
                       wrap = TRUE);          # gif always wraps so this is useless
-  # print(plot2);
+   print(plot2);
 }
