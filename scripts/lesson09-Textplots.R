@@ -152,7 +152,7 @@
          y = "Relative Humidity",
          color = "Seasons");
   plot(thePlot);
-
+#yo
   #### Part 11: Change legend position
   thePlot = ggplot(data=weatherData) +
     geom_text(mapping=aes(x=avgTemp, y=relHum,
