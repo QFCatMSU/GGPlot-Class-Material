@@ -1,7 +1,7 @@
 {
   source(file="scripts/reference.R");  
   weatherData = read.csv(file="data/LansingNOAA2016-3.csv");
-  
+  #yo
   #### Part 1: A different way to arrange x-axis values
   thePlot = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp), na.rm=TRUE) +
