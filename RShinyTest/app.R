@@ -47,6 +47,7 @@ ui <- fluidPage(
 server <- function(input, output) {
 
     output$distPlot <- renderPlot({
+      library(package=ggplot2);  
      weatherData = read.csv(file="../data/LansingNOAA2016-3.csv",
                            stringsAsFactors = FALSE);
       springIndex = grep(weatherData$date, pattern="3-21");
@@ -79,7 +80,7 @@ server <- function(input, output) {
              y = "Relative Humidity",
              color = "");
       plot(thePlot);
-    }, width=800, height=800)
+    }, width=800, height=600)
 }
 
 # Run the application 
