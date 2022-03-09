@@ -50,7 +50,7 @@ ui <- fluidPage(
 server <- function(input, output) {
 
     output$distPlot <- renderPlot({
-      cat("Hello, Word, my name is", input$Name, 
+      cat("Hello, World, my name is", input$Name, 
           ". I am", input$Age, "years old.",
           "My favorite animal is the", input$Animal,
           "And my favorite cheese is", input$Cheese, "\n\n");
