@@ -1,6 +1,13 @@
 {
-  source(file="scripts/reference.R");  
-  weatherData = read.csv(file="data/LansingNOAA2016-3.csv", 
+  #### For VSCode -- setting up the graphics device
+  library(httpgd);
+  httpgd::hgd();
+  httpgd::hgd_browse();
+  #View(globalenv());
+  options(vsc.str.max.level = 2)
+  
+  source(file="scripts/reference.R");
+  weatherData = read.csv(file="data/LansingNOAA2016-3.csv",
                        stringsAsFactors = FALSE);
 
   #### Part 1: using grep to find days with a specific weather event

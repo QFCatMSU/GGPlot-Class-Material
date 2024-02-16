@@ -1,0 +1,135 @@
+---
+output:
+  html_document: default
+  word_document: default
+  pdf_document:
+    fig_width: 7
+    fig_height: 3.5
+---
+
+```{r echo=FALSE, code = readLines("YS.r"), warning=FALSE, message=FALSE, results="hide", fig.show='hide' }
+# execute the script but suppress all output
+# basically this puts the script in memory so it can used later
+source(file="YS.r");
+```
+
+<style>
+/* It might be easier to use Knitr hyperlinks... */
+/* In-page links will still not work in PDF saved from Firefox (works in Chrome, Edge) */
+  @media print 
+  {
+    .pagebreak, .pb
+    {
+      page-break-after: always;
+    }
+  }
+  .pagebreak, .pb
+  {
+    /* In chrome and Edge, this needed to be inside a <p>, not a <a> */
+    padding-bottom: 50px;
+  }
+  @page  
+  { 
+      /* Removing the header/footer is a browser option -- not a CSS option */
+      size: letter;   /* not sure this does anything... */ 
+      margin-top: 20mm;  
+      margin-bottom: 20mm;  
+      margin-left: 20mm;  
+      margin-right: 20mm;  
+  } 
+  p
+  {
+    font-family: Times New Roman;
+    line-height: 2;
+    font-size: 14px;
+  }
+  .fig
+  {
+    line-height: 1.1;
+    color: brown;
+  }
+  a:link
+  {
+    /* !important overrides the default when saving as PDF or printing */         
+    color: red !important;
+  }
+  h2
+  {
+    color:darkgreen !important; 
+    font-size: 16px; 
+    font-weight: 700; 
+  }
+  h3
+  {
+    color:darkgreen !important; 
+    font-size: 16px; 
+  }
+}
+</style>
+
+<h2> Lake trout abundance and mortality </h2>
+
+&nbsp;&nbsp;&nbsp;&nbsp; Data from lake trout distribution netting were used to examine temporal patterns in lake trout catch per unit effort (CPUE).  Given changes in sampling methodology, CPUE was only estimated for 2010 through **``r yearEnd``**.  Distribution netting consists of sampling 12 fixed sites and 12 random sites annually; CPUE was calculated for all sites combined as well as for fixed sites only.  For all sites combined, the 2018 CPUE was 1.94 (1.44 – 2.44; 95% CI) fish/100 m net nights, which was a 30% reduction from the 2017 CPUE.  Between 2011 and 2017, the CPUE for all sites combined ranged from 2.72 (2.02 – 3.4;3 95% CI) to 4.77 (3.35 – 6.18) fish/100 m net nights.  For fixed sites, the 2018 CPUE was 2.24 CPUE (1.41 – 3.07; 95% CI) fish/100 m net nights, which also was a 30% reduction from the 2017 CPUE.  Between 2011 and 2017, the CPUE for fixed sites ranged from has ranged from 2.77 (2.02 – 3.50; 95% CI) to 5.49 (3.18 – 7.79) fish/100 m net nights.  Overall, there is a high degree of consistency in the CPUE temporal pattern for fixed sites and all sites combined <a href="#fig1">(Figure 1)</a>.
+
+&nbsp;&nbsp;&nbsp;&nbsp; A statistical catch-at-age (SCAA) model was used to estimate lake trout abundance and mortality from **``r yearInit``** through **``r yearEnd``**  Unlike in previous years, the SCAA model structure was modified so that suppression gillnetting, suppression trapnetting, and distribution gillnetting were treated as 3 distinct fisheries.  In previous years, harvest from suppression trapnetting and distribution gillnetting were combined with suppression gillnet harvest for calculating total observed harvest and distribution gillnetting was treated as a survey index where fish were not harvested.  The SCAA model was also modified in that distribution gillnetting was treated as a Type-1 fishery that occurred after 68% of the annual suppression gillnetting fishing mortality and natural mortality had occurred.  The SCAA model was also modified so that the distribution gillnetting harvest and age composition included both fixed and random sites to account for most of the harvest that is occurring from the distribution gillnetting program.  
+
+&nbsp;&nbsp;&nbsp;&nbsp; Similar to previous years, gillnetting catchability was allowed to vary through time with random deviations for both the distribution and suppression netting programs.  Because the trapnetting suppression program only lasted from 2010 to 2013, trapnet catchability was assumed to be temporally constant.  For suppression gillnetting, separate catchability parameters were estimated for 1998-2000 and 2001-2018 time blocks.  Fully-selected instantaneous fishing mortality (F) for suppression gillnetting increased from **``r formatC(data[2, "1998"], format="f", digits=2)``** (0.07 – 0.11; 95% CI) in 1998 to **``r formatC(data[2, "2017"], format="f", digits=2)``** (0.87 – 1.26; 95% CI) in 2017 <a href="#fig2">(Figure 2)</a>.  The estimate of F for suppression gillnetting in 2018 was **``r formatC(data[2, "2018"], format="f", digits=2)``** (0.85 – 1.36; 95% CI).  In 2017 and 2018, suppression gillnetting effort was **``r formatC(data[1, "2017"], format="d", big.mark=",")``** and **``r formatC(data[1, "2018"], format="d", big.mark=",")``** 100-m net nights, which is the highest effort that has occurred on the lake.  Abundance of age-2 and older lake trout increased from **``r formatC(data[3, "1998"], format="d", big.mark=",")``** (86,300 – 111,800; 95% CI) lake trout in 1998 to **``r formatC(data[3, "2012"], format="d", big.mark=",")``** (810,140 – 1,038,780; 95% CI) fish in 2012 <a href="#fig3">(Figure 3)</a>.  Estimated abundance was **``r formatC(data[3, "2018"], format="d", big.mark=",")``** (494,240 – 766,900; 95% CI) lake trout at the beginning of 2018.  By the end of 2018, abundance had been reduced to **``r formatC(data[4, "2018"], format="d", big.mark=",")``** (161,800 – 320,300; 95% CI) fish.  Approximately **``r formatC(round(data[5, "2018"]*100), format="d")``**% of the 2018 lake trout abundance at the start of the year was composed of age-2 (i.e., new recruits) fish.  Approximately **``r formatC(round(data[6, "2018"]*100), format="d")``**% of the lake trout abundance at the start of year was composed of fish age-5 and younger.  With respect to population biomass, age-2 and older biomass, which increased from **``r formatC(data[7, "1998"], format="d")``** (37,200 – 54,700; 95% CI) kg in 1998 to **``r formatC(data[7, "2012"], format="d")``** (358,700 – 472,600; 95% CI) kg in 2012, declined to **``r formatC(data[7, "2018"], format="d")``** (182,400 – 279,500; 95% CI) kg at the start of 2018 <a href="#fig4">(Figure 4)</a>. The 33% decline in lake trout biomass from 2012 through 2017 was caused by a reduction in the abundance of adult lake trout, as weight at age of lake trout was fairly consistent during these time periods. By the end of 2018, biomass had declined to 74,600 (48,800 – 100,300) kg.  
+
+&nbsp;&nbsp;&nbsp;&nbsp; Abundance estimates from the SCAA model were converted to estimates of annual fecundity, which were used as a measure of spawning stock biomass for fitting a stock-recruitment relationship.  In previous years, only data as far back as the 2006 year class was used in fitting a stock recruitment relationship but the reasoning behind this was not clear.  For this year’s evaluation, data back to the **``r yearInit``** year class was used in fitting the stock recruitment relationship <a href="#fig5">(Figure 5)</a>.  A Ricker stock-recruitment function was to the stock-recruit data.  Based on the fitted relationship, the Yellowstone lake trout population has been on the ascending limb of the stock-recruit curve for the **``r yearInit``** to **``r yearEnd-2``** year classes <a href="#fig6">(Figure 6)</a>.  Variation in the stock recruit data is fairly large <a href="#fig6">(Figure 6)</a>. Given the recruit estimates for the 2012 to 2016 year classes are consistently above the fitted relationship, the observed data is suggestive that early life survival of lake trout has been higher in recent years than it was in the early to mid 2000s.  
+
+&nbsp;&nbsp;&nbsp;&nbsp; A simulation model was used to determine the response of lake trout abundance to varying levels of continued gill net fishing effort.  Levels of gill-net effort varied from 0 to 125,000 units (1 unit = 100 m set for 1 night) in increments of 5,000 units.  Results from the SCAA model (e.g., removal netting catchability coefficient for 2001 to 2018, removal netting selectivity, abundance in 2017 and 2018, age composition in 2017 and 2018) as well as stock-recruitment relationships estimated from annual fecundity and age-2 recruits from the SCAA model were used as inputs for the simulation model.  The simulation model was initialized with actually suppression gillnet efforts and abundance levels in 2017 and 2018.  At 75,000 units of reduction fishing effort, lake trout abundance was predicted to decline such that by 2026 expected age-2 and older lake trout abundance was around 60,100 fish (Figure 7).  At 90,000 units of reduction fishing effort, expected age-2 and older lake trout abundance was around 24,600 fish by 2026 (Figure 8).  
+
+&nbsp;&nbsp;&nbsp;&nbsp; To achieve a greater than 90% chance of reducing age-2 and older lake trout abundance to less than 100,000 fish within 5 years, the minimum suppression gillnet effort needed to be sustained was estimated in the simulation model at between 90,000 and 95,000 units of effort (Figure 9).  Simulations also indicated that once a target population abundance was achieved, a sustained gillnet suppression effort of at least 55,000 units of effort was necessary to have a greater than 90% chance of maintaining abundance at less than the target level assuming the same gillnet configuration was used in the suppression program (Figure 10).  
+
+&nbsp;&nbsp;&nbsp;&nbsp; In last year’s assessment, it was noted that the assessment model and simulation results were sensitive to assumptions about the assumed shape of the selectivity curve, which describes the relative vulnerability of different ages of lake trout to suppression gillnets.  In particular, if it was assumed that the selectivity function was dome-shaped (gamma function), the length of time needed to achieve suppression targets was longer than when the selectivity function was assumed to be asymptotic (logistic function). The changes that were made to the SCAA model for this year’s assessment and correction of some of the input data used in fitting the SCAA model reduced the sensitivity of the assessment and simulation model result to the shape of the selectivity curve.  Model comparison indices suggest that an asymptotic selectivity function provided the best model fit to the observed data.      
+
+<!-- Add page break and start single spacing from here -->
+<p class="pb"></p>
+
+<h2> Figures </h2> 
+<a id="fig2"></a>
+```{r echo=FALSE}
+{
+  plot(p2);
+}
+```
+
+<p class="fig">Figure 2.  Estimates of fully selected instantaneous fishing mortality (F) for suppression gillnetting for Yellowstone Lake lake trout from  **``r yearInit``** through **``r yearEnd``** using a statistical catch-at-age model.  Dashed lines delineate 95% confidence intervals.</p>
+<br/><br/><br/>
+
+<a id="fig3"></a>
+```{r echo=FALSE}
+{
+  plot(p3);
+}
+```
+
+<p class="fig pb">Figure 3.  Abundance estimates for age-2 and older lake trout at the start of the year for **``r yearInit``** to **``r yearEnd``** using a statistical catch-at-age model.  Dashed lines delineate 95% confidence intervals. </p>
+
+<a id="fig4"></a>
+```{r echo=FALSE}
+{
+  plot(p4);
+}
+```
+
+<p class="fig">Figure 4.  Biomass estimates for age-2 and greater lake trout from **``r yearInit``** through **``r yearEnd``** using a statistical catch-at-age model.  Dashed lines delineate 95% confidence intervals.</p> 
+<br/><br/><br/>
+
+<a id="fig5"></a>
+```{r echo=FALSE}
+{
+  plot(p5);
+}
+```
+
+<p class="fig pb">Figure 5.  Age-2 lake trout abundance in relation to egg abundance, lagged by 2 years.  Labels indicate year class.  The 1998, 1999, and 2000 year classes overlay one another in the bottom left corner of the graph.</p>   
+
+<a id="fig6"></a>
+```{r echo=FALSE}
+{
+  grid.arrange(p6a, p6b, ncol=2);
+}
+```
+
+<p class="fig">Figure 6.  Predicted (black lines) Ricker stock-recruitment relationship (left panel) and pre-recruit survival rates (right panel) using age-2 lake trout abundance as recruits and egg abundance as spawning stock biomass for the **``r yearInit``** to **``r yearEnd -2``** year class.  The points on the stock-recruitment graph are the observed values.  The red horizontal line on the pre-recruit survival graph demarks early-life survival of lake trout from the scientific literature.</p>
