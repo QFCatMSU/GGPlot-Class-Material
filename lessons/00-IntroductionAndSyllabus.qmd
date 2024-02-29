@@ -1,45 +1,44 @@
 ---
 title: "Introduction and Syllabus"
-# format: html
-# editor: visual
+format:
+  html:
+    css: "presStyle.css"
+    toc: true
+    fig-align: left
+    theme: default
+    fontsize: 15px
+    number-sections: true
+    include-in-header:
+      - text: |
+          <script src="module.js"></script>
+editor: visual
 ---
 
 ### Issues
 
+-   equations
+-   CSS does not indicate if a figure has an ID that starts with "fig-"
+-   do better check on links within a page – make sure you are not capturing links to pages within the website
+-   create module.js for just Quarto
+-   periods in header titles will mess up highlighting (because the period in JS means something)
+-   set css to only change object within the Quarto document
+-   \<done\> don't jump on link if ref object is on page
+-   \<done\>fix last position in shortcut menu
+-   \<done\>reduce size of font in document
+-   \<done\> figure link open in another window... keep to same
+-   \<done – href -\> onclick breaks this!\> less aggressive mouseover on figures
+-   \<unsure\> resize flexsize in editor (this is challenging...)
+-   \<done\> figure coloring in editor
+-   \<done\> figure reference put number in (Insert -\> Cross Reference)
+-   figures on codeblocks??
+-   \<done\> highlight line quickly after linking to it
 -   render just document with global yml
--   create a newline
+-   \<put in instructions\> create a newline
     -   one way: \<br\>
     -   another: nbsp (control-space in Visual)
     -   another: \\ in Source
--   caption numbering
 -   render changes only for objects within document (not generally)
--   notes
--   highlights
--   log-click menu – ??asdf
-
-```{r echo=FALSE, eval=TRUE}
-library(r2resize)
-
-r2resize::add.resizer(
-  # theme.color = "black",
-  # position = "top",
-  # font.size = "12px",
-  # font.color = "darkblue",
-  # tables = TRUE,
-  # images = TRUE,
-  # line.color = "orange",
-  # line.width = 150,
-  # default.image.width="40%"
-)
-```
-
-```{r pressure1, echo=FALSE}
-
-plot(mtcars)
-plot(pressure)
-
-```
-
+-   image resizing does not work when you set height or width in Quarto editor
 
 ## Welcome to Graphing with GGPlot
 
@@ -58,7 +57,6 @@ Graphing with GGPlot is a self-paced and asynchronous online class. The amount o
 **Charlie Belinsky**
 
 -   belinsky\@msu.edu
-
 -   517-355-0126
 
  
@@ -67,7 +65,7 @@ Graphing with GGPlot is a self-paced and asynchronous online class. The amount o
 
 I started my career as a Software Engineer for Motorola in Arizona where I developed software for military radios. From there I became a high school teacher in Port Huron, MI where I taught Computer Science, Web Design, and Physical Science. After that, I worked as an Instructional Designer for the College of Education at MSU where my main project was developing the hybrid graduate program. I currently work at the QFC where my primary job is developing online classes, including this one.  In my free time you will often find me with a backpack deep in a forest or, as my picture testifies to, hanging out on a mountain in the Northern Cascades.
 
-![](images/belinsky2.JPG){width="700"}
+![](images/belinsky2.JPG){width="800"}
 
 ### Technical Support
 
@@ -101,9 +99,9 @@ Students should be familiar with basic programming structures like ***if...else*
 
  
 
-[To test your hardware in Zoom]{.hl}, open Zoom and make sure you are on the ***Home*** tab and click the ***Settings Icon*** @fig-zoomImg and the **Settings** Window will open @fig-zoomImg.  Go to the ***Audio*** and ***Video*** tabs to test your microphone, speakers, and webcam.  If you are using a Mac, the view is different but the buttons are the same.
+[To test your hardware in Zoom]{.hl}, open Zoom and make sure you are on the ***Home*** tab and click the ***Settings Icon*** (@fig-zoomImg) and the **Settings** Window will open @fig-zoomImg.  Go to the ***Audio*** and ***Video*** tabs to test your microphone, speakers, and webcam.  If you are using a Mac, the view is different but the buttons are the same.
 
-![Testing the audio and video in Zoom (click on picture to resize).](images/R-00-Zoom.PNG){#fig-zoomImg}
+![Testing the audio and video in Zoom (click on picture to resize).](images/R-00-Zoom.PNG){#fig-zoomImg .flexSize fig-align="left"}
 
 ### Accessing the class
 
@@ -139,7 +137,7 @@ The course has 12 lessons:
 
 ### Lesson Application
 
-All lessons have an ***Application*** section at the end that will ask you to apply what you learned in the lesson in your own script. *The Application is the only product that gets evaluated.* There are no tests and there is no final exam. 
+All lessons have an ***Application*** section at the end that will ask you to apply what you learned in the lesson in your own script. [The Application is the only product that gets evaluated.]{.hl} There are no tests and there is no final exam. 
 
 ### Lesson feedback
 
@@ -151,11 +149,13 @@ Each application has these three questions regarding the lesson:
 
 3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
 
-These questions are vital for feedback in this class and far more useful to me than end-of-class surveys as they give me real-time information.  *Please take a few minutes to answer these questions*.  Feedback from these questions has become my main way of improving the class.  In return, I promise to address concerns and questions from your responses.
+ 
+
+These questions are vital for feedback in this class and far more useful to me than end-of-class surveys as they give me real-time information.  [Please take a few minutes to answer these questions.]{.hl}  Feedback from these questions has become my main way of improving the class.  In return, I promise to address concerns and questions from your responses.
 
 ### Extensions and Traps
 
-Many of the lessons contain optional content called ***Extension*** and ***Traps***.  Extensions contain material that goes beyond the lesson's objectives and Traps capture some of the common issues students have with the lesson's objectives.  There are links to ***Extensions*** and ***Traps*** within the Content area of the lesson.  Clicking on the appropriate link takes you directly to the ***Extension*** or ***Trap.*** *Extension: testing the extension link*.
+Many of the lessons contain optional content called ***Extension*** and ***Traps***.  Extensions contain material that goes beyond the lesson's objectives and Traps capture some of the common issues students have with the lesson's objectives.  There are links to ***Extensions*** and ***Traps*** within the Content area of the lesson.  Clicking on the appropriate link takes you directly to the ***Extension*** or ***Trap.*** [Extension: Testing the extension link]
 
 ## Student-Instructor Meetings
 
@@ -167,7 +167,7 @@ This sections goes over some of the technological features built into the lesson
 
 ### Long-click menu
 
-If you long-click (hold left-button for about half a second) anywhere on any lesson page (*fig ##,* try it!), you are given options to:
+If you long-click (hold left-button for about half a second) anywhere on any lesson page @fig-shortcutMenu, try it!), you are given options to:
 
 -   Go to Top of Page
 
@@ -179,35 +179,41 @@ If you long-click (hold left-button for about half a second) anywhere on any les
 
 -   Minimize All Images
 
-The long-click menu -- this view is from Firefox .
+ 
+
+![The long-click menu -- this view is from Firefox .](images/R-00-LongClickMenu.PNG){#fig-shortcutMenu .fs}
 
 ### Resizing Pictures
 
-Most pictures in the course can be resized so that the picture is out of your way when you don't need to view it.  Clicking on the picture toggles it between the minimized and maximized states (*fig \##*).
+Most pictures in the course can be resized so that the picture is out of your way when you don't need to view it.  Clicking on the picture toggles it between the minimized and maximized states (@fig-NinhBinh).
 
-Test picture to toggle (Ninh Bình, Việt Nam)
+![Test picture to toggle (Ninh Bình, Việt Nam)](images/NinhBinh%20(Large).jpg){#fig-NinhBinh .fs}
 
 ### Figures and references
 
-When you click on a figure reference (e.g., *fig \##*), the caption on the figure will highlight for 2 seconds. 
+When you click on a figure reference (e.g., @fig-NinhBinh), the caption on the figure will highlight for 2 seconds.
 
-If the figure is not on the screen, then the page will scroll to the figure and highlight it.  For instance, clicking on *fig \##* will take you to the Zoom figure near the top of this page.  You can return to this position by long-clicking and selecting ***Return to the Previous Position***
+ 
+
+If the figure is not on the screen, then the page will scroll to the figure and highlight it.  For instance, clicking on @fig-zoomImg will take you to the Zoom figure near the top of this page.  You can return to this position by long-clicking and selecting ***Return to the Previous Position***
 
 ### Printing lessons and saving lessons to PDF
 
-You can print any lesson or save it as a PDF by clicking on the ***Printer** icon* at the top of every lesson (and this syllabus).  This will bring up a print dialog (*fig \##*) and you can print the lesson to a printer.  On most machines, you can also choose a PDF device as a printer -- this will save the lesson as a PDF document.
+You can print any lesson or save it as a PDF by clicking on the ***Printer** icon* at the top of every lesson (and this syllabus).  This will bring up a print dialog (@fig-printPDF) and you can print the lesson to a printer.  On most machines, you can also choose a PDF device as a printer -- this will save the lesson as a PDF document.
 
-Note: Using your browser's print feature instead on the ***Print*** link will print out the whole webpage instead of just the lesson.
+ 
 
-This author has two print-to-PDF devices -- the Microsoft Print to PDF, which comes with Windows 10 and 11, works fine
+[Note: Using your browser's print feature instead on the ***Print*** link will print out the whole webpage instead of just the lesson.]{.note}
+
+![This author has two print-to-PDF devices -- the Microsoft Print to PDF, which comes with Windows 10 and 11, works fine](images/R-00-PDFPrinter.PNG){#fig-printPDF .fs}
 
 #### Print-to-PDF Software
 
-If you are using Windows 7 or 8 you might not have a PDF device and you will need to download ***Print-to-PDF*** software. You can see if you have a PDF device by going to the print options in any program and see if any of the devices have "PDF" in their name (*fig \##*).  If you don't have a PDF device, then I recommend you install [CutePDF](http://www.cutepdf.com/products/cutepdf/writer.asp)(direct link to the [file download](http://cutepdf.com/download/CuteWriter.exe)).  CutePDF is simple print-to-PDF software that does not try to install any extra software on your computer. *Trap: Bloatware*
+If you are using Windows 7 or 8 you might not have a PDF device and you will need to download ***Print-to-PDF*** software. You can see if you have a PDF device by going to the print options in any program and see if any of the devices have "PDF" in their name (@fig-printPDF).  If you don't have a PDF device, then I recommend you install [CutePDF](http://www.cutepdf.com/products/cutepdf/writer.asp)(direct link to the [file download](http://cutepdf.com/download/CuteWriter.exe)).  CutePDF is simple print-to-PDF software that does not try to install any extra software on your computer. [Trap: Bloatware]
 
 ### Codeblocks
 
-Double-clicking on a codeblock will select all the text in the codeblock and copy it to the clipboard -- you can then paste it into RStudio (or any other text editor).
+Clicking on the clipboard in the upper-right corner of the codeblock will copy the code to the clipboard. You can then paste the code into RStudio (or any other text editor)
 
 ``` r
 # the next two lines should be at the top of all your scripts
@@ -220,7 +226,7 @@ t = 20;
 v = d/t;
 ```
 
-[Double clicking on the codeblock selects all the text and copies it to the clipboard]{#fig-codeBlock}
+[Clicking on clipboard in upper-right corner selects all the text and copies it to the clipboard]{#fig-codeBlock .fig}
 
 ## Personal statement from Charlie
 
@@ -276,10 +282,14 @@ Please note that not all course lessons are the same length and the later ones t
 
 Adobe Acrobat, like most free software you download, attempts to bundle itself with software you most likely do not need nor want (i.e., bloatware).  Make sure you take some time to read the optional offers whenever you download software. This author would argue that the main reason computers "slow" down over time is because of extra software that users unwittingly install.
 
-Three offers from Adobe that you neither need nor want -- this author recommends you uncheck them all.
+ 
 
-## Extension: Testing the extension link.
+![Three offers from Adobe that you neither need nor want -- this author recommends you uncheck them all.](images/R-00-Bloatware.PNG){#fig-bloatware .fs}
+
+## Extension: Testing the extension link
 
 Hi, and welcome to the test ***Extension***.  If you clicked on the ***Extension*** link to get here then you can return to your previous location by long-clicking on this page and choosing ***Go to Previous Location***.
+
+ 
 
 If you just scrolled down to this point then, congratulations, you have reached the end of the document.

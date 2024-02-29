@@ -4,6 +4,19 @@
 /* rs-theme-is-dark: FALSE */
 /* Remove bolds/ font-weight because it messes with the spacing of the Rstudio cursor */
 
+/* pm-content starts the HTML for the editor windows in Quarto */
+body
+{
+  counter-reset: figCount;
+}
+
+/* Add "Fig #" before caption that doe not have a <br> -- they are empty */
+.pm-figcaption:not(:has(br))::before  /* .pm-content .fig::before */
+{
+  counter-increment: figCount;               
+  content: "Fig " counter(figCount) ": ";  
+}
+
 /* highlight is already defined in <style> 
 .pm-content .highlight
 {
@@ -96,6 +109,18 @@ img hover: maxheight: 100%, overflow: visible, z-index: -1
 {
 	padding-inline-start: 15px;
 }
+
+.pm-figcaption, .pm-content .fig
+{
+	color: rgb(90,90,0);
+	font-style: italic;
+}
+
+
+
+
+
+
 
 /*********************************/
 /*** Original file starts here ***/

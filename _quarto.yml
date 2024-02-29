@@ -1,17 +1,31 @@
 project:
+  render:
+    - lessons/01-GitSetup.qmd
   type: website
   output-dir: docs
   title: "GitClass"
+format:
+  html:
+    css: "presStyle.css"
+    toc: true
+    fig-align: left
+    theme: default
+    fontsize: 15px
+    number-sections: true
+    include-in-header:
+      - text: |
+          <script src="module.js"></script>
+editor: visual
 # title-slide-attributes:
 #     data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
 #     data-background-size: "40%"
 #     data-background-position: "6% 95%"
-author: "Charlie Belinsky<br>belinsky@msu.edu"
-date-format: "D MMMM YYYY"
-date: today
-format: 
-  html:
-    css: ../presStyle.css
+# author: "Charlie Belinsky<br>belinsky@msu.edu"
+# date-format: "D MMMM YYYY"
+# date: today
+# format: 
+#   html:
+#     css: ../presStyle.css
   #  slide-number: c/t
    # multiplex: true
    # controls: true
@@ -24,7 +38,6 @@ format:
     # number-sections: true
     # colorlinks: true
   #  linestretch: 1.5
-editor: visual
 # highlight-style: kate
 # include-after-body:
 #   text: |
