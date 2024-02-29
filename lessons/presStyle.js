@@ -1,4 +1,6 @@
-url = location.protocol + '//' + location.host + location.pathname;
+
+// adding a print icon next to the title
+/*url = location.protocol + '//' + location.host + location.pathname;
 pdf = url.replace(".html", ".pdf");
 		// create printer icon 
 		title = document.querySelector("h1.title")
@@ -10,4 +12,19 @@ pdf = url.replace(".html", ".pdf");
 	
 		// add printer icon to title
 //alert(title.innerText);		
-title.appendChild(printLink);
+title.appendChild(printLink);*/
+
+window.onload = function()
+{		
+  makeFlexImages();
+}
+
+function makeFlexImages()
+{
+  var flexImage = document.querySelectorAll('img');
+
+  for(i=0; i<flexImage.length; i++)	// for each flexSize element
+  {
+    
+  }
+}
