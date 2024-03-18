@@ -1,44 +1,123 @@
 ---
 title: "Introduction and Syllabus"
-format:
-  html:
-    css: "presStyle.css"
-    toc: true
-    fig-align: left
-    theme: default
-    fontsize: 15px
-    number-sections: true
-    include-in-header:
-      - text: |
-          <script src="module.js"></script>
-editor: visual
+# format:
+#   html:
+#     css: "presStyle.css"
+#     toc: true
+#     fig-align: left
+#     grid: 
+#        body-width: 1000px
+#     theme: default
+#     fontsize: 15px
+#     number-sections: true
+#     include-in-header:
+#       - text: |
+#           <script src="module.js"></script>
+# editor: visual
 ---
 
 ### Issues
 
--   equations
--   CSS does not indicate if a figure has an ID that starts with "fig-"
+#### Assets
+
+-   **link to other lessons**
+
+-   find consistent place to put all GGPlot files
+
+-   data files, along with other linked assets, need to be saved in two places (regular folder, docs folder)
+
+    -   put script and data files directly in docs?
+    -   link with direct or relative link?
+
+-   changes between local (main) and github (docs) – best to use URL
+
+-   \<done\> Which module.js gets used?
+
+-   Quarto working directory is not the same as R –
+
+    -   causes problem when you want to link to file in R (e.g., weatherData)
+
+#### Lesson module, editor
+
+-   \<done\> Overflow code lines lost in print mode (code.sourceCode – white-space: pre-wrap)
+
+-   \<done\> more contrast on PDF text?
+
+-   \<done\>Cannot properly add ***figure #:*** to editor when adding figures to plot/code
+
+-   [\<done – hacky\> figures on codeblocks]{.note}
+
+-   \<done - hacky \>How do you highlight code in a codeblock in Quarto
+
+    -   Or, use my code styling
+
+-   \<done\> equations
+
+-   \<done\> Firefox print preview breaks in middle of lines (Edge and Chrome are fine)
+
+-   \<done\> CSS does not indicate if a figure has an ID that starts with "fig-"[(why did I want this??)]{.hl}
+
+    -   .fig\[id\^="fig-"\]
+
+#### Quarto editor issues
+
+-   [figures under images will not work if there is not blank lines on both sides of the image command in Source]{.note}
+
+-   \<done\> images within lists cannot be made into figures
+
+    -   probably just need to hack at Quarto editor and js ignores figures in lists
+
+-   [copy/paste from D2L causes misalignment of 2nd level bullets -- and the visual editor will treat it as code when switching from Source to Visual]{.note}
+
 -   do better check on links within a page – make sure you are not capturing links to pages within the website
+
+-   \<done\> horizontally resize viewer (grid -\> body-width: 1000px)
+
+-   image change size makes page jump after reload (worse the further you are down the page
+
+    -   does not happen in debug mode (race condition...), only happens in FF
+
 -   create module.js for just Quarto
--   periods in header titles will mess up highlighting (because the period in JS means something)
+
+-   \<done\> periods in header titles will mess up highlighting (because the period in JS means something)
+
 -   set css to only change object within the Quarto document
+
 -   \<done\> don't jump on link if ref object is on page
+
 -   \<done\>fix last position in shortcut menu
+
 -   \<done\>reduce size of font in document
+
 -   \<done\> figure link open in another window... keep to same
+
 -   \<done – href -\> onclick breaks this!\> less aggressive mouseover on figures
+
 -   \<unsure\> resize flexsize in editor (this is challenging...)
+
 -   \<done\> figure coloring in editor
+
 -   \<done\> figure reference put number in (Insert -\> Cross Reference)
--   figures on codeblocks??
+
 -   \<done\> highlight line quickly after linking to it
--   render just document with global yml
--   \<put in instructions\> create a newline
-    -   one way: \<br\>
-    -   another: nbsp (control-space in Visual)
-    -   another: \\ in Source
+
 -   render changes only for objects within document (not generally)
--   image resizing does not work when you set height or width in Quarto editor
+
+-   render just document with global yml
+
+-   [shortcut to codeblock]{.note}
+
+-   [short to unicode]{.note}
+
+    -   « »
+
+-   [\<put in instructions\> create a newline]{.note}
+
+    -   [one way: \<br\>]{.note}
+    -   [another: nbsp (control-space in Visual)]{.note}
+    -   [another: \\ in Source]{.note}
+
+-   [\<done??\>]{.hl}image resizing does not work when you set height or width in Quarto editor
 
 ## Welcome to Graphing with GGPlot
 
@@ -46,7 +125,7 @@ The purpose of this class is to introduce students to the graphing package in R 
 
 <br>
 
-This class uses RStudio and is designed for students who have at least a basic background in programming -- the equivalent of one semester of R, or any similar programming language (e.g., Visual Basic, JavaScript, C++).
+This class uses RStudio and is designed for students who have at least a basic background in programming -- the equivalent of one semester of R, or any similar programming language (e.g., Visual Basic, JavaScript, C++) and familiarity with R.
 
  
 
@@ -57,37 +136,38 @@ Graphing with GGPlot is a self-paced and asynchronous online class. The amount o
 **Charlie Belinsky**
 
 -   belinsky\@msu.edu
+
 -   517-355-0126
 
  
 
 **About me...**
 
-I started my career as a Software Engineer for Motorola in Arizona where I developed software for military radios. From there I became a high school teacher in Port Huron, MI where I taught Computer Science, Web Design, and Physical Science. After that, I worked as an Instructional Designer for the College of Education at MSU where my main project was developing the hybrid graduate program. I currently work at the QFC where my primary job is developing online classes, including this one.  In my free time you will often find me with a backpack deep in a forest or, as my picture testifies to, hanging out on a mountain in the Northern Cascades.
+I started my career as a Software Engineer for Motorola in Arizona where I developed software for military radios. From there I became a high school teacher in Port Huron, MI where I taught Computer Science, Web Design, and Physical Science. After that, I worked as an Instructional Designer for the College of Education at MSU where my main project was developing the hybrid graduate program. I currently work at the QFC where my primary job is developing and teaching online classes, including this one.  In my free time you will often find me with a backpack deep in a forest or, as my picture testifies to, hanging out on a mountain in the Northern Cascades.
 
-![](images/belinsky2.JPG){width="800"}
+![](images/belinsky2.JPG){.fs width="800"}
 
 ### Technical Support
 
-You can contact me, Charlie, regarding technical issues. 
+You can contact me, Charlie, regarding technical issues.
 
-MSU also offers [**24 hour technical support**](https://tech.msu.edu/support/help/) for students. This support includes hardware, software, and D2L.
+ 
+
+MSU also offers [**24 hour technical support**](https://tech.msu.edu/support/help/) for MSU and MSU Guest students.
 
 -   517-432-6200 or 844-678-6200 (toll free)
 
 -   email: ithelp\@msu.edu
 
--   Make sure you have your MSU ID or MSU Guest ID when communicating with support.
-
--   Remember your *MSU Guest ID is the email you log into class with* if you don't have an MSU email.
+-   You can [get an MSU Guest ID here](https://community.idm.msu.edu/).
 
 ## Class Requirements
 
-Students should be familiar with basic programming structures like ***if...else***, ***for()***, and ***functions*** -- material covered in a typical first semester programming class.  All material for this course is online -- no textbooks are required.
+Students should be familiar with basic programming structures covered in a typical first semester programming class: ***if...else***, ***for()***, and ***functions***.  All material for this course is online -- no textbooks are required.
 
 ### Tech requirements
 
-**Hardware:**  Any Windows (10 or 11), Mac, or Linux machine from the past ten years that has updates installed can handle all the hardware and software requirements of this class.
+**Hardware:**  Any Windows (10 or 11), Mac, or Linux machine from the past ten years that has updates installed can handle all hardware and software requirements of this class.
 
  
 
@@ -105,7 +185,7 @@ Students should be familiar with basic programming structures like ***if...else*
 
 ### Accessing the class
 
-You need an MSU ID or an MSU Guest ID to access the class. You can [get an MSU Guest ID here](https://community.idm.msu.edu/).  Your MSU Guest ID is the same as the email you used to get it.
+You need a [GitHub ID](http://github.com) to access the class and hand in assignments. Go to [http://github.com](http://github.com/) and click ***Sign up***, you can use a free GitHub account or a professional account.
 
 ## Class Structure
 
@@ -161,7 +241,7 @@ Many of the lessons contain optional content called ***Extension*** and ***Traps
 
 Student-instructor meetings will be done on an as-needed basis and meetings can always be requested by the student.  Meetings are preferably over Zoom so that screens can be shared.
 
-## Lesson features
+## Lesson features (technical)
 
 This sections goes over some of the technological features built into the lessons.
 
@@ -209,12 +289,13 @@ You can print any lesson or save it as a PDF by clicking on the ***Printer** ico
 
 #### Print-to-PDF Software
 
-If you are using Windows 7 or 8 you might not have a PDF device and you will need to download ***Print-to-PDF*** software. You can see if you have a PDF device by going to the print options in any program and see if any of the devices have "PDF" in their name (@fig-printPDF).  If you don't have a PDF device, then I recommend you install [CutePDF](http://www.cutepdf.com/products/cutepdf/writer.asp)(direct link to the [file download](http://cutepdf.com/download/CuteWriter.exe)).  CutePDF is simple print-to-PDF software that does not try to install any extra software on your computer. [Trap: Bloatware]
+If you are using Windows 7 or 8 you might not have a PDF device and you will need to download ***Print-to-PDF*** software. You can see if you have a PDF device by going to the print options in any program and see if any of the devices have "PDF" in their name (@fig-printPDF).  If you don't have a PDF device, then I recommend you install [CutePDF](http://www.cutepdf.com/products/cutepdf/writer.asp) (direct link to the [file download](http://cutepdf.com/download/CuteWriter.exe)).  CutePDF is simple and powerful print-to-PDF software that does not try to install any extra software on your computer. [Trap: Bloatware]
 
 ### Codeblocks
 
-Clicking on the clipboard in the upper-right corner of the codeblock will copy the code to the clipboard. You can then paste the code into RStudio (or any other text editor)
+Clicking on the clipboard in the upper-right corner of the codeblock (@fig-codeBlock) will copy the code to the clipboard. You can then paste the code into RStudio (or any other text editor)
 
+::: {#fig-codeBlock}
 ``` r
 # the next two lines should be at the top of all your scripts
 rm(list=ls());
@@ -226,13 +307,22 @@ t = 20;
 v = d/t;
 ```
 
-[Clicking on clipboard in upper-right corner selects all the text and copies it to the clipboard]{#fig-codeBlock .fig}
+Clicking on clipboard in upper-right corner selects all the text and copies it to the clipboard
+:::
+
+### Special note about images in the lessons for this class
+
+RStudio is a rapidly evolving program, and it would be too much work to maintain all the lesson images in order to reflect the visual likeness of the newest version of RStudio.  Some of the images in this class still reflect the 2019 version of RStudio (when R was still at version 3.5). There are also minor changes that I have made to the code that I did not believe warrants putting in new images.  For instance, my RStudio Project name might change between images and some of the RStudio buttons and tabs will look slightly different (think of it as a check on how observant you are!).  I have tried to make sure these differences change nothing functionally.  Inevitably, something will fall through the cracks -- so please, contact the instructor if there is something causing a problem!
 
 ## Personal statement from Charlie
 
-The biggest thing that is lost when you move a class from a face-to-face environment to an online environment is the daily interaction between the instructor and the students.  These interactions provide invaluable informal feedback for the instructor and, I would argue, are the main tool that an instructor uses to make improvements to their class.  It is impossible to replicate this in an online class but I ask that you help me out and make an effort to communicate to me the little things.  This could mean technical nags like content not appearing properly or pages loading too slowly, lesson content that is unclear, grammar and spelling issues, or scripts that does not work or work in a way that you do not understand. 
+The biggest thing that is lost when you move a class from a face-to-face environment to an online environment is the daily interaction between the instructor and the students.  These interactions provide invaluable informal feedback for the instructor and, I would argue, are the main tool that an instructor uses to make improvements to their class.  It is impossible to replicate this in an online class but I ask that you help me out and make an effort to communicate to me the little things.  This could mean technical nags like content not appearing properly or pages loading too slowly, lesson content that is unclear, grammar and spelling issues, or scripts that does not work or work in a way that you do not understand.
 
-Thank you for reading and taking this into consideration.  In the end, it is the interactions between an instructor and the students that make a class great. 
+ 
+
+Thank you for reading and taking this into consideration.  In the end, it is the interactions between an instructor and the students that make a class great.
+
+ 
 
 Now on to the stuff I have to put in a syllabus...
 
