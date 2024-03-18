@@ -20,7 +20,7 @@
                          "orange", rep("black", 3)),
                  fill=c(rep(NA, 8), rep("red", 3), NA)) +
     theme_bw() +
-    facet_grid(facets=.~factor(windSpeedLevel,
+    facet_grid(rows=.~factor(windSpeedLevel,
                                levels=c("Low", "Medium", "High")),
                labeller=as_labeller(windLabels)) +
     scale_x_discrete(limits=c("North", "East", "South", "West")) +

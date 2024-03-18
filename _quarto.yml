@@ -1,9 +1,11 @@
 project:
   render:
-    - lessons/01-GitSetup.qmd
+    - lessons/00-IntroductionAndSyllabus.qmd
+    - lessons/01c-RStudioProjects.qmd
+    - lessons/02-Components.qmd
   type: website
   output-dir: docs
-  title: "GitClass"
+  title: "Git Class"
 format:
   html:
     css: "presStyle.css"
@@ -12,6 +14,8 @@ format:
     theme: default
     fontsize: 15px
     number-sections: true
+    grid: 
+      body-width: 1000px
     include-in-header:
       - text: |
           <script src="module.js"></script>

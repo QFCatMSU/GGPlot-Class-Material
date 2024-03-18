@@ -4,26 +4,28 @@
 /* rs-theme-is-dark: FALSE */
 /* Remove bolds/ font-weight because it messes with the spacing of the Rstudio cursor */
 
+/* add equation number to editor */
+span.MJXc-display:after
+{
+  counter-increment: eqCount;               
+  content: " ( " counter(eqCount) " )";  
+}
+
 /* pm-content starts the HTML for the editor windows in Quarto */
 body
 {
-  counter-reset: figCount;
+  counter-reset: figCount eqCount;
 }
 
-/* Add "Fig #" before caption that doe not have a <br> -- they are empty */
-.pm-figcaption:not(:has(br))::before  /* .pm-content .fig::before */
+/* Add "Fig #" before caption that does not have a <br> -- they are empty 
+   And add to divs with id starting with "fig-" that contain a paragraph */
+.pm-figcaption:not(:has(br))::before,
+div[id^="fig-"] > p::before
 {
   counter-increment: figCount;               
   content: "Fig " counter(figCount) ": ";  
 }
 
-/* highlight is already defined in <style> 
-.pm-content .highlight
-{
-	color: blue;
-}*/
-
-/* override .note in Quarto (probably want to remove) */
 .pm-content .hl
 {
 	display: inline !important;
@@ -36,31 +38,6 @@ body
 	display: inline !important;
 	color:  darkorange !important;
 }
-/*
-fig and image (normal): maxheight: 150px;
-img hover: maxheight: 100%, overflow: visible, z-index: -1
-*/
-
-/*
-.pm-image-resize-container
-{
-  max-height: 150px;
-  max-width: auto;
-}
-.pm-img
-{
-  max-height: 150px;
-  object-fit: contain;
-  width: unset !important; 
-}
-.pm-img:active
-{
-  max-height: unset;
-  height: unset;
-  overflow: visible;
-  z-index: -1;
-}
-*/
 
 /* Outline the sections in the editor */
 .pm-content
@@ -110,7 +87,7 @@ img hover: maxheight: 100%, overflow: visible, z-index: -1
 	padding-inline-start: 15px;
 }
 
-.pm-figcaption, .pm-content .fig
+.pm-figcaption, .pm-content .fig, span.MJXc-display:after, div[id^="fig-"] > p
 {
 	color: rgb(90,90,0);
 	font-style: italic;

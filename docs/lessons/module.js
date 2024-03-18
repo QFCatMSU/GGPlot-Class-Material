@@ -71,6 +71,30 @@ parent.window.onload = function()
 {		
 	encapObject = document.body; 
   scrollTopPosition = window.parent.scrollY;  
+  
+  // add styling and copy button to codeblocks that do not have a language
+/* codeBlocks = document.querySelectorAll("div.sourceCode > pre");
+  
+	for(i=0; i<codeBlocks.length; i++)
+	{
+	  codeBlocks[i].classList.add("sourceCode");
+	  codeBlocks[i].classList.add("code-with-copy");
+	  codeBlocks[i].classList.add("copy-code");
+	}*/
+	
+  // change symbols to highlighting
+  codeBlocks = document.querySelectorAll("pre.mod");
+  
+  for(i=0; i<codeBlocks.length; i++)
+	{
+	  newHTML = codeBlocks[i].innerHTML;
+	  newHTML = newHTML.replace(/«/g, "<b>");
+	  newHTML = newHTML.replace(/»/g, "</b>");
+	//  newHTML = newHTML.replace(/&lt;&lt;-/g, "<b>");
+	//  newHTML = newHTML.replace(/-&gt;&gt;/g, "</b>");	  
+//	  newHTML = newHTML.replace(/&lt;&lt;-(.*)\1-&gt;&gt;/g, "<b>\1</b>");
+	  codeBlocks[i].innerHTML = newHTML;
+	}
 /*
 	if(document.querySelectorAll('meta[content^="Joomla"]').length > 0) joomlaFixes();
 	
@@ -102,7 +126,7 @@ parent.window.onload = function()
 	createFlexImages();
 	
 	// adds the caption class to all figure elements
-	addCaptions();
+//	addCaptions();
 	
 	createEmailLink();
 	
@@ -855,6 +879,7 @@ function changeImageSize(element, instruction="none")
 	{
 		// set the images height to the smallHeight value and scale the with to match
 		element.style.height = smallImageHeight + "px";	
+		element.style.width = "auto";	
 		//element.style.width = (smallImageHeight/origHeight)*origWidth + "px";
 	}
 }
@@ -1112,7 +1137,7 @@ function addCaptions()
 	{
 		if(captionLines[i].innerText.trim() != "")  // there is text in the caption
 		{
-			captionLines[i].insertAdjacentHTML("afterbegin", "Fig " + (i+1) + ": ");
+			captionLines[i].insertAdjacentHTML("afterbegin", "Figure " + (i+1) + ": ");
 		}	
 	}
 }
@@ -1585,7 +1610,8 @@ function checkURLForPos()
 
 function scrollToElement(elementID, outsideCall = false)
 {		
-	var element = encapObject.querySelector("#" + elementID); 
+//	var element = encapObject.querySelector("#" + elementID); 
+	var element = document.getElementById(elementID); 
 	var windowHeight = window.parent.innerHeight;// height of the webpage with the lesson
 	var windowScroll = window.parent.scrollY; 	// amount window has been scrolled
 	var divWindowScroll = 0;							// for object in a scrolling div
@@ -1651,11 +1677,18 @@ function scrollToElement(elementID, outsideCall = false)
 function highLightObject(element, time=2000)
 {
   // for headers 
-  refElement = document.querySelector("[data-anchor-id=" + element.id + "]");
+  //refElement = document.querySelector("[data-anchor-id=" + element.id + "]");
+  refElement = document.querySelector("[data-anchor-id='" + String(element.id) + "']");
   if(!refElement)
   {
     // for all but headers
     refElement = document.querySelector("#" + element.id);
+  }
+  
+  // spans cannot have background color, so change element to parent of span
+  if(refElement.tagName == "SPAN")
+  {
+    refElement = refElement.parentElement; 
   }
   			    
 	// check if there already is an object being highlighted
@@ -1728,23 +1761,26 @@ function linksToNewWindow()
 		else if (links[i].href.indexOf(window.location.host) > -1)
 		{
 		  hashPos = links[i].href.indexOf("#");
-	    hashID = links[i].href.substring(hashPos);
+	    hashID = links[i].href.substring((hashPos+1));
 			links[i].removeAttribute("href");  
-			
+			links[i].classList.add("inpageLink"); 
+						
 			(function(hashID){
   			links[i].addEventListener("click", 
   			  function() { 
   
-  			    element = document.querySelector(hashID);
-  
+  			 //   element = document.querySelector(hashID);
+            element = document.getElementById(hashID);
             // for headers 
-  			    refElement = document.querySelector("[data-anchor-id=" + element.id + "]");
+            
+  			    refElement = document.querySelector("[data-anchor-id='" + String(element.id) + "']");
   			    if(!refElement)
   			    {
   			      // for all but headers
   			      refElement = document.querySelector("#" + element.id);
   			    }
   			    scrollToElement(element.id);
+
   		//	    scrollTopPosition = window.parent.scrollY;  
   		//	    highLightObject(refElement, 2000);
   			  });	
