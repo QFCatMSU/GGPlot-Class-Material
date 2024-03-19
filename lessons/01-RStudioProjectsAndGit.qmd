@@ -477,6 +477,7 @@ git config user.name git config user.email
 
 After executing the two above command, *your **Terminal** tab should look similar* to this:
 
+::: {#fig-testGitConfig}
 ``` bash
 $ git config user.name 
 cbelinsky  
@@ -484,7 +485,8 @@ $ git config user.email
 belinsky@msu.edu
 ```
 
-![Testing the git configuration using the RStudio Terminal tab](){#fig-codeBlock}
+Testing the git configuration using the RStudio Terminal tab
+:::
 
 ## Add Git to your RStudio Project folder
 
@@ -685,7 +687,7 @@ You should notice that the files changed in the newest Commit have your Commit m
 
     3.  Click on ***New Issue*** (green button)
 
-    4.  Click on Setting wheel and add the instructor as an assignee (belinskyc)
+    4.  Click on Setting wheel and add the instructor as an assignee (***belinskyc***)
 
     5.  Put in ***title*** that application 1 is finished, add anything you want to the ***description***, and click ***Submit new issue***
 

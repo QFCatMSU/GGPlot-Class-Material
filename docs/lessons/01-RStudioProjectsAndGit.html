@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#install-or-update-r-version-4.3-or-higher" id="toc-install-or-update-r-version-4.3-or-higher" class="nav-link" data-scroll-target="#install-or-update-r-version-4.3-or-higher"><span class="header-section-number">3.1</span> Install or update R (version 4.3 or higher)</a></li>
   <li><a href="#install-or-update-rstudio-version-2023.12-or-higher" id="toc-install-or-update-rstudio-version-2023.12-or-higher" class="nav-link" data-scroll-target="#install-or-update-rstudio-version-2023.12-or-higher"><span class="header-section-number">3.2</span> Install or update RStudio (version 2023.12 or higher)</a></li>
-  <li><a href="#installing-or-update-git-version-2.44-or-higher" id="toc-installing-or-update-git-version-2.44-or-higher" class="nav-link" data-scroll-target="#installing-or-update-git-version-2.44-or-higher"><span class="header-section-number">3.3</span> Installing or update Git (version 2.44 or higher)</a></li>
+  <li><a href="#installing-or-updating-git-version-2.44-or-higher" id="toc-installing-or-updating-git-version-2.44-or-higher" class="nav-link" data-scroll-target="#installing-or-updating-git-version-2.44-or-higher"><span class="header-section-number">3.3</span> Installing or updating Git (version 2.44 or higher)</a></li>
   </ul></li>
   <li><a href="#installing-the-ggplot2-package" id="toc-installing-the-ggplot2-package" class="nav-link" data-scroll-target="#installing-the-ggplot2-package"><span class="header-section-number">4</span> Installing the GGPlot2 package</a></li>
   <li><a href="#project-folders" id="toc-project-folders" class="nav-link" data-scroll-target="#project-folders"><span class="header-section-number">5</span> Project Folders</a>
@@ -434,8 +434,8 @@ Figure&nbsp;5: Unmounting the RStudio device (very important!)
 </div>
 </section>
 </section>
-<section id="installing-or-update-git-version-2.44-or-higher" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="installing-or-update-git-version-2.44-or-higher"><span class="header-section-number">3.3</span> Installing or update Git (version 2.44 or higher)</h3>
+<section id="installing-or-updating-git-version-2.44-or-higher" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="installing-or-updating-git-version-2.44-or-higher"><span class="header-section-number">3.3</span> Installing or updating Git (version 2.44 or higher)</h3>
 <p>For <strong><em>Windows</em></strong>, <a href="https://git-scm.com/downloads">click here to download and install Git</a> – click on <strong><em>Download for Windows</em></strong> (version as of February 2024 is&nbsp;<strong>2.44</strong>)</p>
 <p>&nbsp;</p>
 <p>For <strong><em>Mac</em></strong>, <span class="hl">there is no direct installation of Git</span>. I recommend using <strong>Homebrew</strong>, which is a useful tool for any programmer using a Mac because it gives you access to a bunch of programming tools.</p>
@@ -772,16 +772,15 @@ Figure&nbsp;18: The Terminal Tab in RStudio with the two commands above (your pr
 <p>You can check if you successfully changed the username and email by executing these lines in the <strong><em>Terminal</em></strong> tab:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.name git config user.email</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>After executing the two above command, <em>your <strong>Terminal</strong> tab should look similar</em> to this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config user.name </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cbelinsky</span>  </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config user.email </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">belinsky@msu.edu</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="fig-codeBlock" class="quarto-figure quarto-figure-left quarto-float anchored">
+<div id="fig-testGitConfig" class="quarto-figure quarto-figure-left quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-codeBlock-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src=".png" class="img-fluid figure-img">
+<div aria-describedby="fig-testGitConfig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="fig-testGitConfig"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="fig-testGitConfig-1"><a href="#fig-testGitConfig-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config user.name </span>
+<span id="fig-testGitConfig-2"><a href="#fig-testGitConfig-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cbelinsky</span>  </span>
+<span id="fig-testGitConfig-3"><a href="#fig-testGitConfig-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config user.email </span>
+<span id="fig-testGitConfig-4"><a href="#fig-testGitConfig-4" aria-hidden="true" tabindex="-1"></a><span class="ex">belinsky@msu.edu</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-codeBlock-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-testGitConfig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;19: Testing the git configuration using the RStudio Terminal tab
 </figcaption>
 </figure>
@@ -914,14 +913,14 @@ Figure&nbsp;24: Another way to get the URL for your GitHub repository
 <p><span class="hl">Warning: This only works if the GitHub repository is empty .</span></p>
 <p>&nbsp;</p>
 <p>Type the line below into the RStudio Project. Replace the URL with the URL for your GitHub repository. Make sure your are in your RStudio Project.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="note">Note: In Windows, <strong>Control-V</strong> does not paste in a Terminal window, but <strong>right-click</strong> -&gt; <strong>Paste</strong> works</span></p>
 <section id="if-you-added-the-wrong-repository-name" class="level3" data-number="13.1">
 <h3 data-number="13.1" class="anchored" data-anchor-id="if-you-added-the-wrong-repository-name"><span class="header-section-number">13.1</span> If you added the wrong repository name…</h3>
 <p>Then you first need to remove the current GitHub repository (i.e., the <strong><em>origin</em></strong>):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote rm origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote rm origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and then repeat this line (using your GitHub URL)</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="uploading-to-the-github-repository" class="level2" data-number="14">
@@ -929,9 +928,9 @@ Figure&nbsp;24: Another way to get the URL for your GitHub repository
 <p>Git/GitHub is asynchronous. Changes to your local project are not automatically uploaded to GitHub – you need to explicitly upload the changes.</p>
 <p>&nbsp;</p>
 <p>To upload your changes to GitHub, in the Terminal type:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"A message about the changes to your project"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"A message about the changes to your project"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will repeat these lines every time you turn in an application.</p>
 <ul>
 <li><p>The first line compiles all the changes you have made to your project</p></li>
@@ -1181,9 +1180,9 @@ Figure&nbsp;32: Stop RStudio from automatically ending your parenthesis and quot
 <section id="use-the-console-tab" class="level3" data-number="21.2">
 <h3 data-number="21.2" class="anchored" data-anchor-id="use-the-console-tab"><span class="header-section-number">21.2</span> Use the Console tab</h3>
 <p>In R, we can install packages using <strong><em>install.packages()</em></strong>.&nbsp; So, if you wanted to install GGPlot2, you would type:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"GGPlot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"GGPlot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="note">Note: you can install multiple packages at once if you put the names in a vector:</span></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"GGPlot2"</span>, <span class="st">"gridExtra"</span>, <span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"GGPlot2"</span>, <span class="st">"gridExtra"</span>, <span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <strong><em>Console</em></strong> tab in RStudio is an R interface, and you could type in the above line to install the&nbsp;<strong><em>GGPlot2</em></strong> package.</p>
 <div id="fig-packageInstallation" class="fs quarto-figure quarto-figure-left quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
