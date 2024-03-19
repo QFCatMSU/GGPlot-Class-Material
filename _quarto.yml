@@ -6,6 +6,15 @@ project:
   type: website
   output-dir: docs
   title: "Git Class"
+website:   
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        file: lessons/00-IntroductionAndSyllabus.qmd
+      - lessons/01-RStudioProjectsAndGit.qmd
+      - lessons/02-Components.qmd
 format:
   html:
     css: "presStyle.css"
