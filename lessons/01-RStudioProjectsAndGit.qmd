@@ -168,7 +168,7 @@ If you already have RStudio installed, you will be asked if you want to replace 
 
 ![Unmounting the RStudio device (very important!)](images/GGP-01-01-MacUnmount.PNG){#fig-unmount .fs}
 
-### Installing or update Git (version 2.44 or higher)
+### Installing or updating Git (version 2.44 or higher)
 
 For ***Windows***, [click here to download and install Git](https://git-scm.com/downloads) -- click on ***Download for Windows*** (version as of February 2024 is **2.44**)
 
