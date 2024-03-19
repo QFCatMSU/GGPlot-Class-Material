@@ -1,7 +1,7 @@
 project:
   render:
   - lessons/00-IntroductionAndSyllabus.qmd
-  - lessons/01c-RStudioProjects.qmd
+  - lessons/01-RStudioProjectsAndGit.qmd
   - lessons/02-Components.qmd
   type: website
   output-dir: docs
