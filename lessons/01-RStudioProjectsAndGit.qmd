@@ -472,7 +472,8 @@ git config --global user.email "email"
 You can check if you successfully changed the username and email by executing these lines in the ***Terminal*** tab:
 
 ``` bash
-git config user.name git config user.email
+git config user.name 
+git config user.email
 ```
 
 After executing the two above command, *your **Terminal** tab should look similar* to this:
