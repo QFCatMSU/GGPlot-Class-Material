@@ -118,9 +118,9 @@ parent.window.onload = function()
 	
 //	getClassInfoD2L(); // emails, lessons (works only in D2L for now)
 	
-	setClassNames();
+//	setClassNames();
 	
-	fixTitle();
+//	fixTitle();
 	
 	// allow users to resize images from small to full-size
 	createFlexImages();
@@ -128,7 +128,7 @@ parent.window.onload = function()
 	// adds the caption class to all figure elements
 //	addCaptions();
 	
-	createEmailLink();
+//	createEmailLink();
 	
 	equationNumbering();
 	
@@ -154,7 +154,7 @@ parent.window.onload = function()
 	
 	// convert "download" class to a download hyperlink 
 	//		(because D2L does not allow you to specify this trait)
-	addDownloadLinks();	
+	// addDownloadLinks();	
 	
 	// check the URL to see if there is a request to go to a specific part of the page
 	checkURLForPos();
@@ -1747,18 +1747,9 @@ function linksToNewWindow()
 	
 	for(i=0; i<links.length; i++)
 	{
-		if(links[i].href.trim() != "" &&                        // link is not blank
-		   !links[i].href.includes("/#") &&                     // first char in path is not #
-		   !(links[i].classList.contains("sameWin")) &&          // link does not contain class sameWin
-	   	 !(links[i].classList.contains("download")) &&         // link does not contain class download
-		 	 !(links[i].classList.contains("quarto-xref")) &&      // link does not contain class quarto-xref
-		 	 (links[i].target == "_self" || !(links[i].target)) )  // link contains instruction to go to same window
-		{
-			links[i].target = "_blank";
-		}
 		// only change href that go to the same page... will need to update this or it 
 		// will include anything within the same site.
-		else if (links[i].href.indexOf(window.location.host) > -1)
+		if (links[i].href.indexOf(window.location.pathname) > -1)
 		{
 		  hashPos = links[i].href.indexOf("#");
 	    hashID = links[i].href.substring((hashPos+1));
@@ -1785,8 +1776,17 @@ function linksToNewWindow()
   		//	    highLightObject(refElement, 2000);
   			  });	
 			})(hashID);
-
 		}
+		else if(links[i].href.trim() != "" &&                        // link is not blank
+	// 	   !links[i].href.includes("/#") &&                     // first char in path is not #
+	//	   !(links[i].classList.contains("sameWin")) &&          // link does not contain class sameWin
+	//   	 !(links[i].classList.contains("download")) &&         // link does not contain class download
+		 	 !(links[i].classList.contains("quarto-xref")) &&      // link does not contain class quarto-xref
+		 	 (links[i].target == "_self" || !(links[i].target)) )  // link contains instruction to go to same window
+		{
+			links[i].target = "_blank";
+		}
+
 	}
 }
 

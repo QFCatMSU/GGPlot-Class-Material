@@ -39,6 +39,8 @@ title: "Introduction and Syllabus"
 
 #### Lesson module, editor
 
+-   When a link goes to same page, stop from reloading in website
+
 -   \<done\> Overflow code lines lost in print mode (code.sourceCode – white-space: pre-wrap)
 
 -   \<done\> more contrast on PDF text?
