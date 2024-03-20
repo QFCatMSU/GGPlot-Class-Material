@@ -1,162 +1,139 @@
-code b
+/* Move .rcMenu styles into .content? */
+
+.slideshowStuff
 {
-  background-color: rgb(255,255,200);
+  .pageRef
+  {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .quarto-title-affiliation::first-line
+  {
+    /* in case you want the first line of affiliation to look different from the rest */
+  }
+  .quarto-title-affiliation
+  {  
+    margin: 0 !important;
+    /* being used to style the GitHub link */
+    text-align: left;
+    font-size: 40px !important;
+  }
+  .quarto-title-author
+  {
+    padding-left: 0 !important;
+  }
+  .quarto-title-authors
+  {
+    margin-top: 17%;
+    font-weight: normal;
+    font-size: 40px;
+    justify-content: left !important;
+    text-align: left;
+   /* font-family: 'Times New Roman', Times, serif !important;*/
+  }
+  .quarto-title-author::first-line
+  {
+    /* in case you want the name to look different than the email */
+  }
+  .date
+  {
+  
+  }
+  div.slide-number
+  {
+    width: 100%;
+    text-align: center;
+  }
 }
 
-.quarto-figure-center > figure > p
+.content
 {
-  text-align: left;
-}
-.figure-img
-{
-  margin-bottom: 0;
-}
-figure > figcaption
-{
-  margin-top: 0;
-}
-
-.pageRef
-{
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.quarto-title-affiliation::first-line
-{
-  /* in case you want the first line of affiliation to look different from the rest */
-}
-.quarto-title-affiliation
-{  
-  margin: 0 !important;
-  /* being used to style the GitHub link */
-  text-align: left;
-  font-size: 40px !important;
-}
-.quarto-title-author
-{
-  padding-left: 0 !important;
-}
-.quarto-title-authors
-{
-  margin-top: 17%;
-  font-weight: normal;
-  font-size: 40px;
-  justify-content: left !important;
-  text-align: left;
- /* font-family: 'Times New Roman', Times, serif !important;*/
-}
-.quarto-title-author::first-line
-{
-  /* in case you want the name to look different than the email */
-}
-.date
-{
-
-}
-
-div.slide-number
-{
-  width: 100%;
-  text-align: center;
-}
-ul, ol, li, p
-{
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-ul,ul ul ul, ul ul ul ul ul
-{
-  list-style-type: disc !important;
-}
-
-ul ul, ul ul ul ul, ul ul ul ul ul ul
-{
-  list-style-type: circle !important;
-}
-ol, ul
-{
-  padding-left: 1rem; 
-}
-.note
-{
-  color: rgb(160,64,0);
-}
-
-.hl
-{
-  color: darkred;
-}
-
-a.inpageLink, a:link,a:visited, .email, .jsLink , a[href^="#"],a.linkback,.linkTo   /* href that begin with '#' */
-{
-	color: rgb(0,0,150);
-	text-decoration: none;
-	border-bottom: dotted 1px;
-	cursor: pointer;
-} 
-a:hover, .email:hover, a[href^="#"]:hover, a.linkback:hover, .linkTo:hover, .jsLink:hover, a.href:hover
-{
-	border-bottom: solid 1px;  /* this does not work for email -- they are not <a> */
-} 
-.figNum, .figureRef, .c, .fr, .email, .jsLink , a[href^="#"],a.linkback,.linkTo, .quarto-xref
-{
-	color: rgb(90,90,0);
-	font-style: italic;
-}
-.fig, a.inpageLink, figcaption
-{
-  color: rgb(90,90,0);
-}
-.quarto-xref
-{
- 	border-bottom: dotted 1px;
-  cursor: pointer;
-  text-decoration: none;
-}
-h1
-{
-	color: rgb(0,0,100);
-	width: 100%;
-	text-align: center;
-}
-h2, h2>.header-section-number
-{
-	color: rgb(100,0,0);
-}
-h3, h3>.header-section-number
-{
-	color: rgb(100,0,0);
-}
-h4, h4>.header-section-number
-{
-	color: rgb(90,20,20);
-}
-main, .toc-active
-{
-  background-color: rgb(245,250,250);
-  border-radius: 10px;
-
-}
-main
-{
-    padding: 15px;
-}
-#quarto-content
-{
-  background-color: #18453B;
-}
-nav[role="doc-toc"] 
-{
-  padding-right: 10px;
-  padding-bottom: 10px;
-}
-.sidebar nav[role="doc-toc"] > h2
-{
-  padding-left: 10px;
-  padding-top: 10px;
+  .quarto-figure-center > figure > p
+  {
+    text-align: left;
+  }
+  .figure-img
+  {
+    margin-bottom: 0;
+  }
+  figure > figcaption
+  {
+    margin-top: 0;
+  }
+  ul, ol, li, p
+  {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  ul,ul ul ul, ul ul ul ul ul
+  {
+    list-style-type: disc !important;
+  }
+  ul ul, ul ul ul ul, ul ul ul ul ul ul
+  {
+    list-style-type: circle !important;
+  }
+  ol, ul
+  {
+    padding-left: 1rem; 
+  }
+  .note
+  {
+    color: rgb(160,64,0);
+  }
+  .hl
+  {
+    color: darkred;
+  }
+  code b
+  {
+    background-color: rgb(255,255,200);
+  }
+  .refObjHighlight
+  {
+    background-color: yellow;
+  }
+  h1
+  {
+  	color: rgb(0,0,100);
+  	width: 100%;
+  	text-align: center;
+  }
+  h2, h2>.header-section-number
+  {
+  	color: rgb(100,0,0);
+  }
+  h3, h3>.header-section-number
+  {
+  	color: rgb(100,0,0);
+  }
+  h4, h4>.header-section-number
+  {
+  	color: rgb(90,20,20);
+  }
+  /*   .figNum, .figureRef, .c, .fr, .email, .jsLink , a[href^="#"],
+       .linkback,.linkTo, */  
+  .quarto-xref, a.inpageLink, figcaption  /* .fig */
+  {
+  	color: rgb(90,90,0);
+  }
+  /*a.inpageLink, a:link,a:visited, .email, .jsLink , a[href^="#"],a.linkback,.linkTo */
+  a, .quarto-xref
+  {
+   	border-bottom: dotted 1px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+ /* a.href:hover, .email:hover, a[href^="#"]:hover, a.linkback:hover, .linkTo:hover, .jsLink:hover, */ 
+  a:hover
+  {
+  	border-bottom: solid 1px;
+  } 
+  a
+  {
+    color: rgb(0,0,150);
+  }
 }
 
 .rcMenu  /* the right-click menu */
@@ -176,9 +153,40 @@ nav[role="doc-toc"]
 	border-width: 1px;
 	border-color: rgb(130,130,130);
 }
-.refObjHighlight
+.rcMenu a
 {
-  background-color: yellow;
+  border-bottom: dotted 1px;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(90,90,0); 
+}
+.rcMenu a:hover
+{
+	border-bottom: solid 1px;
+} 
+  
+main, .toc-active
+{
+  background-color: rgb(245,250,250);
+  border-radius: 10px;
+}
+main
+{
+    padding: 15px;
+}
+#quarto-content
+{
+  background-color: #18453B;
+}
+nav[role="doc-toc"] 
+{
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.sidebar nav[role="doc-toc"] > h2
+{
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 @media print

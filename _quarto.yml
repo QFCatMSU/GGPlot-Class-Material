@@ -8,13 +8,16 @@ project:
   title: "Git Class"
 website:   
   navbar:
-    background: primary
-    search: true
+    background: green
+    color: white
+    search: false
     left:
-      - text: "Home"
+      - text: "Intro"
         file: lessons/00-IntroductionAndSyllabus.qmd
-      - lessons/01-RStudioProjectsAndGit.qmd
-      - lessons/02-Components.qmd
+      - text: "Projects"
+        file: lessons/01-RStudioProjectsAndGit.qmd
+      - text: "Components"
+        file: lessons/02-Components.qmd
 format:
   html:
     css: "presStyle.css"
