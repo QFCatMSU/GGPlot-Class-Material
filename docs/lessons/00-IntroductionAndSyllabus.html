@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Git Class - Introduction and Syllabus</title>
+<title>Introduction and Syllabus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,11 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -106,53 +106,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="presStyle.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Git Class</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="../lessons/00-IntroductionAndSyllabus.html" aria-current="page"> 
-<span class="menu-text">Intro</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../lessons/01-RStudioProjectsAndGit.html"> 
-<span class="menu-text">Projects</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../lessons/02-Components.html"> 
-<span class="menu-text">Components</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Introduction and Syllabus</h1>
+        </a>     
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Graphing With GGPlot</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/_Info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Info</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/00-IntroductionAndSyllabus.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Intro and Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01-RStudioProjectsAndGit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02-Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#issues" id="toc-issues" class="nav-link active" data-scroll-target="#issues"><span class="header-section-number">0.1</span> Issues</a></li>
-  <li><a href="#welcome-to-graphing-with-ggplot" id="toc-welcome-to-graphing-with-ggplot" class="nav-link" data-scroll-target="#welcome-to-graphing-with-ggplot"><span class="header-section-number">1</span> Welcome to Graphing with GGPlot</a>
+  <li><a href="#welcome-to-graphing-with-ggplot" id="toc-welcome-to-graphing-with-ggplot" class="nav-link active" data-scroll-target="#welcome-to-graphing-with-ggplot"><span class="header-section-number">1</span> Welcome to Graphing with GGPlot</a>
   <ul class="collapse">
   <li><a href="#instructor" id="toc-instructor" class="nav-link" data-scroll-target="#instructor"><span class="header-section-number">1.1</span> Instructor</a></li>
   <li><a href="#technical-support" id="toc-technical-support" class="nav-link" data-scroll-target="#technical-support"><span class="header-section-number">1.2</span> Technical Support</a></li>
@@ -198,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction and Syllabus</h1>
+<h1 class="title d-none d-lg-block">Introduction and Syllabus</h1>
 </div>
 
 
@@ -215,90 +235,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="issues" class="level3" data-number="0.1">
-<h3 data-number="0.1" class="anchored" data-anchor-id="issues"><span class="header-section-number">0.1</span> Issues</h3>
-<section id="assets" class="level4" data-number="0.1.1">
-<h4 data-number="0.1.1" class="anchored" data-anchor-id="assets"><span class="header-section-number">0.1.1</span> Assets</h4>
-<ul>
-<li><p><strong>link to other lessons</strong></p></li>
-<li><p>find consistent place to put all GGPlot files</p></li>
-<li><p>data files, along with other linked assets, need to be saved in two places (regular folder, docs folder)</p>
-<ul>
-<li>put script and data files directly in docs?</li>
-<li>link with direct or relative link?</li>
-</ul></li>
-<li><p>changes between local (main) and github (docs) – best to use URL</p></li>
-<li><p>&lt;done&gt; Which module.js gets used?</p></li>
-<li><p>Quarto working directory is not the same as R –</p>
-<ul>
-<li>causes problem when you want to link to file in R (e.g., weatherData)</li>
-</ul></li>
-</ul>
-</section>
-<section id="lesson-module-editor" class="level4" data-number="0.1.2">
-<h4 data-number="0.1.2" class="anchored" data-anchor-id="lesson-module-editor"><span class="header-section-number">0.1.2</span> Lesson module, editor</h4>
-<ul>
-<li><p>When a link goes to same page, stop from reloading in website</p></li>
-<li><p>&lt;done&gt; Overflow code lines lost in print mode (code.sourceCode – white-space: pre-wrap)</p></li>
-<li><p>&lt;done&gt; more contrast on PDF text?</p></li>
-<li><p>&lt;done&gt;Cannot properly add <strong><em>figure #:</em></strong> to editor when adding figures to plot/code</p></li>
-<li><p><span class="note">&lt;done – hacky&gt; figures on codeblocks</span></p></li>
-<li><p>&lt;done - hacky &gt;How do you highlight code in a codeblock in Quarto</p>
-<ul>
-<li>Or, use my code styling</li>
-</ul></li>
-<li><p>&lt;done&gt; equations</p></li>
-<li><p>&lt;done&gt; Firefox print preview breaks in middle of lines (Edge and Chrome are fine)</p></li>
-<li><p>&lt;done&gt; CSS does not indicate if a figure has an ID that starts with “fig-”<span class="hl">(why did I want this??)</span></p>
-<ul>
-<li>.fig[id^=“fig-”]</li>
-</ul></li>
-</ul>
-</section>
-<section id="quarto-editor-issues" class="level4" data-number="0.1.3">
-<h4 data-number="0.1.3" class="anchored" data-anchor-id="quarto-editor-issues"><span class="header-section-number">0.1.3</span> Quarto editor issues</h4>
-<ul>
-<li><p><span class="note">figures under images will not work if there is not blank lines on both sides of the image command in Source</span></p></li>
-<li><p>&lt;done&gt; images within lists cannot be made into figures</p>
-<ul>
-<li>probably just need to hack at Quarto editor and js ignores figures in lists</li>
-</ul></li>
-<li><p><span class="note">copy/paste from D2L causes misalignment of 2nd level bullets – and the visual editor will treat it as code when switching from Source to Visual</span></p></li>
-<li><p>do better check on links within a page – make sure you are not capturing links to pages within the website</p></li>
-<li><p>&lt;done&gt; horizontally resize viewer (grid -&gt; body-width: 1000px)</p></li>
-<li><p>image change size makes page jump after reload (worse the further you are down the page</p>
-<ul>
-<li>does not happen in debug mode (race condition…), only happens in FF</li>
-</ul></li>
-<li><p>create module.js for just Quarto</p></li>
-<li><p>&lt;done&gt; periods in header titles will mess up highlighting (because the period in JS means something)</p></li>
-<li><p>set css to only change object within the Quarto document</p></li>
-<li><p>&lt;done&gt; don’t jump on link if ref object is on page</p></li>
-<li><p>&lt;done&gt;fix last position in shortcut menu</p></li>
-<li><p>&lt;done&gt;reduce size of font in document</p></li>
-<li><p>&lt;done&gt; figure link open in another window… keep to same</p></li>
-<li><p>&lt;done – href -&gt; onclick breaks this!&gt; less aggressive mouseover on figures</p></li>
-<li><p>&lt;unsure&gt; resize flexsize in editor (this is challenging…)</p></li>
-<li><p>&lt;done&gt; figure coloring in editor</p></li>
-<li><p>&lt;done&gt; figure reference put number in (Insert -&gt; Cross Reference)</p></li>
-<li><p>&lt;done&gt; highlight line quickly after linking to it</p></li>
-<li><p>render changes only for objects within document (not generally)</p></li>
-<li><p>render just document with global yml</p></li>
-<li><p><span class="note">shortcut to codeblock</span></p></li>
-<li><p><span class="note">short to unicode</span></p>
-<ul>
-<li>« »</li>
-</ul></li>
-<li><p><span class="note">&lt;put in instructions&gt; create a newline</span></p>
-<ul>
-<li><span class="note">one way: &lt;br&gt;</span></li>
-<li><span class="note">another: nbsp (control-space in Visual)</span></li>
-<li><span class="note">another: \ in Source</span></li>
-</ul></li>
-<li><p><span class="hl">&lt;done??&gt;</span>image resizing does not work when you set height or width in Quarto editor</p></li>
-</ul>
-</section>
-</section>
 <section id="welcome-to-graphing-with-ggplot" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="welcome-to-graphing-with-ggplot"><span class="header-section-number">1</span> Welcome to Graphing with GGPlot</h2>
 <p>The purpose of this class is to introduce students to the graphing package in R called GGPlot2 and the modularization techniques used by GGPlot2 to create plots.&nbsp; GGPlot2, developed by Hadley Wickham, is a powerful data visualization tool used to make publication-quality plots and it has one of the largest, and most active, R communities.&nbsp; GGPlot2 differs from other graphing packages by separating a plot into its component parts, making the code for the plot more reusable and extensible.</p>

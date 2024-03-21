@@ -1,22 +1,10 @@
 ---
 title: "Components"
-# format:
-#   html:
-#     css: "presStyle.css"
-#     toc: true
-#     fig-align: left
-#     theme: default
-#     fontsize: 15px
-#     number-sections: true
-#     include-in-header:
-#       - text: |
-#           <script src="module.js"></script>
-# editor: visual
 ---
 
 ### To-do
 
--   Reword RStudio Projects Windows
+-   Reword RStudio Project Windows
 
 ## Purpose
 

@@ -1777,6 +1777,10 @@ function linksToNewWindow()
   			  });	
 			})(hashID);
 		}
+		else if (links[i].href.indexOf(window.location.hostname) > -1)
+		{
+        links[i].target = "_self"; 
+		}
 		else if(links[i].href.trim() != "" &&                        // link is not blank
 	// 	   !links[i].href.includes("/#") &&                     // first char in path is not #
 	//	   !(links[i].classList.contains("sameWin")) &&          // link does not contain class sameWin
