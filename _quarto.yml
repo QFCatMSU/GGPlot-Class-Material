@@ -3,7 +3,7 @@ project:
   - lessons/00-IntroductionAndSyllabus.qmd
   - lessons/01-RStudioProjectsAndGit.qmd
   - lessons/02-Components.qmd
-  - lessons/_Info.qmd
+  - lessons/Info.qmd
   type: website
   output-dir: docs
 #  title: "Graphing With GGPlot"  -- ugly in sidebar!
@@ -18,7 +18,7 @@ website:
       - section: "Graphing With GGPlot"
         contents:
           - text: "Info"
-            file: lessons/_Info.qmd
+            file: lessons/Info.qmd
           - text: "Intro and Syllabus"
             file: lessons/00-IntroductionAndSyllabus.qmd
           - text: "Projects"

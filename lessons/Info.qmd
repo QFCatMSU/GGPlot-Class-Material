@@ -1,5 +1,5 @@
 ---
-title: "Components"
+title: "Info"
 ---
 
 ### Issues
@@ -118,3 +118,7 @@ title: "Components"
 ### My Infos
 
 -   Editing asset files in the working directory will rerender the files in docs
+
+-   Don't think you can have a filename start with "\_"
+
+-   Sometimes have to reopen RStudio to get rendering to open in a browser

@@ -284,9 +284,9 @@ We are going to download two files and add them to your new RStudio Project.
 
 Download these files by ***right-clicking*** on the link and choosing ***Save Link As...***:
 
--   [lesson01-Setup.r](https://raw.githubusercontent.com/QFCatMSU/FW891/main/scripts/lesson01-Setup.R) (right-click, choose ***Save Link as...***): put this file in your ***scripts*** directory
+-   [lesson01-Setup.r](../scripts/lesson01-Setup.R) (right-click, choose ***Save Link as...***): put this file in your ***scripts*** directory
 
--   [Lansing2016NOAA.csv](/content/DEVELOPMENT/2018/courses/DEV-belinsky-2018-GRaphingwithGGPlot/GGPlot/Lessons/../Data/Lansing2016NOAA.csv?isCourseFile=true): put this file in your ***data*** directory
+-   [Lansing2016NOAA.csv](../Data/Lansing2016NOAA.csv): put this file in your ***data*** directory
 
  
 
