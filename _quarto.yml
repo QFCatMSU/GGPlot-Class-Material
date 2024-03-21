@@ -3,21 +3,28 @@ project:
   - lessons/00-IntroductionAndSyllabus.qmd
   - lessons/01-RStudioProjectsAndGit.qmd
   - lessons/02-Components.qmd
+  - lessons/_Info.qmd
   type: website
   output-dir: docs
-  title: "Git Class"
-website:   
-  navbar:
-    background: green
-    color: white
+#  title: "Graphing With GGPlot"  -- ugly in sidebar!
+website:  
+  bread-crumbs: false
+  sidebar:
+    # background: purple
+    # foreground: yellow
+    style: "floating"
     search: false
-    left:
-      - text: "Intro"
-        file: lessons/00-IntroductionAndSyllabus.qmd
-      - text: "Projects"
-        file: lessons/01-RStudioProjectsAndGit.qmd
-      - text: "Components"
-        file: lessons/02-Components.qmd
+    contents:
+      - section: "Graphing With GGPlot"
+        contents:
+          - text: "Info"
+            file: lessons/_Info.qmd
+          - text: "Intro and Syllabus"
+            file: lessons/00-IntroductionAndSyllabus.qmd
+          - text: "Projects"
+            file: lessons/01-RStudioProjectsAndGit.qmd
+          - text: "Components"
+            file: lessons/02-Components.qmd
 format:
   html:
     css: "presStyle.css"

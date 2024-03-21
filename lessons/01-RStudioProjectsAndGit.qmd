@@ -1,25 +1,8 @@
 ---
 title: "RStudio Projects and Git Setup"
-# format:
-#   # pdf:
-#   #   toc: true
-#   #   number-sections: true
-#   #   colorlinks: true
-#   #   linestretch: 2.0
-#   html:
-#     css: "presStyle.css"
-#     toc: true
-#     fig-align: left
-#     theme: default
-#     fontsize: 15px
-#     number-sections: true
-#     include-in-header:
-#      - text: |
-#          <script src="module.js"></script>
-# editor: visual
 ---
 
-### To-do
+### To-dos
 
 -   GGPlot image still show facets – switch to rows in code
 -   Have checklist – allow student to go to end if they know everything
