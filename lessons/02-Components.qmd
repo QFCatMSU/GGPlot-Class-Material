@@ -16,13 +16,13 @@ title: "Components"
 
 ### Code for the lesson
 
-[The script for this lesson is here](https://raw.githubusercontent.com/QFCatMSU/FW891/main/scripts/lesson02-Components.R) (right-click and choose ***Save file as...***)
+[The script for this lesson is here](../scripts/lesson02-Components.R)
 
 -   Save the R file, called ***lesson02-Components.R*** to the ***scripts*** folder inside your RStudio Project
 
  
 
-[The data for this lesson (Lansing weather in 2016) is here](/content/DEVELOPMENT/2018/courses/DEV-belinsky-2018-GRaphingwithGGPlot/GGPlot/Lessons/../Data/Lansing2016NOAA.csv?isCourseFile=true&_&d2lSessionVal=oYGqVlqynBpIH7lNYEQ25ZLq4&ou=1459992)
+[The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv)
 
 -   Save the CSV file, called ***Lansing2016NOAA.csv*** to the ***data*** folder inside your RStudio Project (this is the same file as last lesson). 
 
