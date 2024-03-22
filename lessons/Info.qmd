@@ -2,30 +2,41 @@
 title: "Info"
 ---
 
+``` {.r tab="Console"}
+rm(list=ls());                        # clear the Environment tab
+options(show.error.locations = TRUE); # show line numbers on error
+library(package=ggplot2);             # include all GGPlot2 functions
+```
+
 ### Issues
 
 #### Assets
 
 -   \<done\> link to other lessons
 
--   find consistent place to put all GGPlot files
+-   \<done\> find consistent place to put all GGPlot files
 
--   data files, along with other linked assets, need to be saved in two places (regular folder, docs folder)
+-   \<done\> data files, along with other linked assets, need to be saved in two places (regular folder, docs folder)
 
-    -   put script and data files directly in docs?
-    -   link with direct or relative link?
+    -   this all seems to work now...
 
 -   changes between local (main) and github (docs) – best to use URL
 
 -   \<done\> Which module.js gets used?
 
--   Quarto working directory is not the same as R –
+-   \<done\> Quarto working directory is not the same as R –
 
     -   causes problem when you want to link to file in R (e.g., weatherData)
 
 #### Lesson module, editor
 
--   When a link goes to same page, stop from reloading in website
+-   \<done\> print button is gone
+
+-   \<done\> add tab to codeblocks (still needs styling)
+
+-   \<done\> change margin and padding on content
+
+-   \<done\> When a link goes to same page, stop from reloading in website
 
     -   done for same file – now change in NavBar
 
@@ -50,6 +61,8 @@ title: "Info"
     -   .fig\[id\^="fig-"\]
 
 #### Quarto editor issues
+
+-   \<done\> fix script links
 
 -   \<done\> images within lists cannot be made into figures
 
@@ -114,6 +127,8 @@ title: "Info"
 -   figures under images will not work if there is not blank lines on both sides of the image command in Source
 
 -   figures on codeblocks
+
+-   
 
 ### My Infos
 
