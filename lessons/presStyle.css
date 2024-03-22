@@ -49,6 +49,26 @@
 
 .content
 {
+  padding-bottom:15px;
+  
+  .title
+  {
+    margin-bottom: 10px !important;
+  }
+  .codeBlockTab
+  {
+  	background-color: rgb(50,50,50);
+  	color: rgb(240,240,240);
+  	text-align: center;
+  	display: inline-block;
+  	font-size: 14px;
+  	border-radius: 4px 4px 0px 0px;
+  	min-width: 100px;
+  	position: relative;
+  	padding-left: 10px;
+  	padding-right: 10px;
+  	font-family: calibri;
+  }
   .quarto-figure-center > figure > p
   {
     text-align: left;

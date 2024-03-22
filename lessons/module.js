@@ -44,21 +44,18 @@ Fix hacks in Safari:
 // tabs are not aligned to the divs because the divs have been shifted
 //    you can align by putting the tab inside the div
 smallImageHeight = 100;				// set the height of flex-sized objects when small 
-//imageHeight = new Array();			// the heights of all flex-sized images in a page
-//imageWidth = new Array();			// the widths of all flex-sized images in a page
-//minImageWidth = 700;					// minimum width for a flexSize image in expanded mode
 scrollTopPosition = 0; 				// value saved for links-return-links within a page
 editURL = "";							// URL for the editting page 
 referenceTimer = "";					// timer used to toggle the reference object
 scrollFlag = 0;  						// counts when scrolling of page occurs due to reference links
 
 // D2L variables 
-redNum = -1;						// the number of the class 
-instructorEmail = "Charlie Belinsky <belinsky@msu.edu>;";
-lessonFolder = "";
+//redNum = -1;						// the number of the class 
+//instructorEmail = "Charlie Belinsky <belinsky@msu.edu>;";
+//lessonFolder = "";
 
 // pre-onload functions
-addStyleSheet();  // can be done before page load since this is called in the [head]
+// addStyleSheet();  // can be done before page load since this is called in the [head]
 
 /*** Handling the long-press menu ****/
 longClickTimer = null;
@@ -72,15 +69,22 @@ parent.window.onload = function()
 	encapObject = document.body; 
   scrollTopPosition = window.parent.scrollY;  
   
-  // add styling and copy button to codeblocks that do not have a language
-/* codeBlocks = document.querySelectorAll("div.sourceCode > pre");
-  
-	for(i=0; i<codeBlocks.length; i++)
+  // add a print button to the title line
+	titleObj = encapObject.querySelector(".title");
+	
+	if(titleObj)  // there is a title 
 	{
-	  codeBlocks[i].classList.add("sourceCode");
-	  codeBlocks[i].classList.add("code-with-copy");
-	  codeBlocks[i].classList.add("copy-code");
-	}*/
+		// create printer icon 
+		printLink = document.createElement('a');
+		printLink.classList.add("sameWin");
+		printLink.target = "_self";
+		printLink.href = "javascript:window.print()";
+		printLink.style.marginLeft = "9px";
+		printLink.innerHTML = "&#9113";
+	
+		// add printer icon to title
+		titleObj.appendChild(printLink);
+	}
 	
   // change symbols to highlighting
   codeBlocks = document.querySelectorAll("pre.mod");
@@ -90,26 +94,23 @@ parent.window.onload = function()
 	  newHTML = codeBlocks[i].innerHTML;
 	  newHTML = newHTML.replace(/«/g, "<b>");
 	  newHTML = newHTML.replace(/»/g, "</b>");
-	//  newHTML = newHTML.replace(/&lt;&lt;-/g, "<b>");
-	//  newHTML = newHTML.replace(/-&gt;&gt;/g, "</b>");	  
-//	  newHTML = newHTML.replace(/&lt;&lt;-(.*)\1-&gt;&gt;/g, "<b>\1</b>");
 	  codeBlocks[i].innerHTML = newHTML;
 	}
-/*
-	if(document.querySelectorAll('meta[content^="Joomla"]').length > 0) joomlaFixes();
 	
-	if(window.location.hostname == "d2l.msu.edu") 
+	codeBlockDivs = document.querySelectorAll("[data-tab]");
+	for(i=0; i<codeBlockDivs.length; i++)
 	{
-		d2lFixes();
-		// Is this the homepage?
-		
-		url = window.parent.location.href;
-
-		if(!url.includes("d2l.msu.edu/d2l/home/"))
-			d2lAddHeader();
+    par = document.createElement("p");
+		par.classList.add("noSelect");
+		par.style.textAlign = "left";
+		tabSpan = document.createElement("span");
+		tabSpan.classList.add("codeBlockTab", "noSelect", "noCode", "nonum");
+		tabSpan.setAttribute("data-text", codeBlockDivs[i].getAttribute("data-tab"));
+		tabSpan.innerText = codeBlockDivs[i].getAttribute("data-tab");
+		par.appendChild(tabSpan);
+		codeBlockDivs[i].prepend(tabSpan);
 	}
-*/ 
-	
+
 	// adds "code" to elements within bq and moves p out of bq
 //	fixBlockquotes();
 //	fixBrInCodelines();
@@ -709,7 +710,7 @@ function fixTitle()
 		printLink.classList.add("sameWin");
 		printLink.href = "javascript:window.print()";
 		printLink.style.marginLeft = "9px";
-		printLink.innerHTML = "&#9113"; //"&#x1F5B6;";
+		printLink.innerHTML = "klsjdfasdhflksah &#9113"; //"&#x1F5B6;";
 	
 		// add printer icon to title
 		titleObj.appendChild(printLink);
@@ -1782,8 +1783,7 @@ function linksToNewWindow()
         links[i].target = "_self"; 
 		}
 		else if(links[i].href.trim() != "" &&                        // link is not blank
-	// 	   !links[i].href.includes("/#") &&                     // first char in path is not #
-	//	   !(links[i].classList.contains("sameWin")) &&          // link does not contain class sameWin
+		   !(links[i].classList.contains("sameWin")) &&          // link does not contain class sameWin
 	//   	 !(links[i].classList.contains("download")) &&         // link does not contain class download
 		 	 !(links[i].classList.contains("quarto-xref")) &&      // link does not contain class quarto-xref
 		 	 (links[i].target == "_self" || !(links[i].target)) )  // link contains instruction to go to same window
