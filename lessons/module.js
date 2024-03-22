@@ -1,68 +1,16 @@
-/*
-- JS: onload check for homePAge before 
-- CSS: p,h2,h3,h4 -> margin 0 -> important
-- CSS: take away negative text-indent for p>code and span>code within a table 
-- To DO: Remove Previous/Next Page from JS/CSS
--        Fix sizing on H2,3,4
-*/
-/*
-Future:
--- 2023 --
-- Put flexsize width/height in JSON (or, manage without global variable)
-
-- turn off longclick timer on horizontal scroll in widget
-- Deal with situation with figures are not siblinged to a block object
-- look for Span with class and title inside <p>
-  - but not everything becasue you could have a span at the beginning of a line...
-- fix wayward div in page (there should not be a div in the editor -- it is copied/pasted in)
-- multi-line equations stay on one line in MathJax (will MathJax fix?)
-- use encapObject whenever possible
-- hold position of page when resized
-- prevPage and nextPage: combine code
-- <done> equations cause horizontal scrolling
-- <done> shortcut menu comes up when horizontally scrolling
-- <done> remove formatting from copied codeblock
-- <done> add page map to long-click / right-click menu
-- <almost done> remove depecated referencing (sectRef...)
-- <done> break up code functions
-- <done> Title in H6 means no numbers
-- Class to add numbers
-- <done> switch to addEventListener()
-- <done> combine right-click and long-click in one function 
-- <done -- use vertical line> fix overflow code
-- <done> check MathJax version
-- <done> set equation color?  Keep at brown
-- <done> cannot put an email link inside H2,H3,H4 -- click event gets removed
-    - switched innerHTML for insertAdjacentHTML
-- <done - checking for Math element> MathJax is activating long-click menu
-Fix hacks in Safari:
-- <hacky but done> move vertical line in codeblocks over 22px
-- <close -- adds spaces> clipboard works differently in Safari
-*/
-
 // tabs in codeblocks are messing with the figures
 // tabs are not aligned to the divs because the divs have been shifted
 //    you can align by putting the tab inside the div
 smallImageHeight = 100;				// set the height of flex-sized objects when small 
 scrollTopPosition = 0; 				// value saved for links-return-links within a page
-editURL = "";							// URL for the editting page 
 referenceTimer = "";					// timer used to toggle the reference object
 scrollFlag = 0;  						// counts when scrolling of page occurs due to reference links
-
-// D2L variables 
-//redNum = -1;						// the number of the class 
-//instructorEmail = "Charlie Belinsky <belinsky@msu.edu>;";
-//lessonFolder = "";
-
-// pre-onload functions
-// addStyleSheet();  // can be done before page load since this is called in the [head]
 
 /*** Handling the long-press menu ****/
 longClickTimer = null;
 overRCMenu = false;
 mouseX = 0; mouseY = 0;  // allow a little wiggle of the mouse
 
-// don't do anything until the parent frame (d2L) loads 
 // this still seems to work if there is no parent -- probably should check for this, though
 parent.window.onload = function()
 {		
@@ -110,64 +58,23 @@ parent.window.onload = function()
 		par.appendChild(tabSpan);
 		codeBlockDivs[i].prepend(tabSpan);
 	}
-
-	// adds "code" to elements within bq and moves p out of bq
-//	fixBlockquotes();
-//	fixBrInCodelines();
-//	setCodeBlocks();
-//	addBrackets();
-	
-//	getClassInfoD2L(); // emails, lessons (works only in D2L for now)
-	
-//	setClassNames();
-	
-//	fixTitle();
-	
+		
 	// allow users to resize images from small to full-size
 	createFlexImages();
 	
-	// adds the caption class to all figure elements
-//	addCaptions();
-	
-//	createEmailLink();
-	
 	equationNumbering();
-	
-	// structure the page with DIVs based on the headers 
-//	addDivs();
-	
-	// add outline to the divs
-//	addOutline();
 	
 	// Create a right-click menu
 	makeContextMenu();  // needs to happen after divs are created
-
-	// adds code tags to all content within an .code tag
-	// need to add divs before doing code tags becuase this includes the div codeblocks
-//	addCodeTags();
-	
-	// allow user to toggle the size of the codeblock --used?? needed??
-//	addCodeBlockTag();
-	
-//	codeLineVertBar();
-	
-//	addReferences();
-	
-	// convert "download" class to a download hyperlink 
-	//		(because D2L does not allow you to specify this trait)
-	// addDownloadLinks();	
-	
+		
 	// check the URL to see if there is a request to go to a specific part of the page
 	checkURLForPos();
 	
 	// target most hyperlinks to a new window
 	linksToNewWindow();
 	
-	// address tag used to create an emphasized textbox
-//	createTextBox();
-	
 	// wrap figure and captions together -- for accessibility
-	captionFigures();
+//	captionFigures();
 			
 	// if this page was hyperlinked from elsewhere and a hash tag was added to the link
 	if(window.location.hash.slice(1) != "") 
@@ -176,16 +83,7 @@ parent.window.onload = function()
 	// resize the iframe in the parent window when the page gets resized (if in an iframe)
 	if(window !== window.parent && document.body)
 	{
-		//switch to resizeObserver??
-		//document.body.addEventListener("resize", resizeIframeContent());
-		//document.getElementById("headerDiv").addEventListener("resize", resizeIframeContent());
-		//window.parent.addEventListener("resize", resizeIframeContent());
-		//window.addEventListener("resize", resizeIframeContent());
-		//	headerDiv = document.getElementsByClassName("headerDiv");	
-		//new ResizeObserver(resizeIframeContent).observe(headerDiv[0]);
 		new ResizeObserver(resizeIframeContent).observe(document.body);
-	//	headerDiv = document.getElementsByClassName("headerDiv");	
-	//	headerDiv[0].addEventListener("resize", resizeIframeContent());
 	}
 }
 
@@ -336,201 +234,6 @@ function activateElement(e, element, offset = 5)
 	element.style.visibility = "visible"; 
 }
 
-function fixBlockquotes()
-{
-	bq = encapObject.querySelectorAll("blockquote");
-	
-	for(i=0; i<bq.length; i++)
-	{
-		// find all <p> in the blockquote
-		codelines = bq[i].querySelectorAll("p");   // used to include <h6>
- 
-		if(codelines.length > 0)
-		{
-			for(j=0; j<codelines.length; j++)
-			{
-				// add the code class to the children
-				codelines[j].classList.add("code");
-				// move the object outside of the blockquote
-				bq[i].parentNode.insertBefore(codelines[j], bq[i]);
-			}
-		}
-		else if(bq[i].innerText.trim() != "") // the blockquote has something in it
-		{
-			
-			codeLine = document.createElement("p"); 			// create a new codeblock
-			codeLine.classList = bq[i].classList;
-			codeLine.title = bq[i].title;
-			codeLine.innerHTML = bq[i].innerHTML;
-			codeLine.classList.add("code");
-			bq[i].parentNode.insertBefore(codeLine, bq[i]);
-		}
-		// remove the blockquote (which is now empty)
-		bq[i].parentNode.removeChild(bq[i]);
-	}
-}
-
-function fixBrInCodelines()
-{
-	var codeLines = encapObject.getElementsByClassName("code"); 
-	
-	for(i=0; i<codeLines.length; i++)
-	{
-		// need to be very careful in for loops where the counted element is changing
-		codeElement = codeLines[i];
-				
-		/* fix the situation where code lines are broken up by [br] --
-			usually happens when code was copied/pasted into editor */
-		if(codeLines[i].getElementsByTagName("br").length > 0)
-		{ 
-			// count how many lines of code there are, which is the number of <br> + 1
-			// 	because we need to add a break for the last line
-			numLines = codeLines[i].getElementsByTagName("br").length +1; 
-
-			var codeText = new Array();
-			for(j=0; j<numLines; j++)
-			{
-				// copy all the lines of code into the array, creating a new line after each <br>
-				codeText[j] = codeLines[i].innerHTML.split("<br>")[j];
-			}
-			for(j=0; j<numLines; j++)
-			{
-				newElement = document.createElement("p");		// create an [p] 
-				newElement.classList.add("code");				// add class "code" to <p>
-				newElement.innerHTML = codeText[j];				// insert line from code array in <p>
-				if(j == 0)
-				{
-					// transfer title information to only the first element
-					newElement.title = codeLines[i].title;	
-					// transfer the class list to the first element					
-					newElement.classList =  codeLines[i].classList; 
-				}
-				// add the new code line to the script
-				codeElement.parentElement.insertBefore(newElement, codeElement);  
-			}
-			// remove all the original code lines
-			codeElement.parentElement.removeChild(codeElement);	
-			
-			/********
-			the number of code tags increased -- so codeLines[] has been updated to match
-			*********/
-			// increase numCodeTags to the current codeline length
-			numCodeTags = codeLines.length; 
-			
-			// increase i by the number of codelines just added (don't need to check those)
-			i = i + numLines -1; 
-		}
-	}
-}
-
-function codeBlockFirstLine(codeLine)
-{
-	codeBlock = document.createElement("p"); 			// create a new codeblock
-	/* Check if the code line has an embedded span as the first element -- bug in D2L 
-		that ignores the <p> and only sees the embedded <span>
-	   Want to apply classes and titles from span to the parent p */
-	if(codeLine.innerHTML.startsWith("<span"))	// if the codeline starts with <span
-	{
-		embedSpan = codeLine.getElementsByTagName("span")[0];
-		
-		// true only if the embedded span takes up the whole codeline
-		if(codeLine.innerText == embedSpan.innerText)
-		{
-			codeLine.classList = embedSpan.classList;
-			codeLine.classList.add("code");  // make sure it is there...
-			embedSpan.classList = "";
-			codeLine.title = embedSpan.title;
-			embedSpan.title = "";
-		}
-	}		
-	codeBlock.classList = codeLine.classList;
-	codeBlock.title = codeLine.title;
-	codeBlock.classList.add("codeBlock");	
-	
-	// start numbering at number different than 1
-	if( codeBlock.title != "" && !isNaN(codeLine.title) )
-	{
-		codeBlock.style.counterReset = "codeLines " + (codeLine.title -1);
-	}
-	
-	// when double-clicked, select all the children (text) within the codeblock
-	codeBlock.addEventListener("dblclick", function(event){   
-		document.getSelection().selectAllChildren(this);  // select everything from the codeblock
-		activateNotification(event, "code");              // tooltip indicate code has been copied
-		text_only = this.innerText;                       // get text from codeblock
-	   text_only = text_only.replaceAll(/\u00A0/g, ' '); // change non-breaking space to space
-		/* Hack to get this to work in Safari -- I am not sure why the clipboard work differently for Safari 
-		   Note: This seems like a Safari issue -- not a Mac OS issue */
-		if(!(navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1))
-	   {
-			text_only = text_only.replaceAll(/\n\n/g, '\n');  // remove double newlines
-		}
-	   navigator.clipboard.writeText(text_only);
-	});
-	
-	// disable short-cut menu on scroll (mousemoves are not triggered on scroll)
-	codeBlock.addEventListener("scroll", function(event){ 
-		clearInterval(longClickTimer);
-	});
-	
-	// add the codeBock div as a parent to the codeLine
-	codeLine.parentElement.insertBefore(codeBlock, codeLine);
-}
-
-function setCodeBlocks()
-{
-	// find all code elements that have not been made into codeblocks 
-	var codeLines = encapObject.querySelectorAll(".code:not(.codeBlock)");  
-
-	firstLine = true;
-
-	// go through all codelines 
-	for(i=0; i<codeLines.length; i++)
-	{	
-		if(firstLine == true)  // first line of a codeblock
-		{
-			codeBlockFirstLine(codeLines[i]);	
-			firstLine = false;
-		}
-		codeLine = document.createElement("span");
-		codeLine.innerHTML = codeLines[i].innerHTML;
-		codeLine.id = codeLines[i].id;
-		codeLine.title = codeLines[i].title;  // do I want the title?
-		codeLine.classList.add("code");
-
-		// this is the last element in the codeblock
-		if(codeLines[i].nextElementSibling == null || 
-			!codeLines[i].nextElementSibling.classList.contains("code"))
-		{
-			firstLine = true;
-		}
-		else
-		{
-			codeLine.innerHTML += "<br>";
-		}
-		
-		codeBlock.appendChild(codeLine);
-		
-		// remove the old codeline
-		codeLines[i].parentNode.removeChild(codeLines[i]);
-	}
-}
-
-	
-function getClassInfoD2L()
-{
-	// find the information for the class
-	if(redNum == 755411 || redNum == 704361 || redNum == 457124) 
-		instructorEmail = "Charlie Belinsky <belinsky@msu.edu>;";
-	else if(redNum == 748323)
-		instructorEmail = "Travis Brenden <brenden@msu.edu>;";
-	else if(redNum == 942384)
-		instructorEmail = "Jim Bence <bence@msu.edu>;";		
-	else if(redNum == 931321)
-		instructorEmail = "Mike Jones <jonesm30@msu.edu>;";		
-	else if(redNum == 952618)
-		instructorEmail = "Juan Steibel <steibelj@msu.edu>;";		
-}
 function resizeIframeContent()
 {
 	// The iframe containing the content in D2L will only change size 
@@ -543,206 +246,6 @@ function resizeIframeContent()
 	// set height to the total scroll length of the lesson window
 	parentIFrames[0].style.height = document.body.scrollHeight + "px";
 
-}
-
-function joomlaFixes()
-{
-	// In Joomla, the article is in a div of class "container"
-	containers = document.querySelectorAll("div.container"); 
-	containers[0].style.backgroundColor = "#003c3c";
-	containers[0].style.padding = "9px";
-
-	// Joomla uses these itemprprops -- need a better way to check for Joomla...
-	itemPropDiv = document.querySelectorAll("div[itemprop]");
-	if(itemPropDiv.length == 1)
-	{
-		// the lesson is encapsulated in the div with the itemprop
-		encapObject = itemPropDiv[0];	
-		
-		// create the editing URL
-		// in Joomla it is: URL of page - last section +
-		// 			"?view=form&layout=edit&a_id=" + the page id
-		theURL = window.location.href; 
-		lastSlashIndex = theURL.lastIndexOf("/");
-		editURL = theURL.substring(0, lastSlashIndex);
-		pageID = theURL.substring((lastSlashIndex +1), theURL.indexOf("-"));
-		editURL = editURL + "?view=form&layout=edit&a_id=" + pageID;
-	}
-	
-	// will need to move this line to make it more general
-	encapObject.style.backgroundColor = "rgb(0,60,60)";	
-}
-
-function d2lFixes()
-{
-	oldURL = String(window.parent.location); 
-	// get rid of parameters (designated by "?")
-	editURL = oldURL.split('?')[0];  
-	// replace viewContent with contentFile
-	editURL = editURL.replace("viewContent", "contentFile"); 
-	// replace View with EditFile?fm=0
-	editURL = editURL.replace("View", "EditFile?fm=0"); 	 	
-				
-	// remove the header in the D2L page (being paranoid in case D2L changes their backend)
-	if(parent.document.querySelector(".d2l-page-header"))  // we might not be in an iframe
-		parent.document.querySelector(".d2l-page-header").style.display = "none";
-	if(parent.document.querySelector(".d2l-page-collapsepane-container"))
-		parent.document.querySelector(".d2l-page-collapsepane-container").style.display = "none";
-	if(parent.document.querySelector(".d2l-page-main-padding"))
-		parent.document.querySelector(".d2l-page-main-padding").style.padding = "0";
-
-}
-
-// Add a header to the lesson which include a home, previous, and next page link --
-// currently only works in D2L 
-function d2lAddHeader()
-{
-	// check if there is a previous page link
-	prevPage = document.body.children[0];
-	if(prevPage && prevPage.tagName == "P")
-	{
-		if(prevPage.innerText.trim() != "")
-		{
-			prevText = "Previously: " + prevPage.innerText;
-		}
-		prevPage.parentNode.removeChild(prevPage);
-	}
-	
-	// check if there is a next page link
-	nextPage = document.body.children[0];
-	if(nextPage && nextPage.tagName == "P")
-	{
-		if(nextPage.innerText.trim() != "")
-		{
-			nextText = "Up Next: " + nextPage.innerText;
-		}
-		nextPage.parentNode.removeChild(nextPage);
-	}
-		
-	if(self != top)
-	{	
-		// create div at top of page that will hold the home page and page links
-		divTop = document.createElement("div");
-		divTop.classList.add("headerDiv");
-		encapObject.prepend(divTop);
-		
-		// add home page link
-		url = window.parent.location.href;
-		classNum = url.match(/\/[0-9]{3,}\//); 
-		redNum = classNum[0].substring(1, classNum[0].length-1); // get number of D2L class
-		homePage = document.createElement("span");
-		homePage.classList.add("lessonLink", "sameWin", "homePage");
-		homeLink =  document.createElement("a");
-		homeLink.innerHTML = "Home";
-		homeLink.href = "https://d2l.msu.edu/d2l/home/" + redNum;
-		homeLink.target = "_parent";
-		homePage.appendChild(homeLink);
-		divTop.appendChild(homePage);
-			
-		// add the previous page link if it exists
-		if(typeof prevText !== 'undefined')
-		{
-			url = window.parent.document.getElementsByClassName("d2l-iterator-button-prev");
-			newPrevPage = document.createElement("span");
-			newPrevPage.classList.add("lessonLink", "sameWin", "previousLesson");
-			newPrevPageLink = document.createElement("a");
-			newPrevPageLink.innerHTML = prevText;
-			newPrevPageLink.href = url[0].href;
-			newPrevPageLink.target = "_parent";
-			newPrevPage.appendChild(newPrevPageLink);
-			divTop.insertBefore(newPrevPage, homePage);
-		}
-		
-		// add the next page link if it exists
-		if(typeof nextText !== 'undefined')
-		{
-			url = window.parent.document.getElementsByClassName("d2l-iterator-button-next");
-			newNextPage = document.createElement("span");
-			newNextPage.classList.add("lessonLink", "sameWin", "nextLesson");
-			newNextPageLink = document.createElement("a");
-			newNextPageLink.innerHTML = nextText;
-			newNextPageLink.href = url[0].href;
-			newNextPageLink.target = "_parent";
-			newNextPage.appendChild(newNextPageLink);
-			divTop.insertBefore(newNextPage, homePage);
-		}		
-	}
-	else
-	{
-		// old system
-		lessonLinks = encapObject.querySelectorAll(".previousLesson, .nextLesson, .nl, .pl");
-		for(i=0; i<lessonLinks.length; i++)
-		{
-			lessonLinks[i].style.display = "none";
-		}
-	}
-}
-
-// add the full name of a class when the user has entered in the abbreviated name
-function setClassNames()
-{
-	// add class names
-	p = encapObject.getElementsByClassName("p");
-	for(i=0; i<p.length; i++)
-	{
-		p[i].classList.add("partial");
-	}
-
-	nn = encapObject.getElementsByClassName("nn");
-	for(i=0; i<nn.length; i++)
-	{
-		nn[i].classList.add("nonum", "partial");
-	}
-}
-
-function fixTitle()
-{
-	// set title on webpage -- the first H1 on the page
-	titleObj = encapObject.querySelector("h1");
-//	titleObj = encapObject.querySelector("body > h1");
-	
-	if(titleObj)  // there is a title 
-	{
-		window.document.title = titleObj.textContent;
-		
-		// create printer icon 
-		printLink = document.createElement('a');
-		printLink.classList.add("sameWin");
-		printLink.href = "javascript:window.print()";
-		printLink.style.marginLeft = "9px";
-		printLink.innerHTML = "klsjdfasdhflksah &#9113"; //"&#x1F5B6;";
-	
-		// add printer icon to title
-		titleObj.appendChild(printLink);
-	}
-	else
-	{
-		window.document.title = "No Title";
-	}
-}
-
-/* removes all of the [div] elements in the page and move the content inside the [div]
-   up one level */
-function removeDivs()
-{
-	
-	// all DIVs not related to MathJax
-	notMathJax = "DIV:not([class*='MathJax']) DIV:not([id*='MathJax'])"
-	divElements = encapObject.querySelectorAll(notMathJax);
-	
-	// Remove all the divs from the page but keep the content 
-	while(divElements.length > 0)  
-	{		
-		// get information inside the div and save it to a temp variable
-		divContent = divElements[divElements.length-1].innerHTML
-		
-		// copy the content of the [div] before the [div] 
-		divElements[divElements.length-1].insertAdjacentHTML("beforebegin", divContent);
-		
-		// remove the [div]
-		divElements[divElements.length-1].parentElement.removeChild(
-			divElements[divElements.length-1] );
-	}
 }
 
 /*
@@ -763,14 +266,6 @@ function createFlexImages()
 		// add a click event that calls changeImageSize() to each flexSize image
 		flexImage[i].addEventListener("click", function()
 												{ changeImageSize(this) }, false); 
-		
-		/*** the strange behavior of JS and for loops: final value of the loop  ****/
-		
-	//	flexImage[i].myIndex = i;  	// give every image a unique index value
-		
-		// store the values of the images natural width and height
-	//	imageHeight[i] = flexImage[i].naturalHeight;
-	//	imageWidth[i] = flexImage[i].naturalWidth;
 		
 		// initalize the flex image to the small size
 		changeImageSize(flexImage[i], "minimize");
@@ -838,205 +333,21 @@ possible instruction values: minimize and maximize
 */
 function changeImageSize(element, instruction="none")
 {
-	// get unique index of image
-//	imageIndex = element.myIndex;				
-	
-	// get the images natural width and height unsing the index
-//	origHeight = imageHeight[imageIndex];
-//	origWidth = imageWidth[imageIndex];
-	
 	// If image is in small sized mode and insruction is not "minimize"
 	// The reason I do not put instruction == "minimize" 
 	//			has to do with minimize/maximize all call
 	if(element.style.height == smallImageHeight + "px" && instruction != "minimize")
 	{
-		// get the width of the images parent element, which is a [figure]
-	//	screenWidth = element.parentElement.clientWidth;
-		
-		// if the width is less than the min width, increase the width to the min width
-	/*	if(screenWidth < minImageWidth)
-		{
-			screenWidth = minImageWidth;
-		}*/
-		
-	//	element.style.width = "unset";
 		element.style.height = "unset";
-			
-		// if the natural width of the image is smaller than the screen width...
-	/*	if(origWidth <= screenWidth)
-		{
-			// set the image to its natural size
-			element.style.width = origWidth + "px";
-			element.style.height = origHeight + "px";
-		}
-		else  // image's natural width is larger than screen width
-		{
-			// set the image width to the screen width and scale the height
-			element.style.width = screenWidth + "px";
-			element.style.height = (screenWidth/origWidth)*origHeight + "px";
-		}*/
 	}
 	else if (instruction != "maximize")
 	{
 		// set the images height to the smallHeight value and scale the with to match
 		element.style.height = smallImageHeight + "px";	
 		element.style.width = "auto";	
-		//element.style.width = (smallImageHeight/origHeight)*origWidth + "px";
 	}
 }
 
-/* uses the header structure of the page to create a visual style with div elements --
-	user passes in the elementType they want to structure 
-	(H1, H2, and H3 are currently supported */ 
-function addDivs()
-{
-	// find all element of the type asked for (H1, H2, and H3 that are direct children of the body are currently supported)
-	elements = encapObject.querySelectorAll("h1, h2, h3");
-//	elements = encapObject.querySelectorAll("body > h1, body > h2, body > h3");
-	
-	// for each header element
-	for(i=0; i<elements.length; i++)
-	{
-		// create a temporary element at the same location of the Header element
-		currentElement = elements[i];
-		nextSibling = null;
-	
-		newDiv = document.createElement("div");	// create a new div
-					
-		// get title from element -- transfer to new div
-		// use data-title instead of title because 
-		//		title will create a tooltip popup (which I don't want)
-		if(elements[i].title != "")
-		{
-			newDiv.dataTitle = elements[i].title
-		}
-		else  // no title -- use text from header
-		{
-			newDiv.dataTitle = elements[i].innerText;
-		}
-		
-		// insert the new div right before the Header element
-		elements[i].parentNode.insertBefore(newDiv, elements[i]);
-		/*
-			Go from 
-			<h2> Header title </H2>
-				<p>more content</p>
-				<p>more content</p>
-				<p>more content</p>
-			<h3>
-			
-			to
-			
-			<div class="">
-				<h2> Header title </H2>
-				<p>more content</p>
-				<p>more content</p>
-				<p>more content</p>
-			</div>
-			<h3>  -- this last element could also be <h2>, <div>, or end-of-page
-		*/
-		while(currentElement.nextElementSibling != null &&
-				currentElement.nextElementSibling.tagName != "H1" &&
-				currentElement.nextElementSibling.tagName != "H2" &&
-				currentElement.nextElementSibling.tagName != "H3" &&
-				!(currentElement.nextElementSibling.classList.contains("h1Div")) && 
-				!(currentElement.nextElementSibling.classList.contains("h2Div")) && 
-				!(currentElement.nextElementSibling.classList.contains("h3Div"))) 
-		{
-			nextSibling = currentElement.nextElementSibling;	// get the next element
-			newDiv.appendChild(currentElement);						// add current element to div
-			currentElement = nextSibling;					// set current element to next element
-		}	
-
-		// add the page title class to the div with H1
-		if(elements[i].tagName == "H1")
-		{	
-			newDiv.classList.add("h1Div");
-		}
-		else if(elements[i].tagName == "H2")
-		{	
-			// add the class "h2Div" to div with H2
-			newDiv.classList.add("h2Div", "contentDiv");
-			
-			// add "nonlinear" class for div that contain non-linear content
-			if((elements[i].className != "" ) &&
-				(elements[i].classList.contains("trap") ||
-				elements[i].classList.contains("extension") ||
-				elements[i].classList.contains("shortcut")) )
-			{
-				newDiv.classList.add("nonlinear");
-			}
-		}
-		else if(elements[i].tagName == "H3")
-		{	
-			// add the class "h3Div" to div with "H3"
-			newDiv.classList.add("h3Div", "contentDiv");
-			
-			// Check to see if the previous sibling (div with H2 or H3) has class "nonlinear"
-			// if so -- then this div should also be class "nonlinear"
-			if(newDiv.previousElementSibling && 
-				newDiv.previousElementSibling.className != "" &&
-				(newDiv.previousElementSibling.classList.contains("nonlinear") ))
-			{
-				newDiv.classList.add("nonlinear");
-			}
-		}	
-
-		if(currentElement.nextElementSibling == null) // there is no next
-		{
-			// should change at some point -- probably indicates an error
-			newDiv.classList.add("h2NextDiv");	
-		}
-		else if(currentElement.nextElementSibling.tagName == "H2" ||
-					currentElement.nextElementSibling.classList.contains("h2Div"))
-		{
-			newDiv.classList.add("h2NextDiv");	// it is the end of a section
-		}
-		else if(currentElement.nextElementSibling.tagName == "H3" ||
-					currentElement.nextElementSibling.classList.contains("h3Div"))
-		{
-			newDiv.classList.add("h3NextDiv");	// it is the middle of a section
-		}
-		newDiv.appendChild(currentElement);	// add content to the new div
-	}
-}
-
-// add outline to H2 and H3 elements
-function addOutline()
-{
-	level1 = 0;
-	level2 = 0;
-	divElement = encapObject.getElementsByTagName("div");
-	
-	for(i=0; i<divElement.length; i++)
-	{
-		// find what the first element in the div is
-		if(divElement[i].firstChild && divElement[i].firstChild.tagName == "H2")
-		{
-			level1++;			
-			level2=0;
-			divElement[i].firstChild.insertAdjacentHTML("afterbegin", level1 + " - ");
-			divElement[i].dataTitle = divElement[i].firstChild.textContent;
-		}
-		else if(divElement[i].firstChild && divElement[i].firstChild.tagName == "H3")
-		{
-			level2++;
-			divElement[i].firstChild.insertAdjacentHTML("afterbegin", level1 + "." + level2 + " - ");
-			divElement[i].dataTitle = divElement[i].firstChild.textContent;
-			
-			// find H4 elements within H3
-			h4Elements = divElement[i].getElementsByTagName("H4");
-			
-			level3 = 0;
-			for(j=0; j<h4Elements.length; j++)
-			{
-				level3++;
-				h4Elements[j].insertAdjacentHTML("afterbegin", level1 + "." + level2 + "." + level3 + " - ");
-				h4Elements[j].dataTitle = h4Elements[j].textContent;
-			}
-		}
-	}
-}
 
 /* call from right-click menu in page to either minimize or maximize (param)
 	all the flex-sized images in the page */
@@ -1067,29 +378,6 @@ function goBackToPrevLocation()
 	//return false;	// so the page does not reload (don't ask why!)
 }
 	
-/* link to external CSS file 
-	This is in the javascript because D2L will rewrite links in the HTML file */
-function addStyleSheet()
-{
-	var CSSFile = document.createElement("link");
-	scripts = document.getElementsByTagName("script");
-	for(i=0; i<scripts.length; i++)
-	{
-		//jsIndex = scripts[i].src.indexOf("module.js");
-		// check for module in the script file name -- this is my code
-		if(scripts[i].src.includes("module")) // (jsIndex != -1) 
-		{
-			// script file and css file have same name and different extension
-			cssFile = scripts[i].src.slice(0,-2) + "css"; 
-			// cssFile = scripts[i].src.substring(0,jsIndex) + "module.css";
-		}
-	}
-	CSSFile.href = cssFile;	// location depends on platform
-	CSSFile.type = "text/css";
-	CSSFile.rel = "stylesheet";
-	CSSFile.media = "screen,print";
-	document.getElementsByTagName("head")[0].appendChild(CSSFile);
-}
 
 /* adds the class "eqNum" to all figures that have the dotum font (it's a hack for D2L) */
 function equationNumbering()
@@ -1113,140 +401,6 @@ function equationNumbering()
 			// remove class from original element -- otherwise class could be applied to whole equation
 			equations[i].id = "";
 			equations[i].classList.remove("eqNum");   
-		}
-	}
-}
-
-/* adds the class "caption" to all figures */
-function addCaptions()
-{
-	// find all elements with "fig" class
-	var captionLines = encapObject.querySelectorAll(".fig");  // used to include "h5"
-
-	// this is deprecated in DreamWeaver
-	for(i=0; i<captionLines.length; i++)
-	{
-		if(!(captionLines[i].classList.contains("eqNum")))
-		{
-			captionLines[i].classList.add("caption");	
-		}
-	}
-	
-	// In DW: the class .caption is an option
-	captionLines = encapObject.getElementsByClassName("caption");
-	for(i=0; i<captionLines.length; i++)
-	{
-		if(captionLines[i].innerText.trim() != "")  // there is text in the caption
-		{
-			captionLines[i].insertAdjacentHTML("afterbegin", "Figure " + (i+1) + ": ");
-		}	
-	}
-}
-
-function addBrackets()
-{
-	bracketCode = encapObject.querySelectorAll("p.bx");
-	
-	for(i=0; i<bracketCode.length; i++)
-	{
-		// add extra padding to each line:
-		codeLines = bracketCode[i].querySelectorAll(".code");
-		for(j=0; j<codeLines.length; j++)
-		{
-			codeLines[j].innerText = "\u00A0\u00A0" + codeLines[j].innerText;
-		}
-		
-		/**** added formatting to put in {} ***********/
-		// create a line that just has a start curly bracket ( { )
-		startCodeLine = document.createElement("span");
-		startCodeLine.setAttribute("data-text", "{");  // so it does not appear as text when selected
-		startCodeLine.classList.add("code", "firstLine", "noSelect", "noCode");
-
-		bracketCode[i].prepend(startCodeLine);
-		
-		// create a line that just has a start curly bracket ( } )
-		endCodeLine = document.createElement("span");
-		endCodeLine.setAttribute("data-text", "}");  // so it does not appear as text when selected
-		endCodeLine.classList.add("code", "firstLine", "noSelect", "noCode");
-
-		bracketCode[i].append(endCodeLine);	
-	}
-}
-
-function addCodeBlockTag()
-{
-	codeBlockDivs = encapObject.querySelectorAll(".codeBlock");
-		
-	for(i=0; i<codeBlockDivs.length; i++)
-	{		
-		// need to check if there is a title in the first element of the codeblock
-		codeBlockTitle = "";
-		if(codeBlockDivs[i].title.trim() != "" && isNaN(codeBlockDivs[i].title.trim())) 			
-		{
-			codeBlockTitle = codeBlockDivs[i].title;
-		}
-		else 
-		{
-			// if not, check the children elements to see if there is a title (this is a D2L bug)
-			cbChild = codeBlockDivs[i].querySelector("[title]");
-			if(cbChild && cbChild.title.trim() != "" && isNaN(cbChild.title.trim()))
-			{
-				codeBlockTitle = cbChild.title;
-			}
-		}
-
-		// add a pop-up tab to the codeblock
-		if(codeBlockTitle != "")	
-		{
-			par = document.createElement("p");
-			par.classList.add("noSelect");
-			par.style.textAlign = "left";
-			tabSpan = document.createElement("span");
-			tabSpan.classList.add("codeBlockTab", "noSelect", "noCode", "nonum");
-			tabSpan.setAttribute("data-text", codeBlockTitle);
-			par.appendChild(tabSpan);
-		   // position is still off by a bit...
-			codeBlockDivs[i].parentNode.insertBefore(tabSpan, codeBlockDivs[i]);
-		}
-	}
-}
-
-function codeLineVertBar()
-{
-	// find all codeblocks
-	codeBlocks = document.getElementsByClassName("codeBlock");
-	
-	const myObserver = new ResizeObserver(entries => {
-			  entries.forEach(entry => {
-				  vertLine = entry.target.querySelector(".vertBar");
-				  vertLine.style.height = 0;
-				 // vertLine.style.height = entry.contentRect.height + "px";
-				  vertLine.style.height = entry.target.clientHeight + "px";
-			})
-	});
-			
-	// for each line of code in the page
-	for(i=0; i<codeBlocks.length; i++)
-	{
-		// Check if the codelines are to be numbered... 
-		if(codeBlocks[i].classList.contains("num"))
-		{
-			// get the actual height the codeline 
-			actualHeight = codeBlocks[i].clientHeight;  // replaces scrollHeight
-			vertLine = document.createElement("hr");
-			vertLine.classList.add("vertBar");
-			vertLine.style.height = actualHeight + "px";
-			
-			/* Hack to get this to work in Safari -- I am not sure why the CSS does not work for Safari */
-			if(navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1)
-			{
-				vertLine.style.marginLeft = "22px";
-			}
-			
-			// if codeblocks changes size, change the vertical line size
-			myObserver.observe(codeBlocks[i]);
-
-			codeBlocks[i].prepend(vertLine);
 		}
 	}
 }
@@ -1332,267 +486,6 @@ function scrollToElementReturn(elementID)
 	return function() 
 	{
 		scrollToElement(elementID);	
-	}
-}
-
-function copySelectedText()
-{
-	var text = "";
-	if (window.getSelection)   // if there is something selected on the page
-	{
-		// works in all browsers except Firefox (current bug as of version 51)
-		text = window.getSelection().toString();	// convert selected stuff to a string
-		a = document.execCommand("copy");			// copy stuff to clipboard
-	} 
-}
-
-function addDownloadLinks()
-{
-	downloadLinks = encapObject.getElementsByClassName("download");
-
-	for(i=0; i<downloadLinks.length; i++)
-	{
-		// add the download property to all objects with class="download"
-		downloadLinks[i].download = "";
-	}
-}
-
-// checks in the references is on a block-displayed object.  If so,
-// we need to create an inline-display object inside and put the 
-// reference there
-function fixBlockReferences()
-{
-	var references = encapObject.querySelectorAll(".ref");
-
-	for(i=0; i<references.length; i++)
-	{
-		// get the display type of the reference element
-		displayType = window.getComputedStyle(references[i], "").display;
-		
-		// if the element is block or list-item -- both take up the whole line
-		if(displayType == "block" || displayType == "list-item")
-		{
-			// create a new <span> and copy the contents of the ref element
-			newRef = document.createElement("span");
-			newRef.innerHTML = references[i].innerHTML;
-			
-			// copy the id and add ref class to <span>
-			newRef.id = references[i].id;
-			newRef.classList.add("ref");
-			
-			// remove all content, id, and ref class from reference element
-			references[i].innerHTML = "";
-			references[i].id = "";
-			references[i].classList.remove("ref");
-			
-			// append the new <span> inside the reference element
-			references[i].appendChild(newRef);	
-		}
-	}
-}
-
-/* finds all section references in the page and add the correct numerical reference */
-function addReferences()
-{
-	fixBlockReferences();
-	
-	/**** convert old system of references to the new system ****/
-	var references = encapObject.querySelectorAll(".sectRef, .figureRef, .eqRef, .linkTo");
-	for(i=0; i<references.length; i++)
-	{
-		// old system to new system
-		references[i].classList.add("ref");
-	}
-	
-	// new system for references
-	var references = encapObject.querySelectorAll(".ref, .reference");
-	for(i=0; i<references.length; i++)
-	{
-		fullRefID = references[i].id; // Get the ID for the reference
-		refID = fullRefID.slice(2);	// remove the "r-" at the beginning of the ID
-	
-		// check if the reference has no ID
-		if(fullRefID == "")  
-		{
-			// this situation is currently handled in editor.CSS
-		}
-		// no text associated with the reference
-		else if (references[i].innerText.trim() == "")
-		{
-			// this situation is currently handled in editor.CSS			
-		}
-		// check if ID has any invalid characters
-		else if(isValid(refID) == false)
-		{
-			references[i].classList.add("error");
-			references[i].innerText = "**Invalid characters in ID: " + 
-												references[i].innerText + "** ";
-		}
-		// check if the ID starts with a number
-		else if(isNaN(refID[0]) == false)
-		{
-			references[i].classList.add("error");
-			references[i].innerText = "**Cannot start ID with number: " + 
-												references[i].innerText + "** ";
-		}
-		// this is a URL link to a different page
-		else if(references[i].hasAttribute("href"))
-		{
-			// check to see if the href already has a "?" in it --
-			// the ? indicates there are already parameters attached to the URL
-			if(references[i].href.includes("?"))  // add another param called ref
-			{
-				references[i].href = references[i].href + "&ref=" + refID;
-			}
-			else  // add first param called ref
-			{
-				references[i].href = references[i].href + "?ref=" + refID;		
-			}
-		}
-		// uses the title instead of a URL to indicate a ref to an outside lesson
-		else if (references[i].title != "")
-		{
-			url = window.location.protocol + "//" + window.location.hostname + 
-					window.location.pathname;
-			n = url.lastIndexOf("/");  // find the last front slash
-			lessonFolder = url.substr(0, n+1);
-			newLessonURL = lessonFolder + references[i].title + "#" + refID;
-			references[i].addEventListener("click", function() {window.open(newLessonURL)});
-		}
-		// reference link does not exist in the page
-		else if(!(encapObject.querySelector("#" + refID)))
-		{
-			references[i].classList.add("error");
-			references[i].innerText = "**Invalid Link: " + 
-												references[i].innerText + "** ";				
-		}
-		// there is no content at the link (not sure this is neccessary...)
-		else if (encapObject.querySelector("#" + refID).innerText.trim() == "")
-		{
-			references[i].classList.add("error");
-			references[i].innerText = "**No content at link: "  + 
-												references[i].innerText + "** ";					
-		}
-		// if this is a reference to an equation -- 
-		else if(encapObject.querySelector("#" + refID).classList.contains("eqNum")  ||
-				  encapObject.querySelector("#" + refID).classList.contains("eq") ||
-			     encapObject.querySelector("#" + refID).classList.contains("equation")) 
-		{
-			caption = encapObject.querySelector("#" + refID).innerText;
-
-			/* find the last "(" in the line -- represents ( EQ# )
-			   split the line right after the "(" -- so you have EQ#) left
-				grab the number from the split of section */
-			eqRef = parseInt(caption.slice( (caption.lastIndexOf("("))+1 ));
-			
-			addNumToReference(references[i], eqRef);
-		}
-		// if this is a figure ref (has fig class but not eqNum class)
-		else if(//encapObject.querySelector("#" + refID).nodeName.toLowerCase() == "h5" || // old system
-              encapObject.querySelector("#" + refID).classList.contains("fig"))        // new system
-		{
-			caption = encapObject.querySelector("#" + refID).innerText;
-			strIndex = caption.indexOf(":");  // find the location of the first semicolon
-			
-			//cheap fix -- use grep to check for numbers (future fix)
-			figRef = caption.slice(4, strIndex); // get "Fig. #"
-			
-			addNumToReference(references[i], figRef);
-		}
-		// this links to a section header (h2-h4)
-		else if(encapObject.querySelector("#" + refID).nodeName.toLowerCase() == "h2" ||
-				  encapObject.querySelector("#" + refID).nodeName.toLowerCase() == "h3" ||
-				  encapObject.querySelector("#" + refID).nodeName.toLowerCase() == "h4") 
-		{
-			// get first number from section ID (div)
-			sectNum = parseFloat(encapObject.querySelector("#" + refID).innerText);
-			
-			addNumToReference(references[i], sectNum);
-		}
-		// for codelines
-		else if(//encapObject.querySelector("#" + refID).nodeName.toLowerCase() == "h6" ||
-		        encapObject.querySelector("#" + refID).nodeName.toLowerCase() == "code")
-		{
-		//	Note: there is no way to access the CSS pseudo counter in JavaScript
-		// Fix: Need to check for offset number
-		
-			cl = encapObject.querySelector("#" + refID);
-			clParent = cl.parentNode;
-			lineNum = Array.prototype.indexOf.call(clParent.children, cl);
-
-			// the title of the codeblockdiv potentially has the numbering offset
-			if(cl.parentNode.title && !isNaN(cl.parentNode.title))
-			{
-				lineNum = lineNum + parseInt(cl.parentNode.title);
-			}				
-			
-			addNumToReference(references[i], lineNum);
-		}
-		// for all other elements referenced in the page -- often these elements
-		// are <span> inside another element (a D2L bug) -- so we need to check parent
-		// elements 
-		else 
-		{
-			refObject = encapObject.querySelector("#" + refID);
-			parentObj = refObject.parentNode.nodeName.toLowerCase();
-			refNum = -1;
-				
-			if(parentObj && parentObj.firstElementChild &&
-					  parentObj == "div" && 
-								(parentObj.firstElementChild.nodeName.toLowerCase() == "h2" ||
-								 parentObj.firstElementChild.nodeName.toLowerCase() == "h3" ||
-								 parentObj.firstElementChild.nodeName.toLowerCase() == "h4") )
-			{
-				strIndex = caption.indexOf("-");  // find the location of the first dash
-				refNum = parentObj.firstElementChild.innerText.slice(0, (strIndex-2));
-			}
-			else if(parentObj.parentNode)
-			{
-				grandParent = parentObj.parentNode.nodeName.toLowerCase();
-				if(grandParent == "div" && 
-								(grandParent.firstElementChild.nodeName.toLowerCase() == "h2" ||
-								 grandParent.firstElementChild.nodeName.toLowerCase() == "h3" ||
-								 grandParent.firstElementChild.nodeName.toLowerCase() == "h4") )
-				{
-					strIndex = caption.indexOf("-");  // find the location of the first dash
-					refNum = parentObj.firstElementChild.innerText.slice(0, (strIndex-2));
-				}
-			}
-			
-			if(refNum != -1)
-			{
-				str = references[i].innerText;
-				var pos = str.lastIndexOf('##');
-				references[i].innerText = str.substring(0,pos) + eqRef + str.substring(pos+2);
-			}
-			
-			// make the reference linkable as long as the nolink class is not 
-			//				specified (not working yet...)
-			if( !(references[i].classList.contains("nolink")) )
-			{
-				references[i].addEventListener("click", scrollToElementReturn(refID));
-			}
-		}
-	}
-}
-
-function addNumToReference(refObj, refNum)
-{
-	refIndex = refObj.innerText.indexOf("##");
-	
-	if(refIndex != -1)
-	{
-		str = refObj.innerText;
-		var pos = str.lastIndexOf('##');
-		refObj.innerText = str.substring(0,pos) + 
-								 refNum + str.substring(pos+2);
-	}
-	
-	// make the reference linkable as long as the nolink class is not 
-	//		specified (not working yet...)
-	if( !(refObj.classList.contains("nolink")) )
-	{
-		refObj.addEventListener("click", scrollToElementReturn(refID));
 	}
 }
 
@@ -1760,8 +653,6 @@ function linksToNewWindow()
 			(function(hashID){
   			links[i].addEventListener("click", 
   			  function() { 
-  
-  			 //   element = document.querySelector(hashID);
             element = document.getElementById(hashID);
             // for headers 
             
@@ -1772,9 +663,6 @@ function linksToNewWindow()
   			      refElement = document.querySelector("#" + element.id);
   			    }
   			    scrollToElement(element.id);
-
-  		//	    scrollTopPosition = window.parent.scrollY;  
-  		//	    highLightObject(refElement, 2000);
   			  });	
 			})(hashID);
 		}
@@ -1792,39 +680,6 @@ function linksToNewWindow()
 		}
 
 	}
-}
-
-function createEmailLink()
-{
-	emailLink = encapObject.getElementsByClassName("email");
-
-	for(i=0; i<emailLink.length; i++)
-	{
-		// the title of the element should be an email address
-		emailLink[i].addEventListener("click", function() {openEmailWindow(this.title);});
-	}
-}
-
-function openEmailWindow(emailAddress)
-{
-	emailWindow = window.open("https://d2l.msu.edu/d2l/le/email/" + 
-										redNum + "/ComposePopup");
-	  
-	emailWindow.onload = function() 
-	{		
-		header = emailWindow.document.body.querySelector(".vui-heading-1");
-		header.innerText = "Send Message to Instructor";
-			
-		addressControl = emailWindow.document.getElementById("ToAddresses$control");
-		addressControl.click();
-		address = emailWindow.document.getElementById("ToAddresses");
-		address.focus(); 
-		if(emailAddress == "") emailAddress = instructorEmail;  // no email given -- go to default
-		address.value = emailAddress;			
-		
-		subject = emailWindow.document.getElementById("Subject");
-		subject.value = window.document.title;
-	};
 }
 
 function fixIframeSize()
@@ -1845,34 +700,6 @@ function fixIframeSize()
 function isValid(str)
 {
 	return !/[~`!#$%\^&*+=\[\]\\';,/{}|\\":<>\?]/g.test(str);
-}
-
-function createTextBox()
-{
-	textLine = encapObject.querySelectorAll("address");
-	
-	firstLine = true;
-	lastLine = false;
-	for(i=0; i<textLine.length; i++)
-	{
-		if(firstLine == true)
-		{
-			// start a new div
-			textBoxDiv = document.createElement("div");
-			textBoxDiv.classList.add("textBox");
-			textBoxParent = textLine[i].parentNode;
-			textBoxParent.insertBefore(textBoxDiv, textLine[i]);
-			firstLine = false;
-		}
-		// check if the next line is an address
-		if(!(textLine[i].nextElementSibling) || textLine[i].nextElementSibling.tagName != "ADDRESS")
-		{
-			firstLine = true;
-		}
-		
-		// add textLine to div
-		textBoxDiv.appendChild(textLine[i]);
-	}
 }
 
 function captionFigures()
