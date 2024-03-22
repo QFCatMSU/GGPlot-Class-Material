@@ -214,24 +214,35 @@
   {
     padding-left: 0 !important;
   }
-	#quarto-content, main
+  #quarto-document-content, body
+  {
+    /* extra padding not needed in print mode */
+    padding: 0 !important;
+ /*   margin: 0;*/
+  }
+  /* in print mode, Quarto will display the secondary header --
+     would rather have the primary header */
+  #quarto-header, #quarto-sidebar-glass, #quarto-margin-sidebar  /* secondary header */
+  {
+    display: none !important;
+  }
+  h1.title /* primary header */
+  {
+    display: block !important;
+  }
+	.title>a, video    /* Get rid of printer icon and videos */ 
 	{
-	/*	background-color: transparent;
-		color: black;
-		text-rendering: optimizeLegibility;  */
+		display: none !important;
 	}
-	.title>a, video    /* Get rid of printer icon */ 
-	{
-		display: none;
-	}
-	/** work in Edge and Chrome but not Firefox */
+	/** stop lines from breaking in the middle on page break
+	    works in Edge and Chrome but not Firefox */
 	img, p, h1, h2, h3, h4, figure, li
 	{
 		break-inside: avoid; /* Images naturally do this? */
 	}
+	/* gets page breaks working in Firefox */
 	div
 	{
-	  /* this is needed so that Firefox does not break inside object in print preview */
 		display: block !important; 	  
 	}
 	code b
