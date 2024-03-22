@@ -26,10 +26,13 @@ parent.window.onload = function()
 		printLink = document.createElement('a');
 		printLink.classList.add("sameWin");
 		printLink.target = "_self";
-		printLink.href = "javascript:window.print()";
+		printLink.href = "javascript:window.print();"
 		printLink.style.marginLeft = "9px";
 		printLink.innerHTML = "&#9113";
-	
+		
+		// stop Quarto from removing the primary header
+    titleObj.classList.remove("d-none");
+    
 		// add printer icon to title
 		titleObj.appendChild(printLink);
 	}
