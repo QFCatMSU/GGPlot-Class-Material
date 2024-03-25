@@ -20,7 +20,7 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
     -   this all seems to work now...
 
--   changes between local (main) and github (docs) – best to use URL
+-   \<done\> changes between local (main) and github (docs) – best to use URL
 
 -   \<done\> Which module.js gets used?
 
@@ -29,6 +29,8 @@ library(package=ggplot2);             # include all GGPlot2 functions
     -   causes problem when you want to link to file in R (e.g., weatherData)
 
 #### Lesson module, editor
+
+-   \<done\> codeblockTab in print mode is being edited inline
 
 -   \<done\> print button is gone
 
@@ -76,7 +78,7 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
     -   does not happen in debug mode (race condition...), only happens in FF
 
--   create module.js for just Quarto
+-   \<done\> create module.js for just Quarto
 
 -   \<done\> periods in header titles will mess up highlighting (because the period in JS means something)
 
@@ -100,9 +102,9 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
 -   \<done\> highlight line quickly after linking to it
 
--   render changes only for objects within document (not generally)
+-   \<done\> render changes only for objects within document (not generally)
 
--   render just document with global yml
+-   \<done\> render just document with global yml
 
 -   [\<done??\>]{.hl}image resizing does not work when you set height or width in Quarto editor
 

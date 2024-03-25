@@ -218,7 +218,6 @@
   {
     /* extra padding not needed in print mode */
     padding: 0 !important;
- /*   margin: 0;*/
   }
   /* in print mode, Quarto will display the secondary header --
      would rather have the primary header */
@@ -250,6 +249,13 @@
     text-decoration: underline;
     text-decoration-color: aqua;
     text-underline-offset: 4px;
+  }
+  .codeBlockTab
+  {
+    /* not sure why I have to repeat this in print mode */
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
   }
 }
   
