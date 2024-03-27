@@ -3,7 +3,9 @@ project:
   - lessons/00-IntroductionAndSyllabus.qmd
   - lessons/01-RStudioProjectsAndGit.qmd
   - lessons/02-Components.qmd
+  - lessons/03-MappingAndAesthetics.qmd
   - lessons/Info.qmd
+  - lessons/test.qmd
   type: website
   output-dir: docs
 #  title: "Graphing With GGPlot"  -- ugly in sidebar!
@@ -25,6 +27,8 @@ website:
             file: lessons/01-RStudioProjectsAndGit.qmd
           - text: "Components"
             file: lessons/02-Components.qmd
+          - text: "Mapping And Aesthetics"
+            file: lessons/03-MappingAndAesthetics.qmd
 format:
   html:
     css: "presStyle.css"
@@ -37,6 +41,7 @@ format:
       body-width: 1000px
     include-in-header:
       - text: |
+          <script>mod=true;</script>
           <script src="module.js"></script>
 editor: visual
 # title-slide-attributes:

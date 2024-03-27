@@ -1,0 +1,436 @@
+---
+title: "Mapping And Aesthetics"
+# special characters for highlighting code : «»
+format:
+  html:
+    include-in-header:
+      - text: |
+         <script>mod=true;</script>
+---
+
+## Purpose
+
+-   Discuss code spacing
+
+-   Map data to the x and y axis
+
+-   Map data to other properties of the plot (e.g., size, alpha, color) 
+
+-   Create a linear regression
+
+### Code for the lesson
+
+[The script used in this lesson is here](../scripts/lesson03-MappingAesthetics.R)
+
+-   Save the R file, called ***lesson03-Aesthetics.R*** to the ***scripts*** folder inside your RStudio Project
+
+ 
+
+[The data, same as previous lessons, Lansing weather in 2016 is here](../Data/Lansing2016NOAA.csv?)
+
+-   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+
+-   [It is best to use the operating system's File Explorer/Finder]{.hl} to move the CSV file to the proper folder.
+
+## Spacing of code
+
+As you can imagine, the code for a GGPlot can get quite large and cumbersome.  Because of this, it is vital to space the code in a way that makes it readable to the user (including yourself).  There is no official way to do this but my method is to line up the components and the subcomponents and to give each subcomponent its own line.  This is a standard I will ask you to follow in this class.
+
+ 
+
+The last example from the last lesson shows the subcomponents (i.e., arguments) highlighted:
+
+``` r
+  #### Part 1: Last lesson's plot ####
+  plot1 = ggplot( data=weatherData ) +
+    geom_point( «mapping»=aes(x=avgTemp, y=relHum) ) +
+    labs( «title»="Humidity vs Temperature",
+          «subtitle»="Lansing, MI -- 2016",
+          «x» = "Average Temperatures (Fahrenheit)",
+          «y» = "Relative Humidity") +
+    scale_x_continuous( «breaks» = seq(from=10, to=80, by=10) ) +
+    theme_bw() +   # has no subcomponents
+    theme( «axis.text.x»=element_text(angle=90, vjust=0.5) );
+  plot(plot1);
+```
+
+![Plot from last showing components (on each line) and subcomponents (highlighted)](images/GGP-1-01-ChangeTheme-01.png){#fig-spacing .fs}
+
+### Spacing does not matter to R
+
+R, like most programming languages, gives you a lot of flexibility when it comes to spacing code.  The code below is functionally the same as the previous code and, when Sourced, will produce the exact same plot:
+
+``` r
+  #### Part 2: Same plot with awful code spacing. «Please don't do this.»  ####
+  plot2 = ggplot( data=weatherData ) + geom_point( mapping=aes(x=avgTemp, 
+y=relHum) ) + labs( title="Humidity vs Temperature", subtitle="Lansing, MI -- 2016",
+x = "Average Temperatures (Fahrenheit)", y = "Relative Humidity") +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) + theme_bw() +
+ theme( axis.text.x=element_text(angle=90, vjust=0.5) );  plot(plot2);
+```
+
+But, I would hate to ever have to read or modify the code above!
+
+![Both GGPlot codeblocks above produce the same plot](images/GGP-1-01-ChangeTheme-02.png){#fig-badSpacing .fs}
+
+## Mapping and aesthetics
+
+Almost every plot will have an ***aes()*** function that maps data to a component of the plot.  In the previous example the mapping is:
+
+``` r
+geom_point( «mapping»=aes(x=avgTemp, y=relHum) )
+```
+
+The line above tells GGPlot to map the column ***avgTemp*** to the ***x***-axis and map the column ***relHum*** to the ***y***-axis.  The function, ***aes()***, stands for aesthetics.  I find the argument name, ***mapping***, to be much more intuitive than the function name, ***aes()***.
+
+ 
+
+***aes()*** maps data (often a column from a data frame) to a component of the plot.  And there many more components of the plot that we can map data to -- the most common ones are ***size***, ***color***, and ***shape***.  We will first take a look at ***color***.
+
+## Mapping color to the plot
+
+We have a humidity vs. temperature plot but we might want to add more data (i.e., another dimension) to this plot, like ***season***.  Since there are just four seasons, one way to do it is to represent each season with a different color.  The four seasons can be mapped on to the existing plot using the mapping ***color***.
+
+``` r
+  #### Part 3: adding color to represent season ####
+  plot3 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, «color=season») ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity") +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) );
+  plot(plot3);
+```
+
+Now the plot has an added dimension: point colors that represent season:
+
+![Mapping season to the color of the point in the scatterplot](images/GGP-1-03-ColorMap.png){#fig-mappingColor .fs}
+
+[Note: For those of you thinking that winter is much drier than summer -- you are correct, but the plot gives **relative** humidity -- not total moisture in the air.]{.note}
+
+### Legend and mapping
+
+Whenever you put a mapping in to GGPlot beyond ***x*** and ***y***, GGPlot will create a legend for that mapping.  In @fig-mappingColor the legend gives the colors for each season, and the title of the legend (***season***) is the column name.  Summer days (colored blue) is clearly on the high end of the temperature axis, where winter (colored purple) is on the low end.
+
+ 
+
+Everything in the legend can be modified, something we will do next lesson*.*
+
+### Mapping color using numeric values
+
+***season*** is a string value with four distinct values, or categories: Summer, Fall, Winter, and Spring.  A small number of discrete values maps well to ***color***.
+
+ 
+
+Continuous values can also be mapped to ***color*** --  GGPlot will create a gradient of colors to handle the continuous values.  For instance, if we use the ***precip2*** column, which gives precipitation in inches and goes from **0** to about **1.5**, we get a default blue gradient of colors to represent the values:
+
+``` r
+#### Part 3b: adding color to represent precipitation ####
+  plot3 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, «color=preicp2») ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity") +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) );
+  plot(plot3b);
+```
+
+Since most of the ***precip2*** values are 0.1 or less, most of the points are on the dark side of the gradient.  There are only a few light blue points on the plot, represent the days with 1 inch or more or rain.
+
+![Mapping a numeric value to color -- this creates a gradient](images/GGP-1-03-PrecipColor.png){#fig-mapNumericVal .fs}
+
+### Mapping colors to numerous string values
+
+Sometimes columns that look numeric are not treated as numeric -- this is because they contain some string values.  [In R, if a vector/column has one string value, the whole vector/column is treated as a string]{.hl}.  For instance, the ***precip*** column uses ***T*** to indicate a trace of precipitation (less than 0.01 inch).  We can see "T" values if we look at the first **10** values of ***precip***.
+
+``` {tab="Console"}
+> weatherData$precip[1:10]
+ [1] "0.04" "0.00" "T"    "T"    "0.00" "0.00" "0.00" "0.15" "0.53" "0.18"
+```
+
+If we try to map ***precip*** to ***color***, GGPlot treats each unique "string" value as distinct and discrete value, creating a very busy legend:
+
+![Mapping a column with numerous "string" values](images/GGP-1-03-PrecipStringColor.png){#fig-busyLegend .fs}
+
+## Mapping size to the plot
+
+The values in ***precip2*** are probably better represented by ***size*** than ***color***.  We can map the precipitation on to the size of the points on the plot by using the ***size*** mapping:
+
+``` r
+  #### Part 4: adding size to represent precipitation ####
+  plot4 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, size=«precip2») ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity") +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) );
+  plot(plot4);
+```
+
+Again, anytime you map something other than ***x*** or ***y***,  GGPlot creates a legend.  The title on the legend is ***precip2*** because the column's name is ***precip2***.
+
+ 
+
+[Note: GGPlot does not directly translate the **precip2** values to size, otherwise half of the values would be 0 since half the days had no precipitation.]{.note}
+
+![Mapping the precipitation to the size of the points](images/GGP-1-03-SizeMap-02.png){#fig-pointSize .fs}
+
+### Mapping size to a string value
+
+You can also map ***size*** to a string value, like ***season***, but discrete values generally do not work with ***size***:
+
+``` r
+  #### Part 4b: adding size to represent precipitation ####
+  plot4b = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, «size=season») ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity") +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) );
+  plot(plot4b);
+```
+
+And you will also get this warning message in the ***Console*** from GGPlot: 
+
+[Using size for a discrete variable is not advised. ]{.hl}
+
+![Mapping size to a string value](images/GGP-1-03-Size-String.png){#fig-sizeString .fs}
+
+## Mapping alpha
+
+***Alpha*** measures the transparency of an object and is often used to help deal with overlapping object or when the plot is too busy.  When you map ***alpha*** to a numeric value, the lowest value will be mapped to an ***alpha*** of [almost]{.hl}**0** (i.e., almost transparent) and the highest value will be mapped to an ***alpha*** of **1** (i.e., completely opaque), with in-between values mapped between **0** and **1**.
+
+ 
+
+We can map the precipitation column, ***precip2,*** to ***alpha***:
+
+``` r
+  plot4c = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, «alpha=precip2») ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity") +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) );
+  plot(plot4c);
+```
+
+And, because most of the values are near zero, the plot looks less busy:
+
+![Mapping alpha to a numeric value](images/GGP-1-03-Alpha.png){#fig-alpha .fs}
+
+## Legend title and position
+
+By default, the title of the legend is the same as the mapping -- in all the cases above, the title is the column name.  So, ***alpha=precip2*** means the title of the legend will default to ***precip2***.  The legend title can be changed in ***labs()*** by setting the mapping name (in this case, ***alpha***) to the title you want:
+
+``` r
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity",
+          «alpha = "Precipitation"») +
+```
+
+The position of the legend can be changed using the ***legend.position*** subcomponent (argument) in ***theme()***.  The value of ***legend.position*** is set to a two value vector with values from **0** to **1**.  The first value represents the **x**-position of the legend, the second values represents the **y**-position:
+
+``` r
+    theme( axis.text.x=element_text(angle=90, vjust=0.5),
+           «legend.position = c(0.15, 0.2)»);  # x=0.15, y=0.2
+```
+
+Putting the title and position together with the rest of the plot:
+
+``` r
+  plot5 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, alpha=precip2) ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity",
+          «alpha = "Precipitation"») +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5),
+           «legend.position = c(0.15, 0.2)»);  # x=0.15, y=0.2
+  plot(plot5);
+```
+
+[Note: ***theme()*** must come after ***theme_bw()***, otherwise the changes will be overwritten by ***theme_bw()***]{.note}
+
+![Changing the legend's title and position](images/GGP-1-03-LegendTitlePosition.png){#fig-legendChange .fs}
+
+## Multiple mappings
+
+We can using multiple mappings to add more dimensions to the plot. For instance, we can map ***season*** to ***color*** and map ***precip2*** to ***size*** on the same plot.
+
+ 
+
+The titles on the legend for ***size*** and ***precip2*** can also be changed in ***labs()***:
+
+``` r
+  plot6 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, «size=precip2, color=season») ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity",
+          «size = "Precipitation"»,
+          «color = "Seasons"») +    # changes order
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) ,
+           legend.position = "left");
+  plot(plot6);
+```
+
+![Using both size and color in the mapping](images/GGP-1-03-SizeandColor.png){#fig-sizeAndColor .fs}
+
+### Setting legend to a fixed position
+
+One other change to the plot in *fig \##* was to move the legend to the left side of the plot:
+
+``` r
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) ,
+           «legend.position = "left"»);
+```
+
+You can either set the position of the legend to either:
+
+-   an **x,y** coordinate or
+
+-   the fixed values: "top", "bottom", "right", or "left"
+
+ 
+
+If you want to remove the legend, then set ***legend.position = "none"***, which will be done in the next plot.
+
+## Adding a linear models
+
+Next, we will add a regression line to the canvas.  [GGPlot calls its plotting component [geoms]{.hl}](https://ggplot2.tidyverse.org/reference/#geoms), and the geom to use is ***geom_smooth()***.
+
+ 
+
+Since ***geom_smooth()*** adds data to the plot area, we need to use the ***mapping*** subcomponent to tell ***GGPlot*** what data is being mapped to the plot area and how. In this case we are mapping ***relHum*** vs. ***avgTemp***.
+
+ 
+
+We also add the ***method*** subcomponent to ***geom_smooth()*** to set the smoothing method we will use on the data.  In this case, linear model (***lm***).
+
+``` r
+  #### Part 7: adding a linear model ####
+  plot7 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, size=precip2, color=season) ) +
+    «geom_smooth( mapping=aes(x=avgTemp, y=relHum),» 
+                « method="lm"» ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity",
+          size = "Precipitation",
+          color = "Seasons") +    # changes order
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) ,
+           «legend.position = "none"»);  # get rid of legend
+  plot(plot7);
+```
+
+![Adding a linear model -- and removing the legend](images/GGP-1-03-LM.png){#fig-linearModel .fs}
+
+### Overlapping plots
+
+When two plots overlap, as the linear model and the scatterplot do in @fig-linearModel, the component that is later in the ***ggplot()*** call overlaps the earlier component.  So, in the above case, the linear model overlaps the scatterplot.  To have the scatterplot overlap the linear model, just switch the two components around:
+
+``` r
+  plot8 = ggplot( data=weatherData ) +
+    «geom_smooth»( mapping=aes(x=avgTemp, y=relHum), 
+                 method="lm" ) +
+    «geom_point»( mapping=aes(x=avgTemp, y=relHum, size=precip2, color=season) ) +
+    labs( title="Humidity vs Temperature",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity",
+          size = "Precipitation",
+          color = "Seasons") +    # changes order
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) ,
+           legend.position = "none");
+  plot(plot8);
+```
+
+![Switching the order of the components to change which plot is on top](images/GGP-1-03-overlappingComponents.png){#fig-switchComponents .fs}
+
+## Application
+
+Save everything in this application in your Class Project's ***scripts*** folder and name the file ***app1-03.r***
+
+ 
+
+A\) For the linear model in the last plot, add a mapping of ***color=season***.
+
+   In comments in your script:
+
+        Explain what happens to the plot when you add the mapping ***color=season*** to the linear model
+
+ 
+
+[Note: the only other meaningful mapping you can make with lines is ***linetype*** (try ***linetype = season***)]{.note}
+
+ 
+
+B\) Create a scatterplot that maps the four columns ***windDir***, ***windSpeed***, ***precip2***, and ***tempDept*** to a scatterplot
+
+-   you choose the mappings
+
+    -   [note: **tempDept** is how far the temperature was from average]{.note}
+
+-   Give a title and label the axes and legend
+
+-   Change the theme of the plot
+
+-   Move the legend to the area inside the plot with the most whitespace
+
+    -   [note: the size and shape of the legend will be problematic -- something we will deal with next lesson]{.note}
+
+ 
+
+In comments in your script:
+
+       What patterns can you find in the plot?
+
+ 
+
+C\) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component. 
+
+     [Note: ***shape*** is a common mapping that was not used in this lesson.]{.note}
+
+ 
+
+D\) Zip you Project Folder (instructions for Windows and Mac in lesson 01 application)
+
+*E) Email the zipped Project Folder to your instructor*
+
+### Questions to answer
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What areas of the lesson/application confused or still confuses you?
+
+3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?

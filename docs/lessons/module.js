@@ -38,8 +38,14 @@ parent.window.onload = function()
 	}
 	
   // change symbols to highlighting
-  codeBlocks = document.querySelectorAll("pre.mod");
-  
+  if(mod == true)  // allow highlighting in all code
+  {
+    codeBlocks = document.querySelectorAll("pre");
+  }
+  else  // allow highlighting only when class="mod"
+  {
+    codeBlocks = document.querySelectorAll("pre.mod");
+  }
   for(i=0; i<codeBlocks.length; i++)
 	{
 	  newHTML = codeBlocks[i].innerHTML;

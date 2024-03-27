@@ -1,5 +1,6 @@
 ---
 title: "RStudio Projects and Git Setup"
+# special characters for highlighting code : «»
 ---
 
 ### To-dos
