@@ -4,6 +4,7 @@ project:
   - lessons/01-RStudioProjectsAndGit.qmd
   - lessons/02-Components.qmd
   - lessons/03-MappingAndAesthetics.qmd
+  - lessons/04-ElementsAndStyles.qmd
   - lessons/Info.qmd
   - lessons/test.qmd
   type: website
@@ -15,7 +16,7 @@ website:
     # background: purple
     # foreground: yellow
     style: "floating"
-    search: false
+    search: true
     contents:
       - section: "Graphing With GGPlot"
         contents:
@@ -29,6 +30,8 @@ website:
             file: lessons/02-Components.qmd
           - text: "Mapping And Aesthetics"
             file: lessons/03-MappingAndAesthetics.qmd
+          - text: "Elements And Styles"
+            file: lessons/04-ElementsAndStyles.qmd
 format:
   html:
     css: "presStyle.css"

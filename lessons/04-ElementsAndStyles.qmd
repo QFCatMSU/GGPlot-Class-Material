@@ -1,0 +1,776 @@
+---
+title: "Elements And Styles"
+# special characters for highlighting code : «»
+format:
+  html:
+    include-in-header:
+      - text: |
+         <script>mod=true;</script>
+---
+
+## Purpose
+
+-   Change the style of plot components
+
+-   Change the style of canvas component using elements
+
+-   RGB color codes and Unicode
+
+### Code for the lesson
+
+[The script for the lesson](../scripts/lesson04-StyleElements.R)
+
+-   Save the R file, called ***lesson04-StyleElements.R*** to the ***scripts*** folder inside your RStudio Project
+
+ 
+
+[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as last lesson)
+
+-   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+
+-   [It is best to use the operating system's File Explorer/Finder]{.hl}to move the CSV file to the proper folder.
+
+## Styling elements of a plot
+
+Pretty much everything in a GGPlot canvas can be customized. How you customized a component depends largely on what type of component it is.
+
+ 
+
+The are basically three categories of components:
+
+1.  Plot properties that are not mapped to data (e.g., ***size*** of all points set to a specific value)
+
+2.  Plot properties that are mapped to data (e.g., ***size*** of point is dependent upon the value of the point)
+
+3.  Non-plot components (everything in the canvas that is not part of the plot)
+
+ 
+
+Each of the categories above have a distinct method of styling.  We will cover #1 and #3 in this lesson and #2 in a later lesson where we talk more about customizing mappings.
+
+## Styling Plot Components: Points
+
+In the previous lesson we mapped columns in ***weatherData*** to points (and their properties) on a scatterplot.
+
+In last lesson, we used the mapping function ***aes()*** with the following arguments:
+
+-   ***x*** is mapped to temperature
+
+-   ***y*** is mapped to humidity
+
+-   ***color*** is mapped to season
+
+-   ***size*** is mapped to precipitation
+
+``` r
+#### Part 1: Mapping the points ####
+plot1 = ggplot( data=weatherData ) +
+           geom_point( mapping=aes(«x=avgTemp, y=relHum, color=season, size=precip2»)) +
+           theme_bw() +
+           labs(title = "Humidity vs. Temperature",
+                subtitle = "Lansing, Michigan: 2016",
+                x = "Temperature (\u00B0F)",  # 00B0 is the Unicode degree symbol
+                y = "Humidity (\u0025)");     # 0025 is the Unicode percentage symbol
+plot(plot1);
+```
+
+Extension: [Unicode Characters]
+
+[Extension: Using Run on a GGPlot]
+
+ 
+
+And the result of the four mappings:
+
+![Using mapping to style the points based on data in a column](images/GGP-1-04-Mapped.png){#fig-mappings .fs}
+
+### Unampped styling of points
+
+We can also use properties like ***color, size***, and ***shape*** to style all the points [exactly the same.]{.hl}
+
+ 
+
+We are going to start by styling the points in the same scatterplot using ***color***, ***size***, and ***shape*** [as subcomponents of ***geom_point()*** instead of mappings:]{.hl}
+
+``` r
+#### Part 2: Styling the points ####
+plot2 = ggplot( data=weatherData ) +
+           geom_point( mapping=aes(x=avgTemp, y=relHum),  # mapping
+                       «color="darkgreen"», # NOT a mapping
+                       «size=2.5,»          # NOT a mapping
+                       «shape=17» ) +       # NOT a mapping
+           theme_bw() +
+           labs(title = "Humidity vs. Temperature",
+                subtitle = "Lansing, Michigan: 2016",
+                x = "Temperature (F)",
+                y = "Humidity (%)");
+plot(plot2);
+```
+
+In this example, we used four subcomponents in ***geom_point()***:
+
+-   ***mapping***: maps the column data ***relHum*** vs ***avgTemp*** to the plot
+
+    -   [note: we have only used the **x** and **y** arguments (i.e., mapped **x** and **y**) in this plot]{.note}
+
+-   ***color***: changes the point color to **darkgreen**
+
+-   ***size***: multiplies the point size by **2.5**
+
+-   ***shape***: changes the point shape to filled triangles (**17**)
+
+ 
+
+![Directly styling the points on a plot](images/GGP1-04-DirectStyle.png){#fig-directStyle .fs}
+
+### Mapping properties vs. subcomponents
+
+Properties like ***color, size, and shape*** can be used to map data to a plot component (arguments for ***aes()*** as in *fig \##*) or they can be used to directly set the property of a plot component (subcomponents of the plot as in *fig \##*).  *They can not be used for both*.  If you use these properties as both a mapping and a subcomponent, the subcomponent will override the mapping.
+
+``` r
+#### Part 3: Overriding mapped styles ####
+plot3 = ggplot( data=weatherData ) +
+           geom_point( mapping=aes(x=avgTemp, y=relHum, «color=season», size=precip2),
+                       «color="darkgreen", # this overrides the color mapping»
+                       shape=17 ) +
+           theme_bw() +
+           labs(title = "Humidity vs. Temperature",
+                subtitle = "Lansing, Michigan: 2016",
+                x = "Temperature (F)",
+                y = "Humidity (%)");
+plot(plot3);
+```
+
+![The color subcomponent overrode the color mapping](images/GGP1-04-Override.png){#fig-override .fs}
+
+[Note: There is a way to manually set the mapped color (e.g., pick your own colors for the four seasons) and we will learn this in a later lesson.]{.note}
+
+### Properties of points and their possible values
+
+Points have five properties that can be changed:
+
+-   ***color***: two options
+
+    -   Color names: [here is a complete list of all the color names in R](https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/)
+
+        -   you can also type ***colors()*** in the ***Console*** tab to see all 657 choices
+
+    -   [RGB colors]-- this gives you access to all possible colors the a computer can represent
+
+-   ***size***: a number that acts as a multiplier
+
+    -   ***size=3*** is 3 times the original size, ***size=0.5*** is half the original size
+
+-   ***shape***: there are three options for shape
+
+    -   [the standard R shapes](http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r) (numbered 0 through 25)
+
+    -   any character on the keyboard in quotes (so, ***shape = "\~"*** would use the tilde as a point character)   
+
+    -   any [Unicode Characters] (Unicode U+018F, which is **Ə**, would be: **shape = "\\u018f"**)
+
+-   ***fill***: a background color that only works for ***shape*** #21-25 and some Unicode characters
+
+-   ***alpha***: opacity of points -- a value between **0** (transparent) and **1** (opaque)
+
+ 
+
+For more information about RGB color and Unicode go to: [Extension: RGB Colors and Unicode Characters]
+
+### Adding transparency (opacity) to the point
+
+When you have a lot of points overlapping each-other, it is often helpful to make the points partially transparent so you can better see the clustering of points.  To do this we change the ***alpha*** subcomponent -- ***alpha*** is a value between **0** (completely transparent) and **1** (completely opaque).
+
+ 
+
+For this example, we use an ***alpha*** of **0.4** (i.e., 40% opaque):
+
+``` r
+#### Part 4: Make points semi-transparent ####
+plotData = ggplot( data=weatherData ) +
+           geom_point( mapping=aes(x=avgTemp, y=relHum),
+                       color="darkgreen",
+                       size=2.5,
+                       shape=17,
+                       «alpha = 0.4» ) +
+           theme_bw() +
+           labs(title = "Humidity vs. Temperature",
+                subtitle = "Lansing, Michigan: 2016",
+                x = "Temperature (F)",
+                y = "Humidity (%)");
+plot(plotData);
+```
+
+![Adding an alpha value (transparency) to the points to better see clustering](images/GGP1-04-Alpha.png){#fig-alpha .fs}
+
+## Styling plot components: Lines
+
+Last lesson we used ***geom_smooth()*** to create a line than represent the linear regression between humidity and temperature.  In this lesson, we will create two line plots using ***geom_line(),***  ***geom_line()*** is basically ***geom_point()*** with the points connected.
+
+We are going to use ***geom_line()*** twice, to plot:
+
+1.  ***maxTemp** vs* **day (row) number**
+
+2.  ***minTemp*** vs ***day (row) number***
+
+ 
+
+To map the row number, which is the same as the day number, to the x-axis, we set ***x*** equal to a sequence of numbers from **1** to the number of rows in the data frame: ***1:nrow(weatherData)***.
+
+ 
+
+So, ***x*** equals the sequence ***1:366*** or ***c(1,2,3, ..., 364, 365, 366)***
+
+ 
+
+The code below says that we are going to put two ***geom_line()*** components in the plot area.  Both plots components map ***x*** to the row number and map ***y*** to a temperature column:
+
+``` r
+#### Part 5: Add lines to a plot ####
+  plot5 = ggplot(data=weatherData) +
+    «geom_line(mapping=aes(x=1:nrow(weatherData), y=maxTemp))» +
+    «geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp))» +
+    theme_bw() +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot5);
+```
+
+[Note: Adding in the actual date to the x-axis is a little trickier and will be covered in the next lesson.]{.note}
+
+![Two line graphs: maxTemp vs day number and minTemp vs day number](images/GGP1-04-Alpha-01.png){#fig-linePlots .fs}
+
+### Add labels and coloring
+
+The black lines representing both temperature plots is hard to distinguish.  Let's visually separate the two plots by setting the ***color*** subcomponent in ***geom_line()***:
+
+``` r
+  #### Part 6: Add colors by name and using rgb() ###
+  plot6 = ggplot(data=weatherData) +
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=maxTemp),
+              «color="violetred1"») +
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp), 
+              «color=rgb(red=0.4, green=0.7, blue=0.9)») + 
+    theme_bw() +
+    labs(title = "Temperature vs. Date",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Date",
+         y = "Temperature (F)");
+  plot(plot6);
+```
+
+![Changing the line plot colors using color names and rgb()](images/GGP1-04-LineColors.png){#fig-colorChanges .fs}
+
+### Properties of lines and their possible values
+
+Lines and points both use the properties ***color***, ***fill***, and ***alpha***.  The difference is that ***linetype*** and ***linewidth*** is used instead point ***shape*** and point ***size***.
+
+ 
+
+There are 6 values for ***linetype*** and they are given the number 1-6 ([1 is a solid line and the rest are variations of a dotted or dashed lines](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html)).
+
+ 
+
+[Note: You can create more customized lines in GGPlot by setting the size and frequency of the dots and dashes, but that involves hexadecimals number and will be a topic for another day!]{.note}
+
+### Add a smoothing function
+
+On the graph, we are going to add another component that represents the average temperature (***avgTemp***) and use a method that smooths out the values.  Like last lesson, we use ***geom_smooth()***, but we will use a different smoothing method this time (***loess***).
+
+ 
+
+The line is styled using ***color, linetype, linewidth***, and ***fill***:
+
+``` r
+  #### Part 7: Add smoothing function ###
+  plot7 = ggplot(data=weatherData) +
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp), 
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +  
+    theme_bw() +
+    geom_smooth(mapping=aes(x=1:nrow(weatherData), y=avgTemp),
+                method="loess",
+                «color=rgb(red=1, green=0.5, blue=0),  # orange»
+                «linetype=4,»
+                «linewidth=2, »
+                «fill="lightgreen"») +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot7);
+```
+
+![Adding avgTemp as a smoothed plot and styled the line](images/GGP1-04-LineColors-01.png){#fig-lineColor .fs}
+
+## GGPlot Elements
+
+So far in this lesson, we have dealt with plot components and, for plot components, you can make style changes using the subcomponents (e.g., ***color, size, alpha***).
+
+ 
+
+With most other canvas components, style changes are made using the [theme() component](https://ggplot2.tidyverse.org/reference/theme.html) (@fig-elements).
+
+ 
+
+Most subcomponents in ***theme()*** are one of the these three element types:
+
+-   ***element_text()***
+
+-   ***element_line()***
+
+-   ***element_rect()***
+
+ 
+
+[There is more about the three different elements types here.](https://ggplot2.tidyverse.org/reference/element.html)
+
+ 
+
+And to modify these subcomponents, you need to use the function that matches their element type so...
+
+-   ***axis.line*** is modified using ***element_line()***
+
+-   ***legend.text*** is modified using ***element_text()***
+
+-   ***legend.background*** is modified using ***element_rect()***
+
+![Many of the theme subcomponents are either text, line, or rectangular elements](images/GGP-1-04-Elements.png){#fig-elements .fs}
+
+### Subcomponent groups
+
+The ***theme()*** page can be a bit tricky to read.  Many of the subcomponents are grouped together (*fig \##*) and the groupings can be hard to see.
+
+In the image below ( @fig-elementGroups ), there are three groupings highlighted:
+
+-   axis titles
+
+-   axis text
+
+-   axis ticks
+
+ 
+
+[Subcomponents in a grouping share the same element type]{.hl} so all:
+
+-   ***axis.title*** subcomponents are ***element_text()***
+
+-   ***axis.text*** subcomponents are ***element_text()***
+
+-   ***axis.ticks*** subcomponents are ***element_line()***
+
+![Subcomponent groupings in theme()](images/GGP-1-04-ElementGroups.png){#fig-elementGroups .fs}
+
+### Help for styling elements
+
+All of the subcomponents are texts, lines, or rectangles.  [You can find out more about styling ***text***, ***line***, and ***rect*** elements either at this webpage](https://tidyverse.github.io/ggplot2-docs/reference/element.html "You can find out more about text, line, and rect elements either at this webpage") or by typing ***element\_*** in the search bar of the ***Help*** tab.  We will be using this in the next section.
+
+![Information about the three element types in GGPlot (4 if you count element_blank)](images/GGP_1-04_HelpElements.jpg){#fig-elementInfo .fs}
+
+## Styling text using element_text()
+
+We can change the font styles of any ***theme()*** subcomponent that is an text element using ***element_text()***.
+
+ 
+
+If you look at ***element_text()*** in the ***Help*** tab, you see all the arguments, which are the same as the properties of the font that can be modified:
+
+::: {#fig-elementTextArgs}
+``` {.r tab="Help"}
+element_text(
+  family = NULL,
+  face = NULL,
+  colour = NULL,
+  size = NULL,
+  hjust = NULL,
+  vjust = NULL,
+  angle = NULL,
+  lineheight = NULL,
+  color = NULL,
+  margin = NULL,
+  debug = NULL,
+  inherit.blank = FALSE
+)
+```
+
+Arguments for element_text()
+:::
+
+### Using element_text()
+
+Let's use the ***element_text()*** to change these subcomponents in ***theme()***:
+
+-   ***axis.title.x***: x-axis label style
+
+-   ***axis.title.y***: y-axis label style
+
+-   ***plot.title***: plot title style
+
+-   ***plot.subtitle***: plot subtitle style
+
+ 
+
+And for the above elements, we will modify the:
+
+-   ***size***: font size in pixels
+
+-   ***color***: font color
+
+-   ***face***: font modification (***bold***, ***italic***, or ***bold.italic***)
+
+-   ***family***: font type
+
+    -   This should be used with caution as the font needs to be installed on the viewer's computer -- it is best to only use common fonts
+
+``` r
+#### Part 8: Changing component text ####
+  plot8 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum),
+                color="darkgreen",
+                size=2.5,
+                shape=17,
+                alpha = 0.4 ) +
+    theme_bw() +
+    labs(title = "Humidity vs. Temperature",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (F)",
+         y = "Humidity (%)") +
+     «theme»(«axis.title.x»=element_text(«size»=14, «color»="orangered2"),
+           «axis.title.y»=element_text(size=14, color="orangered4"),
+           «plot.title»=element_text(size=18, «face»="bold",
+                                   color ="darkblue"),
+           «plot.subtitle»=element_text(size=10, face="bold.italic",
+                                   color ="brown", «family»="serif"));
+plot(plot8);
+```
+
+[Trap: Changing a theme after modifying]
+
+![Styling labels and titles using element_text()](images/GGP-1-04-element-text.png){#fig-elementText .fs}
+
+### Elements of a plot
+
+Let's look a little deeper at how ***element_text()*** works to set font properties.
+
+ 
+
+In the following code, we change the size and color of the x-axis title:
+
+``` r
+axis.title.x = element_text(size=14, color="orangered2")
+```
+
+Notice that [you do not directly set the **size** and **color** of **axis.title.x.**]{.hl}
+
+ 
+
+Instead you set ***axis.title.x*** to a text element, ***element_text()***, that has the ***size*** and ***color*** you want -- in this case, ***14*** and ***orangered2***.
+
+ 
+
+This method of changing the properties of an object in GGPlot is common (if not intuitive).
+
+## Styling lines using element_line()
+
+The function ***element_line()*** has these arguments:
+
+``` {.r tab="Help"}
+element_line(
+  colour = NULL,
+  linewidth = NULL,
+  linetype = NULL,
+  lineend = NULL,
+  color = NULL,
+  arrow = NULL,
+  inherit.blank = FALSE,
+  size = deprecated()
+)
+```
+
+[Note: **size = deprecated()** because **linewidth** has replaced **size** -- **size** works for now but is no longer supported (that is what deprecated means).]{.note}
+
+ 
+
+The line components in a plot include the axis ticks, the axis lines, and the grid lines.
+
+ 
+
+Like font changes, if you want to modify these line components, you set the line equal to a ***element_line()*** and supply the arguments inside ***element_line()***. 
+
+### Modifying axis line elements
+
+We will modify three line components:
+
+1.  the tick marks
+
+2.  the minor grid lines (grid lines halfway between breaks)
+
+3.  the major grid lines (grid lines attached to the breaks)
+
+``` r
+#### Part 9: Changing component lines ####
+  plot9 = ggplot(data=weatherData) +
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp), 
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    theme_bw() +
+    geom_smooth(mapping=aes(x=1:nrow(weatherData), y=avgTemp),
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0),
+                linetype=4,
+                size=2, 
+                fill="lightgreen") +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)") +
+    theme(«axis.ticks = element_line(color="red", linewidth=1),»
+          «panel.grid.minor = element_line(color="grey75", linetype=4),»
+          «panel.grid.major = element_line(color="grey75")»);
+  plot(plot9);
+```
+
+![Styling grid lines and axis-ticks using element_text()](images/GGP-1-04-LineElement.png){#fig-elementLine .fs}
+
+### Greyscaling
+
+We are using [greyscale]{.hl}to set the color of the various objects in @fig-elementLine.  In GGPlot, you can choose greyscale colors between ***grey0*** (black) and ***grey100*** (white).  You can think of the number after ***grey*** as the percentage of light from ***0*** (none -- black) to ***100*** (all -- white). So, the ***grey75*** used in @fig-elementLine is a light grey.
+
+### lineend and arrow
+
+There are two arguments in ***element_line()*** that we did not cover: ***lineend*** and ***arrow***.
+
+ 
+
+***lineend*** has three options: "butt" (default), "round", and "square".  For the lines we are using right now you will not see much of a difference.
+
+ 
+
+***arrow*** is more complicated as it does not have simple options.
+
+ 
+
+If you want to use an arrow you:
+
+-   set ***arrow = arrow()*** and
+
+-   [use arrow() arguments to modify the arrow](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/arrow.html)
+
+## Styling lines using element_rect()
+
+The last of the main GGPlot elements is ***element_rect()***, which has the following arguments:
+
+``` {.r tab="Help"}
+element_rect(
+  fill = NULL,
+  colour = NULL,
+  linewidth = NULL,
+  linetype = NULL,
+  color = NULL,
+  inherit.blank = FALSE,
+  size = deprecated()
+)
+```
+
+-   ***fill*** is the background color of the rectangle
+
+-   ***color*** (or ***colour***) is the outline color of the rectangle 
+
+-   ***linetype*** is the rectangle's outline type
+
+-   ***size*** is the size the the rectangle's outline
+
+### Using element_rect()
+
+We will modify the following rectangular elements:
+
+-   ***panel.background***: the background of the plot area (i.e., inside the axes)
+
+-   ***legend.background***: the background of the legend
+
+``` r
+  #### Part 10: Modifying rectangular components ####
+  plot10 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, color=season, size=precip2)) +
+    theme_minimal() +
+    labs(title = "Humidity vs. Temperature",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (F)",
+         y = "Humidity (%)") +
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) ,
+           «legend.background» = element_rect(color="blue", fill="grey90",
+                                            linewidth=1),
+           «panel.background» = element_rect(fill="grey10", color="red")); 
+  plot(plot10);
+```
+
+[Note: I changed the theme from **theme_bw()** to **theme_minimal()** because **theme_bw()** was interfering with the **panel.background** outline.  I do not know why.]{.note}
+
+![Changing rectangular elements using element_rect() -- and starting a nighttime theme](images/GGP-1-04-Rectangular.png){#fig-elementRect .fs}
+
+## Application
+
+Create a script file in your Project's ***script*** named ***app04.r*** and, using the data from **Lansing2016NOAA.csv***,* replicate (as best you can) this canvas:
+
+![Plot canvas to replicate](images/GGP_1-04_Replicate.png){#fig-replicate .fs}
+
+[Note: ***\\n*** acts like an enter in a string... an example:]{.note}
+
+``` {.r tab="Console"}
+> cat("first\nsecond")
+first
+second
+```
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What is a way you can apply the material in this lesson towards your research or area of study?
+
+3.  What are some things you would like to learn related to, but not covered in, this lesson?
+
+## Extension: Using Run on a GGPlot
+
+When you see GGPlot examples online they often skip the steps of saving the plot to a variable and using ***plot()*** -- the parts highlighted below:
+
+``` r
+«plot1» = ggplot( data=weatherData ) +
+          geom_point( mapping=aes(x=avgTemp, y=relHum, color=season, size=precip2)) +
+          theme_bw() +
+          labs(title = "Humidity vs. Temperature",
+               subtitle = "Lansing, Michigan: 2016",
+               x = "Temperature (\u00B0F)",  # 00B0 is the Unicode degree symbol
+               y = "Humidity (\u0025)");     # 0025 is the Unicode percentage symbol
+«plot(plot1)»;
+```
+
+Instead they just click ***Run*** (or Control-Enter) on code that looks similar to this:
+
+``` r
+ggplot( data=weatherData ) +
+          geom_point( mapping=aes(x=avgTemp, y=relHum, color=season, size=precip2)) +
+          theme_bw() +
+          labs(title = "Humidity vs. Temperature",
+               subtitle = "Lansing, Michigan: 2016",
+               x = "Temperature (\u00B0F)",  # 00B0 is the Unicode degree symbol
+               y = "Humidity (\u0025)")      # 0025 is the Unicode percentage symbol
+```
+
+When ***Source*** is clicked, the bottom codeblock will do nothing because there is no instruction to send the canvas to the plot tab (i.e., no ***plot()***).  But when ***Run*** is clicked, R makes an assumption that you want to view the plot and will execute ***plot()*** in the background.  This is fine if you are testing code or if the plot is temporary -- it is not good programming practice if the code is a permanent part of your script.  It is best to be explicit with your code and add the ***plot()*** instruction.
+
+## Extension: RGB Colors and Unicode Characters
+
+There are many more colors than names of colors and there are many more character than keys on a keyboard.  This section will give a brief introduction on how one accesses the full spectrum of colors and characters.
+
+### RGB colors
+
+The are over 16 million colors we can choose from and to access all these colors, we need to use their ***rgb*** color codes.
+
+ 
+
+***rgb*** stands for *red, green, blue* and represents the three *primary light colors*.  You are probably more familiar with the primary pigment colors, which are red, yellow, blue (more accurately: magenta, yellow, cyan).  The different is that *primary light colors combine to make white* (they are additive), whereas the *primary pigment colors combine to make black/dark brown* (they are subtractive).
+
+ 
+
+In R, you can set color to an ***rgb*** value using the function ***rgb()***.
+
+ 
+
+***rgb()*** has three arguments (**red**, **green**, **blue**), and each argument is set to a value from **0** (completely off) to **1** (completely on).
+
+Some examples:
+
+-   black: ***rgb(red=0, green=0, blue=0)***
+
+-   white: ***rgb(red=1, green=1, blue=1)***
+
+-   bright blue: ***rgb(red=0, green=0, blue=1)***
+
+-   dark blue: ***rgb(red=0, green=0, blue=0.3)***
+
+-   yellow: ***rgb(red=1, green=1, blue=0)***
+
+-   dark grey: ***rgb(red=.3, green=.3, blue=.3)***
+
+ 
+
+It takes some time to get used to mixing light colors, but it is worth it in the end to learn how to do it as you will have access to over 16 million colors.
+
+### Unicode Characters
+
+[Unicode characters](https://en.wikipedia.org/wiki/List_of_Unicode_characters) represent the most complete digital set of characters in the world and it even includes many emojis. Wikipedia says that there are currently almost 150,000 characters (as of January 2024), and this number is growing.
+
+ 
+
+To use a Unicode character, you need the Unicode number -- and every character has a unique Unicode number.  Unicode numbers are hexadecimal (base-16) as opposed to the base-10 numbers you are used to.  Base-16 numbers need to use 16 character, so they use 0-9 and A-F.
+
+![Unicode characters on Wikipedia, and the hexadecimal number used to refer to them](images/GGP-1-04-Unicode.png){#fig-unicode .fs}
+
+ 
+
+In R, you can use use Unicode characters by Unicode numbers preceded by ***\\u***.
+
+ 
+
+So, Unicode character 00A2 (the cent sign) would be written as "\\u00A2".
+
+Unicode characters can be directly used in a text output:
+
+ 
+
+``` {.r tab="Console"}
+> cat("10\u00A2")
+10¢
+```
+
+You can add Unicode characters to any text in a plot or use Unicode as the shape of a point.
+
+ 
+
+[Warning: no font type supports all 150,000+ Unicode characters]{.hl} (many are not even close).  Sticking to more common font makes it more likely that the Unicode character is available.
+
+### Script using RGB colors and Unicode characters
+
+In the following script, I used **RGB** colors to set the color of the points, and **Unicode** to represent the shape of the points.
+
+-   The color ***rgb(red=0.7, green=0.5, blue=0)*** is a lot of red light, half green light, and no blue light.  It is yellowish-brown (remember these are light color, not pigment colors)
+
+-   The shape is Unicode character **00A5**, which is the Yen sign: ¥ 
+
+![Using color codes and Unicode](images/GGP-1-04-Unicode-RGB.png){#fig-rgbAndUnicode .fs}
+
+## Trap: Changing a theme after modifying
+
+Is this example, ***theme()*** is used to modify various label and title components, but then ***theme_bw()*** is called.  ***theme_bw()*** reset all components of the theme basically undoing the changes we made beforehand.   Make sure ***theme_bw()*** is called before other theme changes are made.
+
+``` r
+source("scripts/reference.R");   # include the script file reference.r
+
+weatherData = read.csv(file="data/LansingNOAA2016.csv",
+                        stringsAsFactors = FALSE);
+plotData = ggplot(data=weatherData) +
+           geom_point(mapping=aes(x=avgTemp, y=relHum),
+                       color="darkgreen", size=2.5, shape=17,
+                       alpha = 0.4 ) +
+           labs(title = "Humidity vs. Temperature",
+                subtitle = "Lansing, Michigan: 2016",
+                x = "Temperature (F)",
+                y = "Humidity (%)") +
+           «theme»(axis.title.x=element_text(size=14, color="orangered2"),
+                 axis.title.y=element_text(size=14, color="orangered4"),
+                 plot.title=element_text(size=18, face="bold",
+                                         color ="darkblue"),
+                 plot.subtitle=element_text(size=10, face="bold.italic",
+                                            color ="brown", family="serif")) +
+           «theme_bw()»;
+plot(plotData);
+```
+
+![theme_bw() resets theme undoing the changes made in the theme() component above.](images/GGP-01-03-ResettingTheme.PNG){#fig-resetTheme .fs}
