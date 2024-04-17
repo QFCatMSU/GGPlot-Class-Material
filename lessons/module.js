@@ -38,7 +38,7 @@ parent.window.onload = function()
 	}
 	
   // change symbols to highlighting
-  if(mod == true)  // allow highlighting in all code
+  if(mod && mod == true)  // allow highlighting in all code
   {
     codeBlocks = document.querySelectorAll("pre");
   }
