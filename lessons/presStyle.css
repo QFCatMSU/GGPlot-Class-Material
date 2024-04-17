@@ -75,6 +75,19 @@
   	padding-right: 10px;
   	font-family: calibri;
   }
+  a.anchorjs-link
+  {
+    display: none;
+  }
+  /* add a line above the header 2 and 3 */
+  section.level2
+  {
+    box-shadow: 0 -9px #18453B;
+  }
+  section.level3
+  {
+    box-shadow: 0 -3px #18453B;
+  }
   .quarto-figure-center > figure > p
   {
     text-align: left;
