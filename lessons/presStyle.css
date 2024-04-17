@@ -51,6 +51,12 @@
 {
   padding-bottom:15px;
   
+  img.fs, img.flexSize
+  {
+    border-color: red;
+    border-style: dotted;
+    border-width: 1px;
+  }
   .title
   {
     margin-bottom: 10px !important;
