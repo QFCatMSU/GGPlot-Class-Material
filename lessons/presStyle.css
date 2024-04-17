@@ -57,6 +57,10 @@
     border-style: dotted;
     border-width: 1px;
   }
+  img.fs:hover, img.flexSize:hover
+  {
+    border-style: solid;
+  }
   .title
   {
     margin-bottom: 10px !important;
@@ -74,10 +78,15 @@
   	padding-left: 10px;
   	padding-right: 10px;
   	font-family: calibri;
+  	margin-top: 10px;
   }
   .hasTab
   {
     margin-top: 0;  /* tab takes up the margin space */
+  }
+  div.sourceCode:hover
+  {
+    outline: 2px solid lime;
   }
   a.anchorjs-link
   {
