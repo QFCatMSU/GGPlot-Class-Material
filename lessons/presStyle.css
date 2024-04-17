@@ -75,6 +75,10 @@
   	padding-right: 10px;
   	font-family: calibri;
   }
+  .hasTab
+  {
+    margin-top: 0;  /* tab takes up the margin space */
+  }
   a.anchorjs-link
   {
     display: none;
@@ -84,6 +88,7 @@
   {
     box-shadow: 0 -9px #18453B;
   }
+  
   section.level3
   {
     box-shadow: 0 -3px #18453B;

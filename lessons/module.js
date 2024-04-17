@@ -65,7 +65,9 @@ parent.window.onload = function()
 		tabSpan.setAttribute("data-text", codeBlockDivs[i].getAttribute("data-tab"));
 		tabSpan.innerText = codeBlockDivs[i].getAttribute("data-tab");
 		par.appendChild(tabSpan);
-		codeBlockDivs[i].prepend(tabSpan);
+	//	codeBlockDivs[i].prepend(tabSpan);
+		codeBlockDivs[i].parentElement.insertBefore(tabSpan, codeBlockDivs[i]);
+		codeBlockDivs[i].classList.add("hasTab");
 	}
 		
 	// allow users to resize images from small to full-size
