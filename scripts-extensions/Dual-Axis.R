@@ -3,6 +3,8 @@
   weatherData = read.csv(file="data/LansingNOAA2016.csv", 
                          stringsAsFactors = FALSE);
 
+  library(ggplot2);
+  
   # There is no way in GGPlot to create a secondary axis (right-side)
   #    independent of the primary axis (left-side)
   #
