@@ -47,10 +47,13 @@
   }
 }
 
+/* content in web documents in Quarto is contained within a .content object */ 
 .content
 {
+  /* add padding at the bottom of the page */
   padding-bottom:15px;
   
+  /* add dotted red border to images that can be resized, make solid on hover */
   img.fs, img.flexSize
   {
     border-color: red;
@@ -65,6 +68,7 @@
   {
     margin-bottom: 10px !important;
   }
+  /* style for the "tab" that can be optionally added to the top of a codeblock */
   .codeBlockTab
   {
   	background-color: rgb(50,50,50);
@@ -80,14 +84,18 @@
   	font-family: calibri;
   	margin-top: 10px;
   }
-  .hasTab
+  /* reduce top margin of codeblocks that have tabs on top */
+  .sourceCode.hasTab
   {
     margin-top: 0;  /* tab takes up the margin space */
   }
+  /* add outline to code blocks on hover,
+     make copy buton inside code block the same color */
   div.sourceCode:hover
   {
     outline: 2px solid lime;
   }
+  /* Quarto create (IMO) a useless link on each header -- this removes the link */
   a.anchorjs-link
   {
     display: none;
@@ -97,40 +105,47 @@
   {
     box-shadow: 0 -9px #18453B;
   }
-  
   section.level3
   {
     box-shadow: 0 -3px #18453B;
   }
+  /* default figure to left-align -- don't think this is needed anymore
+     because this can be set in _quarto.yml */
   .quarto-figure-center > figure > p
   {
-    text-align: left;
+ /*   text-align: left;*/
   }
+  /* put caption directly under image in figure (needed??) */
   .figure-img
   {
-    margin-bottom: 0;
+    margin-bottom: 0; 
   }
   figure > figcaption
   {
     margin-top: 0;
   }
+  /* Avoid default double-spacing prominent in web design */
   ul, ol, li, p
   {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
+  /* every odd level of bullets is a filled circle */
   ul,ul ul ul, ul ul ul ul ul
   {
     list-style-type: disc !important;
   }
+  /* every even level of bullets is a outlined circle */
   ul ul, ul ul ul ul, ul ul ul ul ul ul
   {
     list-style-type: circle !important;
   }
+  /* reduce indentation of lists (which I feel is too much) */
   ol, ul
   {
     padding-left: 1rem; 
   }
+  /* note and hl are classes I defined */
   .note
   {
     color: rgb(160,64,0);
@@ -139,14 +154,17 @@
   {
     color: darkred;
   }
+  /* highlighting in codeblock */
   code b
   {
     background-color: rgb(255,255,200);
   }
+  /* highlighting on in-page object that is linked to */
   .refObjHighlight
   {
     background-color: yellow;
   }
+  /* header styling */
   h1
   {
   	color: rgb(0,0,100);
@@ -165,30 +183,37 @@
   {
   	color: rgb(90,20,20);
   }
-  /*   .figNum, .figureRef, .c, .fr, .email, .jsLink , a[href^="#"],
-       .linkback,.linkTo, */  
-  .quarto-xref, a.inpageLink, figcaption  /* .fig */
+  /* in-page links and references style */
+  .quarto-xref, a.inpageLink, figcaption 
   {
   	color: rgb(90,90,0);
   }
-  /*a.inpageLink, a:link,a:visited, .email, .jsLink , a[href^="#"],a.linkback,.linkTo */
-  a, .quarto-xref
+  /* any kind of link (need quarto-href ??)*/
+  a, .quarto-xref  
   {
    	border-bottom: dotted 1px;
-    cursor: pointer;
+    cursor: pointer !important;
     text-decoration: none;
   }
- /* a.href:hover, .email:hover, a[href^="#"]:hover, a.linkback:hover, .linkTo:hover, .jsLink:hover, */ 
+  /* any kind of link on hover */
   a:hover
   {
   	border-bottom: solid 1px;
   } 
+  /* link to outside page */
   a
   {
     color: rgb(0,0,150);
   }
 }
 
+/* links outside of content page */
+a:hover
+{
+	cursor: pointer;
+} 
+
+/* style for long-click menu (which is outside of content) */
 .rcMenu  /* the right-click menu */
 {
 	/* should it start as display: none; ?? */
