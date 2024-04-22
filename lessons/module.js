@@ -65,7 +65,6 @@ parent.window.onload = function()
 		tabSpan.setAttribute("data-text", codeBlockDivs[i].getAttribute("data-tab"));
 		tabSpan.innerText = codeBlockDivs[i].getAttribute("data-tab");
 		par.appendChild(tabSpan);
-	//	codeBlockDivs[i].prepend(tabSpan);
 		codeBlockDivs[i].parentElement.insertBefore(tabSpan, codeBlockDivs[i]);
 		codeBlockDivs[i].classList.add("hasTab");
 	}
@@ -105,41 +104,15 @@ window.addEventListener("mousedown", function(event)
 	{
 		longClickTimer = setTimeout(function() 
 		{
-			// we are inside a widget
-			if(window.location.pathname.includes("customwidgets"))
-			{
-				editButton = parent.document.querySelectorAll("a.d2l-navigation-s-link"); // look at all buttons
-				hasEditAccess = false;
-				for(i=0; i<editButton.length; i++)
-				{
-					if(editButton[i].textContent.includes("Course Admin"))
-					{
-						hasEditAccess = true; 
-					}
-				}
-				if(hasEditAccess)
-				{
-					splitUrl = window.location.pathname.split('/');
-					theClass = splitUrl[4];
-					theWidget = splitUrl[6];
-					newUrl = "https://d2l.msu.edu/d2l/lp/homepage/admin/widget/widget_newedit_content.d2l?d2l_isfromtab=1&wid=" +
-								theWidget + "&ou=" + theClass;
-					openEditor = confirm("Do you want to edit this widget?");
-					if(openEditor) window.open(newUrl, '_blank');
-				}
-			}
-			else // we are in a lesson
-			{
-				activateElement(event, encapObject.querySelector("#longClickMenu"));
-				overRCMenu = true;
-				encapObject.style.userSelect = "none";
-				encapObject.style.msUserSelect = "none";
-			}
-		}, 350);
+  		activateElement(event, encapObject.querySelector("#longClickMenu"));
+		  overRCMenu = true;
+	  	encapObject.style.userSelect = "none";
+	  	encapObject.style.msUserSelect = "none";
+	  }, 350);
 		
 		// get current mouse pointer position -- used to allow for wiggle in the mouse
-		mouseX = parseInt(event.clientX);
-		mouseY = parseInt(event.clientY);
+		let mouseX = parseInt(event.clientX);
+		let mouseY = parseInt(event.clientY);
 	}
 });
 
