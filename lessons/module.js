@@ -1,23 +1,76 @@
-// tabs in codeblocks are messing with the figures
-// tabs are not aligned to the divs because the divs have been shifted
-//    you can align by putting the tab inside the div
-smallImageHeight = 100;				// set the height of flex-sized objects when small 
-scrollTopPosition = 0; 				// value saved for links-return-links within a page
-referenceTimer = "";					// timer used to toggle the reference object
+/***** To-do ******
+Have shortcut menu disable drag event
+
+****************/
+
+smallImageWidth = 100;			// set the height of flex-sized objects when small 
+scrollTopPosition = 0; 			// value saved for links-return-links within a page
+referenceTimer = "";				// timer used to toggle the reference object
 scrollFlag = 0;  						// counts when scrolling of page occurs due to reference links
 
 /*** Handling the long-press menu ****/
 longClickTimer = null;
 overRCMenu = false;
-mouseX = 0; mouseY = 0;  // allow a little wiggle of the mouse
+// keep mouse positions in global memory because they can only be captured on mouse events
+mouseX = mouseX2 = mouseY = mouseY2 = 0; 
+
+clickMode = null;
+fsClick = null;
+origWidth = null;
+
+window.addEventListener("load", function(event)
+{
+	// find all flexsized objects
+	fsObj = document.querySelectorAll("img.fs");
+
+	// for each flexsized object
+	for(let i=0; i<fsObj.length; i++)
+	{	
+		// mousedown: set the flexsized object
+		fsObj[i].addEventListener("mousedown", function(event)
+		{
+			if(event.which == 1)
+			{		
+				fsClick = fsObj[i];
+				fsClick.ondragstart = function() {return false;};
+			}
+		});
+		fsObj[i].addEventListener("mouseup", function(event)
+		{
+			if(event.which == 1)
+			{	
+				if(clickMode == "click")
+				{
+					changeImageSize(this)
+				}
+			}
+		});
+		// end whatever you are doing if mouse leaves the object
+		fsObj[i].addEventListener("mouseout", function(event)
+		{	
+			cleanupFlexEvent()
+		});
+		fsObj[i].addEventListener("click", function(event)
+		{
+		});
+		fsObj[i].addEventListener("dragstart", function(event)
+		{
+			//event.preventDefault();
+		});
+		fsObj[i].addEventListener("dragend", function(event)
+		{
+			//event.preventDefault();
+		});
+	}
+});
 
 // this still seems to work if there is no parent -- probably should check for this, though
 parent.window.onload = function()
 {		
 	encapObject = document.body; 
-  scrollTopPosition = window.parent.scrollY;  
+	scrollTopPosition = window.parent.scrollY;  
   
-  // add a print button to the title line
+   // add a print button to the title line
 	titleObj = encapObject.querySelector(".title");
 	
 	if(titleObj)  // there is a title 
@@ -31,7 +84,7 @@ parent.window.onload = function()
 		printLink.innerHTML = "&#9113";
 		
 		// stop Quarto from removing the primary header
-    titleObj.classList.remove("d-none");
+		titleObj.classList.remove("d-none");
     
 		// add printer icon to title
 		titleObj.appendChild(printLink);
@@ -83,9 +136,6 @@ parent.window.onload = function()
 	// target most hyperlinks to a new window
 	linksToNewWindow();
 	
-	// wrap figure and captions together -- for accessibility
-//	captionFigures();
-			
 	// if this page was hyperlinked from elsewhere and a hash tag was added to the link
 	if(window.location.hash.slice(1) != "") 
 		scrollToElement(window.location.hash.slice(1), true);
@@ -102,19 +152,39 @@ window.addEventListener("mousedown", function(event)
 	// make sure it's a left-click and the MathJax Frame is not showing
 	if(event.which == 1 && !document.querySelector("#MathJax_MenuFrame"))
 	{
+		clickMode = "click";
+		// keep track of mouse position during timer
+		window.addEventListener("mousemove", getMousePos);	
+		
+		// get current position of mouse -- save to start and final position
+		mouseX = mouseX2 = parseInt(event.clientX);
+		mouseY = mouseY2 = parseInt(event.clientY);
+		
 	  // Is there a way to check the new position of the mouse after 350ms?
 	  // event.clientX just gives the position when the mouse was down
 		longClickTimer = setTimeout(function() 
 		{
-  		activateElement(event, encapObject.querySelector("#longClickMenu"));
-		  overRCMenu = true;
-	  	encapObject.style.userSelect = "none";
-	  	encapObject.style.msUserSelect = "none";
+			// not over a dragable object
+			if(fsClick == null)
+			{
+				window.removeEventListener("mousemove", getMousePos);	
+				console.log(2);
+			}
+			// bring up shortcut menu if mouse has barely moved
+			if(Math.abs(mouseX2-mouseX) < 10 &&  Math.abs(mouseY2-mouseY) < 10 && clickMode == "click")
+			{
+				activateElement(event, encapObject.querySelector("#longClickMenu"));
+				overRCMenu = true;
+				clickMode = "menu";
+				window.removeEventListener("mousemove", getMousePos);		
+				encapObject.style.userSelect = "none";
+				encapObject.style.msUserSelect = "none";
+			}
 	  }, 350);
 		
 		// get current mouse pointer position -- used to allow for wiggle in the mouse
-		let mouseX = parseInt(event.clientX);
-		let mouseY = parseInt(event.clientY);
+	//	let mouseX = parseInt(event.clientX);
+	//	let mouseY = parseInt(event.clientY);
 	}
 });
 
@@ -126,7 +196,8 @@ window.addEventListener("scroll", function(event)
 	
 window.addEventListener("mouseup", function()
 {
-	clearInterval(longClickTimer);
+	//clearInterval(longClickTimer);
+	cleanupFlexEvent();
 
 	//	tried to avoid this with stopPropogation -- that did not work
 	if(!overRCMenu)
@@ -135,18 +206,6 @@ window.addEventListener("mouseup", function()
 		encapObject.querySelector("#longClickMenu").style.top = "0px";
 		encapObject.style.userSelect = "";
 		encapObject.style.msUserSelect = "";
-	}
-});
-
-window.addEventListener("mousemove", function(event)
-{
-	mouseMoveX = Math.abs(parseInt(event.clientX) - mouseX);
-	mouseMoveY = Math.abs(parseInt(event.clientY) - mouseY);
-		
-	// If the mouse has strayed more than 10 pixels in any direction
-	if(mouseMoveX > 10 || mouseMoveY > 10)
-	{
-		clearInterval(longClickTimer);
 	}
 });
 
@@ -231,7 +290,6 @@ function resizeIframeContent()
 	
 	// set height to the total scroll length of the lesson window
 	parentIFrames[0].style.height = document.body.scrollHeight + "px";
-
 }
 
 /*
@@ -250,8 +308,8 @@ function createFlexImages()
 	for(i=0; i<flexImage.length; i++)	// for each flexSize element
 	{
 		// add a click event that calls changeImageSize() to each flexSize image
-		flexImage[i].addEventListener("click", function()
-												{ changeImageSize(this) }, false); 
+	//	flexImage[i].addEventListener("click", function()
+	//											{ changeImageSize(this) }, false); 
 
 		// initalize the flex image to the small size
 		changeImageSize(flexImage[i], "minimize");
@@ -262,8 +320,8 @@ function createFlexImages()
 	{
 		let videoHeight = flexVideo[i].height;
 		let videoWidth = flexVideo[i].width;
-		flexVideo[i].width = smallImageHeight * videoWidth / videoHeight;
-		flexVideo[i].height = smallImageHeight;
+		flexVideo[i].height = smallImageWidth *  videoHeight/ videoWidth;
+		flexVideo[i].width = smallImageWidth;
 		flexVideo[i].addEventListener("play", 
 			function()
 			{
@@ -273,8 +331,8 @@ function createFlexImages()
 		flexVideo[i].addEventListener("ended", 
 			function()
 			{
-				this.width=smallImageHeight * videoWidth / videoHeight;
-				this.height=smallImageHeight;
+				this.height=smallImageWidth * videoHeight / videoWidth;
+				this.width=smallImageWidth;
 			});
 	}
 		
@@ -282,8 +340,8 @@ function createFlexImages()
 	{
 		let iframeHeight = flexIframe[i].height; 
 		let iframeWidth = flexIframe[i].width; 
-		flexIframe[i].height = smallImageHeight;
-		flexIframe[i].width = smallImageHeight * iframeWidth / iframeHeight;
+		flexIframe[i].height = smallImageWidth *  iframeHeight / iframeWidth;
+		flexIframe[i].width = smallImageWidth;
 
 		// create a small span button 
 		resizeButton = document.createElement("span");
@@ -302,8 +360,8 @@ function createFlexImages()
 				}
 				else
 				{
-					flexIframe[i].width = smallImageHeight * iframeWidth / iframeHeight; 
-					flexIframe[i].height = smallImageHeight;
+					flexIframe[i].height = smallImageWidth * iframeHeight / iframeWidth; 
+					flexIframe[i].width = smallImageWidth;
 					this.innerText = "\u{1f846}";
 				}
 			});
@@ -319,18 +377,28 @@ possible instruction values: minimize and maximize
 */
 function changeImageSize(element, instruction="none")
 {
-	// If image is in small sized mode and insruction is not "minimize"
-	// The reason I do not put instruction == "minimize" 
-	//			has to do with minimize/maximize all call
-	if(element.style.height == smallImageHeight + "px" && instruction != "minimize")
+	if(instruction == "maximize")
 	{
-		element.style.height = "unset";
+		element.style.width = element.naturalWidth + "px"; // "unset";
 	}
-	else if (instruction != "maximize")
+	else if (instruction == "minimize")
 	{
 		// set the images height to the smallHeight value and scale the with to match
-		element.style.height = smallImageHeight + "px";	
-		element.style.width = "auto";	
+		element.style.width = smallImageWidth + "px";	
+	}
+	else // click directly on image
+	{
+		currentWidth = parseInt(element.clientWidth);
+		naturalWidth = parseInt(element.naturalWidth);
+		
+		if( (naturalWidth - currentWidth) < (currentWidth - smallImageWidth) )
+		{
+			element.style.width = smallImageWidth + "px";	
+		}
+		else
+		{
+			element.style.width = element.naturalWidth + "px"; // "unset";
+		}
 	}
 }
 
@@ -339,11 +407,13 @@ function changeImageSize(element, instruction="none")
 	all the flex-sized images in the page */
 function changeAllPicSize(param)
 {
-	var flexImage = encapObject.querySelectorAll('.flexSize, .fs');
+	/****
+	Quarto will add class names to the div around the image 
+	****/
+	var flexImage = encapObject.querySelectorAll('img.flexSize, img.fs');
 	for(i=0; i<flexImage.length; i++)
 	{
-		/* calll changeImageSize passing each flexSize object in an array */
-		changeImageSize(flexImage[i], param)
+		changeImageSize(flexImage[i], param);
 	}
 }
 
@@ -351,12 +421,11 @@ function changeAllPicSize(param)
 function goBackToPrevLocation()
 {
 	leftPos = window.parent.scrollX; 	// get the left position of the scroll
-
-			    
+   
 	prevLocLink = document.getElementById("previousLocMenuItem");
 	prevLocLink.classList.add("disabledLink"); 
 	
-  newScrollTopPosition = window.parent.scrollY;  
+	newScrollTopPosition = window.parent.scrollY;  
 	// scroll the page vertically to the position the page was
 	// at when the link was originally clicked (stored as a global variable)
 	window.parent.scrollTo(leftPos, scrollTopPosition);
@@ -414,24 +483,7 @@ function makeContextMenu(funct, param = null)
 	elemDiv.classList.add("sameWin", "noSelect");
 	elemDiv.appendChild(scTitle);
 	
-	// check if the user is has editing privileges by seeing if the Edit HTML button is there
-	editButton = parent.document.querySelectorAll("button.d2l-button"); // look at all buttons
-	hasEditAccess = false;
-	for(i=0; i<editButton.length; i++)
-	{
-		if(editButton[i].textContent.includes("Edit HTML"))
-		{
-			hasEditAccess = true; 
-		}
-	}
-	
-	if(hasEditAccess == true) // use has editing right -- show Edit option in menu
-	{
-		oldURL = String(window.parent.location);  // otherwise you will edit the URL
-		newURL = oldURL.replace("viewContent", "contentFile"); 
-		newURL = newURL.replace("View", "EditFile?fm=0"); 
-		menuLinks(elemDiv, "Edit Page", function(){window.open(newURL, '_blank')}, "editPage");
-	}
+	// create the menmu items
 	menuLinks(elemDiv, "Return to previous location", goBackToPrevLocation, "previousLocMenuItem", false);
 	menuLinks(elemDiv, "Go to Top of Page", goToTopOfPage, "topMenuItem");
 	menuLinks(elemDiv, "Print/ Save as PDF", function(){document.getElementById("longClickMenu").style.visibility = "hidden"; window.print()}, "printToPDF");
@@ -490,7 +542,7 @@ function checkURLForPos()
 
 function scrollToElement(elementID, outsideCall = false)
 {		
-//	var element = encapObject.querySelector("#" + elementID); 
+	//	var element = encapObject.querySelector("#" + elementID); 
 	var element = document.getElementById(elementID); 
 	var windowHeight = window.parent.innerHeight;// height of the webpage with the lesson
 	var windowScroll = window.parent.scrollY; 	// amount window has been scrolled
@@ -551,7 +603,7 @@ function scrollToElement(elementID, outsideCall = false)
 		enablePrevious();
 	}
 	
-	highLightObject(element, 2000);
+	highLightObject(element);
 }
 
 function highLightObject(element, time=2000)
@@ -664,72 +716,39 @@ function linksToNewWindow()
 		{
 			links[i].target = "_blank";
 		}
-
 	}
 }
 
-function fixIframeSize()
+function getMousePos()
 {
-	iFrame = window.parent.document.getElementsByClassName("d2l-iframe");
-	if (iFrame[0])
-	{
-		/* This might only be a FireFox Developers Edition issue -- 
-			in which case it can be removed */
-		iFrame[0].style.height = document.documentElement.scrollHeight + "px";
-		setTimeout(function() 
-					{
-						iFrame[0].style.height = document.documentElement.scrollHeight + "px";
-					}, 9000);
-	}
-}
-
-function isValid(str)
-{
-	return !/[~`!#$%\^&*+=\[\]\\';,/{}|\\":<>\?]/g.test(str);
-}
-
-function captionFigures()
-{
-	// find all objects with class="caption" (figures)
-	captions = encapObject.querySelectorAll(".caption");
+	mouseX2 = parseInt(event.clientX);
+	mouseY2 = parseInt(event.clientY);
 	
-	for(i=0; i<captions.length; i++)
+	if(clickMode == "click" && fsClick != null && Math.abs(mouseX2-mouseX) > 20)
 	{
-		// get the previous sibling for the caption (probably a <p>)
-		prevSibling = captions[i].previousElementSibling;
-		
-		
-		/*** <br> are an issue -- 
-		  could remove break and take the previous sibling of the break ***/
-		  
-		// don't attach a caption to an already existing figure or another caption
-		//  -- no recursive figure-ing!
-		if(prevSibling &&   // just in case there is no prevSibling (somebody puts a fig in a list...)
-			prevSibling.tagName.toLowerCase() != "figure" &&
-		   prevSibling.tagName.toLowerCase() != "br" &&   // kluge for now
-			!(prevSibling.classList.contains("caption")) )
-		{		
-			// find the first image within the prevSibling (should only be one)
-			//figureObj = prevSibling.querySelector("img");
-
-			// create a new figure caption -- copy old caption
-			figureCaption = document.createElement("figcaption");	
-			figureCaption.classList = captions[i].classList;
-			figureCaption.innerHTML = captions[i].innerHTML; // need ID?
-			figureCaption.id = captions[i].id; // need ID?
-			
-			// create a new figure -- copy from previous sibling and add caption
-			figureElement = document.createElement("figure");
-			
-			// put new figure element at same position as the caption
-			prevSibling.parentNode.insertBefore(figureElement, prevSibling);
-			
-			//figureElement.innerHTML = prevSibling.innerHTML;
-			figureElement.appendChild(prevSibling);
-			figureElement.appendChild(figureCaption);
-			
-			// remove the old caption and the previous element
-			captions[i].parentNode.removeChild(captions[i]);
-		}
+		clickMode = "drag";
+		fsClick.classList.add("resizing");
+		mouseX = mouseX2;  
+		origWidth = parseInt(fsClick.clientWidth); 
 	}
+	if(clickMode == "drag")
+	{	
+		newWidth = (origWidth + mouseX2 - mouseX);
+
+		if(newWidth > 100)
+			fsClick.style.width = newWidth + "px";
+	}	
+}
+
+function cleanupFlexEvent()
+{
+	clearInterval(longClickTimer);
+	window.removeEventListener("mousemove", getMousePos);	
+		
+	if(clickMode == "drag")
+	{
+		fsClick.classList.remove("resizing");
+	}
+	clickMode = null;	
+	fsClick = null;
 }

@@ -56,13 +56,18 @@
   /* add dotted red border to images that can be resized, make solid on hover */
   img.fs, img.flexSize
   {
-    border-color: red;
+    border-color: lime;
     border-style: dotted;
     border-width: 1px;
   }
   img.fs:hover, img.flexSize:hover
   {
     border-style: solid;
+  }
+  .resizing
+  {
+    border-color: red !important;
+    cursor: w-resize;
   }
   .title
   {
