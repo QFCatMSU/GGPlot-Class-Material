@@ -102,6 +102,8 @@ window.addEventListener("mousedown", function(event)
 	// make sure it's a left-click and the MathJax Frame is not showing
 	if(event.which == 1 && !document.querySelector("#MathJax_MenuFrame"))
 	{
+	  // Is there a way to check the new position of the mouse after 350ms?
+	  // event.clientX just gives the position when the mouse was down
 		longClickTimer = setTimeout(function() 
 		{
   		activateElement(event, encapObject.querySelector("#longClickMenu"));
@@ -250,7 +252,7 @@ function createFlexImages()
 		// add a click event that calls changeImageSize() to each flexSize image
 		flexImage[i].addEventListener("click", function()
 												{ changeImageSize(this) }, false); 
-		
+
 		// initalize the flex image to the small size
 		changeImageSize(flexImage[i], "minimize");
 	}
