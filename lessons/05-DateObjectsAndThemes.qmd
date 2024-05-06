@@ -1,0 +1,885 @@
+---
+title: "Date object and themes"
+# special characters for highlighting code : «»
+format:
+  html:
+    include-in-header:
+      - text: |
+         <script>mod=true;</script>
+---
+
+## Purpose
+
+-   Convert values to date format
+
+-   Display Dates in various formats
+
+-   Create a ggplot theme for use in multiple scripts
+
+-   Change defaults for plots/geoms
+
+### Code for the lesson
+
+Scripts for this lesson (save both to the ***scripts*** folder inside your RStudio Project):
+
+-   [lesson script](../scripts/lesson05-Dates-Themes.R) (lesson05-Dates-Themes.R)
+
+-   [theme scripts used in lesson](../scripts/ggplot_theming.R) (ggplot_theming.R)
+
+ 
+
+[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as previous lessons)
+
+-   Save the CSV file, called ***Lansing2016NOAA.csv*** to the ***data*** folder inside your RStudio Project.
+
+ 
+
+In the lesson script, there is one line added to the header code:
+
+``` r
+source(file="scripts/ggplot_theming.r");
+```
+
+This line includes the code for user-created GGPlot themes that will be used later in the lesson
+
+## Get data
+
+Let's again use the weather data from the file LansingNOAA2016.csv and save it to a data frame called ***weatherData*** ( @fig-wholeYearTemp ):
+
+``` r
+weatherData = read.csv(file="data/LansingNOAA2016.csv",
+                       stringsAsFactors = FALSE);
+```
+
+...and look back at one of the plots from last lesson, where we plotted the high, low, and average temperatures for the whole year:
+
+``` r
+  plot1 = ggplot(data=weatherData) +
+    geom_line(mapping=aes(x=«1:nrow(weatherData)», y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(x=«1:nrow(weatherData)», y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    geom_smooth(mapping=aes(x=«1:nrow(weatherData)», y=avgTemp),
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0), # orange
+                linetype=4,
+                linewidth=2,
+                fill="lightgreen") +
+    theme_bw() +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot1);
+```
+
+![High, low, and average temperature throughout the year.](images/GGP_1-04b_TempPlot.png){#fig-wholeYearTemp .fs}
+
+### Creating a date value
+
+On the x-axis we kind of cheated and used the row number to represent the day (***1:nrow(weatherData)***) instead of the actual date.  This is because displaying dates in GGPlot is tricky.
+
+ 
+
+The first thing to notice is that, while ***weatherData*** has a column named ***date***, the column is not actually in ***Date*** format.  The ***date*** column is in ***character*** (or string) format:
+
+``` {.r tab="Console"}
+> typeof(weatherData$date)
+[1] "character"
+```
+
+Looking at the ***date*** column in a Viewer tab can see the date is not properly formatted (mostly because it does not have a year):
+
+![weatherData data frame, note that the date column has only the month and day (no year)](images/GGP-01-04-DateWithoutYear.PNG){#fig-dateMisformat .fs}
+
+GGPlot (and R in general) will only treat a data column as Date values if:
+
+-   the values in the column are properly formed (i.e., the values have a month, date, and year) and
+
+-   the column is explicitly declared as a Date variable. 
+
+ 
+
+Otherwise, GGPlot will treat the column as string (character) values.
+
+## Adding the year to the date values
+
+We are going to create a new column in ***weatherData*** that has properly formatted date values.  Since[it is generally not a good idea to directly modify values in a data frame]{.hl}, we are going to make a copy of the ***date*** column, called ***dateYr***, and modify the ***dateYr*** column instead.
+
+ 
+
+This process will be broken into four steps: 
+
+1.  Save the ***date*** column in ***weatherData*** to a vector
+
+2.  Append the year **2016** to all values in the vector
+
+3.  Convert the vector into a ***Date*** vector
+
+4.  Save the vector back to the data frame as the column ***dateYr***
+
+ 
+
+[Note: There are quicker ways to do this but it is important to understand the individual steps.]{.note}
+
+### Save the date column to a vector
+
+There are multiple ways in R to save a column in a data frame to a vector.  Three ways are given below, the last two are commented out but they will produce the same results:
+
+``` r
+#### Part 1: Add year to date values ####
+# a) save the date vector from the data frame to the variable theDate
+theDate1 = weatherData$date;         # get all values from the dates column
+# theDate1 = weatherData[["date"]];  # equivalent to previous line\
+# theDate1 = weatherData[ , "date"]; # equivalent to previous 2 lines in base R
+```
+
+I choose to use the first method, which uses ***\$*** to subset ***weatherData***, for two reasons:
+
+1.  When you type in ***\$*** after ***weatherData***, RStudio will suggest a list of column names from ***weatherData***
+
+2.  ***\$*** works for both R data frames and the TidyVerse version of a dataframe called a [tibble]{.hl}
+
+[Extension: R data frames and TidyVerse tibbles]
+
+ 
+
+If we look at the ***Environment***, we can see ***theDate1*** is a character vector with 366 values:
+
+``` {.r tab="Console"}
+theDate1 chr[1:366] "01-01" "01-02" "01-03" ...
+```
+
+[Extension: Getting a range of values in a column]
+
+### Append the year to the date
+
+Now we want to append, or ***paste***,the year on to every date value in the string vector ***theDate1***. 
+
+We will use ***paste()*** and there are three arguments to set:
+
+1.  The initial values: ***theDate***
+
+2.  The value being appended or pasted: **"-2016"**
+
+3.  The separator between initial and pasted values: in this case, an empty string, ""
+
+    -   [note: the default value for **sep** is a space]{.note}
+
+``` r
+# append (paste) "-2016" to all values in theDate1
+theDate2 = paste(theDate1, "-2016", sep="");
+```
+
+[Extension: more about paste()] and the reason why argument names are not used for the first two values**\
+**
+
+Now every value has a year attached to it:
+
+::: {#fig-dateValues}
+``` {.r tab="Environment"}
+theDate2    chr[1:366] "01-01-2016" "01-02-2016" "01-03-2016" ...
+```
+
+Pasting the year to all values in the vector
+:::
+
+### Convert the vector into a date vector
+
+***theDate2*** has values that look like proper dates but R still sees the values in ***theDate2*** as strings (or ***chr***) [*not **Date***]{.hl}.
+
+ 
+
+To convert the values to ***Date***, values we need to tell R:
+
+-   that the vector contains dates and
+
+-   how the date values are formatted
+
+ 
+
+We can do both using ***as.Date()***, and modifying two arguments:
+
+1.  the object we want to convert to dates (in this case, the vector ***theDate2***)
+
+2.  the ***format*** that the dates are in, which is: **%m-%d-%y**
+
+    -   ***%m***: 2-digit month (01 through 12)
+
+    -   **-**: dash used to separate month from day
+
+    -   ***%d***: 2-digit date (01 through 31)
+
+    -   **-**: dash used to separate day from year
+
+    -   ***%Y***: 4-digit year (2016) 
+
+        -   [Trap: using the wrong argument for year] (lowercase **y** vs. capital **Y**)
+
+``` r
+# c) Save the values in Date format
+theDate3 = as.Date(theDate2, format="%m-%d-%Y");
+```
+
+Now, R recognizes the values in the vector as ***Dates***:
+
+``` {.r tab="Environment"}
+theDate3    Date[1:366] format: "2016-01-01" "2016-01-02" "2016-01-03" ...
+```
+
+[note: The **Environment** always shows **Date** values in R's standard date format (YYYY-DD-MM),  which is not the same as the format we used to create the date.]{.note}
+
+#### Date formats and conversion specifications
+
+The official term for the representation of the different parts of the ***Date*** (e.g., ***%m***, ***%d***, ***%Y***)is [conversion specifications,]{.hl} which you can find here under the ***details*** section: <https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html>
+
+ 
+
+This includes all the different specification for time (e.g., hours, minutes), most of which are not used in this lesson.  [A more concise conversion specification sheet for this lesson, which only includes specifications for dates can be found here.](https://www.geeksforgeeks.org/how-to-use-date-formats-in-r/)
+
+ 
+
+The ***conversion specifications*** allow you to generalize the different components of the date -- and all generalized components start with a ***%***.  When you declare the format of a datetime string, you replace the date and time components of the string with ***conversion specifications*****.**  For instance, **April 15, '22** would have the conversion specification:  "**%B %d, '%y"** where:
+
+-   ***%B***: Full month name
+
+-   ***%d***: 2-digit date 
+
+-   ***%y***: 2-digit year 
+
+ 
+
+The conversion specification has the Date components (month, date, and year) and the other characters in the string (multiple spaces, comma, and apostrophe).
+
+ 
+
+So, **April - 15 - 22** would have the conversion specification: "**%B - %d - %y".**
+
+ 
+
+Some other specifications:
+
+-   ***%m***: Month -- given as a number between 00 and 12
+
+-   ***%a***: Abbreviated weekday (Mon, Tue, Wed...)
+
+-   ***%y***: Last two digits of the year
+
+-   ***%Y***: Full year
+
+### Save the date vector to the data frame
+
+We have the vector in ***Date*** format, now we need to save the values back to a new column in the data frame.  This is pretty much the reverse of the first step and, again, there are multiple ways to do it -- I present three ways and comment out the last two.
+
+ 
+
+In each case, we are saving ***theDate*** to the column in ***weatherData*** called ***dateYr***:
+
+``` r
+# d) Save theDate back to the data frame as a new column
+weatherData$dateYr = theDate3;
+# weatherData[["dateYr"]] = theDate3; # equivalent to previous line
+# weatherData[, "dateYr"] = theDate3; # equivalent to previous 2 lines using data frames
+```
+
+![The data frame now has a new column, dateYr, with properly formatted dates](images/GGP-01-04-SaveVectorToDF.PNG){#fig-properDate .fs}
+
+ 
+
+We now have a column with properly formatted date values, we can go back to plotting the data....
+
+## Using date values
+
+The only change from the first plot is that we are using the new ***dateYr*** column, which is in ***Date*** format, instead of using row numbers for the x-axis mappings:
+
+``` r
+#### Part 2: Use Dates on x-axis ###
+  plot2 = ggplot(data=weatherData) +
+    geom_line(mapping=aes(x=«dateYr», y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(x=«dateYr», y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    geom_smooth(mapping=aes(x=«dateYr», y=avgTemp),
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0), # orange
+                linetype=4,
+                lenwidth=2,
+                fill="lightgreen") +
+    theme_bw() +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot2);
+```
+
+![The x-axis now has date values instead of numeric](images/GGP_1-04b_DatesInPlot.png){#fig-datesInPlot .fs}
+
+### The repeated date values
+
+Since all three plots, or [***geoms*** ]{.hl}as GGPlot calls them, use ***dateYr*** for the x-axis, we can move the x-axis mapping to ***ggplot().*** This says that all ***geoms*** will use ***dateYr*** as the ***x*** mapping.  and we do not have to declare an x-mapping in the individual ***geoms***:
+
+``` r
+  #### Part 3: Move x to canvas --
+  ###   only works because EVERY geom uses dateYr
+  plot3= ggplot(data=weatherData, «mapping=aes(x=dateYr)») +  # x mapping here
+    geom_line(mapping=aes(y=maxTemp),     # no x mapping here  
+              color="violetred1") +
+    geom_line(mapping=aes(y=minTemp),     # no x mapping here
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    geom_smooth(mapping=aes(y=avgTemp),   # no x mapping here
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0), # orange
+                linetype=4,
+                linewidth=2,
+                fill="lightgreen") +
+    theme_bw() +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot3);
+```
+
+And the plot is exactly the same.  [Moving the **x**-mapping to **ggplot()** works because the x-axis mapping is the same for every **geom** in the canvas.]{.hl}
+
+![Moving the x-axis to the canvas does not change the plot](images/GGP_1-04b_DatesInPlot.png){#fig-datesXMapping .fs}
+
+### Using scale component to modify date axis (proper GGPlot method)
+
+GGPlot, by default, displays ***Date*** values as abbreviated months and four-digit years (e.g., Jan 2016, Apr 2016) as shown in @fig-datesXMapping .
+
+ 
+
+If you want to change how the dates are displayed, you need to use ***scale*** components and conversion specifications.  ***scale*** components, which we will explore much more in the next lesson, are used in GGPlot to modify the visual aspects of the axes without changing the data.  In this case, we are visually changing the way dates are displayed.
+
+ 
+
+The scale component to modify ***date*** values on the ***x***-axis is: ***scale_x_date***
+
+![scale_x_date Help page -- scroll down to see a description of the subcomponents](images/GGP_1-04b_scale_x_date_help.jpg){#fig-scaleHelp .fs}
+
+ 
+
+And we are going to modify two subcomponents in ***scale_x_date***:
+
+-   ***date_breaks***: The distance between axis lines -- we will use 5 weeks
+
+-   ***date_labels***: The formatting of the date -- using conversion specifications
+
+    -    we will use abbreviated months (***%b***), two-digit days (***%d***), and two-digit years (***%y***) (e.g., **Apr 15, '22**)
+
+``` r
+ #### Part 5: Convert date format and date breaks
+  plot5= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+    geom_line(mapping=aes(y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0), # orange
+                linetype=4,
+                linewidth=2,
+                fill="lightgreen") +
+    «scale_x_date(date_breaks = "5 weeks",»
+                «date_labels =  "%b %d, '%y") +  # uses conversion specifications»
+    theme_bw() +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot5);
+```
+
+![The x-axis has formatted dates at 5-week intervals](images/GGP_1-04b_Usingscale_x_date.png){#fig-scaleDate .fs}
+
+## theme changes (outside the plots)
+
+Now we are going to use ***theme()*** component to modify the canvas area. [Remember that **theme** needs to come after **theme_bw()** because **theme_bw()** will override all previous **theme** changes:]{.note}
+
+``` r
+  #### Part 6: Add theme component
+  plot6= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+    geom_line(mapping=aes(y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0), # orange
+                linetype=4,
+                linewidth=2,
+                fill="lightgreen") +
+    scale_x_date(date_breaks = "5 weeks",
+                 date_labels =  "%m/%d") +
+    theme_bw() +
+    «theme»(panel.background = element_rect(fill="grey25",
+                                          linewidth=2, color="grey0"),
+          panel.grid.minor = element_line(color="grey50", linetype=4),
+          panel.grid.major = element_line(color="grey100"),
+          plot.background = element_rect(fill = "lightgreen"),
+          plot.title = element_text(hjust = 0.45),
+          plot.subtitle = element_text(hjust = 0.42),
+          axis.text = element_text(color="blue", family="mono", size=9)) +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot6);
+```
+
+And our new themed plot looks like this:
+
+![Our new (questionably) themed plot](images/GGP_1-04b_ThemedPlot.png){#fig-themedPlot .fs}
+
+### The Element changes we made 
+
+The subcomponents we changed in ***theme*** were:
+
+-   ***panel.background***: the background inside the axis lines (rectangular element)
+
+-   ***panel.grid.minor***: grid lines for the major axis (line element)
+
+-   ***panel.grid.major***: grid lines for the minor axis (line element)
+
+-   ***plot.background***: the background outside the plot area (rectangular element)
+
+-   ***plot.title:*** the text that represents the title of the graph (text element)
+
+-   ***plot.subtitle:*** the text that represent the subtitle of the graph (text element)
+
+-   ***axis.text:*** the text that represents the labels on the x and y axes (text element)
+
+ 
+
+We talked about the first three subcomponents in the previous lesson, I will cover a little more about the last four subcomponents...
+
+ 
+
+***plot.background*** is set to a rectangular element (***element_rect***) with argument:
+
+-   ***fill = "lightgreen"***: set the background color outside the plot area to light green
+
+ 
+
+***plot.title*** is set to a text element (***element_text***) with argument:
+
+-   ***hjust= 0.45***: sets the horizontal justification of the text to almost the center
+
+ 
+
+[note: ***hjust*** has values from ***0.0*** (left justified text) to ***1.0*** (right justified text) and ***0.5*** is centered]{.note}
+
+ 
+
+***plot.subtitle*** is set to a text element (***element_text***) with argument:
+
+-   ***hjust= 0.42***: set the horizontal justification of the text to line up underneath the title
+
+ 
+
+***axis.text*** is set to a text element (***element_text***) that represents the text labels on the x and y axes. 
+
+We change the arguments:
+
+-   ***color= "blue"***: set the text color to **blue**
+
+-   ***family="mono"***: set the font type to **mono**
+
+-   ***linewidth*****=9:** set the font size to **9** pixels
+
+ 
+
+If you want to individually change the x-axis text style or y-axis text style you can use the components: ***axis.text.x*** and ***axis.text.y***
+
+ 
+
+[Note: Changing the font family to an uncommon font can cause issues because different computers have different fonts installed.]{.note}
+
+## Saving the theme for later use
+
+Let's say you like this theme and want to use it in other ggplots in other scripts.  To do this, you create your own theme in a separate script file.
+
+ 
+
+In the ***scripts*** folder, I created a new script file named ***ggplot_theming.R*** and inside the script file:
+
+1.  create a function named **theme_ugly()**
+
+2.  create an object that contains the new theme (I called the object ***newTheme***)
+
+3.  set ***newTheme*** to the ***theme*** changes
+
+    -   In this case, it is ***theme_bw()*** with seven modified subcomponents (just like in @fig-themedPlot)
+
+4.  return ***newTheme*** to the caller of the function
+
+``` r
+#### 1) create a function with the name of your theme
+«theme_ugly = function()»    
+{
+  #### 2,3) Create an object and include everything from theme_bw()  
+  «newTheme» = theme_bw() +    
+
+  ## then modify theme_bw() with the seven subcomponents below
+    theme(panel.background = element_rect(fill="grey25",
+                                          linewidth=2, color="grey0"),
+          panel.grid.minor = element_line(color="grey50", linetype=4),
+          panel.grid.major = element_line(color="grey100"),
+          plot.background = element_rect(fill = "lightgreen"),
+          plot.title = element_text(hjust = 0.45),
+          plot.subtitle = element_text(hjust = 0.42),
+          axis.text = element_text(color="blue", family="mono", size=9));
+  
+  ### 4) Return newTheme to the caller
+  #   You will often see this step skipped -- which is a bad programming practice!
+  return(«newTheme»);
+}
+```
+
+### Using themes from another script
+
+To use ***theme_ugly(),*** we need to include the theme's script file in our current script file:
+
+``` r
+  source(file="themes/ggplot_theming.r");
+```
+
+***theme_ugly()*** is a function that contains information about a theme and returns it to the caller.  We can use ***theme_ugly()*** in our ggplot as if it were any other theme:
+
+``` r
+  #### Part 7: Use a theme saved elsewhere
+  plot7= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+    geom_line(mapping=aes(y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0), # orange
+                linetype=4,
+                linewidth=2,
+                fill="lightgreen") +
+    scale_x_date(date_breaks = "5 weeks",
+                 date_labels =  "%m/%d") +
+    «theme_ugly() +  # function call to our new theme»
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot7);
+```
+
+And the plot looks the same as the last plot (***theme_bw*** with seven modified components):
+
+![Same plot but using theme_ugly() from a script file](images/GGP_1-04b_ThemedPlot.png){#fig-themedPlotFromFile .fs}
+
+## Changing styles on plots/ geoms
+
+The function ***theme_ugly()*** returns a ***theme()*** component to the caller.
+
+ 
+
+The problem is that [**theme()** cannot be used to change styles on plots (i.e., **geoms**)]{.hl}. However, if you are developing a theme that you want to use across all of your plots, there is a good chance you want to define styles for the plots/***geoms*** (e.g., set the default color for ***geom_line***, set a default shape for points in a ***geom_point***, set the background color of a ***geom_boxplot***).
+
+ 
+
+Changing the default style for ***geoms*** is tricky in GGPlot because it involves changing the default behavior of GGPlot
+
+### Changing geom behavior
+
+The function ***update_geom_defaults*** is used to change the default style for ***geoms*** in GGPlot.
+
+I have created a function in ***ggplot_theming.r*** called ***modifyGeoms()***, which calls ***update_geom_defaults*** three time to modify three different ***geoms*** (***line***, ***point***, and ***smooth***):
+
+``` r
+modifyGeoms = function()
+{ 
+  update_geom_defaults("line", list(color = "yellow"));
+  update_geom_defaults("point", list(color = "green"));
+  update_geom_defaults("smooth", list(color = "red",
+                                      linetype=4,
+                                      linewidth=2,
+                                      fill="lightblue"));
+}
+```
+
+***update_geom_default*** needs to be called before you call ***ggplot()***.  When ***modifyGeoms()*** is called, the default color of ***geom_line***, ***geom_point*** will be changed and the the default ***color***, ***linetype***, ***linewidth***, and fill for ***geom_smooth*** will be changed.
+
+``` r
+  #### Part 7: Include geom defaults in theme 
+  «modifyGeoms();»   # function that changes the geoms
+  
+  plot7= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+    geom_line(mapping=aes(y=maxTemp)) +
+    geom_line(mapping=aes(y=minTemp)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess") +
+    scale_x_date(date_breaks = "5 weeks",
+                 date_labels = "%m/%d") +
+    theme_ugly() +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot7);
+```
+
+And see the changes made by the ***theme*** and the ***update_geom_defaults*** functions in ***theme_UglyAdv()***.  We can still change the color of the lines as we did earlier (@fig-themedPlotFromFile) -- all we did here was [change the default color]{.hl} of the lines to yellow.
+
+![A plot that uses the geom and theme changes](images/GGP_1-04b_GeomChanges.png){#fig-geomChanges .fs}
+
+### Changes to geoms are persistent
+
+Once ***update_geom_default()*** is called, all subsequent ***ggplot()*** will adapt the new defaults in your R session.  This means that every subsequent GGPlot will default to yellow lines in ***geom_line***, green points in ***geom_point***, and four default changes in ***geom_smooth***.
+
+ 
+
+For the following code, ***theme_ugly()*** and ***modifyGeoms()*** has been removed:
+
+``` r
+  #### Part 8: The defaults in GGPlot have been changed and will persist
+  plot8= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+    geom_line(mapping=aes(y=maxTemp)) +
+    geom_line(mapping=aes(y=minTemp)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess") +
+    scale_x_date(date_breaks = "5 weeks",
+                 date_labels =  "%m/%d") +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot8); 
+```
+
+The theme has been removed but the changes to the ***geoms*** are still there:
+
+![The changes to the geoms are persistent](images/GGP-1-05_PersistentChanges.png){#fig-persistentGeoms .fs}
+
+### Changing back to default behavior
+
+The easiest way to change back to the default geom behavior is to reload the ggplot package:
+
+``` r
+detach("package:ggplot2", unload = TRUE);   # unloads ggplot package from session
+library(package="ggplot2");                 # reload package ggplot
+```
+
+-   The first line unloads the ggplot2 package from the session
+
+-   The second line reloads the GGPlot package (effectively resetting GGPlot back to defaults).
+
+ 
+
+Now the same ***ggplot()***: 
+
+``` r
+  plot9= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+    geom_line(mapping=aes(y=maxTemp)) +
+    geom_line(mapping=aes(y=minTemp)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess") +
+    scale_x_date(date_breaks = "5 weeks",
+                 date_labels =  "%m/%d") +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot9); 
+```
+
+...will go back to default behaviors:
+
+![The geoms are back to their default properties](images/GGP-1-05_DefaultGeoms.png){#fig-defaultGeoms .fs}
+
+## Application
+
+1.  Create a script file in your Project's ***script*** folder called ***app05.r***. 
+
+2.  Convert this string values into a Date vector: 
+
+    -   stringValues = c("01, January-2019", "02, January-2019", "03, January-2019", "04, January-2019", "05, Januar-2019")
+
+3.  Create a column in ***weatherData*** named ***newDate*** that has the dates from the ***date*** column in Date format (just like ***dateYr*** in the lesson)
+
+4.  Make a GGPlot canvas with 4 geoms
+
+    -   scatterplot of ***heatDays*** vs ***newDate***
+
+    -   scatterplot of ***coolDays*** vs ***newDate***
+
+    -   linear regression of ***heatDays*** vs ***newDate***
+
+    -   linear regression of ***coolDays*** vs ***newDate***
+
+5.  On the GGPlot from #4:
+
+    -   display dates in this format: (28-Jun-'16)
+
+    -   ***heatDay*** - change to red points and red regression line
+
+    -   ***coolDays*** - change to blue points and blue regression line
+
+6.  Using ***update_geom_defaults(),***on the ggplot from #4
+
+    -   change the point shape to triangles and doubles the size of the points
+
+    -   don't forget to unload the defaults
+
+7.  Create an external theme that:
+
+    1.  right justify the title and subtitle
+
+    2.  make all fonts (titles and labels) brown and arial
+
+    3.  angles the x and y axis test 45 degrees
+
+8.  Add the external theme to the ggplot from #4.
+
+9.  Create a second ggplot that has the same four ***geoms*** but has a legend that contains ***heatDays*** and ***coolDays***
+
+    -   note: you will not be able to maintain the blue and red colors (that will be next lesson)
+
+ 
+
+D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What is a way you can apply the material in this lesson towards your research or area of study?
+
+3.  What are some things you would like to learn related to, but not covered in, this lesson?
+
+## Extension: Getting a range of values in a column
+
+``` r
+weatherData[3, "date"];   # get the 3rd value from the date column
+weatherData[3:7, "date"];   # get the 3rd through 7th values from the date column
+weatherData[seq(from=2, by=2), "date");   # get all even values in the date column
+```
+
+## Trap: Using the wrong argument for year
+
+***%Y*** means that the year is in the 4-digit format, whereas
+
+***%y*** means that the year is in the 2-digit format
+
+ 
+
+If you put in the wrong argument value (lowercase ***y*** instead of uppercase ***Y***):
+
+``` r
+theDate = as.Date(theDate, format="%m-%d-%y");
+```
+
+then you will get an unusual result:
+
+![The year is now 2020 instead of 2016](images/GGP-01-04-PastingYearError.PNG){#fig-wrongYear .fs}
+
+ 
+
+**%y** tells R to take the first two values of the number and make that the year.  The first two values of the year **2016** is **20** -- so the **16** is dropped.  R then assumes we are in the 21^st^ century so R assumes the year is 20**20**.
+
+## Extension: more about paste()
+
+The help page can be accessed in RStudio by going to the ***Help*** tab in the lower-left corner and searching for **paste**.
+
+ 
+
+If we go to the help page for ***paste()***, it gives the usage for ***paste()*** as:
+
+``` r
+paste (..., sep = " ", collapse = NULL)
+```
+
+***( ..., )*** means that ***paste()*** will accept any number of initials values -- these are the values that ***paste()*** will attempt to paste together. [ These values do not have a argument name. ]{.hl} When using ***paste()***, you must use argument names for ***sep*** and ***collapse***, otherwise ***paste()*** will see these value as part of the initial set of values to be pasted together.  There are many functions in R that accept an indeterminate number of unnamed (i.e., no argument name) values at the beginning of a function.
+
+ 
+
+***sep*** = " " means the default separator value is one space.  So, if you do not set ***sep***, you will get one space between all the values that ***paste()*** is pasting together.
+
+## Extension: R data frames and tidyverse tibbles
+
+In this lesson I introduce three ways to access a column from a data frame and save it to a vector:
+
+``` r
+#### Part 1: Add year to date values ####
+# a) save the date vector from the data frame to the variable theDate
+theDate = weatherData$date;         # get all values from the dates column
+# theDate = weatherData[["date"]];  # equivalent to previous line
+# theDate = weatherData[ , "date"]; # equivalent to previous 2 lines in base R
+```
+
+All three of these methods are functionally the same on R data frames but they are functionally different if you are working with ***tibbles***, which is a modern take on data frames used by packages in the TidyVerse.
+
+ 
+
+The first and second methods are the same in R-base and TidyVerse but the third method:
+
+``` r
+theDate = weatherData[ , "date"];   # equivalent to previous 2 lines in base R
+```
+
+will save the ***date*** column *as a one-column tibble* as opposed to a vector.
+
+ 
+
+The first method also has the advantage that as soon as you type ***weatherData\$*** in RStudio, RStudio will give you suggestions. 
+
+## Formatting the date value (improper GGPlot method)
+
+Let's say you want the format to be two-digit month/ two-digit day, so ***April 15*** would be ***04/15***.
+
+You could create a formatted vector from the ***dateYr*** column:
+
+``` r
+dateYrFormatted = format(weatherData$dateYr, format="%m/%d");
+```
+
+And ***dateYrFormatted*** has the dates formatted how you want:
+
+``` {.r tab="Environment"}
+dateYrFormatted    chr[1:366] "01/01" "01/02" "01/03" ...
+```
+
+But, ***dateYrFormatted*** is still a ***chr*** (string) value:
+
+``` r
+  plot4= ggplot(data=weatherData, mapping=aes(x=«dateYrFormatted»)) +
+    geom_line(mapping=aes(y=maxTemp),
+              color="violetred1") +
+    geom_line(mapping=aes(y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess",
+                color=rgb(red=1, green=0.5, blue=0), # orange
+                linetype=4,
+                linewidth=2,
+                fill="lightgreen") +
+    theme_bw() +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot4);
+```
+
+When you try to plot this, you will get the warning:
+
+::: {#fig-characterDates}
+``` {.r tab="Console"}
+geom_path: Each group consists of only one observation. Do you need to adjust the group aesthetic?
+```
+
+Using the "character" date values
+:::
+
+ 
+
+What happened is that GGPlot saw the 366 dates as discrete values and GGplot is trying to show all 366 values on the x-axis (hence, the x-axis looks very crowded).  Each x-axis mapping is associated with one point from the y-axis mapping (observation) -- and one point cannot make a line so nothing is shown on the plot.

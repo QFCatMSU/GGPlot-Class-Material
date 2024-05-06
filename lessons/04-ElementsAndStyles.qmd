@@ -28,7 +28,7 @@ format:
 
 -   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
 
--   [It is best to use the operating system's File Explorer/Finder]{.hl}to move the CSV file to the proper folder.
+-   [It is best to use the operating system's File Explorer/Finder]{.hl} to move the CSV file to the proper folder.
 
 ## Styling elements of a plot
 

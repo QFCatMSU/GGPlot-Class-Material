@@ -5,20 +5,19 @@ project:
   - lessons/02-Components.qmd
   - lessons/03-MappingAndAesthetics.qmd
   - lessons/04-ElementsAndStyles.qmd
+  - lessons/05-DateObjectsAndThemes.qmd
   - lessons/Info.qmd
   - lessons/test.qmd
   type: website
   output-dir: docs
-#  title: "Graphing With GGPlot"  -- ugly in sidebar!
 website:  
   bread-crumbs: false
+#  back-to-top-navigation: true
   sidebar:
-    # background: purple
-    # foreground: yellow
-    style: "floating"
     search: true
-    contents:
-      - section: "Graphing With GGPlot"
+    collapse-level: 1   # does not work...
+    contents: 
+      - section: "Graphing With GGPlot"  
         contents:
           - text: "Info"
             file: lessons/Info.qmd
@@ -32,10 +31,15 @@ website:
             file: lessons/03-MappingAndAesthetics.qmd
           - text: "Elements And Styles"
             file: lessons/04-ElementsAndStyles.qmd
+          - text: "Date Objects And Themes"
+            file: lessons/05-DateObjectsAndThemes.qmd
 format:
   html:
+    page-layout: full
     css: "presStyle.css"
     toc: true
+    toc-title: Contents
+    toc-location: left
     fig-align: left
     theme: default
     fontsize: 15px
@@ -47,6 +51,13 @@ format:
           <script>mod=true;</script>
           <script src="module.js"></script>
 editor: visual
+
+
+
+
+
+
+
 # title-slide-attributes:
 #     data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
 #     data-background-size: "40%"

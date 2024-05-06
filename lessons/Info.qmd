@@ -1,5 +1,6 @@
 ---
 title: "Info"
+# special characters for highlighting code : «»
 ---
 
 ``` {.r tab="Console"}
@@ -11,6 +12,10 @@ library(package=ggplot2);             # include all GGPlot2 functions
 ### Issues
 
 #### Assets
+
+-   non-breaking spaces??
+
+-   collapse class lesson list
 
 -   mod scripts that have highlighting?
 
@@ -96,7 +101,7 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
 -   \<done – href -\> onclick breaks this!\> less aggressive mouseover on figures
 
--   \<unsure\> resize flexsize in editor (this is challenging...)
+-   \<done\> resize flexsize in editor (this is challenging...)
 
 -   \<done\> figure coloring in editor
 
@@ -134,7 +139,7 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
 -   REnder in a project will Render all open QMD in the yml file
 
-    -   don't forget to add scripts to the yaml
+    -   **don't forget to add scripts to the yaml**
 
 ### My Infos
 
@@ -143,3 +148,13 @@ library(package=ggplot2);             # include all GGPlot2 functions
 -   Don't think you can have a filename start with "\_"
 
 -   Sometimes have to reopen RStudio to get rendering to open in a browser
+
+    -   Restart R also works
+
+-   Copy from editor mode but use codeblocks from regular mode
+
+-   Copying in \## at beginning of code line creates headers in Quarto
+
+    -   best to create blank codeblock and then copy code to it
+
+-   
