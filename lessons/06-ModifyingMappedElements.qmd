@@ -1,0 +1,593 @@
+---
+title: "Modifying Mapped Elements"
+# special characters for highlighting code : «»
+format:
+  html:
+    include-in-header:
+      - text: |
+         <script>mod=true;</script>
+---
+
+## Purpose
+
+-   Ordering values in a vector
+
+-   Customizing properties for both discrete and continuous variables
+
+-   Creating color gradients
+
+### Code for the lesson
+
+[The script for the lesson](../scripts/lesson06-ModifyMappedElements.R)
+
+-   Save the R file, called ***lesson06-ModifyingMappedElements.R*** to the ***scripts*** folder inside your RStudio Project
+
+ 
+
+[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as previous lessons)
+
+-   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project.
+
+## Styling elements of a plot
+
+Let's start with a plot from a few lessons ago where we mapped ***color*** to season and ***shape*** to precipitation:
+
+``` r
+  #### Part 1: Mapping point size and color ####
+  plot1 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, color=season, size=precip2)) +
+    theme_bw() +
+    labs(title = "Humidity vs. Temperature",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)",  
+         y = "Humidity (\u0025)");     
+  plot(plot1);
+```
+
+... and the resulting plot with the default mapped colors and default sizes for season and precipitation:
+
+![Mapping color and size to points on a scatterplot](images/GGP-1-05-Mapped.png){#fig-defaultMap .fs}
+
+## Changing order of the seasons
+
+The season are given in alphabetical order, which is the default for GGPlot when no order is given. Also, the colors are probably not the ones we would choose to represent the seasons.
+
+### Ordering (factoring) the season
+
+We need to change the order outside of the GGPlot and we do that by categorizing the season column using ***factor()***:
+
+``` r
+  #### Part 2: Factoring the values in season ####
+  seasonOrdered = factor(weatherData$season,
+                         «levels»=c("Spring", "Summer", "Fall", "Winter"));
+```
+
+***factor()*** creates an ordering to the values in a vector and the order is determined by the argument ***levels***.
+
+ 
+
+In this case we have:
+
+-   taken the column ***season*** from ***weatherData***
+
+-   establish an order to the values that goes: spring, summer, fall, and winter
+
+-   saved the results to the vector ***seasonOrdered***
+
+ 
+
+If you look in the ***Environment*** tab, ***seasonOrdered*** is a ***Factor w/ 4 levels "Spring"...***
+
+ 
+
+If you put ***seasonOrdered*** in the ***Console*** tab, you see the values are the same as ***season***:
+
+``` {.r tab="Console"}
+> seasonOrdered
+  [1] Winter Winter Winter Winter Winter Winter Winter Winter Winter
+ [10] Winter Winter Winter Winter Winter Winter Winter Winter Winter ...
+```
+
+With the ***levels*** given at the end:
+
+``` {.r tab="Console"}
+[353] Fall   Fall   Fall   Fall   Winter Winter Winter Winter Winter Winter Winter
+[364] Winter Winter Winter
+«Levels: Spring Summer Fall Winter»
+```
+
+***Levels*** is [metadata ]{.hl}in the vector ***seasonOrdered*** -- or information about the data.
+
+### Using the factored vector in GGPlot
+
+Now we will use the factored value ***seasonOrdered*** instead of ***season*** in ***geom_point()***:
+
+``` r
+  # Use the factored values in the plot
+  plot2 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum,
+                            color=«seasonOrdered», size=precip2)) +
+    theme_bw() +
+    labs(title = "Humidity vs. Temperature",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)",  
+         y = "Humidity (\u0025)");     
+  plot(plot2);
+```
+
+And GGPlot recognizes the new order of the seasons:
+
+![Using a factored value in GGPlot](images/GGP1-05-orderingValues.png){#fig-factorVal .fs}
+
+## Appending components to a saved plot
+
+We have already dealt with changing the way mapped values get presented on the ***x*** and ***y*** mapping.  This was done using ***scale\_\*\_continuous*** components.
+
+ 
+
+The following code will change the ***limits*** of the ***x*** and ***y*** axes and set the ***breaks***:
+
+``` r
+    scale_x_continuous(limits=c(15,85),
+                       breaks = c(30,50,70)) +
+    scale_y_continuous(limits=c(40,100),
+                       breaks = c(50,70,90))
+```
+
+We could create another plot that contains all the code from ***plot2*** with the above code attached.  Or, we can use ***plot2***, which is a saved variable , add the above ***scale\_\*\_continuous*** components to it, and then save the results to a new plot variable, ***plot3***:
+
+``` r
+#### Part 3: Appending scale components to a previous plot ####
+«plot3 = plot2» +    # get the components from plot2
+    scale_x_continuous(limits=c(15,85),           # add these components
+                       breaks = c(30,50,70)) +
+    scale_y_continuous(limits=c(40,100),
+                       breaks = c(50,70,90));
+plot(plot3);       # plot3 combines plot2 components with the new components
+```
+
+And ***plot3*** will contain all the components from ***plot2*** along with the ***scale\_\*\_continuous*** components (the change in axes ***values*** and ***breaks***):
+
+![Appending component to saved plots](images/GGP-1-05-AppendComponents.png){#fig-appending .fs}
+
+ 
+
+[Note: The warning you get in the **Console** when you plot **plot3** is because the new axes limits cuts off 11 (of 366) values from the plot]{.note}
+
+``` {.r tab="Console"}
+>   plot(plot3);
+Warning message:
+Removed 11 rows containing missing values
+(geom_point). 
+```
+
+## Changing color and size mapped properties
+
+Now we want to change the:
+
+-   colors of the points that maps the ***seasonOrdered*** and
+
+-   the size of the points that maps the ***precipitation***
+
+ 
+
+For all mapped elements, [there is a scale component](https://ggplot2.tidyverse.org/reference/#section-scales) that can modify the properties of the mapped element.
+
+ 
+
+The [scale components reference page](https://ggplot2.tidyverse.org/reference/#section-scales) is a bit intimidating at first!
+
+ 
+
+Most scale components have this naming format:
+
+-   **scale\_\<mapped_property\>\_\<type_of_values\>**
+
+ 
+
+So, if you want to change the ***color*** or ***size*** mapping the component will be:
+
+-   **scale_color\_\<type_of_values\>**
+
+-   **scale_size\_\<type_of_values\>**
+
+ 
+
+The third part is a little tricky and not consistent in GGPlot:
+
+-   ***color*** is mapped to the categorical/discrete values (***season***) so we use ***scale_color_manual*** to change the four values
+
+    -   [note: you can map ***color*** to a continuous value as we will see later in this lesson]{.note}
+
+-   ***size*** is mapped to a continuous value (***precipitation***), and you can use either ***scale_size*** or ***scale_size_continuous*** to change the size properties
+
+    -   ***scale_size_continuous*** is not listed on the scale_components page, but it should be
+
+ 
+
+Again, we are just going to append the new components to the last plot:
+
+``` r
+  #### Part 4: Remapping the size and color values ####
+  plot4 = plot3 + 
+    «scale_color_manual»(values=c("green", "red", "yellow", "blue")) +
+    «scale_size_continuous»(range=c(0,5));  # could also be scale_size()
+  plot(plot4);
+```
+
+![Changing the mapped color and size properties](images/GGP-1-05-AppendComponents-01.png){#fig-changeSizeColor .fs}
+
+### Categorical/Discrete scale components
+
+For most properties mapped to discrete values, you will use one of the ***scale\_\*\_manual*** components on this page:
+
+<https://ggplot2.tidyverse.org/reference/scale_manual.html>
+
+ 
+
+All the components look pretty similar and most of the time, you are only going to change the ***values*** subcomponent:
+
+``` r
+scale_colour_manual(
+  ...,
+  «values»,
+  aesthetics = "colour",
+  breaks = waiver(),
+  na.value = "grey50"
+)
+```
+
+So, for the color mapping, we put four colors in values to map to the four seasons:
+
+``` r
+   scale_color_manual(values=c("green", "red", "yellow", "blue"));
+```
+
+[Note: you can be more explicit and map values to color directly:]{.note}
+
+``` r
+   scale_color_manual(values=c("Fall" = "yellow", "Winter" = "blue",
+                               "Summer" = "red", "Spring" = "green" ));
+```
+
+In the above case, the order of the seasons no longer matters -- but spelling does.
+
+### Continuous scale components
+
+The ***scale_size*** or ***scale_size_continuous***, is used to map the precipitation amounts to the size of the point, with a range of 0 to 5:
+
+``` r
+    scale_size_continuous(range=c(0,5))
+```
+
+Precipitation goes from **0** to **1.76**, so **0** maps to ***size=0*** and **1.76** maps to ***size=5***.
+
+ 
+
+But, if you notice that even zero precipitation values, of which there are a lot, still is mapped to a very small dot on the plot (so, close to, but not quite 0).  If you really want to remove points from the plot, you need to give a negative value for the first value in the range.
+
+### Reorder legend
+
+For our last trick we will change the ***color*** and ***size*** labels in the legend and reorder the legend using the[***guides*** component](https://ggplot2.tidyverse.org/reference/guides.html) so that season comes first.
+
+``` r
+  #### Part 5: Reordering the legend and changing labels ####
+  plot5 = plot4 +
+    labs(color = "Seasons",
+         size = "Precipitation") +    
+    guides(color = guide_legend(order=1),
+           size = guide_legend(order=2));
+  plot(plot5);
+```
+
+In this case, ***plot4*** already used a ***labs*** component that we want to add to.  So we just use labs again with the new subcomponents ***color*** and ***size***.
+
+![Redo the labs component to add color and size labels](images/GGP-1-05-RepeatComponent.png){#fig-labComponents .fs}
+
+## Histograms and fill (color) mapping
+
+The ***geom_histogram*** component in GGPlot is very similar to a ***geom_point***.  ***x*** is mapped to the column you want to make into a histogram ( ***avgTemp*** ) and ***y*** is not mapped to any value.  The y-axis represents the count of the values on the x-axis:
+
+``` r
+  #### Part 6: Our first histogram -- note there is only an x-mapping ####
+  plot6 = ggplot( data=weatherData ) +
+    «geom_histogram»( mapping=aes(x=«avgTemp»)) +
+    theme_bw() +
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot6);
+```
+
+![A basic GGPlot histogram of temperature values](images/GGP-1-05-histogram-basic.png){#fig-basicHistogram .fs}
+
+ 
+
+[Note: if you want a density curve, then all you need to do is replace **geom_histogram** with **geom_density**.  Everything else will stay the same in the histogram examples.]{.note}
+
+### Mapping season to fill in the histogram
+
+We can add another dimension to the histogram by mapping ***fill*** to ***seasonOrdered***.  In ***geom_histogram()***, ***fill*** is the background color of the bars (***color*** is the outline color).
+
+ 
+
+To change the mapped ***fill*** colors, we use ***scale_fill_manual***, which operates just like ***scale_color_manual***.
+
+ 
+
+Similarly, changing the ***fill*** label in the legend is done by adding ***fill*** to ***labs()***:
+
+``` r
+  #### Part 7: Mapping fill color in a histogram ####
+  plot7 = ggplot( data=weatherData ) +
+    geom_histogram( mapping=aes(x=avgTemp, «fill=seasonOrdered»),
+                    color="black") +  # color is the outline color
+    theme_bw() +
+    «scale_fill_manual(values=c("lightgreen", "pink",»     # map fill values
+                               «"lightyellow", "lightblue"))» +
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)",  
+         «fill = "Seasons"»);       # change the label in the legend for fill
+  plot(plot7);
+```
+
+![A temperature histogram with fill mapped to season](images/GGP-1-05-Fill-Hist.png){#fig-filledHist .fs}
+
+### Adding an outline color
+
+The histogram would be a bit easier to see if we added on outline.  In a ***geom_histogram***, ***color*** represents the outline color, and we will set it to **black**.
+
+``` r
+  #### Part 8: Add outline color subcomponent to the histogram ####
+  plot8 = ggplot( data=weatherData ) +
+    geom_histogram( mapping=aes(x=avgTemp, fill=seasonOrdered),
+                    «color="black"») +  # color is the outline color
+    theme_bw() +
+    scale_fill_manual(values=c("lightgreen", "pink", 
+                               "lightyellow", "lightblue")) +
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)",  
+         fill = "Seasons");      
+  plot(plot8);
+```
+
+[**color** in this plot is not mapped]{.hl}, ***color*** is a subcomponent of ***geom_histogram()***.  You can use ***color*** as a mapping in a histogram -- that will be part of the application.
+
+![Adding an outline color to the histogram](images/GGP-1-05-HistFillMap.png){#fig-histOutlineColor .fs}
+
+ 
+
+[Extension: Density Plots]
+
+## Using color gradients as mapping
+
+All the examples above map discrete values (e.g., the four seasons) to ***color***.  We can also map continuous values to color -- and the mapping creates a gradient of colors.
+
+ 
+
+In this case we have a scatterplot where we map:
+
+-   ***x*** to wind speed
+
+-   ***y*** to humidity
+
+-   ***color*** to precipitation
+
+``` r
+  #### Mapping the continuous values of precipitation to color #### 
+  plot9 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=windSusSpeed, y=relHum, «color=precip2»)) +
+    theme_bw() +
+    labs(title = "Humidity vs. Wind Speed",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Speed (miles/hour)",  
+         y = "Humidity (\u0025)"); 
+  plot(plot9);
+```
+
+The default in GGPlot is to create a gradient for the values that goes from dark blue to light blue
+
+![Mapping color to precipitation generates a gradient of colors](images/GGP-1-05-Color-Cont-Map.png){#fig-colorGradient .fs}
+
+### Choose our own gradient colors
+
+A gradient from dark blue to light blue is probably not the best choice, luckily you can change this using the component ***scale_color_gradient***.
+
+ 
+
+The subcomponents are the ***low*** and ***high*** end colors of the gradient spectrum, in this case: **orange** and **blue**:
+
+``` r
+  #### mapping precipitation to a gradient with two specified colors #### 
+  plotA = plot9 + 
+    scale_color_gradient(low="orange", high="blue");
+  plot(plotA);
+```
+
+[Note: orange and blue were specifically picked because they are on opposite sides of the color wheel, and colors on the opposite sides of the wheel create the most distinctive gradients.]{.note}
+
+![Choosing our own gradient spectrum for the mapped color](images/GGP-1-05-ChooseGradients.png){#fig-modifyGradient .fs}
+
+### Multiple colors in the gradient
+
+The real problem is that over half of the precipitation values are zero -- and we really want to better distinguish the precipitation values beyond zero.  So, let's add more gradient colors using the ***scale_color_gradientn*** component.  ***scale_color_gradientn*** allows you to choose any (***n***)umber of gradient colors
+
+``` r
+  #### mapping precipitation to 4 specified colors #### 
+  plotB = plot9 + 
+    scale_color_gradientn(colors=c("gray", "green", "yellow", "blue")); 
+  plot(plotB);
+```
+
+The colors gray and blue are at the top and bottom with green at the 1/3^rd^ point and yellow at the 2/3^rd^ point.  In other words, the four colors are equidistant apart.
+
+![Using four gradient colors instead of two.](images/GGP-1-05-N-Gradient.png){#fig-N_Gradients .fs}
+
+### Changing the boundaries of the colors
+
+The colors add more distinction but there are still too many points at the low end (i.e., the grey points).  We can change the color boundaries so that green and yellow start a lot earlier in the gradient.
+
+ 
+
+Since there are 4 colors and they are equidistant apart, the colors by default are at:
+
+-   gray: 0 -- or 0%
+
+-   green: 0.33 -- or 33%
+
+-   yellow: 0.66 -- or 66%
+
+-   blue: 1 -- or 100%
+
+ 
+
+We can use the subcomponent values to change these percentages.  We will change them to:
+
+-   gray: 0 -- or 0%    (no change)
+
+-   green: 0.05 -- or 5%
+
+-   yellow: 0.25 -- or 25%
+
+-   blue: 1 -- or 100%  (no change)
+
+``` r
+  #### set the boundary on the 4 colors #### 
+  plotC = plot9 + 
+    scale_color_gradientn(colors=c("gray", "green", "yellow", "blue"),
+                          «values=c(0,0.05,0.25,1)»); 
+  plot(plotC);
+```
+
+[**values** is not the same as precipitation values,]{.hl} ***values*** represent percentages -- so the boundary for yellow is at **1.76\*0.25** = **0.44**.
+
+![Setting the boundaries of the gradient colors using values](images/GGP-1-05-CustomGradientValus.png){#fig-gradientBoundaries .fs}
+
+## Fill mappings and gradient
+
+Finally, there are some shapes (#21-25) and some Unicode characters that have two colors associated with them: the outline color and the background color.  In these cases ***fill*** maps to the background color and ***color*** maps to the outline color.
+
+ 
+
+The only difference with these shapes is the we map ***fill*** to the "inside" color and use ***scale_fill_gradientn*** to modify the mapping:
+
+``` r
+  #### Some shapes (21-25) have a fill -- use fill mapping instead of color #### 
+  plotD = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=windSusSpeed, y=relHum, «fill=precip2»),
+                «shape = 23»,
+                size=2.5,
+                color="black") +  # outline color
+    theme_bw() +
+    labs(title = "Humidity vs. Wind Speed",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Speed (miles/hour)",
+         y = "Humidity (\u0025)") +
+    «scale_fill_gradientn»(colors=c("gray", "green", "yellow", "blue"),
+                         values=c(0,0.05,0.25,1));     
+  plot(plotD);
+```
+
+In this plot ***shape, size***, and ***color*** are all subcomponents of ***geom_point*** -- not mapped properties.  Only ***fill*** is a mapped property.
+
+![Shapes with fill and outline colors -- using fill to map the inside color](images/GGP-1-05-fil-mapping-gradient.png){#fig-shapesFillAndColor .fs}
+
+ 
+
+[Note: shape #23 is often rendered inconsistently...]{.note}
+
+## Application
+
+Create a script file in your Project's ***scripts*** folder called ***app06.r*** and, using the data from **Lansing2016NOAA.csv:**
+
+ 
+
+**In this script, give at least two examples of appending saved plots to a new plot.**
+
+ 
+
+1\) For the humidity vs. average temperature scatterplot
+
+-   map ***shape*** to ***season***
+
+-   manually change the mapped shapes to shapes 21 through 24
+
+-   change the background color of the points to match the season (you will need to make a second mapping)
+
+-   add a regression line
+
+-   map regression line ***color*** to ***season***
+
+-   remove the confidence interval from the linear regressions
+
+    -   There are three ways to do, two involve making it transparent and the last involves removing the standard error calculations altogether.
+
+ 
+
+2\) Create a histogram of relative humidity
+
+-   map the outline color to wind speed levels
+
+-   set the order of wind speed levels to Low -\> Medium -\> High
+
+-   set the wind speed level colors to green -\> yellow -\> red
+
+-   set the background color of the histogram to black
+
+ 
+
+3\) Create a scatterplot of humidity vs. average temperature
+
+-   map ***color*** to ***stnPressure***
+
+-   Create a color gradient with 3 colors
+
+    -   put the middle color about 1/3rd of the way through the gradient
+
+-   set the size of the point to 2x
+
+-   set the opacity of the points to 50%
+
+ 
+
+D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What areas of the lesson/application confused or still confuses you?
+
+3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+
+## Extension: Density Plots
+
+It is pretty easy to convert a histogram into a density plot in GGPlot, you just need to:
+
+-   change the component ***geom_histogram*** to ***geom_density***
+
+-   add an ***alpha*** subcomponent to geom_density so you can see through the plots
+
+``` r
+  #### Part 8b: Change from a histogram to a density plot ####
+  plot8b = ggplot( data=weatherData ) +
+    «geom_density»( mapping=aes(x=avgTemp, fill=seasonOrdered),
+                  color = "black",
+                  «alpha=0.7») +   # so you can see through the areas
+    theme_bw() +
+    scale_fill_manual(values=c("lightgreen", "pink", 
+                               "lightyellow", "lightblue")) +
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)",  
+         fill = "Seasons");     
+  plot(plot8b);
+```
+
+The last value (Winter) in the legend is the plot that is in "front".
+
+![A density plot of temperatures by season](images/GGP-1-05-Density-Plot.png){#fig-densityPlot .fs}

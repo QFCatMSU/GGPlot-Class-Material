@@ -11,6 +11,14 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
 ### Issues
 
+#### Lesson fixes
+
+-   Explanation for how to send files
+
+    -   GitHub request
+
+-   Lesson number on title? Match with side?
+
 #### Assets
 
 -   non-breaking spaces??

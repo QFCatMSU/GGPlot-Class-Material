@@ -1,5 +1,5 @@
 ---
-title: "Introduction and Syllabus"
+title: "00 - Introduction and Syllabus"
 ---
 
 ## Welcome to Graphing with GGPlot
