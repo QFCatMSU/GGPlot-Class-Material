@@ -171,7 +171,7 @@ We will use ***paste()*** and there are three arguments to set:
 theDate2 = paste(theDate1, "-2016", sep="");
 ```
 
-[Extension: more about paste()] and the reason why argument names are not used for the first two values**\
+[Extension: more about paste()](#extension-more-about-paste) and the reason why argument names are not used for the first two values**\
 **
 
 Now every value has a year attached to it:
@@ -317,7 +317,7 @@ The only change from the first plot is that we are using the new ***dateYr*** co
 
 ### The repeated date values
 
-Since all three plots, or [***geoms*** ]{.hl}as GGPlot calls them, use ***dateYr*** for the x-axis, we can move the x-axis mapping to ***ggplot().*** This says that all ***geoms*** will use ***dateYr*** as the ***x*** mapping.  and we do not have to declare an x-mapping in the individual ***geoms***:
+Since all three plots, or [***geoms***]{.hl}as GGPlot calls them, use ***dateYr*** for the x-axis, we can move the x-axis mapping to ***ggplot().*** This says that all ***geoms*** will use ***dateYr*** as the ***x*** mapping.  and we do not have to declare an x-mapping in the individual ***geoms***:
 
 ``` r
   #### Part 3: Move x to canvas --
@@ -786,7 +786,7 @@ then you will get an unusual result:
 
 **%y** tells R to take the first two values of the number and make that the year.  The first two values of the year **2016** is **20** -- so the **16** is dropped.  R then assumes we are in the 21^st^ century so R assumes the year is 20**20**.
 
-## Extension: more about paste()
+## Extension: more about paste() {#extension-more-about-paste}
 
 The help page can be accessed in RStudio by going to the ***Help*** tab in the lower-left corner and searching for **paste**.
 
@@ -798,7 +798,7 @@ If we go to the help page for ***paste()***, it gives the usage for ***paste()**
 paste (..., sep = " ", collapse = NULL)
 ```
 
-***( ..., )*** means that ***paste()*** will accept any number of initials values -- these are the values that ***paste()*** will attempt to paste together. [ These values do not have a argument name. ]{.hl} When using ***paste()***, you must use argument names for ***sep*** and ***collapse***, otherwise ***paste()*** will see these value as part of the initial set of values to be pasted together.  There are many functions in R that accept an indeterminate number of unnamed (i.e., no argument name) values at the beginning of a function.
+***( ..., )*** means that ***paste()*** will accept any number of initials values -- these are the values that ***paste()*** will attempt to paste together. [These values do not have a argument name. ]{.hl} When using ***paste()***, you must use argument names for ***sep*** and ***collapse***, otherwise ***paste()*** will see these value as part of the initial set of values to be pasted together.  There are many functions in R that accept an indeterminate number of unnamed (i.e., no argument name) values at the beginning of a function.
 
  
 

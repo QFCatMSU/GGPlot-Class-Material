@@ -22,6 +22,8 @@ website:
             file: lessons/05-DateObjectsAndThemes.qmd
           - text: "6 Modifying Mapped Elements"
             file: lessons/06-ModifyingMappedElements.qmd
+          - text: "7 Faceting"
+            file: lessons/07-Faceting.qmd
 project:
   render:
   - lessons/00-IntroductionAndSyllabus.qmd
@@ -30,7 +32,8 @@ project:
   - lessons/03-MappingAndAesthetics.qmd
   - lessons/04-ElementsAndStyles.qmd
   - lessons/05-DateObjectsAndThemes.qmd
-  - lessons/06-ModifyingMappedElements.qmd
+  - lessons/06-ModifyingMappedElements.qmd  
+  - lessons/07-Faceting.qmd
   - lessons/Info.qmd
   - lessons/test.qmd
   type: website
@@ -39,7 +42,7 @@ project:
 format:
   html:
     page-layout: full
-    css: "presStyle.css"
+    css: "https://qfcatmsu.github.io/assets/quarto/qfc_styles.css"
     toc: true
     toc-title: Contents
     toc-location: left
@@ -52,7 +55,7 @@ format:
     include-in-header:
       - text: |
           <script>mod=true;</script>
-          <script src="module.js"></script>
+          <script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js"></script>
 editor: visual
 
 

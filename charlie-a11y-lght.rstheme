@@ -44,6 +44,7 @@ div[id^="fig-"] > p::before
 {
   /* start all header counters (must be on one line) */
 	counter-reset: h2Count h3Count h4Count;
+	margin-left: 20px;  /* so you can see the gutter area on the left side */
 }
 .pm-content > h2::before 
 {
@@ -84,7 +85,7 @@ div[id^="fig-"] > p::before
 /* keep first-level bullet flush with left-side */
 .pm-list
 {
-	padding-inline-start: 15px;
+	padding-inline-start: 20px;
 }
 
 .pm-figcaption, .pm-content .fig, span.MJXc-display:after, div[id^="fig-"] > p
@@ -93,7 +94,12 @@ div[id^="fig-"] > p::before
 	font-style: italic;
 }
 
-
+/* Editing window will max at 1000px wide -- it was 700px */
+.pm-editing-root-node 
+{
+  padding-left: calc((100% - 1000px)/2) !important;
+  padding-right: calc((100% - 1000px)/2) !important;
+}
 
 
 

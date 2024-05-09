@@ -1,0 +1,481 @@
+---
+title: "Faceting"
+# special characters for highlighting code : «»
+format:
+  html:
+    include-in-header:
+      - text: |
+         <script>mod=true;</script>
+---
+
+### To-do
+
+-   fix application
+
+## Purpose
+
+-   Break up (facet) a plot by rows and column
+
+-   create a two-dimensional facet
+
+### Code for the lesson
+
+[Script for this lesson](../scripts/lesson07-Faceting.R)
+
+-   Save the R file, called ***lesson07-FacetingAndBoxplots.R*** to the ***scripts*** folder inside your RStudio Project
+
+[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as previous lessons)
+
+-   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project.
+
+## Factoring data
+
+Let's start with the stacked histogram from last lesson where we mapped ***x*** to temperature and ***fill*** to ***season*** -- so, a temperature histogram with seasons stacked:
+
+``` r
+  #### Part 1: Factoring the values in season ####
+  seasonOrdered = factor(weatherData$season,
+                         levels=c("Spring", "Summer", "Fall", "Winter"));
+ 
+  #### Histogram with factored seasons ####
+  plot1 = ggplot( data=weatherData ) +
+    geom_histogram( mapping=aes(x=avgTemp, fill=seasonOrdered),
+                    color="black") +  # outline color -- not mapped
+    theme_bw() +
+    scale_fill_manual(values=c("lightgreen", "pink", 
+                               "lightyellow", "lightblue")) +
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)",  
+         fill = "Seasons");     
+  plot(plot1);
+```
+
+... and the resulting stacked histogram
+
+![A stacked histogram that maps temperature to the x-axis and seasons to the fill color](images/GGP1-06-StackedHistogram.png){#fig-stackedHist .fs}
+
+### Mapping columns and Environment variables
+
+If we look at the first two lines of plot1:
+
+``` r
+  plot1 = ggplot( data=«weatherData» ) +
+    geom_histogram( mapping=aes(x=«avgTemp», fill=«seasonOrdered»),
+```
+
+We are creating a canvas area with the data frame ***weatherData***.  For the histogram we are mapping the ***avgTemp*** column in ***weatherData*** to the ***x***-axis and we are mapping the vector ***seasonOrdered*** to the ***fill*** (i.e., background color).
+
+ 
+
+In a ***mapping***, GGPlot will first check the data frame initialized in the canvas to see if there is a column with the name mapped and ***avgTemp*** is a column in ***weatherData***.
+
+ 
+
+If there is no column in the data frame with the name mapped then GGPlot will check the ***Environment***.  In the ***fill*** mapping, ***seasonOrdered*** is not a column in ***weatherData*** but ***seasonOrdered*** is a variable in the ***Environment***.
+
+## Faceting
+
+Instead of using a mapping to add more variables to a plot, we can use a facet.  A *facet* uses a variable to break up the plot area by rows or columns (or both).  Let's use a facet to add ***season*** to the temperature histogram.
+
+``` r
+  #### Part 2: Faceting the histogram ####
+  plot2 = ggplot( data=weatherData ) +
+    geom_histogram( mapping=aes(x=avgTemp),
+                    color="black") +  
+    theme_bw() +
+    «facet_grid( rows = vars(season))» +  # vars() needs to use the column
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot2);
+```
+
+Each season now has its own row with its own temperature histogram
+
+![Using facets to break out the seasons](images/GGP-1-06-Faceting-01.png){#fig-facets .fs}
+
+### Facets are like mappings 
+
+To "map" a column using ***facet_grid***, you need to put the column name as an argument in ***vars()***.  This code "maps" the ***season*** column to rows in the plotting area:
+
+``` r
+    facet_grid( rows = vars(season) )
+```
+
+***facet_grid*** is buggy and will not reliably use ***Environment*** variables like ***seasonOrdered***.  The only way around all the bugs is to save ***Environment*** variables to the data frame.  We need to first save ***seasonOrdered*** as a column in ***weatherData*** before using it is a facet.
+
+``` r
+  weatherData$seasonOrdered = seasonOrdered;
+```
+
+[Note: **weatherData** has added the column **seasonOrdered** to the end of the data frame.]{.note}
+
+ 
+
+And then use the column ***seasonOrdered*** from the data frame.
+
+``` r
+  #### Part 3: Reordering the seasons ####
+  plot3 = ggplot( data=weatherData ) +
+    geom_histogram( mapping=aes(x=avgTemp),
+                    color="black") +  
+    theme_bw() +
+    facet_grid( rows = vars(«seasonOrdered») ) +  # column in weatherData
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot3);
+```
+
+![Reordering the facets using the variable seasonOrdered](images/GGP-1-06-ordered-facet.png){#fig-orderedFacets .fs}
+
+### Reversing the facet
+
+***facet_grid*** has two "mapping" subcomponents: **rows** and **cols**.  In this above case (@fig-orderedFacets), ***seasonOrdered*** was mapped to ***row***.
+
+We can facet by column by mapping ***seasonOrdered*** to ***cols*** instead.
+
+``` r
+  #### Part 4: Reversing the facet equation ####
+  plot4 = plot3 +                             # take all components from plot3
+    facet_grid( «cols» = vars(seasonOrdered) ); # and rewrite the facet component
+  plot(plot4);
+```
+
+This version is not spaced as well as the previous version.  You can change the bin sizes using the ***bin*** or ***binwidth*** components in ***geom_histogram***.You will be using ***bin*** and ***binwidth*** in the lesson application.
+
+![Switching the season facet to the x-axis](images/GGP-1-06-ReverseFacet.png){#fig-columnFacets .fs}
+
+### faceting continuous values
+
+***facet_grid*** creates a row or column for each unique value in the column you supply in ***vars()***.  If you are not careful and use a continuous column like ***precip2***, which has 59 unique numeric values, ***facet_grid*** will attempt to make 59 columns or rows.  This will likely not work and R will either crash or time-out. 
+
+### Modifying the histogram
+
+Let's make two changes to the plot:
+
+-   add color by mapping the ***season*** to ***fill*** (***fill*** is the background color)
+
+-   change to a density plot
+
+``` r
+  #### Part 5: Adding color and switching to a density plot ####
+  plot5 = ggplot( data=weatherData ) +
+    «geom_density»( mapping=aes(x=avgTemp, «fill=season»),
+                  color="black") +  
+    theme_bw() +
+    facet_grid( cols=vars(seasonOrdered)) +  # season has to be in the data frame
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot5);
+```
+
+![A density plot with each facet colored using the fill mapping](images/GGP-1-06-Density-Fill.png){#fig-densityPlot .fs}
+
+## Facet in other plots
+
+We can also use facets in a scatterplot of humidity vs. temperature faceted by season:
+
+``` r
+  #### Part 6: Faceting a scatterplot ####  
+  plot6 = ggplot( data=weatherData ) +
+    «geom_point»( mapping=aes(x=avgTemp, y=relHum)) +  
+    theme_bw() +
+    «facet_grid( rows = vars(seasonOrdered) )» +  
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot6);
+```
+
+![Faceting a scatterplot by season](images/GGP-1-06-facet-scatter.png){#fig-facetSeason .fs}
+
+ 
+
+Or, use facets in a bar plot or temperature faceted by season:
+
+``` r
+  #### Part 6b: Faceting a barplot ####  
+  plot6b = ggplot( data=weatherData ) +
+    «geom_bar»( mapping=aes(x=avgTemp),
+              color="black") +  
+    theme_bw() +
+    «facet_grid( rows = vars(seasonOrdered) )» +  
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot6b);
+```
+
+![Faceting a temperature barplot by season](images/GGP-1-06-facet-barplot.png){#fig-facetBarplot .fs}
+
+### Different scales for the facets
+
+By default, ***facet_grid*** will use the same scales for each facet.  In the case of *fig \##*, this means that the y-axis range for all four facets is the same.
+
+ 
+
+We can make ***facet_grid*** use a different scale for each facet by adding the subcomponent ***scales***:
+
+``` r
+  plot6c = ggplot( data=weatherData ) +
+    geom_bar( mapping=aes(x=avgTemp)) +  
+    theme_bw() +
+    facet_grid( cols = vars(seasonOrdered), 
+                «scales="free"») +  
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot6c);
+```
+
+And now each facet uses a different y-axis scale to maximize space:
+
+![Each facet row now has an independent y-axis range](images/GGP_1-07_FreeScaling.png){#fig-independentFacets .fs}
+
+## Faceting by rows and columns 
+
+You can do two-dimensional facet -- or, facets that have a variable for  both row and column.  We will return to our scatterplot of humidity vs. temperature and facet by season and wind speed level (i.e., low, medium, or high).
+
+The "mappings" for this plot are:
+
+-   x-axis: ***avgTemp***
+
+-   y-axis: ***relHum***
+
+-   rows: ***seasonOrdered***
+
+-   cols: ***windSpeedLevel***
+
+``` r
+  #### Part 7: Two-dimensional facets ####
+  plot7 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum)) +  
+    theme_bw() +
+    facet_grid( rows = vars(seasonOrdered),
+                cols = vars(windSpeedLevel)) +
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot7);
+```
+
+Again, while facets are not defined as mappings, facets also map data to an aspect of the plot.
+
+![Facet by both rows and columns (two-dimensional facet)](images/GGP_1_07_2D-Facet.png){#fig-2D_Facet .fs}
+
+### Modifying the strips
+
+The containers that have the labels for the facet rows and columns are called ***strips***.  Like everything else in the canvas area outside of the plots, the strips can be modified using ***theme***.  If you look at the [description for ***theme***](https://ggplot2.tidyverse.org/reference/theme.html), under ***Usage*** you will see that there are 14 different aspects of strip that can be modified (i.e., 14 subcomponents of ***theme*** that start with ***strip***).
+
+ 
+
+Using ***theme***, we will change the background and text colors of the strips.  And, using the subcomponent ***switch*** inside ***facet_grid***, we can change the position of the strips to the opposite side:
+
+``` r
+  plot8 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum)) +  
+    theme_bw() +
+    theme(«strip.text» = element_text(color="purple",
+                                    size=15),
+          «strip.background.x» = element_rect(color="red",
+                                            fill="yellow"),
+          «strip.background.y» = element_rect(color="blue",
+                                            fill="lightgreen")) +
+    facet_grid( rows = vars(seasonOrdered),
+                cols = vars(windSpeedLevel),
+                «switch = "both"») +  # could use "x" or "y" to switch only 1 axis
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot8);
+```
+
+***strip***.***text*** and ***strip.background*** will modify both axis.  Individual axis can be modified by attaching ***.x*** or .***y*** to the names. So, ***strip.text*** modifies both axis text whereas ***strip.background.x*** modifies only the x-axis.
+
+![Modifying the strips in the canvas](images/GGP_1-07_ModifyStrips.png){#fig-modifyStrips .fs}
+
+### Themes and element objects
+
+Like most ***theme*** components, you cannot directly set the properties of an object, instead you set the object to an ***element\_\**** that has the properties you want so:
+
+``` r
+strip.background.y = element_rect(color="blue",
+                                  fill="lightgreen"))
+```
+
+... means set the **strips** on the **y-axis** to a **rectangular element** that is **colored** blue and **filled** lightgreen.
+
+## Facet_wrap
+
+So far the positioning of the facets is determined by how many categories (or factors), the variable has.
+
+ 
+
+***season*** has 4 factors (categories) and using ***season*** as a facet will give 4 columns.  Another option is to use ***facet_wrap***, which will allow you facet by one or more variable and define the number of rows and columns.
+
+### One variable facet_wrap
+
+We will use ***windSusDir*** to facet the humidity vs temperature scatterplot.
+
+ 
+
+***windSusDir*** gives wind by 10 degrees, so the values are 10, 20, 30, ..., 360.  This means that are **36** values for ***windSusDir***.  A regular facet would be either **36** rows or columns.
+
+ 
+
+With ***facet_wrap***, we can split the facets into rows and columns by setting either ***nrow*** or ***ncol***:
+
+``` r
+  plot9 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum)) +  
+    theme_bw() +
+    «facet_wrap( facets = vars(windSusDir),»
+                «nrow = 4)» +
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot9);
+```
+
+We only set ***nrow*** (4)-- and GGPlot calculates ***ncol*** (9).  You could declare both ***nrow*** and ***ncol*** but that is not necessary and you are risking an error if you calculate it wrong.
+
+![A facet_wrap using one variable](images/GGP_1-07_FacetWrap-1-01.png){#fig-facetWrap .fs}
+
+### Multi-variable facet_wrap
+
+You can facet with multiple variables and GGPlot will produce one facet cell for every possible combination of the variables.  In this example, we facet by ***seasonOrdered*** and ***windSpeedLevel***.  ***seasonOrdered*** has **4** possible values and ***windSpeedLevel*** has **3**.  So, the combination will produce **12** facet cells:
+
+``` r
+  plot10 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum)) +  
+    theme_bw() +
+    facet_wrap( «facets = vars(seasonOrdered, windSpeedLevel»),
+                ncol = 4,
+                dir = "v") +   # order facets vertically
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot10);
+```
+
+GGPlot creates 12 facets, one for each combination of seasonOrdered and winSpeedLevel.  ***ncol=4*** says to create 4 columns -- and 3 rows.  ***dir="v"*** says arrange the facets vertically.  The default is "h", or horizontally.
+
+![Facet_wrap using 2 variables](images/GGP_1-07_Facet_Wrap-2Vars.png){#fig-facetWrap_2Var .fs}
+
+## Application
+
+Create a script file in your Project's ***scripts*** folder called ***app07.r*** and, using the data from **Lansing2016NOAA.csv:**
+
+1\) Make a scatterplot of temperature vs. humidity and
+
+-   facet by wind speed level in the ***x*** direction
+
+-   facet by wind direction in the ***y*** direction
+
+-   have wind speed go in descending order (high -\> medium -\> low)
+
+-   have wind direction go north -\> south -\> east -\> west
+
+ 
+
+2\) Using the plot from *fig \##*
+
+-   The 2 tasks below both use a ***strip.\**** subcomponent in the ***theme*** component
+
+    -   Change the background color and outline color of the facet labels
+
+    -   Change the text size, color, and font type inside the facet
+
+-   Double the size of the bins using either bin or binwidth (they are both subcomponents of geom_histogram)
+
+-   Add fill mapping to season
+
+-   Set the season fill colors to spring: green, summer: red, fall: orange, winter: purple
+
+-   Change breaks on x-axis to 25, 35, ..., 85
+
+-   Change limits on x-axis to see all the breaks
+
+ 
+
+3\) Create a scatterplot of temperature vs. humidity and facet by months (in order)
+
+-   For help, look at *extension: dates redux*. 
+
+-   Modify the axes' ranges to only include values within the facet (i.e., ***scales*** subcomponent)
+
+ 
+
+4\) Create a scatterplot of temperature vs. humidity and facet_wrap using any 3 variables 
+
+-   Set the number of columns so that it is between 1.5x and 2x the number of rows.
+
+-   [Note 1: you might need to click the Zoom button in the RStudio ***Plot*** tab to properly see the results]{.note}
+
+-   [Note 2: you want to use variables with a small number of factors!]{.note}
+
+ 
+
+D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What areas of the lesson/application confused or still confuses you?
+
+3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+
+## Extension: dates redux
+
+We are going to facet the temperature humidity scatterplot by month -- so, there will be 12 facets but only one faceting variable.
+
+### Create a date facet
+
+Dates are not the easiest thing to deal with in R, so it is worth a revisit.  Our goal is to facet by month using the ***dateYr*** column and it would really help if R could recognize the values as dates.  Unfortunately, R does not see ***dateYr*** as Date values:
+
+``` r
+> typeof(weatherData$dateYr)
+[1] "character"
+```
+
+So, we need to convert ***dateYr*** into a ***Date*** format that R recognizes -- we will save that to ***dateYr2***:
+
+``` r
+  dateYr2 = as.Date(weatherData$dateYr, format="%Y-%m-%d");
+```
+
+And the ***Environment*** says ***dateYr2*** is a ***Date*** vector:
+
+``` r
+dateYr2:   Date[1:366], format:...
+```
+
+But ***typeof()*** will classify ***dateYr2*** as numeric (double) -- this is because, deep down, ***Dates*** are stored as a number that counts from January 1, 1970 (backwards and forewords).
+
+``` r
+> typeof(dateYr2)
+[1] "double"
+```
+
+Now we can extract the month from ***dateYr2***, [note: "%b" is the conversion specification for month]{.note}
+
+``` r
+  months = format(dateYr2, format="%b");
+```
+
+We need to add ***months*** in the data frame before we use it as a facet:
+
+``` r
+  weatherData$monthsCol = months;
+```
+
+### Putting the months in order
+
+GGPlot will order the ***months*** alphabetically because GGPlot sees the values as characters -- not dates.  To get GGPlot to facet the months in order, you will need to factor ***months*** using ***factor()***. ([Factoring data])***.\
+***

@@ -96,7 +96,7 @@ With the ***levels*** given at the end:
 «Levels: Spring Summer Fall Winter»
 ```
 
-***Levels*** is [metadata ]{.hl}in the vector ***seasonOrdered*** -- or information about the data.
+***Levels*** is [metadata]{.hl}in the vector ***seasonOrdered*** -- or information about the data.
 
 ### Using the factored vector in GGPlot
 
