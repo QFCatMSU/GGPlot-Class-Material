@@ -15,7 +15,7 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
 -   Explanation for how to send files
 
-    -   GitHub request
+    -   GitHub request 😏🥺 😁
 
 -   Lesson number on title? Match with side?
 
@@ -124,6 +124,8 @@ library(package=ggplot2);             # include all GGPlot2 functions
 -   [\<done??\>]{.hl}image resizing does not work when you set height or width in Quarto editor
 
 #### Put in instructions
+
+-   When YAML changes every page needs to be rerendered
 
 -   shortcut to codeblock
 
