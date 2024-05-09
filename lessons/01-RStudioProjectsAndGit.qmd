@@ -1,5 +1,5 @@
 ---
-title: "RStudio Projects and Git Setup"
+title: "01: RStudio Projects and Git Setup"
 # special characters for highlighting code : «»
 ---
 

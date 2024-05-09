@@ -1,5 +1,5 @@
 ---
-title: "Faceting"
+title: "07: Faceting"
 # special characters for highlighting code : «»
 format:
   html:

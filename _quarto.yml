@@ -5,37 +5,11 @@ website:
     collapse-level: 1   # does not work...
     contents: 
       - section: "Graphing With GGPlot"  
-        contents:
-          - text: "- Info"
-            file: lessons/Info.qmd
-          - text: "0 Intro and Syllabus"
-            file: lessons/00-IntroductionAndSyllabus.qmd
-          - text: "1 Projects"
-            file: lessons/01-RStudioProjectsAndGit.qmd
-          - text: "2 Components"
-            file: lessons/02-Components.qmd
-          - text: "3 Mapping And Aesthetics"
-            file: lessons/03-MappingAndAesthetics.qmd
-          - text: "4 Elements And Styles"
-            file: lessons/04-ElementsAndStyles.qmd
-          - text: "5 Date Objects And Themes"
-            file: lessons/05-DateObjectsAndThemes.qmd
-          - text: "6 Modifying Mapped Elements"
-            file: lessons/06-ModifyingMappedElements.qmd
-          - text: "7 Faceting"
-            file: lessons/07-Faceting.qmd
+        contents: lessons/*.qmd
+
 project:
   render:
-  - lessons/00-IntroductionAndSyllabus.qmd
-  - lessons/01-RStudioProjectsAndGit.qmd
-  - lessons/02-Components.qmd
-  - lessons/03-MappingAndAesthetics.qmd
-  - lessons/04-ElementsAndStyles.qmd
-  - lessons/05-DateObjectsAndThemes.qmd
-  - lessons/06-ModifyingMappedElements.qmd  
-  - lessons/07-Faceting.qmd
-  - lessons/Info.qmd
-  - lessons/test.qmd
+  - lessons/*.qmd
   type: website
   output-dir: docs
 

@@ -1,5 +1,5 @@
 ---
-title: "Modifying Mapped Elements"
+title: "06: Modifying Mapped Elements"
 # special characters for highlighting code : «»
 format:
   html:
