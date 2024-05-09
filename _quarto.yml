@@ -2,9 +2,9 @@ website:
   bread-crumbs: false
   sidebar:
     search: true
-    collapse-level: 1   # does not work...
+    collapse-level: 1   # does not work because a page within is opened
     contents: 
-      - section: "Graphing With GGPlot"  
+      - section: "Graphing With GGPlot Lessons"  
         contents: lessons/*.qmd
 
 project:
@@ -18,7 +18,7 @@ format:
     page-layout: full
     css: "https://qfcatmsu.github.io/assets/quarto/qfc_styles.css"
     toc: true
-    toc-title: Contents
+    toc-title: Lesson Content
     toc-location: left
     fig-align: left
     theme: default

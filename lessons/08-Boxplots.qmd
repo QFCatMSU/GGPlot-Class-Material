@@ -1,0 +1,459 @@
+---
+title: "08: Boxplots"
+# special characters for highlighting code : «»
+format:
+  html:
+    include-in-header:
+      - text: |
+         <script>mod=true;</script>
+---
+
+### To-do
+
+-   mention what happened when you set only one axis on a boxplot
+
+## Purpose
+
+-   Creating boxplots
+
+-   Faceting and mapping data on a boxplot
+
+-   Changing outlier properties
+
+### Code for the lesson
+
+[Script for this lesson](../scripts/lesson08-Boxplots.R)
+
+-   Save the R file, called ***lesson08-Boxplots.R*** to the ***scripts*** folder inside your RStudio Project
+
+[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as previous lessons)
+
+-   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+
+## Boxplots
+
+We are going to create a boxplot of Change in Temperature vs Wind Direction using ***geom_boxplot***.  The code for a boxplot is much like a scatterplot -- you need to map the ***x*** and ***y*** axes.  The difference is that the x-axis is mapped to a discrete variable (in this case, wind direction, which has only four possible values):
+
+``` r
+  plot1 = ggplot(data=weatherData) +
+    «geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp))» +
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot1);
+```
+
+***geom_boxplot*** will, by default, categorize (or ***factor***) the ***x***-mapping -- in this case, ***windDir,***  in alphabetical order:
+
+![A boxplot of Change in Temperature vs. the four cardinal Wind Directions](images/GGP-1-07_Boxplot.png){#fig-boxplot .fs}
+
+### Ordering the boxes
+
+We can customize the order of the directions using ***factor()***:
+
+``` r
+ windDirOrdered = factor(weatherData$windDir,
+                         levels=c("North", "East", "South", "West"));
+```
+
+And then use the customized factor, ***windDirOrdered***, as the ***x***-axis mapping:
+
+``` r
+  plot2 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=«windDirOrdered», y=changeMaxTemp)) +
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot2);
+```
+
+And the order of the four boxes has changed:
+
+![Boxes reordered](images/GGP-1-06-Boxplot.png){#fig-boxesReordered .fs}
+
+### Warning message and NA values
+
+You get this warning when you plot the boxplot above:
+
+[Removed 1 rows containing non-finite values]{.hl}
+
+ 
+
+The is because there is one **NA** value in the data in ***changeMaxTemp***.  ***changeMaxTemp*** is the difference of the maximum temperature between two days.  The first value in ***changeMaxTemp*** is **NA** because there is no value from the day before to subtract.
+
+ 
+
+This is not a problem in this plot, but there are times where you need to deal with ***NA*** values.  In the next boxplot, I will add the argument ***na.rm*** to remove the ***NA*** value, removing the warning message.  This can be done with almost any plotting component.
+
+## Changing the boxplot axis
+
+When you create a boxplot, there is always one discrete variable (e.g., ***windDir***) and one continuous variable (e.g., ***changeMaxTemp***).  If you reverse the axis on the variables, then ***geom_boxplot*** will change the axis of the boxes:
+
+``` r
+  plot3 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(«x=changeMaxTemp, y=windDir»)) +
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot3);
+```
+
+Now the boxes are horizontal instead of vertical
+
+![Boxplots in the horizontal direction](images/GGP_1-08_HorBox.png){#fig-boxAxisChange .fs}
+
+## Overlaying the points on the boxes
+
+For the next example, we will be creating some random effects.  But, I want the "random" effect to be the same every time someone execute the code.  To do that I will first set the seed value:
+
+``` r
+  set.seed(seed=12);
+```
+
+[Note: it does not matter what **seed** value is used... each **seed** value will just present a different set of "random" values.]{.note}
+
+ 
+
+We are going to overlay the plot in *fig \##* with all the actual points.  If we did this as a scatterplot (***geom_point***), then all of the points would fall on one of the four horizontal lines (in the application, I will ask you to explain why this is true).  To better see all of the point, we will add a random vertical component to the values.  This can be done using ***geom_jitter***.
+
+ 
+
+We set the range of randomness using ***height*** and ***width***.  0 means there is no random component.  0.3 means there is a random values between -0.3 and 0.3 added to the value:
+
+``` r
+  plot4 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(y=windDir, x=changeMaxTemp)) +
+    «geom_jitter»(mapping=aes(y=windDir, x=changeMaxTemp), 
+                «height=0.3»,   # range of random vertical component (-0.3 -> 0.3)
+                «width = 0»,    # no random horizontal component
+                alpha=0.2,    # make points semi-transparent
+                color="blue") + 
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot4);
+```
+
+The alpha argument is added to make the points semi-transparent so we can see overlay points.
+
+![Boxplots with the actual points overlayed with a random vertical component](images/R-1-08_Jittering.png){#fig-overlayPoints .fs}
+
+## Mappings with a boxplot
+
+We are going to use daily wind speed levels (given as Low, Medium, or High) as a ***fill*** (i.e., background color) mapping in our boxplot.  
+
+``` r
+  plot5 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp, «fill=windSpeedLevel»),
+                 na.rm = TRUE) +  # gets rid of warning about non-finite values
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)",
+         fill = "Wind Speed");
+  plot(plot8);
+```
+
+We now have 12 boxes -- 3 wind speeds for each of the 4 directions. The mapping maps the background color (***fill***) to the wind speeds.
+
+![Boxplot with a fill mapping](images/GGP-1-06-Box-Map-Fill.png){#fig-boxplotFilled .fs}
+
+## Faceting with a boxplot
+
+Next we will do something similar but using facets to "map" the wind speed levels.  We will facet by the columns -- so we will get three sets of boxplots, one for each wind speed level.  And each set will have 4 boxes, one for each cardinal direction:
+
+``` r
+  #### Part 6: Same boxplot faceted by wind speed instead of mapped ####
+  plot6 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                 na.rm = TRUE) + 
+    theme_bw() +
+    «facet_grid( cols=vars(windSpeedLevel))» + 
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)");
+  plot(plot6);
+```
+
+![Boxplot with a facet by column](images/GGP-1-06-Box-Facet.png){#fig-boxplotFacet .fs}
+
+### Alternative: Violin Plot
+
+A variation on the boxplot is to do a violin plot.  The only difference is that ***geom_boxplot*** get replaced with ***geom_violin***:
+
+``` r
+  #### Part 7: violin plot (make this earlier!) ####
+  plot7 = ggplot(data=weatherData) +
+    «geom_violin»(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                na.rm = TRUE) +
+    theme_bw() +
+    facet_grid( cols=vars(windSpeedLevel)) +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)");
+  plot(plot7);
+```
+
+![A violin plot with the same data and facets](images/GGP-1-06-violin.png){#fig-violinPlot .fs}
+
+## Colors for all boxes
+
+The problem with using facets instead of ***fill*** to map wind speed level is that we lose the color.  If you want to bring color back, you could add a ***fill*** mapping to or you could set the colors manually.
+
+ 
+
+Let's start with setting all the boxes manually to the same outline color (***color="brown"***) and background color (***fill = "grey70"***):
+
+``` r
+  #### Part 8: Manually setting colors (not mapped!) ####
+  plot11 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                 na.rm = TRUE,  
+                 «color = "brown"»,
+                 «fill = "grey70"») +
+    theme_bw() +
+    facet_grid( cols=vars(windSpeedLevel)) +  
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)",
+         fill="Wind Speed");
+  plot(plot8);
+```
+
+![Changing unmapped properties of all the boxes](images/GGP-1-06-Box-colors.png){#fig-unmappedProperties .fs}
+
+### Colors for each box
+
+In @fig-unmappedProperties there are 12 boxes, and we can manually set the color for each box using a vector with 12 colors values.
+
+ 
+
+We want to highlight the first three boxes, because that is where the dramatic changes are happening so we will set the first 3 boxes to blue and the last 9 to brown.
+
+``` r
+  boxColors = c("blue", "blue", "blue", "brown",
+                "brown", "brown", "brown", "brown",
+                "brown", "brown", "brown", "brown");
+```
+
+Or, we could shorten the code using the repeat, ***rep()***,  function:
+
+``` r
+  boxColors = c(rep("blue", 3),     # 3 blue boxes followed by...
+                rep("brown", 9));   # 9 brown boxes
+```
+
+And then set the subcomponent ***color*** to the 12 value vector ***boxColors***:
+
+``` r
+  plot9 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                 na.rm = TRUE,  
+                 color = «boxColors»,
+                 fill = "grey70") +
+    theme_bw() +
+    facet_grid( cols=vars(windSpeedLevel)) +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)");
+  plot(plot9);
+```
+
+[Note: the size of the vector must match the number of boxes or you will get an error.]{.note}
+
+![Customizing the color for each box in the boxplot](images/GGP-1-06-Box-Each-Color.png){#fig-customColors .fs}
+
+ 
+
+[Note: for reasons I do not know, you cannot use this method to change the properties of a **geom_violin**.]{.note}
+
+## Outlier properties
+
+If you look at the [***geom_boxplot***help page](https://ggplot2.tidyverse.org/reference/geom_boxplot.html), there are many subcomponents that can be used to modify the outliers.  I will use two of them and change the ***outlier.color*** and ***outlier.shape***:
+
+``` r
+  #### Part 10: Messing with the outliers ####
+  plot10 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                 na.rm = TRUE,   # gets rid of warning about non-finite values
+                 color = boxColors,
+                 fill = "grey50",
+                 «outlier.color = rgb(red=0, green=0.3, blue=0)»,
+                 «outlier.shape = "\u053e"») +
+    theme_bw() +
+    facet_grid( cols=vars(windSpeedLevel)) +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)");
+  plot(plot10);
+```
+
+***outlier.shape*** is set to a Unicode value.  [Unicode values allow you to access all possible characters](https://en.wikipedia.org/wiki/List_of_Unicode_characters) (whereas your keyboard is quite limited).
+
+***\\u053e***  means get Unicode character ***053e*** (this is a hexadecimal number)
+
+![Boxplot with the outliers' color and shape changed](images/GGP-1-06-box-outliers.png){#fig-outliersChange .fs}
+
+## Changing facet labels
+
+Lastly, the labels on the facet are the values in the ***windSpeedLevel*** column: **Low**, **Medium**, and **High**. Many times, we want to change the labels on the graph to be more descriptive.
+
+ 
+
+Adding customized labels is a two-step process:
+
+1.  Create a vector with the customized labels
+
+2.  Use this vector for the ***labeller*** subcomponent in the ***facet_grid()*** component
+
+### Components of facet labeling
+
+We need to create a vector that maps the wind speed values (**Low**, **Medium**, **High**) with the label we want for each value:
+
+``` r
+windLabels = c(Low = "Light Winds",
+               Medium = "Medium Winds",
+               High = "Strong Winds");
+```
+
+and then use the argument ***labeller*** in the component ***facet_grid()*** to add these labels to the legend.
+
+``` r
+labeller=as_labeller(windLabels)
+```
+
+[Note: the function ***as_labeller()*** explicitly says the vector is a vector of labels]{.note}
+
+### Putting the code together
+
+``` r
+### Part 11: Changing facet labels
+  «windLabels = c(Low = "Light Winds",»
+                 «Medium = "Medium Winds",»
+                 «High = "Strong Winds"»);
+
+  plot14 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                 na.rm = TRUE,   # gets rid of warning about non-finite values
+                 color = boxColors,
+                 fill = "grey50",
+                 outlier.color = rgb(red=0, green=0.3, blue=0),
+                 outlier.shape = "\u053e") +
+    theme_bw() +
+    facet_grid( cols=vars(windSpeedLevel),
+                «labeller=as_labeller(windLabels)») +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)");
+  plot(plot11);
+```
+
+![Changing labels on a facet](images/GGP_1-07_LabellingFacets.png){#fig-labelsOnFacet .fs}
+
+## Application
+
+Create a script file in your Project's ***scripts*** folder called ***app08.r*** and, using the data from **Lansing2016NOAA.csv:**
+
+1\) Using the plot from @fig-customColors
+
+-   Change the axis of the boxes (put boxes on y-axis)
+
+-   Reorder the wind speed to ***low*** -\> ***medium*** -\> ***high***
+
+-   Set the outline colors so that:
+
+    -   all boxes in low facet are blue
+
+    -   all boxes in medium facet are green
+
+    -   all boxes in the high facet are red
+
+    -   extra points for using ***rep()***
+
+-   Change the fill colors so the every other box is **lightyellow**
+
+-   Triple the outlier point size
+
+-   Change the outlier color to [this color]{style="color:#e87511;"} using ***rgb()*** 
+
+    -   color does not have to be exact but extra points if you know how to use a color picker to get the exact color
+
+-   Change the outlier shape to the ampersand ( ***&*** )
+
+ 
+
+2\) Give three ways to hide the outliers in the plot from the previous question? 
+
+[note: the easiest options use the ***outlier.\**** subcomponents of ***geom_boxplot***.]{.note}
+
+ 
+
+3\) For the plot in @fig-overlayPoints:
+
+-   If ***geom_point*** is used instead of ***geom_jitter***, why do all the points fall along the four lines?
+
+-   What happens if you change the ***width*** component in ***geom_jitter*** to a non-zero value?
+
+ 
+
+4\) Using ***facet_wrap***, create a series of ***changeMaxTemp*** boxplots faceted by ***windDir*** and ***windSpeedLevel***. 
+
+ 
+
+D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What areas of the lesson/application confused or still confuses you?
+
+3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+
+## Extension: adding whisker ends
+
+The standard boxplot in GGPlot does not include the end at the top whiskers.   You can add it if you want, but you have to put another component, ***stat_boxplot***, on the plot.  ***stat_boxplot*** uses the subcomponent as ***geom_boxplot*** as it is replicating the data. 
+
+``` r
+  #### Extension : Error bars  ####
+  plotA = ggplot(data=weatherData) +          
+      «stat_boxplot»(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                   na.rm=TRUE,
+                   «geom = "errorbar",   # adds the whisker ends»
+                   width = 0.2,         # width of whisker ends (0 to 1)
+                   color = boxColors) + # keep ends the same color as whiskers
+      geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                   na.rm = TRUE,   # gets rid of warning about non-finite values
+                   color = boxColors,
+                   fill = "grey50",
+                   outlier.color = rgb(red=0, green=0.3, blue=0),
+                   outlier.shape = "\u053e") +
+      theme_bw() +
+      facet_grid( cols=vars(windSpeedLevel)) +
+      labs(title = "Change in Temperature vs. Wind Direction",
+           subtitle = "Lansing, Michigan: 2016",
+           x = "Wind Direction",
+           y = "Degrees (Fahrenheit)");
+    plot(plotA);
+```
+
+[Note: If you put **stat_boxplot** after the **geom_boxplot** then you will see the whisker line go all the way through the box.]{.note}
+
+![Adding whisker ends to the boxes](images/GGP-1-06-Whisker-Ends.png){#fig-whiskerEnds .fs}
