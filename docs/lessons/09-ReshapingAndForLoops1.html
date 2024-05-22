@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>09: Reshaping and For Loops 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>mod=true;</script>
+<script src="qfc_styles.js"></script> 
+<script>mod=true;</script>
+
+
+<link rel="stylesheet" href="https://qfcatmsu.github.io/assets/quarto/qfc_styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">09: Reshaping and For Loops 1</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Graphing With GGPlot Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/00-IntroductionAndSyllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00: Introduction and Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01-RStudioProjectsAndGit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01: RStudio Projects and Git Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02-Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Components</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-MappingAndAesthetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Mapping And Aesthetics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04-ElementsAndStyles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04: Elements And Styles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05-DateObjectsAndThemes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05: Date object and themes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-ModifyingMappedElements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Modifying Mapped Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-Faceting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07: Faceting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/08-Boxplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Boxplots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/09-ReshapingAndForLoops1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">09: Reshaping and For Loops 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/Info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Info</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
+   
+  <ul>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link active" data-scroll-target="#to-do"><span class="header-section-number">0.1</span> To-do</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">1</span> Purpose</a>
+  <ul class="collapse">
+  <li><a href="#code-for-the-lesson" id="toc-code-for-the-lesson" class="nav-link" data-scroll-target="#code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</a></li>
+  </ul></li>
+  <li><a href="#a-temperature-matrix" id="toc-a-temperature-matrix" class="nav-link" data-scroll-target="#a-temperature-matrix"><span class="header-section-number">2</span> A temperature matrix</a>
+  <ul class="collapse">
+  <li><a href="#importing-the-data" id="toc-importing-the-data" class="nav-link" data-scroll-target="#importing-the-data"><span class="header-section-number">2.1</span> Importing the data</a></li>
+  </ul></li>
+  <li><a href="#plotting-multiple-columns" id="toc-plotting-multiple-columns" class="nav-link" data-scroll-target="#plotting-multiple-columns"><span class="header-section-number">3</span> Plotting multiple columns</a></li>
+  <li><a href="#plotting-multiple-columns-reshaping" id="toc-plotting-multiple-columns-reshaping" class="nav-link" data-scroll-target="#plotting-multiple-columns-reshaping"><span class="header-section-number">4</span> Plotting multiple columns (reshaping)</a>
+  <ul class="collapse">
+  <li><a href="#comparing-original-and-reshaped-data-frame" id="toc-comparing-original-and-reshaped-data-frame" class="nav-link" data-scroll-target="#comparing-original-and-reshaped-data-frame"><span class="header-section-number">4.1</span> Comparing original and reshaped data frame</a></li>
+  <li><a href="#creating-the-reshaped-data-frame" id="toc-creating-the-reshaped-data-frame" class="nav-link" data-scroll-target="#creating-the-reshaped-data-frame"><span class="header-section-number">4.2</span> Creating the reshaped data frame</a></li>
+  <li><a href="#the-reshaped-data-frame" id="toc-the-reshaped-data-frame" class="nav-link" data-scroll-target="#the-reshaped-data-frame"><span class="header-section-number">4.3</span> The reshaped data frame</a></li>
+  <li><a href="#plotting-the-reshaped-data-frame" id="toc-plotting-the-reshaped-data-frame" class="nav-link" data-scroll-target="#plotting-the-reshaped-data-frame"><span class="header-section-number">4.4</span> Plotting the reshaped data frame</a></li>
+  </ul></li>
+  <li><a href="#manually-create-plots" id="toc-manually-create-plots" class="nav-link" data-scroll-target="#manually-create-plots"><span class="header-section-number">5</span> Manually create plots</a>
+  <ul class="collapse">
+  <li><a href="#manual-plot-with-three-geom_lines" id="toc-manual-plot-with-three-geom_lines" class="nav-link" data-scroll-target="#manual-plot-with-three-geom_lines"><span class="header-section-number">5.1</span> Manual plot with three geom_lines</a></li>
+  <li><a href="#generalizing-the-mappings-use-index-numbers-instead-of-column-names" id="toc-generalizing-the-mappings-use-index-numbers-instead-of-column-names" class="nav-link" data-scroll-target="#generalizing-the-mappings-use-index-numbers-instead-of-column-names"><span class="header-section-number">5.2</span> Generalizing the mappings: use index numbers instead of column names</a></li>
+  <li><a href="#generalize-the-color-mappings" id="toc-generalize-the-color-mappings" class="nav-link" data-scroll-target="#generalize-the-color-mappings"><span class="header-section-number">5.3</span> Generalize the <strong><em>color</em></strong> mappings</a></li>
+  <li><a href="#generalize-the-x-mapping" id="toc-generalize-the-x-mapping" class="nav-link" data-scroll-target="#generalize-the-x-mapping"><span class="header-section-number">5.4</span> Generalize the <strong><em>x</em></strong> mapping</a></li>
+  </ul></li>
+  <li><a href="#using-for-loops-and-lazy-evaluations" id="toc-using-for-loops-and-lazy-evaluations" class="nav-link" data-scroll-target="#using-for-loops-and-lazy-evaluations"><span class="header-section-number">6</span> Using <strong>for</strong> loops and Lazy Evaluations</a>
+  <ul class="collapse">
+  <li><a href="#establish-the-ggplot-canvas" id="toc-establish-the-ggplot-canvas" class="nav-link" data-scroll-target="#establish-the-ggplot-canvas"><span class="header-section-number">6.1</span> Establish the ggplot canvas</a></li>
+  <li><a href="#adding-geoms-line-plots-to-the-canvas" id="toc-adding-geoms-line-plots-to-the-canvas" class="nav-link" data-scroll-target="#adding-geoms-line-plots-to-the-canvas"><span class="header-section-number">6.2</span> Adding geoms (line plots) to the canvas</a></li>
+  <li><a href="#lazy-evaluation" id="toc-lazy-evaluation" class="nav-link" data-scroll-target="#lazy-evaluation"><span class="header-section-number">6.3</span> Lazy Evaluation&nbsp;</a></li>
+  </ul></li>
+  <li><a href="#local-variables-the-lazy-evaluation-fix" id="toc-local-variables-the-lazy-evaluation-fix" class="nav-link" data-scroll-target="#local-variables-the-lazy-evaluation-fix"><span class="header-section-number">7</span> Local variables: The Lazy Evaluation fix</a>
+  <ul class="collapse">
+  <li><a href="#alternative-fix" id="toc-alternative-fix" class="nav-link" data-scroll-target="#alternative-fix"><span class="header-section-number">7.1</span> Alternative fix</a></li>
+  <li><a href="#aes_-warning" id="toc-aes_-warning" class="nav-link" data-scroll-target="#aes_-warning"><span class="header-section-number">7.2</span> aes_() warning</a></li>
+  </ul></li>
+  <li><a href="#appending-theme-and-labels" id="toc-appending-theme-and-labels" class="nav-link" data-scroll-target="#appending-theme-and-labels"><span class="header-section-number">8</span> Appending theme and labels</a></li>
+  <li><a href="#aesthetic-changes" id="toc-aesthetic-changes" class="nav-link" data-scroll-target="#aesthetic-changes"><span class="header-section-number">9</span> Aesthetic changes&nbsp;</a></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">10</span> Application</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">10.1</span> Questions</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">09: Reshaping and For Loops 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="to-do" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="to-do"><span class="header-section-number">0.1</span> To-do</h3>
+<ul>
+<li>include an explanation for why ggplot with for loops are easier to debug than ggplots with melted dataframes</li>
+</ul>
+</section>
+<section id="purpose" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
+<p>Plot multiple columns in a data frame using:</p>
+<ul>
+<li><p>reshaped data frames</p></li>
+<li><p><strong><em>for</em></strong> loops</p></li>
+<li><p>dealing with Lazy Evaluation</p></li>
+</ul>
+<section id="code-for-the-lesson" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</h3>
+<p><a href="../scripts/lesson09-ReshapingAndForLoops1.R">The script for the lesson is here</a></p>
+<ul>
+<li>Save the R file, called <strong><em>lesson09-ReshapingAndForLoops1.R</em></strong> to the <strong><em>scripts</em></strong> folder inside your RStudio Project</li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="../Data/Jan_TAVG.csv">The data for this lesson (January Lansing temperatures from 2016-2022) is here</a></p>
+<ul>
+<li>Save the CSV file, called <strong><em>Jan_TAVG.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.&nbsp;</li>
+</ul>
+</section>
+</section>
+<section id="a-temperature-matrix" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="a-temperature-matrix"><span class="header-section-number">2</span> A temperature matrix</h2>
+<p>To start this lesson, we are going to use a new dataset inside the <strong><em>data</em></strong> folder named <a href="..\content/DEVELOPMENT/2018/courses/DEV-belinsky-2018-GRaphingwithGGPlot/GGPlot/Lessons/../Data/Jan_TAVG.csv?isCourseFile=true">Jan_TAVG.csv</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  Jan_Avg <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"data/Jan_TAVG.csv"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>Jan_TAVG.csv</em></strong> has the average temperature for all 31 days in January in the seven years from 2016 to 2022 (31 rows by 7 columns).&nbsp; The data comes from NOAA/NCDC.</p>
+<section id="importing-the-data" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="importing-the-data"><span class="header-section-number">2.1</span> Importing the data</h3>
+<p><strong><em>Jan_TAVG.csv</em></strong> has the years in a header row as numbers in strings (e.g., “2016”, “2017”).</p>
+<div id="fig-csvFile" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-csvFile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_CSVFile.jpg" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-csvFile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The CSV file, Jan_TAVG.csv with years in the header row
+</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
+<p>When you read data in using <strong><em>read.csv</em></strong>, the data is put into a data frame.&nbsp; An “X” is added to the years in the header row&nbsp; (i.e., the column names) because header rows are technically variable names and variable names cannot start with a number, so R add an “X” to make the variable name valid.&nbsp; <span class="note">Note: R allows invalid variable names in header rows of data frame but you should avoid this.</span></p>
+<p>&nbsp;</p>
+<div id="fig-XinColumnName" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-XinColumnName-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_JanAvg.jpg" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-XinColumnName-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The Jan_Avg data frame – with an “X” added to the years in the header row
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="plotting-multiple-columns" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="plotting-multiple-columns"><span class="header-section-number">3</span> Plotting multiple columns</h2>
+<p>Our goal is to create a line plot for each column in the data frame in <a href="#fig-XinColumnName" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<div id="fig-linePlots" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linePlots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_ForLoops.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linePlots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: 7 lines plot, 1 for each column in Jan_Avg
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="plotting-multiple-columns-reshaping" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="plotting-multiple-columns-reshaping"><span class="header-section-number">4</span> Plotting multiple columns (reshaping)</h2>
+<p>The generally accepted solution for plotting multiple columns in a data frame is to reshape the data frame.&nbsp; I do not like this solution because it involves manipulating the data frame in an unintuitive and inefficient manor, but it is a widely-used technique you should be familiar with.</p>
+<section id="comparing-original-and-reshaped-data-frame" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="comparing-original-and-reshaped-data-frame"><span class="header-section-number">4.1</span> Comparing original and reshaped data frame</h3>
+<p>The original data frame has 7 column with 31 row of temperature values – so, 217 temperature values in all.</p>
+<p>&nbsp;</p>
+<p>In the reshaped data frame, we put all 217 temperature values in one column – <span class="hl">we are&nbsp;melting the seven temperature columns into one column</span><em>.</em>&nbsp; So, the reshaped data frame will have 217 rows.</p>
+<p>&nbsp;</p>
+<p>The original data frame (<a href="#fig-XinColumnName" class="quarto-xref">Figure&nbsp;2</a>) has information about the year (column names: 2016-2022) and date (rows name: 1-31).&nbsp; We need to maintain the year and date information in the reshaped data frame meaning <span class="hl">we need to create a column for the date and the year.</span></p>
+<p>&nbsp;</p>
+<p>The reshaped data frame will have 217 rows (31*7) and three columns: temperature, year, and date:</p>
+<div id="fig-reshapingData" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reshapingData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_ReshapingDataFrame.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshapingData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The original data frame (31 rows, 7 columns) and the reshaped (melted) data frame (217 rows, 3 columns)
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="creating-the-reshaped-data-frame" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="creating-the-reshaped-data-frame"><span class="header-section-number">4.2</span> Creating the reshaped data frame</h3>
+<p>We can use the <strong><em>reshape()</em></strong> function to create the new data frame.&nbsp;</p>
+<p>In this new data frame we need to&nbsp;</p>
+<ul>
+<li><p>combine the seven temperature columns into one column</p></li>
+<li><p>maintain the year (old column names) and date (old row names) information in new columns</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  Jan_Avg_Melt <span class="ot">=</span> <span class="fu">reshape</span>(<span class="at">data=</span>Jan_Avg,        <span class="co"># data frame to manipulate</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">direction=</span><span class="st">"long"</span>,         <span class="co"># how to manipulate (long form) </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">varying=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>),           <span class="co"># columns to combine (melt)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">v.name=</span><span class="st">"temperatures"</span>,    <span class="co"># name of combined column</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">times=</span><span class="fu">colnames</span>(Jan_Avg),  <span class="co"># old column names (years)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">timevar =</span> <span class="st">"year"</span>,         <span class="co"># name for new column of years</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ids =</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)),  <span class="co"># old row names (dates)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">idvar =</span> <span class="st">"dayNum"</span>);        <span class="co"># name for new column of dates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are eight argument used in <strong><em>reshape()</em></strong>, let’s take these arguments two at a time…</p>
+<p>&nbsp;</p>
+<p>We are reshaping the data frame&nbsp;<strong><em>Jan_Avg</em></strong> in the&nbsp;<strong><em>long</em></strong> direction (called <em>melting</em>):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> Jan_Avg</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>direction<span class="ot">=</span><span class="st">"long"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span id="note">note: the other direction is “wide” (often called <strong>casting</strong>)</span></p>
+<p>&nbsp;</p>
+<p>We are combining the temperature values in columns&nbsp;<strong>1</strong> through <strong>7:</strong> <strong><em>c(1:7)</em></strong> and the name of the new combined column is&nbsp;<strong><em>temperatures</em></strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> Jan_Avg</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>direction<span class="ot">=</span><span class="st">"long"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are creating a new column from the seven column names in the old data frame (<strong><em>X2016, X2017…</em></strong>). The new column assigns a year to each temperature value (i.e., each row) and the new column is named&nbsp;<strong>years</strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">colnames</span>(Jan_Avg)   <span class="co">#X2016, X2017...</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>timevar<span class="ot">=</span><span class="st">"years"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are also creating a new column from the 31 row names (<strong>1</strong> through <strong>31</strong>).&nbsp; The new column assigns a date to each temperature value (i.e., each row) and the new column is named <strong><em>dayNum</em></strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg))   <span class="co"># same as 1:31</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>idvar <span class="ot">=</span> <span class="st">"dayNum"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-reshaped-data-frame" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="the-reshaped-data-frame"><span class="header-section-number">4.3</span> The reshaped data frame</h3>
+<p>I add this line to change the row names back to row numbers.&nbsp; The line functionally does nothing but it makes the data frame easier to read in the RStudio viewer tab:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(Jan_Avg_Melt) <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">217</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you open <strong><em>Jan_Avg_Melt</em></strong> (<em>fig ##</em>) you will see there are <strong>217</strong> rows, representing the <strong>217</strong> daily temperatures.&nbsp; Each temperature has a day and a year associated with it and that information is reflected in the other columns of the data frame.</p>
+<p>&nbsp;</p>
+<ul>
+<li>The <strong><em>year</em></strong> changes every 31 rows so rows <strong>1-31</strong> are <strong><em>X2106</em></strong>, <strong>32-62</strong> are <strong><em>X21017</em></strong>, <strong><em>63-93</em></strong> are <strong>2018,</strong> etc..</li>
+</ul>
+<pre><code>-   The ***year*** was the column names on the original data frame ***Jan_Avg***</code></pre>
+<ul>
+<li><p>The <strong><em>dayNum</em></strong> cycles every 31 rows so the <strong><em>dayNum</em></strong> goes up by 1 each row and resets to <strong><em>1</em></strong> on rows <strong>32</strong>, <strong>63</strong>, <strong>94,</strong> <strong>125</strong>, <strong>156</strong>, and <strong>187</strong>.</p>
+<ul>
+<li><strong><em>dayNum</em></strong> was the row names on the original data frame <strong><em>Jan_Avg</em></strong></li>
+</ul></li>
+</ul>
+<div id="fig-meltedFrame" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-meltedFrame-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_MeltedDF.jpg" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-meltedFrame-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: The reshaped data frame with the year and dayNum in their own column
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="plotting-the-reshaped-data-frame" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="plotting-the-reshaped-data-frame"><span class="header-section-number">4.4</span> Plotting the reshaped data frame</h3>
+<p>We can use one <strong><em>geom_line</em></strong> component to plot all seven years in the reshaped data frame.</p>
+<p>&nbsp;</p>
+<p>The&nbsp;<strong><em>geom_line</em></strong> component maps:</p>
+<ul>
+<li><p><strong><em>x</em></strong> to the <strong><em>temperature</em></strong> column</p></li>
+<li><p><strong><em>y</em></strong> to the <strong><em>dayNum</em></strong> column&nbsp;</p></li>
+<li><p><strong><em>color</em></strong> to the <strong><em>year</em></strong> column</p></li>
+</ul>
+<p>The <strong><em>color</em></strong> mapping is how we create seven separate line plots – each year is placed in the legend and mapped to a different color.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot temperature (y) ~ dayNum (x) and subset by year (color)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> Jan_Avg_Melt) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dayNum, <span class="at">y=</span>temperatures, <span class="at">color=</span>year));</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-reshapedLinePlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reshapedLinePlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_ReshapedPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshapedLinePlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: The line plots from the reshaped data frame
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="manually-create-plots" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="manually-create-plots"><span class="header-section-number">5</span> Manually create plots</h2>
+<p>The main reason I do not like the reshaping method is that it creates a new data frame that is less intuitive than the original.&nbsp; I believe that the script should be manipulated to meet the needs of the data – not the other way around.&nbsp; And we have a perfectly good programming technique to cycle through, and plot, columns in a data frame: <strong><em>for</em></strong> loops.</p>
+<p>&nbsp;</p>
+<p>We can code one&nbsp;<strong><em>for</em></strong> loop with one <strong><em>geom_line</em></strong> that cycled through the seven columns of the original data frame to create the seven plots.</p>
+<section id="manual-plot-with-three-geom_lines" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="manual-plot-with-three-geom_lines"><span class="header-section-number">5.1</span> Manual plot with three geom_lines</h3>
+<p>We will start by plotting three of the seven columns in <strong><em>Jan_Avg</em></strong>.&nbsp; The code is similar to what we have done in previous lessons except the data frame, <strong><em>Jan_Avg</em></strong>, is not set when we initiate the canvas (i.e., not added as <strong><em>data</em></strong> in&nbsp;<strong><em>ggplot()</em></strong>).&nbsp; Instead, we use the data frame in the <strong><em>mapping</em></strong> of the <strong><em>geoms</em></strong>.&nbsp; <em>Note: In GGPlot it is easier to use data frames in</em> <strong>mapping</strong> <em>when using <strong>for</strong> loops for reasons that would take us down a rabbit hole.</em></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span>                          «<span class="co"># the data frame is not declared here»</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>«Jan_Avg»<span class="sc">$</span>X2016,  <span class="co"># the data frame is used here instead</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"2016"</span>)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>,  </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>«Jan_Avg»<span class="sc">$</span>X2017,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"2017"</span>)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>«Jan_Avg»<span class="sc">$</span>X2018,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"2018"</span>)) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temp (Celsius)"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Year"</span>);</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are three mapping for each <strong><em>geom_line</em></strong>:</p>
+<ul>
+<li><p>The&nbsp;<strong><em>x</em></strong> mapping for each plot is <strong>1</strong> through <strong>31</strong> since we are looking at the dates from January <strong>1</strong><sup>st</sup> to January <strong>31</strong><sup>st</sup></p></li>
+<li><p>The <strong><em>y</em></strong> mapping is to the specific column of temperatures we are plotting, <strong><em>X2016,X2017</em></strong>, *<strong>X2018 …</strong></p></li>
+<li><p>The <strong><em>color</em></strong> mapping is the <strong><em>year</em></strong>, which is hard coded in this example (a value instead of a variable).&nbsp;</p>
+<ul>
+<li><span class="note">Note: quotes are necessary for year because year needs to be a discrete value (character), not a continuous value (numeric) – otherwise GGPlot will try to calculate in-between values</span></li>
+</ul></li>
+</ul>
+<div id="fig-threeColumnPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-threeColumnPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_BasicPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-threeColumnPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Plotting 3 columns one at a time
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="generalizing-the-mappings-use-index-numbers-instead-of-column-names" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="generalizing-the-mappings-use-index-numbers-instead-of-column-names"><span class="header-section-number">5.2</span> Generalizing the mappings: use index numbers instead of column names</h3>
+<p>Our goal is to create code for one <strong><em>geom_line</em></strong> that can be used in a <strong><em>for</em></strong> loop to create all 7 line plots.&nbsp; To do this, we need to generalize the code.</p>
+<p>&nbsp;</p>
+<p>In a <strong><em>for</em></strong> loop, it is easier to index the columns by number instead of name (next lesson we will use names).&nbsp;</p>
+<p>&nbsp;</p>
+<p>Instead of using <strong><em>Jan_Avg$X2016</em></strong>, <strong><em>Jan_Avg$X2017,</em></strong> and <strong><em>Jan_Avg$X2018</em></strong> as the <strong><em>y</em></strong> mappings, we will use the&nbsp;<strong>[x,y]</strong> subset notation to <span class="hl">subset by column number instead of column name</span>.</p>
+<p>&nbsp;</p>
+<p>We provide no&nbsp;<strong><em>x</em></strong> value in the <strong>[x,y]</strong> subset, which means we are <span class="hl">taking the values from every row in the column</span></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>«Jan_Avg[,<span class="dv">1</span>]»,    <span class="co"># column 1, same as Jan_Avg$X2016</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"2016"</span>)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>,  </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>«Jan_Avg[,<span class="dv">2</span>]»,    <span class="co"># column 2, same as Jan_Avg$X2017</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"2017"</span>)) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>«Jan_Avg[,<span class="dv">3</span>]»,    <span class="co"># column 3, same as Jan_Avg$X2018</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"2018"</span>)) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temp (Celsius)"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Year"</span>);</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-threeLinesTake2" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-threeLinesTake2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_BasicPlot-01.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-threeLinesTake2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: plot3 looks exactly like plot2
+</figcaption>
+</figure>
+</div>
+<p>You can put <strong><em>Jan_Avg[,2]</em></strong> in the <strong><em>Console</em></strong> to convince yourself that this is all values in column 2:</p>
+<div class="sourceCode" id="cb12" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Jan_Avg[,<span class="dv">2</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="sc">-</span><span class="fl">0.4</span>   <span class="fl">0.4</span>   <span class="fl">2.5</span>  <span class="sc">-</span><span class="fl">4.1</span> <span class="sc">-</span><span class="fl">10.1</span> <span class="sc">-</span><span class="fl">12.8</span> <span class="sc">-</span><span class="fl">12.8</span> <span class="sc">-</span><span class="fl">11.6</span>  <span class="sc">-</span><span class="fl">6.8</span>   <span class="fl">0.1</span>   <span class="fl">2.1</span>   <span class="fl">0.7</span>  <span class="sc">-</span><span class="fl">5.8</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">14</span>]  <span class="sc">-</span><span class="fl">5.1</span>  <span class="sc">-</span><span class="fl">4.6</span>  <span class="sc">-</span><span class="fl">2.8</span>   <span class="fl">1.6</span>   <span class="fl">2.7</span>   <span class="fl">1.8</span>   <span class="fl">1.6</span>   <span class="fl">6.8</span>   <span class="fl">6.6</span>   <span class="fl">4.2</span>   <span class="fl">3.1</span>   <span class="fl">3.1</span>   <span class="fl">2.1</span>  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">27</span>]  <span class="sc">-</span><span class="fl">0.7</span>  <span class="sc">-</span><span class="fl">2.2</span>  <span class="sc">-</span><span class="fl">3.0</span>  <span class="sc">-</span><span class="fl">6.8</span>  <span class="sc">-</span><span class="fl">3.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="generalize-the-color-mappings" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="generalize-the-color-mappings"><span class="header-section-number">5.3</span> Generalize the <strong><em>color</em></strong> mappings</h3>
+<p>The <strong><em>color</em></strong> mapping is currently&nbsp;<span class="hl">hard coded</span> – meaning&nbsp;<strong><em>color</em></strong> is set to a value (in quotes) instead of a variable.&nbsp; We are going to change this so that the year comes from the column name.&nbsp; This makes it easier to code the plot in a <strong><em>for</em></strong> loop because we can cycle through the column names using their index values:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>Jan_Avg[,<span class="dv">1</span>],  </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span>«<span class="fu">colnames</span>(Jan_Avg)[<span class="dv">1</span>]»)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>,  </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>Jan_Avg[,<span class="dv">2</span>],  </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span>«<span class="fu">colnames</span>(Jan_Avg)[<span class="dv">2</span>]»)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>Jan_Avg[,<span class="dv">3</span>],  </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span>«<span class="fu">colnames</span>(Jan_Avg)[<span class="dv">3</span>]»)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temp (Celsius)"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Year"</span>);</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can put <strong><em>colnames(Jan_Avg)</em></strong> in the <strong><em>Console</em></strong> to convince yourself that is a vector with 7 value representing the seven column names:</p>
+<div class="sourceCode" id="cb14" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">colnames</span>(Jan_Avg)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"X2016"</span> <span class="st">"X2017"</span> <span class="st">"X2018"</span> <span class="st">"X2019"</span> <span class="st">"X2020"</span> <span class="st">"X2021"</span> <span class="st">"X2022"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>plot4</em></strong> will look almost exactly like&nbsp;<strong><em>plot2</em></strong> (<em>fig ##</em>) – except the years in the legend are preceded with an <strong><em>X</em></strong>, something we will fix later in the lesson:</p>
+<div id="fig-generalizedMapping" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-generalizedMapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_LinePlotX.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-generalizedMapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: The line plot after generalizing the y and color mappings
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="generalize-the-x-mapping" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="generalize-the-x-mapping"><span class="header-section-number">5.4</span> Generalize the <strong><em>x</em></strong> mapping</h3>
+<p>Generalizing the <strong><em>x</em></strong> mapping not necessary, but <span class="hl">it is good programming practice to generalize your code</span> because it makes your code more flexible and easier to debug.</p>
+<p>&nbsp;</p>
+<p><strong><em>x</em></strong> maps to the day numbers <strong>1-31</strong>, this is the same as the row numbers.&nbsp; In GGPlot if the rows are not given names then <span class="hl">the row numbers are the row names</span>.</p>
+<p>&nbsp;</p>
+<p>We can see that the row names are the same as the row numbers in the&nbsp;<strong><em>Console</em></strong>:</p>
+<div class="sourceCode" id="cb15" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames</span>(Jan_Avg)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">"1"</span>  <span class="st">"2"</span>  <span class="st">"3"</span>  <span class="st">"4"</span>  <span class="st">"5"</span>  <span class="st">"6"</span>  <span class="st">"7"</span>  <span class="st">"8"</span>  <span class="st">"9"</span>  <span class="st">"10"</span> <span class="st">"11"</span> <span class="st">"12"</span> <span class="st">"13"</span> <span class="st">"14"</span> <span class="st">"15"</span> <span class="st">"16"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">17</span>] <span class="st">"17"</span> <span class="st">"18"</span> <span class="st">"19"</span> <span class="st">"20"</span> <span class="st">"21"</span> <span class="st">"22"</span> <span class="st">"23"</span> <span class="st">"24"</span> <span class="st">"25"</span> <span class="st">"26"</span> <span class="st">"27"</span> <span class="st">"28"</span> <span class="st">"29"</span> <span class="st">"30"</span> <span class="st">"31"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The row names are put in quotes, which means <em>they are characters – not numeric</em>.&nbsp; We want the <strong><em>x</em></strong> mapping to be continuous so we need numeric values:</p>
+<div class="sourceCode" id="cb16" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames</span>(Jan_Avg)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">"1"</span>  <span class="st">"2"</span>  <span class="st">"3"</span>  <span class="st">"4"</span>  <span class="st">"5"</span>  <span class="st">"6"</span>  <span class="st">"7"</span>  <span class="st">"8"</span>  <span class="st">"9"</span>  <span class="st">"10"</span> <span class="st">"11"</span> <span class="st">"12"</span> <span class="st">"13"</span> <span class="st">"14"</span> <span class="st">"15"</span> <span class="st">"16"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">17</span>] <span class="st">"17"</span> <span class="st">"18"</span> <span class="st">"19"</span> <span class="st">"20"</span> <span class="st">"21"</span> <span class="st">"22"</span> <span class="st">"23"</span> <span class="st">"24"</span> <span class="st">"25"</span> <span class="st">"26"</span> <span class="st">"27"</span> <span class="st">"28"</span> <span class="st">"29"</span> <span class="st">"30"</span> <span class="st">"31"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will map <strong><em>x</em></strong> to the numeric row names:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a> plot5 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg))»,  <span class="co"># 1:31</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>Jan_Avg[,<span class="dv">1</span>],    <span class="co"># column 1, also Jan_Avg$X2016</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[<span class="dv">1</span>])) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg))»,  <span class="co"># 1:31</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>Jan_Avg[,<span class="dv">2</span>],    <span class="co"># column 2, also Jan_Avg$X2017</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[<span class="dv">2</span>])) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg))»,  <span class="co"># 1:31</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>Jan_Avg[,<span class="dv">3</span>],    <span class="co"># column 3, also Jan_Avg$X2018</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[<span class="dv">3</span>])) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temp (Celsius)"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Year"</span>);</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-generalizedXMap" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-generalizedXMap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_PlotMultColumns.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-generalizedXMap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: After generalizing the x mapping, we still have the same plot as before
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="using-for-loops-and-lazy-evaluations" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="using-for-loops-and-lazy-evaluations"><span class="header-section-number">6</span> Using <strong>for</strong> loops and Lazy Evaluations</h2>
+<p>We have now generalized the script for the <strong><em>geom_line</em></strong> so that it is easier to put in a <strong><em>for</em></strong> loop.&nbsp; We will now recreate the seven line plots using a <strong><em>for</em></strong> loop.</p>
+<p>&nbsp;</p>
+<p>We will do this in three steps:</p>
+<ol type="1">
+<li><p>Establish the <strong><em>ggplot</em></strong> canvas</p></li>
+<li><p>Add plots using a <strong><em>for</em></strong> loop to cycle through the columns</p></li>
+<li><p>Adjust the plots with <strong><em>theme</em></strong> and <strong><em>labs</em></strong> (labels)</p></li>
+</ol>
+<p>&nbsp;</p>
+<p><span class="note">Note: Our first effort to use <strong>for</strong> loops will fail – in a very instructive way that introduces Lazy Evaluations, a topic that creeps up from time to time</span></p>
+<section id="establish-the-ggplot-canvas" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="establish-the-ggplot-canvas"><span class="header-section-number">6.1</span> Establish the ggplot canvas</h3>
+<p><strong><em>ggplot()</em></strong> is the function that establishes a ggplot canvas.&nbsp; Effectively, what <strong><em>ggplot()</em></strong> is doing is creating a <strong><em>List</em></strong> object that holds all the plot data, information, and styling.</p>
+<p>&nbsp;</p>
+<p>We start with creating a <strong><em>List</em></strong> object with nothing in it (i.e., an empty <strong><em>ggplot()</em></strong> canvas):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot6 <span class="ot">=</span> <span class="fu">ggplot</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A <strong><em>List</em></strong> object named <strong><em>plot6</em></strong> has been put into the <strong><em>Environment</em></strong> and now we are going to fill it with plot data.</p>
+</section>
+<section id="adding-geoms-line-plots-to-the-canvas" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="adding-geoms-line-plots-to-the-canvas"><span class="header-section-number">6.2</span> Adding geoms (line plots) to the canvas</h3>
+<p>We want to create a line plot for all seven column in&nbsp;<strong><em>Jan_Avg</em></strong>.&nbsp; This means we want to cycle through the seven columns using a <strong><em>for</em></strong> loop:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)   <span class="co"># cycle through columns 1-7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And each time the <strong><em>for</em></strong> loop cycles we want to append one line plot to the canvas,&nbsp;<strong><em>plot6</em></strong>.&nbsp;</p>
+<p>In other words, we are adding a year’s line plot to&nbsp;<strong><em>plot6</em></strong> and saving the results back to <strong><em>plot6</em></strong>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plot6 <span class="ot">=</span> plot6 <span class="sc">+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We need to replace the column numbers in the code from the last plot (<a href="#fig-generalizedXMap" class="quarto-xref">Figure&nbsp;10</a>) with the indexing value in the <strong><em>for</em></strong> loop, <strong><em>i</em></strong>, which goes from <strong>1</strong> to <strong>7</strong><em>:</em></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)), </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y=</span>Jan_Avg[,«i»],                  <span class="co"># columns 1-7</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[«i»]));   <span class="co"># names from columns 1-7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Putting all of this together we get:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>(); </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Cycle through the seven columns and make a line plot for each </span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)   <span class="co"># cycle through columns 1-7</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    plot6 <span class="ot">=</span> plot6 <span class="sc">+</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)), </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y=</span>Jan_Avg[,i], </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[i])); </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And the result is something unexpected – we only see a line plot of the last column (2022):</p>
+<div id="fig-lazyEval" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lazyEval-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_LazyEvaluation.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lazyEval-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Only the last column was plotted – this is a case of Lazy Evaluation
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="lazy-evaluation" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="lazy-evaluation"><span class="header-section-number">6.3</span> Lazy Evaluation&nbsp;</h3>
+<p>It looks as though only the last of the seven columns was plotted once ( <a href="#fig-lazyEval" class="quarto-xref">Figure&nbsp;11</a>) but, actually, <span class="hl">the last column was plotted seven times</span>.</p>
+<p>&nbsp;</p>
+<p>This happened because of the way R/GGPlot handles indexes when compiling <strong><em>for</em></strong> loops.&nbsp; The compilers sees the <strong><em>for</em></strong> loop will executes seven times and stacks up the code from the seven loops like this:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>    plot6 <span class="ot">=</span> plot6 <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)), </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y=</span>Jan_Avg[,i], </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[i])); </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    plot6 <span class="ot">=</span> plot6 <span class="sc">+</span> </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)), </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y=</span>Jan_Avg[,i], </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[i])); </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    plot6 <span class="ot">=</span> plot6 <span class="sc">+</span> </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)), </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y=</span>Jan_Avg[,i], </span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[i])); </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">...</span> (<span class="dv">4</span> more) ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then the compiler executed the stacked lines.&nbsp; The problem is that R evaluated <strong><em>i</em></strong> after the code from the <strong><em>for</em></strong> loops was stacked.</p>
+<p>&nbsp;</p>
+<p>But, <span class="hl">after the <strong><em>for</em></strong> loop,&nbsp; <strong><em>i</em></strong> is equal to <strong>7</strong></span>.&nbsp; So, R replace <strong><em>i</em></strong> with <strong><em>7</em></strong> in all seven plots in the stack.&nbsp; This is called <span class="hl">Lazy Evaluation</span>.</p>
+<p>Lazy Evaluation is one of the more unintuitive problems that happens a lot in programming.&nbsp;</p>
+</section>
+</section>
+<section id="local-variables-the-lazy-evaluation-fix" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="local-variables-the-lazy-evaluation-fix"><span class="header-section-number">7</span> Local variables: The Lazy Evaluation fix</h2>
+<p>One solution to Lazy Evaluation is to force evaluation of&nbsp;<strong><em>i</em></strong> while cycling through the <strong><em>for</em></strong> loop.&nbsp; This is done using <strong><em>local()</em></strong>.&nbsp; Inside <strong><em>local()</em></strong>, we declare that <strong><em>i</em></strong> is local and needs to be evaluated now.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Stopping the Lazy Evaluation by forcing local variables</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>(); </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(Jan_Avg))   <span class="co"># same as 1:7</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    plot7 <span class="ot">=</span> plot7 <span class="sc">+</span> </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>     «<span class="fu">local</span>({»   <span class="co"># An instruction to evaluate local variables immediately</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        «i<span class="ot">=</span>i;»   <span class="co"># Makes the i value local</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)), </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y=</span>Jan_Avg[,i], </span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[i]));  </span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>      «})»       <span class="co"># End the instruction to use local variables</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This forces R to evaluate <strong><em>i</em></strong> each time through the <strong><em>for</em></strong> loop and we see the seven plots:</p>
+<div id="fig-noLazyEval" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-noLazyEval-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_NoLazyEval.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-noLazyEval-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Plot of all seven column after we forced local evaluation
+</figcaption>
+</figure>
+</div>
+<section id="alternative-fix" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="alternative-fix"><span class="header-section-number">7.1</span> Alternative fix</h3>
+<p>GGPlot does have a built-in mapping function that avoids Lazy Evaluation – <strong><em>aes_()</em></strong>.</p>
+<p><em>Note: that is&nbsp;<strong>aes()</strong> with an added underscore ( <strong>_</strong> ).</em></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: Stopping the Lazy Evaluation by using aes_()</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>(); </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(Jan_Avg))   <span class="co"># same as 1:7</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  { </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    plot8 <span class="ot">=</span> plot8 <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">mapping=</span>«aes_»(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)), </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y=</span>Jan_Avg[,i], </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">color=</span><span class="fu">colnames</span>(Jan_Avg)[i]));   </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-noLAzyEval2" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-noLAzyEval2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_NoLazyEval-01.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-noLAzyEval2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: plot8 is exactly the same as plot7
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="aes_-warning" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="aes_-warning"><span class="header-section-number">7.2</span> aes_() warning</h3>
+<p><strong><em>aes_()</em></strong> is a more elegant solution than&nbsp;<strong><em>local()</em></strong>, but you will get a warning when using <strong><em>aes_()</em></strong>:</p>
+<div class="sourceCode" id="cb26" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Warning message<span class="sc">:</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">aes_()</span><span class="st">`</span> was deprecated <span class="cf">in</span> ggplot2 <span class="dv">3</span>.<span class="dv">0</span>.<span class="fl">0.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This means that GGPlot is considering removing support for <strong><em>aes_()</em></strong> and it could stop working at some point in the future.&nbsp; My guess is that it will work for a long time as there are many reasons people use <strong><em>aes_()</em></strong> – but, this is not a guarantee and why I teach both the&nbsp;<strong><em>aes_()</em></strong> and <strong><em>local()</em></strong> methods when dealing with Lazy Evaluation.</p>
+</section>
+</section>
+<section id="appending-theme-and-labels" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="appending-theme-and-labels"><span class="header-section-number">8</span> Appending theme and labels</h2>
+<p>Our ggplot canvas, <strong><em>plot8</em></strong>, now has 7 line plots.&nbsp; Let’s add the <strong><em>theme</em></strong> and <strong><em>labs</em></strong> components but, instead of appending to <strong><em>plot8</em></strong>, we will create a copy of <strong><em>plot8</em></strong> named <strong><em>plot9</em></strong> and append the <strong><em>theme</em></strong> and <strong><em>labs</em></strong> components&nbsp;to <strong><em>plot9</em></strong>:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> plot8 <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temp (Celsius)"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Year"</span>);</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-linePlots_For" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linePlots_For-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_ForLoops-01.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linePlots_For-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: The line plots with appended theme and labs
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="aesthetic-changes" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="aesthetic-changes"><span class="header-section-number">9</span> Aesthetic changes&nbsp;</h2>
+<p>We are going to make the final plot of this lesson (<a href="#fig-linePlots_For" class="quarto-xref">Figure&nbsp;14</a>) look a little nicer with the following changes:</p>
+<ol type="1">
+<li><p>remove the <strong><em>X</em></strong> from the year in the legend</p></li>
+<li><p>increase the size of the line</p></li>
+<li><p>Use a better color system for the lines</p></li>
+</ol>
+<p>&nbsp;</p>
+<p>The <strong><em>X</em></strong> can be removed from the column names and the legend using&nbsp;<strong><em>substring</em></strong> with the argument <strong><em>first=2</em></strong>.&nbsp;</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>  yearNum <span class="ot">=</span> <span class="fu">substring</span>(<span class="fu">colnames</span>(Jan_Avg), <span class="at">first=</span><span class="dv">2</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>first=2</em></strong> starts with the second character <strong><em>colnames</em></strong> (i.e., removes the first character):</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> yearNum</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"2016"</span> <span class="st">"2017"</span> <span class="st">"2018"</span> <span class="st">"2019"</span> <span class="st">"2020"</span> <span class="st">"2021"</span> <span class="st">"2022"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The size of the lines can be changed by adding the <strong><em>linewidth</em></strong> subcomponent to <strong><em>geom_line</em></strong>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes_</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)),  <span class="co"># 1:31</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y=</span>Jan_Avg[,i], <span class="co"># plot temperature column i</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">color=</span>yearNum[i]), </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">linewidth=</span> <span class="fl">1.5</span>); </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And we will use the&nbsp;<strong><em>viridis</em></strong> package to give us a better colors. &nbsp;<a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html">viridis has many predefined color schemes</a> designed to increase contrast for both discrete and continuous plots.&nbsp; The schemes can be access using the <strong><em>scale_color_viridis</em></strong> component:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>, <span class="co"># values are discrete (FALSE: continuous)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">option =</span> <span class="st">"H"</span>,    <span class="co"># options are A-H, default is D</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># -1 reverses colors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Putting it all together (you can also use <strong><em>aes_()</em></strong> instead of <strong><em>local()</em></strong>):</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>  yearNum <span class="ot">=</span> <span class="fu">substring</span>(<span class="fu">colnames</span>(Jan_Avg), <span class="at">first=</span><span class="dv">2</span>);  </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> <span class="fu">ggplot</span>();   <span class="co"># create a new canvas</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(Jan_Avg))</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    plot10 <span class="ot">=</span> plot10 <span class="sc">+</span>    <span class="co"># append to plot8 the geom_line</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">local</span>({</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        i<span class="ot">=</span>i;</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg)),  </span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y=</span>Jan_Avg[,i],</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color=</span>yearNum[i]),  <span class="co"># change to substring</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">linewidth =</span> <span class="fl">1.5</span>);    <span class="co"># change the size of the line</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>      });</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> plot10 <span class="sc">+</span>    <span class="co"># append these components</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>, <span class="co"># values are discrete (not continuous)</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">option =</span> <span class="st">"H"</span>,    <span class="co"># options are A-H, default is D (Viridis)</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co"># -1 reverses colors</span></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temp (\U00B0 C)"</span>,          <span class="co"># use unicode for the degree symbol</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Year"</span>);</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And our new plot:</p>
+<div id="fig-improvedPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-improvedPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_ImprovedLines.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-improvedPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: An improved version of the plot
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="application" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="application"><span class="header-section-number">10</span> Application</h2>
+<p>Create a script file in your Project’s <strong><em>scripts</em></strong> folder called <strong><em>app09.r</em></strong> and using the data from <strong><em>Jan_TAVG.csv</em></strong>:</p>
+<p>1) In comments at the top of your script answer the following:</p>
+<ul>
+<li><p>What happens if you take the year out of quotes in the color mapping in&nbsp;<strong><em>plot2</em></strong> <a href="#fig-threeColumnPlot" class="quarto-xref">Figure&nbsp;7</a>)? &nbsp;Why?&nbsp;</p></li>
+<li><p>Why does the <strong><em>x</em></strong> mapping (temperature) need to be numeric and the&nbsp;<strong><em>color</em></strong> mapping (year) need to be a string in&nbsp;<strong><em>plot5</em></strong> (<a href="#fig-generalizedXMap" class="quarto-xref">Figure&nbsp;10</a>)?&nbsp; How does GGPlot plot these types of values?</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>2) Create a line plot for the first 20 values from years 2017 to 2020 in&nbsp;<strong><em>Jan_TAVG.csv</em></strong>–(4 line plots in all)</p>
+<ul>
+<li><p>Do this once using the reshaping method</p>
+<ul>
+<li>You can subset the data frame in <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/reshape.html">reshape() using the argument drop</a></li>
+</ul></li>
+<li><p>And a second time using the <strong><em>for</em></strong> loops method</p></li>
+<li><p>Add, and center, a title and subtitle&nbsp;</p></li>
+<li><p>Change the background color of the plot and the color of the axis lines to varying shades of gray using grayscale (<strong><em>grey0</em></strong> to <strong><em>grey100</em></strong>)</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>3) Create a matrix from the data in <strong><em>Jan_TAVG.csv</em></strong> and create a scatterplot of each rows using <strong><em>for</em></strong> loops</p>
+<ul>
+<li><p>use <strong><em>as.matrix()</em></strong> to convert the data frame into a matrix</p></li>
+<li><p>Use a <strong><em>for</em></strong> loops to cycle through, and plot, all the rows (instead of columns)</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>D) <a href="01c-RStudioProjects.html#application">&lt;Instructions for GitHub – link to previous lesson&gt;</a></p>
+<section id="questions" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">10.1</span> Questions</h3>
+<p>Answer the following in comments inside your application script:</p>
+<ol type="1">
+<li><p>What was your level of comfort with the lesson/application?</p></li>
+<li><p>What is a way you can apply the material in this lesson towards your research or area of study?</p></li>
+<li><p>What are some things you would like to learn related to, but not covered in, this lesson?</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,12 +1,11 @@
 website:  
+  bread-crumbs: false
   sidebar:
     search: true
     collapse-level: 1   # does not work because a page within is opened
     contents: 
-      - section: "blah"
+      - section: "Graphing With GGPlot Lessons"  
         contents: lessons/*.qmd
-          - section: "Graphing With GGPlot Lessons"  
-            contents: lessons/*.qmd
 
 project:
   render:
@@ -14,8 +13,25 @@ project:
   type: website
   output-dir: docs
 
-metadata-files:
-  - _website.yml
+format:
+  html:
+    page-layout: full
+    css: "https://qfcatmsu.github.io/assets/quarto/qfc_styles.css"
+    toc: true
+    toc-title: Lesson Content
+    toc-location: left
+    fig-align: left
+    theme: default
+    fontsize: 15px
+    number-sections: true
+    grid: 
+      body-width: 1000px
+    include-in-header:
+      - text: |
+          <script>mod=true;</script>
+          <script src="qfc_styles.js"></script> 
+    #   <script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js">
+editor: visual
 
 
 

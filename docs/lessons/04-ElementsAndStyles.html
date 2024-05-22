@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>04: Elements And Styles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>mod=true;</script>
+<script src="qfc_styles.js"></script> 
+<script>mod=true;</script>
+
+
+<link rel="stylesheet" href="https://qfcatmsu.github.io/assets/quarto/qfc_styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">04: Elements And Styles</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Graphing With GGPlot Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/00-IntroductionAndSyllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00: Introduction and Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01-RStudioProjectsAndGit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01: RStudio Projects and Git Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02-Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Components</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-MappingAndAesthetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Mapping And Aesthetics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04-ElementsAndStyles.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">04: Elements And Styles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05-DateObjectsAndThemes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05: Date object and themes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-ModifyingMappedElements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Modifying Mapped Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-Faceting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07: Faceting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/08-Boxplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Boxplots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/09-ReshapingAndForLoops1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09: Reshaping and For Loops 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/Info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Info</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
+   
+  <ul>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="header-section-number">1</span> Purpose</a>
+  <ul class="collapse">
+  <li><a href="#code-for-the-lesson" id="toc-code-for-the-lesson" class="nav-link" data-scroll-target="#code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</a></li>
+  </ul></li>
+  <li><a href="#styling-elements-of-a-plot" id="toc-styling-elements-of-a-plot" class="nav-link" data-scroll-target="#styling-elements-of-a-plot"><span class="header-section-number">2</span> Styling elements of a plot</a></li>
+  <li><a href="#styling-plot-components-points" id="toc-styling-plot-components-points" class="nav-link" data-scroll-target="#styling-plot-components-points"><span class="header-section-number">3</span> Styling Plot Components: Points</a>
+  <ul class="collapse">
+  <li><a href="#unampped-styling-of-points" id="toc-unampped-styling-of-points" class="nav-link" data-scroll-target="#unampped-styling-of-points"><span class="header-section-number">3.1</span> Unampped styling of points</a></li>
+  <li><a href="#mapping-properties-vs.-subcomponents" id="toc-mapping-properties-vs.-subcomponents" class="nav-link" data-scroll-target="#mapping-properties-vs.-subcomponents"><span class="header-section-number">3.2</span> Mapping properties vs.&nbsp;subcomponents</a></li>
+  <li><a href="#properties-of-points-and-their-possible-values" id="toc-properties-of-points-and-their-possible-values" class="nav-link" data-scroll-target="#properties-of-points-and-their-possible-values"><span class="header-section-number">3.3</span> Properties of points and their possible values</a></li>
+  <li><a href="#adding-transparency-opacity-to-the-point" id="toc-adding-transparency-opacity-to-the-point" class="nav-link" data-scroll-target="#adding-transparency-opacity-to-the-point"><span class="header-section-number">3.4</span> Adding transparency (opacity) to the point</a></li>
+  </ul></li>
+  <li><a href="#styling-plot-components-lines" id="toc-styling-plot-components-lines" class="nav-link" data-scroll-target="#styling-plot-components-lines"><span class="header-section-number">4</span> Styling plot components: Lines</a>
+  <ul class="collapse">
+  <li><a href="#add-labels-and-coloring" id="toc-add-labels-and-coloring" class="nav-link" data-scroll-target="#add-labels-and-coloring"><span class="header-section-number">4.1</span> Add labels and coloring</a></li>
+  <li><a href="#properties-of-lines-and-their-possible-values" id="toc-properties-of-lines-and-their-possible-values" class="nav-link" data-scroll-target="#properties-of-lines-and-their-possible-values"><span class="header-section-number">4.2</span> Properties of lines and their possible values</a></li>
+  <li><a href="#add-a-smoothing-function" id="toc-add-a-smoothing-function" class="nav-link" data-scroll-target="#add-a-smoothing-function"><span class="header-section-number">4.3</span> Add a smoothing function</a></li>
+  </ul></li>
+  <li><a href="#ggplot-elements" id="toc-ggplot-elements" class="nav-link" data-scroll-target="#ggplot-elements"><span class="header-section-number">5</span> GGPlot Elements</a>
+  <ul class="collapse">
+  <li><a href="#subcomponent-groups" id="toc-subcomponent-groups" class="nav-link" data-scroll-target="#subcomponent-groups"><span class="header-section-number">5.1</span> Subcomponent groups</a></li>
+  <li><a href="#help-for-styling-elements" id="toc-help-for-styling-elements" class="nav-link" data-scroll-target="#help-for-styling-elements"><span class="header-section-number">5.2</span> Help for styling elements</a></li>
+  </ul></li>
+  <li><a href="#styling-text-using-element_text" id="toc-styling-text-using-element_text" class="nav-link" data-scroll-target="#styling-text-using-element_text"><span class="header-section-number">6</span> Styling text using element_text()</a>
+  <ul class="collapse">
+  <li><a href="#using-element_text" id="toc-using-element_text" class="nav-link" data-scroll-target="#using-element_text"><span class="header-section-number">6.1</span> Using element_text()</a></li>
+  <li><a href="#elements-of-a-plot" id="toc-elements-of-a-plot" class="nav-link" data-scroll-target="#elements-of-a-plot"><span class="header-section-number">6.2</span> Elements of a plot</a></li>
+  </ul></li>
+  <li><a href="#styling-lines-using-element_line" id="toc-styling-lines-using-element_line" class="nav-link" data-scroll-target="#styling-lines-using-element_line"><span class="header-section-number">7</span> Styling lines using element_line()</a>
+  <ul class="collapse">
+  <li><a href="#modifying-axis-line-elements" id="toc-modifying-axis-line-elements" class="nav-link" data-scroll-target="#modifying-axis-line-elements"><span class="header-section-number">7.1</span> Modifying axis line elements</a></li>
+  <li><a href="#greyscaling" id="toc-greyscaling" class="nav-link" data-scroll-target="#greyscaling"><span class="header-section-number">7.2</span> Greyscaling</a></li>
+  <li><a href="#lineend-and-arrow" id="toc-lineend-and-arrow" class="nav-link" data-scroll-target="#lineend-and-arrow"><span class="header-section-number">7.3</span> lineend and arrow</a></li>
+  </ul></li>
+  <li><a href="#styling-lines-using-element_rect" id="toc-styling-lines-using-element_rect" class="nav-link" data-scroll-target="#styling-lines-using-element_rect"><span class="header-section-number">8</span> Styling lines using element_rect()</a>
+  <ul class="collapse">
+  <li><a href="#using-element_rect" id="toc-using-element_rect" class="nav-link" data-scroll-target="#using-element_rect"><span class="header-section-number">8.1</span> Using element_rect()</a></li>
+  </ul></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">9</span> Application</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">9.1</span> Questions</a></li>
+  </ul></li>
+  <li><a href="#extension-using-run-on-a-ggplot" id="toc-extension-using-run-on-a-ggplot" class="nav-link" data-scroll-target="#extension-using-run-on-a-ggplot"><span class="header-section-number">10</span> Extension: Using Run on a GGPlot</a></li>
+  <li><a href="#extension-rgb-colors-and-unicode-characters" id="toc-extension-rgb-colors-and-unicode-characters" class="nav-link" data-scroll-target="#extension-rgb-colors-and-unicode-characters"><span class="header-section-number">11</span> Extension: RGB Colors and Unicode Characters</a>
+  <ul class="collapse">
+  <li><a href="#rgb-colors" id="toc-rgb-colors" class="nav-link" data-scroll-target="#rgb-colors"><span class="header-section-number">11.1</span> RGB colors</a></li>
+  <li><a href="#unicode-characters" id="toc-unicode-characters" class="nav-link" data-scroll-target="#unicode-characters"><span class="header-section-number">11.2</span> Unicode Characters</a></li>
+  <li><a href="#script-using-rgb-colors-and-unicode-characters" id="toc-script-using-rgb-colors-and-unicode-characters" class="nav-link" data-scroll-target="#script-using-rgb-colors-and-unicode-characters"><span class="header-section-number">11.3</span> Script using RGB colors and Unicode characters</a></li>
+  </ul></li>
+  <li><a href="#trap-changing-a-theme-after-modifying" id="toc-trap-changing-a-theme-after-modifying" class="nav-link" data-scroll-target="#trap-changing-a-theme-after-modifying"><span class="header-section-number">12</span> Trap: Changing a theme after modifying</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">04: Elements And Styles</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="purpose" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
+<ul>
+<li><p>Change the style of plot components</p></li>
+<li><p>Change the style of canvas component using elements</p></li>
+<li><p>RGB color codes and Unicode</p></li>
+</ul>
+<section id="code-for-the-lesson" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</h3>
+<p><a href="../scripts/lesson04-StyleElements.R">The script for the lesson</a></p>
+<ul>
+<li>Save the R file, called <strong><em>lesson04-StyleElements.R</em></strong> to the <strong><em>scripts</em></strong> folder inside your RStudio Project</li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="../Data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as last lesson)</p>
+<ul>
+<li><p>Save the CSV file, called <strong><em>Lansing2016Data.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.&nbsp;</p></li>
+<li><p><span class="hl">It is best to use the operating system’s File Explorer/Finder</span> to move the CSV file to the proper folder.</p></li>
+</ul>
+</section>
+</section>
+<section id="styling-elements-of-a-plot" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="styling-elements-of-a-plot"><span class="header-section-number">2</span> Styling elements of a plot</h2>
+<p>Pretty much everything in a GGPlot canvas can be customized. How you customized a component depends largely on what type of component it is.</p>
+<p>&nbsp;</p>
+<p>The are basically three categories of components:</p>
+<ol type="1">
+<li><p>Plot properties that are not mapped to data (e.g., <strong><em>size</em></strong> of all points set to a specific value)</p></li>
+<li><p>Plot properties that are mapped to data (e.g.,&nbsp;<strong><em>size</em></strong> of point is dependent upon the value of the point)</p></li>
+<li><p>Non-plot components (everything in the canvas that is not part of the plot)</p></li>
+</ol>
+<p>&nbsp;</p>
+<p>Each of the categories above have a distinct method of styling.&nbsp; We will cover #1 and #3 in this lesson and #2 in a later lesson where we talk more about customizing mappings.</p>
+</section>
+<section id="styling-plot-components-points" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="styling-plot-components-points"><span class="header-section-number">3</span> Styling Plot Components: Points</h2>
+<p>In the previous lesson we mapped columns in <strong><em>weatherData</em></strong> to points (and their properties) on a scatterplot.</p>
+<p>In last lesson, we used the mapping function&nbsp;<strong><em>aes()</em></strong> with the following arguments:</p>
+<ul>
+<li><p><strong><em>x</em></strong> is mapped to temperature</p></li>
+<li><p><strong><em>y</em></strong> is mapped to humidity</p></li>
+<li><p><strong><em>color</em></strong> is mapped to season</p></li>
+<li><p><strong><em>size</em></strong> is mapped to precipitation</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Mapping the points ####</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(«<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2»)) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  <span class="co"># 00B0 is the Unicode degree symbol</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>);     <span class="co"># 0025 is the Unicode percentage symbol</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Extension: <a href="#unicode-characters">Unicode Characters</a></p>
+<p><a href="#extension-using-run-on-a-ggplot">Extension: Using Run on a GGPlot</a></p>
+<p>&nbsp;</p>
+<p>And the result of the four mappings:</p>
+<div id="fig-mappings" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mappings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-Mapped.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mappings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Using mapping to style the points based on data in a column
+</figcaption>
+</figure>
+</div>
+<section id="unampped-styling-of-points" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="unampped-styling-of-points"><span class="header-section-number">3.1</span> Unampped styling of points</h3>
+<p>We can also use properties like <strong><em>color, size</em></strong>, and <strong><em>shape</em></strong> to style all the points <span class="hl">exactly the same.</span></p>
+<p>&nbsp;</p>
+<p>We are going to start by styling the points in the same scatterplot using <strong><em>color</em></strong>, <strong><em>size</em></strong>, and <strong><em>shape</em></strong> <span class="hl">as&nbsp;subcomponents of <strong><em>geom_point()</em></strong> instead of mappings:</span></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Styling the points ####</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),  <span class="co"># mapping</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">color=</span><span class="st">"darkgreen"</span>», <span class="co"># NOT a mapping</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">size=</span><span class="fl">2.5</span>,»          <span class="co"># NOT a mapping</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">shape=</span><span class="dv">17</span>» ) <span class="sc">+</span>       <span class="co"># NOT a mapping</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (%)"</span>);</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example, we used four subcomponents in <strong><em>geom_point()</em></strong>:</p>
+<ul>
+<li><p><strong><em>mapping</em></strong>: maps the column data <strong><em>relHum</em></strong> vs <strong><em>avgTemp</em></strong> to the plot</p>
+<ul>
+<li><span class="note">note: we have only used the <strong>x</strong> and <strong>y</strong> arguments (i.e., mapped <strong>x</strong> and <strong>y</strong>) in this plot</span></li>
+</ul></li>
+<li><p><strong><em>color</em></strong>: changes the point color to <strong>darkgreen</strong></p></li>
+<li><p><strong><em>size</em></strong>: multiplies the point size by <strong>2.5</strong></p></li>
+<li><p><strong><em>shape</em></strong>: changes the point shape to filled triangles (<strong>17</strong>)</p></li>
+</ul>
+<p>&nbsp;</p>
+<div id="fig-directStyle" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-directStyle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP1-04-DirectStyle.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-directStyle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Directly styling the points on a plot
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="mapping-properties-vs.-subcomponents" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="mapping-properties-vs.-subcomponents"><span class="header-section-number">3.2</span> Mapping properties vs.&nbsp;subcomponents</h3>
+<p>Properties like <strong><em>color, size, and shape</em></strong> can be used to map data to a plot component (arguments for <strong><em>aes()</em></strong> as in <em>fig ##</em>) or they can be used to directly set the property of a plot component (subcomponents of the plot as in <em>fig ##</em>).&nbsp; <em>They can not be used for both</em>.&nbsp; If you use these properties as both a mapping and a subcomponent, the subcomponent will override the mapping.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Overriding mapped styles ####</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>season», <span class="at">size=</span>precip2),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">color=</span><span class="st">"darkgreen"</span>, <span class="co"># this overrides the color mapping»</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">shape=</span><span class="dv">17</span> ) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (%)"</span>);</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-override" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-override-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP1-04-Override.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-override-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The color subcomponent overrode the color mapping
+</figcaption>
+</figure>
+</div>
+<p><span class="note">Note: There is a way to manually set the mapped color (e.g., pick your own colors for the four seasons) and we will learn this in a later lesson.</span></p>
+</section>
+<section id="properties-of-points-and-their-possible-values" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="properties-of-points-and-their-possible-values"><span class="header-section-number">3.3</span> Properties of points and their possible values</h3>
+<p>Points have five properties that can be changed:</p>
+<ul>
+<li><p><strong><em>color</em></strong>: two options</p>
+<ul>
+<li><p>Color names: <a href="https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/">here is a complete list of all the color names in R</a></p>
+<ul>
+<li>you can also type <strong><em>colors()</em></strong> in the <strong><em>Console</em></strong> tab to see all 657 choices</li>
+</ul></li>
+<li><p><a href="#rgb-colors">RGB colors</a>– this gives you access to all possible colors the a computer can represent</p></li>
+</ul></li>
+<li><p><strong><em>size</em></strong>: a number that acts as a multiplier</p>
+<ul>
+<li><strong><em>size=3</em></strong> is 3 times the original size, <strong><em>size=0.5</em></strong> is half the original size</li>
+</ul></li>
+<li><p><strong><em>shape</em></strong>: there are three options for shape</p>
+<ul>
+<li><p><a href="http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r">the standard R shapes</a> (numbered 0 through 25)</p></li>
+<li><p>any character on the keyboard in quotes (so, <strong><em>shape = “~”</em></strong> would use the tilde as a point character) &nbsp;&nbsp;</p></li>
+<li><p>any <a href="#unicode-characters">Unicode Characters</a> (Unicode U+018F, which is <strong>Ə</strong>, would be:&nbsp;<strong>shape = “\u018f”</strong>)</p></li>
+</ul></li>
+<li><p><strong><em>fill</em></strong>: a background color that only works for <strong><em>shape</em></strong> #21-25 and some Unicode characters</p></li>
+<li><p><strong><em>alpha</em></strong>: opacity of points – a value between <strong>0</strong> (transparent) and <strong>1</strong> (opaque)</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>For more information about RGB color and Unicode go to: <a href="#extension-rgb-colors-and-unicode-characters">Extension: RGB Colors and Unicode Characters</a></p>
+</section>
+<section id="adding-transparency-opacity-to-the-point" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="adding-transparency-opacity-to-the-point"><span class="header-section-number">3.4</span> Adding transparency (opacity) to the point</h3>
+<p>When you have a lot of points overlapping each-other, it is often helpful to make the points partially transparent so you can better see the clustering of points.&nbsp; To do this we change the <strong><em>alpha</em></strong> subcomponent – <strong><em>alpha</em></strong> is a value between <strong>0</strong> (completely transparent) and <strong>1</strong> (completely opaque).</p>
+<p>&nbsp;</p>
+<p>For this example, we use an <strong><em>alpha</em></strong> of <strong>0.4</strong> (i.e., 40% opaque):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 4: Make points semi-transparent ####</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color=</span><span class="st">"darkgreen"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">size=</span><span class="fl">2.5</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">shape=</span><span class="dv">17</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">alpha =</span> <span class="fl">0.4</span>» ) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (%)"</span>);</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-alpha" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-alpha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP1-04-Alpha.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alpha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Adding an alpha value (transparency) to the points to better see clustering
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="styling-plot-components-lines" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="styling-plot-components-lines"><span class="header-section-number">4</span> Styling plot components: Lines</h2>
+<p>Last lesson we used <strong><em>geom_smooth()</em></strong> to create a line than represent the linear regression between humidity and temperature.&nbsp; In this lesson, we will create two line plots using <strong><em>geom_line(),</em></strong>&nbsp; <strong><em>geom_line()</em></strong> is basically <strong><em>geom_point()</em></strong> with the points connected.</p>
+<p>We are going to use <strong><em>geom_line()</em></strong> twice, to plot:</p>
+<ol type="1">
+<li><p><em><strong>maxTemp</strong> vs</em> <strong>day (row) number</strong></p></li>
+<li><p><strong><em>minTemp</em></strong> vs <strong><em>day (row) number</em></strong></p></li>
+</ol>
+<p>&nbsp;</p>
+<p>To map the row number, which is the same as the day number, to the x-axis, we set <strong><em>x</em></strong> equal to a sequence of numbers from <strong>1</strong> to the number of rows in the data frame: <strong><em>1:nrow(weatherData)</em></strong>.</p>
+<p>&nbsp;</p>
+<p>So, <strong><em>x</em></strong> equals the sequence <strong><em>1:366</em></strong> or <strong><em>c(1,2,3, …, 364, 365, 366)</em></strong></p>
+<p>&nbsp;</p>
+<p>The code below says that we are going to put two <strong><em>geom_line()</em></strong> components in the plot area.&nbsp; Both plots components map <strong><em>x</em></strong> to the row number and map <strong><em>y</em></strong> to a temperature column:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 5: Add lines to a plot ####</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp))» <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>minTemp))» <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="note">Note: Adding in the actual date to the x-axis is a little trickier and will be covered in the next lesson.</span></p>
+<div id="fig-linePlots" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linePlots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP1-04-Alpha-01.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linePlots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Two line graphs: maxTemp vs day number and minTemp vs day number
+</figcaption>
+</figure>
+</div>
+<section id="add-labels-and-coloring" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="add-labels-and-coloring"><span class="header-section-number">4.1</span> Add labels and coloring</h3>
+<p>The black lines representing both temperature plots is hard to distinguish.&nbsp; Let’s visually separate the two plots by setting the <strong><em>color</em></strong> subcomponent in <strong><em>geom_line()</em></strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Add colors by name and using rgb() </span><span class="al">###</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              «<span class="at">color=</span><span class="st">"violetred1"</span>») <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>minTemp), </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>              «<span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)») <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature vs. Date"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-colorChanges" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-colorChanges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP1-04-LineColors.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-colorChanges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Changing the line plot colors using color names and rgb()
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="properties-of-lines-and-their-possible-values" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="properties-of-lines-and-their-possible-values"><span class="header-section-number">4.2</span> Properties of lines and their possible values</h3>
+<p>Lines and points both use the properties <strong><em>color</em></strong>, <strong><em>fill</em></strong>, and <strong><em>alpha</em></strong>.&nbsp; The difference is that <strong><em>linetype</em></strong> and <strong><em>linewidth</em></strong> is used instead point <strong><em>shape</em></strong> and point <strong><em>size</em></strong>.</p>
+<p>&nbsp;</p>
+<p>There are 6 values for <strong><em>linetype</em></strong> and they are given the number 1-6 (<a href="https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html">1 is a solid line and the rest are variations of a dotted or dashed lines</a>).</p>
+<p>&nbsp;</p>
+<p><span class="note">Note: You can create more customized lines in GGPlot by setting the size and frequency of the dots and dashes, but that involves hexadecimals number and will be a topic for another day!</span></p>
+</section>
+<section id="add-a-smoothing-function" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="add-a-smoothing-function"><span class="header-section-number">4.3</span> Add a smoothing function</h3>
+<p>On the graph, we are going to add another component that represents the average temperature (<strong><em>avgTemp</em></strong>) and use a method that smooths out the values.&nbsp; Like last lesson, we use <strong><em>geom_smooth()</em></strong>, but we will use a different smoothing method this time (<strong><em>loess</em></strong>).</p>
+<p>&nbsp;</p>
+<p>The line is styled using <strong><em>color, linetype, linewidth</em></strong>, and <strong><em>fill</em></strong>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Add smoothing function </span><span class="al">###</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>minTemp), </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span>  </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>avgTemp),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                «<span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>),  <span class="co"># orange»</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                «<span class="at">linetype=</span><span class="dv">4</span>,»</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                «<span class="at">linewidth=</span><span class="dv">2</span>, »</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                «<span class="at">fill=</span><span class="st">"lightgreen"</span>») <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-lineColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lineColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP1-04-LineColors-01.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lineColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Adding avgTemp as a smoothed plot and styled the line
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="ggplot-elements" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="ggplot-elements"><span class="header-section-number">5</span> GGPlot Elements</h2>
+<p>So far in this lesson, we have dealt with plot components and, for plot components, you can make style changes using the subcomponents (e.g.,&nbsp;<strong><em>color, size, alpha</em></strong>).</p>
+<p>&nbsp;</p>
+<p>With most other canvas components, style changes are made using the <a href="https://ggplot2.tidyverse.org/reference/theme.html">theme() component</a> (<a href="#fig-elements" class="quarto-xref">Figure&nbsp;8</a>).</p>
+<p>&nbsp;</p>
+<p>Most subcomponents in&nbsp;<strong><em>theme()</em></strong> are one of the these three element types:</p>
+<ul>
+<li><p><strong><em>element_text()</em></strong></p></li>
+<li><p><strong><em>element_line()</em></strong></p></li>
+<li><p><strong><em>element_rect()</em></strong></p></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="https://ggplot2.tidyverse.org/reference/element.html">There is more about the three different elements types here.</a></p>
+<p>&nbsp;</p>
+<p>And to modify these subcomponents, you need to use the function that matches their element type so…</p>
+<ul>
+<li><p><strong><em>axis.line</em></strong> is modified using <strong><em>element_line()</em></strong></p></li>
+<li><p><strong><em>legend.text</em></strong> is modified using <strong><em>element_text()</em></strong></p></li>
+<li><p><strong><em>legend.background</em></strong> is modified using <strong><em>element_rect()</em></strong></p></li>
+</ul>
+<div id="fig-elements" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-Elements.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Many of the theme subcomponents are either text, line, or rectangular elements
+</figcaption>
+</figure>
+</div>
+<section id="subcomponent-groups" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="subcomponent-groups"><span class="header-section-number">5.1</span> Subcomponent groups</h3>
+<p>The <strong><em>theme()</em></strong> page can be a bit tricky to read.&nbsp; Many of the subcomponents are grouped together (<em>fig ##</em>) and the groupings can be hard to see.</p>
+<p>In the image below ( <a href="#fig-elementGroups" class="quarto-xref">Figure&nbsp;9</a> ), there are three groupings highlighted:</p>
+<ul>
+<li><p>axis titles</p></li>
+<li><p>axis text</p></li>
+<li><p>axis ticks</p></li>
+</ul>
+<p>&nbsp;</p>
+<p><span class="hl">Subcomponents in a grouping share the same element type</span> so all:</p>
+<ul>
+<li><p><strong><em>axis.title</em></strong> subcomponents are <strong><em>element_text()</em></strong></p></li>
+<li><p><strong><em>axis.text</em></strong> subcomponents are <strong><em>element_text()</em></strong></p></li>
+<li><p><strong><em>axis.ticks</em></strong> subcomponents are <strong><em>element_line()</em></strong></p></li>
+</ul>
+<div id="fig-elementGroups" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elementGroups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-ElementGroups.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementGroups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Subcomponent groupings in theme()
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="help-for-styling-elements" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="help-for-styling-elements"><span class="header-section-number">5.2</span> Help for styling elements</h3>
+<p>All of the subcomponents are texts, lines, or rectangles.&nbsp; <a href="https://tidyverse.github.io/ggplot2-docs/reference/element.html" title="You can find out more about text, line, and rect elements either at this webpage">You can find out more about styling <strong><em>text</em></strong>, <strong><em>line</em></strong>, and <strong><em>rect</em></strong> elements either at this webpage</a> or by typing <strong><em>element_</em></strong> in the search bar of the <strong><em>Help</em></strong> tab.&nbsp; We will be using this in the next section.</p>
+<div id="fig-elementInfo" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elementInfo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04_HelpElements.jpg" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementInfo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Information about the three element types in GGPlot (4 if you count element_blank)
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="styling-text-using-element_text" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="styling-text-using-element_text"><span class="header-section-number">6</span> Styling text using element_text()</h2>
+<p>We can change the font styles of any <strong><em>theme()</em></strong> subcomponent that is an text element using <strong><em>element_text()</em></strong>.</p>
+<p>&nbsp;</p>
+<p>If you look at <strong><em>element_text()</em></strong> in the <strong><em>Help</em></strong> tab, you see all the arguments, which are the same as the properties of the font that can be modified:</p>
+<div id="fig-elementTextArgs" class="quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elementTextArgs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="fig-elementTextArgs" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="fig-elementTextArgs-1"><a href="#fig-elementTextArgs-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_text</span>(</span>
+<span id="fig-elementTextArgs-2"><a href="#fig-elementTextArgs-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-3"><a href="#fig-elementTextArgs-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-4"><a href="#fig-elementTextArgs-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-5"><a href="#fig-elementTextArgs-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-6"><a href="#fig-elementTextArgs-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">hjust =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-7"><a href="#fig-elementTextArgs-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">vjust =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-8"><a href="#fig-elementTextArgs-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">angle =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-9"><a href="#fig-elementTextArgs-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineheight =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-10"><a href="#fig-elementTextArgs-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-11"><a href="#fig-elementTextArgs-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">margin =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-12"><a href="#fig-elementTextArgs-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug =</span> <span class="cn">NULL</span>,</span>
+<span id="fig-elementTextArgs-13"><a href="#fig-elementTextArgs-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span></span>
+<span id="fig-elementTextArgs-14"><a href="#fig-elementTextArgs-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementTextArgs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Arguments for element_text()
+</figcaption>
+</figure>
+</div>
+<section id="using-element_text" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="using-element_text"><span class="header-section-number">6.1</span> Using element_text()</h3>
+<p>Let’s use the <strong><em>element_text()</em></strong> to change these subcomponents in <strong><em>theme()</em></strong>:</p>
+<ul>
+<li><p><strong><em>axis.title.x</em></strong>: x-axis label style</p></li>
+<li><p><strong><em>axis.title.y</em></strong>: y-axis label style</p></li>
+<li><p><strong><em>plot.title</em></strong>: plot title style</p></li>
+<li><p><strong><em>plot.subtitle</em></strong>: plot subtitle style</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>And for the above elements, we will modify the:</p>
+<ul>
+<li><p><strong><em>size</em></strong>: font size in pixels</p></li>
+<li><p><strong><em>color</em></strong>: font color</p></li>
+<li><p><strong><em>face</em></strong>: font modification (<strong><em>bold</em></strong>, <strong><em>italic</em></strong>, or <strong><em>bold.italic</em></strong>)</p></li>
+<li><p><strong><em>family</em></strong>: font type</p>
+<ul>
+<li>This should be used with caution as the font needs to be installed on the viewer’s computer – it is best to only use common fonts</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 8: Changing component text ####</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"darkgreen"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size=</span><span class="fl">2.5</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">shape=</span><span class="dv">17</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.4</span> ) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity (%)"</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>     «theme»(«axis.title.x»<span class="ot">=</span><span class="fu">element_text</span>(«size»<span class="ot">=</span><span class="dv">14</span>, «color»<span class="ot">=</span><span class="st">"orangered2"</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>           «axis.title.y»<span class="ot">=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"orangered4"</span>),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>           «plot.title»<span class="ot">=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>, «face»<span class="ot">=</span><span class="st">"bold"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span><span class="st">"darkblue"</span>),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>           «plot.subtitle»<span class="ot">=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>, <span class="at">face=</span><span class="st">"bold.italic"</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span><span class="st">"brown"</span>, «family»<span class="ot">=</span><span class="st">"serif"</span>));</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="#trap-changing-a-theme-after-modifying">Trap: Changing a theme after modifying</a></p>
+<div id="fig-elementText" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elementText-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-element-text.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementText-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Styling labels and titles using element_text()
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="elements-of-a-plot" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="elements-of-a-plot"><span class="header-section-number">6.2</span> Elements of a plot</h3>
+<p>Let’s look a little deeper at how <strong><em>element_text()</em></strong> works to set font properties.</p>
+<p>&nbsp;</p>
+<p>In the following code, we change the size and color of the x-axis title:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>axis.title.x <span class="ot">=</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"orangered2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that&nbsp;<span class="hl">you do not directly set the <strong>size</strong> and <strong>color</strong> of <strong>axis.title.x.</strong></span></p>
+<p>&nbsp;</p>
+<p>Instead you set <strong><em>axis.title.x</em></strong> to a text element,&nbsp;<strong><em>element_text()</em></strong>, that has the&nbsp;<strong><em>size</em></strong> and <strong><em>color</em></strong> you want – in this case, <strong><em>14</em></strong> and <strong><em>orangered2</em></strong>.</p>
+<p>&nbsp;</p>
+<p>This method of changing the properties of an object in GGPlot is common (if not intuitive).</p>
+</section>
+</section>
+<section id="styling-lines-using-element_line" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="styling-lines-using-element_line"><span class="header-section-number">7</span> Styling lines using element_line()</h2>
+<p>The function <strong><em>element_line()</em></strong> has these arguments:</p>
+<div class="sourceCode" id="cb10" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_line</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineend =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">arrow =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="note">Note: <strong>size = deprecated()</strong> because <strong>linewidth</strong> has replaced <strong>size</strong> – <strong>size</strong> works for now but is no longer supported (that is what deprecated means).</span></p>
+<p>&nbsp;</p>
+<p>The line components in a plot include the axis ticks, the axis lines, and the grid lines.</p>
+<p>&nbsp;</p>
+<p>Like font changes, if you want to modify these line components, you set the line equal to a <strong><em>element_line()</em></strong> and supply the arguments inside <strong><em>element_line()</em></strong>.&nbsp;</p>
+<section id="modifying-axis-line-elements" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="modifying-axis-line-elements"><span class="header-section-number">7.1</span> Modifying axis line elements</h3>
+<p>We will modify three line components:</p>
+<ol type="1">
+<li><p>the tick marks</p></li>
+<li><p>the minor grid lines (grid lines halfway between breaks)</p></li>
+<li><p>the major grid lines (grid lines attached to the breaks)</p></li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 9: Changing component lines ####</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>minTemp), </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>avgTemp),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">size=</span><span class="dv">2</span>, </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>) <span class="sc">+</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(«<span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"red"</span>, <span class="at">linewidth=</span><span class="dv">1</span>),»</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>          «<span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey75"</span>, <span class="at">linetype=</span><span class="dv">4</span>),»</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>          «<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey75"</span>)»);</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-elementLine" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elementLine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-LineElement.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementLine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="greyscaling" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="greyscaling"><span class="header-section-number">7.2</span> Greyscaling</h3>
+<p>We are using <span class="hl">greyscale</span>to set the color of the various objects in <a href="#fig-elementLine" class="quarto-xref">Figure&nbsp;13</a>.&nbsp; In GGPlot, you can choose greyscale colors between <strong><em>grey0</em></strong> (black) and <strong><em>grey100</em></strong> (white).&nbsp; You can think of the number after <strong><em>grey</em></strong> as the percentage of light from <strong><em>0</em></strong> (none – black) to&nbsp;<strong><em>100</em></strong> (all – white). So, the <strong><em>grey75</em></strong> used in <a href="#fig-elementLine" class="quarto-xref">Figure&nbsp;13</a> is a light grey.</p>
+</section>
+<section id="lineend-and-arrow" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="lineend-and-arrow"><span class="header-section-number">7.3</span> lineend and arrow</h3>
+<p>There are two arguments in <strong><em>element_line()</em></strong> that we did not cover: <strong><em>lineend</em></strong> and <strong><em>arrow</em></strong>.</p>
+<p>&nbsp;</p>
+<p><strong><em>lineend</em></strong> has three options: “butt” (default), “round”, and “square”.&nbsp; For the lines we are using right now you will not see much of a difference.</p>
+<p>&nbsp;</p>
+<p><strong><em>arrow</em></strong> is more complicated as it does not have simple options.</p>
+<p>&nbsp;</p>
+<p>If you want to use an arrow you:</p>
+<ul>
+<li><p>set <strong><em>arrow = arrow()</em></strong> and</p></li>
+<li><p><a href="https://stat.ethz.ch/R-manual/R-devel/library/grid/html/arrow.html">use arrow() arguments to modify the arrow</a></p></li>
+</ul>
+</section>
+</section>
+<section id="styling-lines-using-element_rect" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="styling-lines-using-element_rect"><span class="header-section-number">8</span> Styling lines using element_rect()</h2>
+<p>The last of the main GGPlot elements is <strong><em>element_rect()</em></strong>, which has the following arguments:</p>
+<div class="sourceCode" id="cb12" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_rect</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><strong><em>fill</em></strong> is the background color of the rectangle</p></li>
+<li><p><strong><em>color</em></strong> (or <strong><em>colour</em></strong>) is the outline color of the rectangle&nbsp;</p></li>
+<li><p><strong><em>linetype</em></strong> is the rectangle’s outline type</p></li>
+<li><p><strong><em>size</em></strong> is the size the the rectangle’s outline</p></li>
+</ul>
+<section id="using-element_rect" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="using-element_rect"><span class="header-section-number">8.1</span> Using element_rect()</h3>
+<p>We will modify the following rectangular elements:</p>
+<ul>
+<li><p><strong><em>panel.background</em></strong>: the background of the plot area (i.e., inside the axes)</p></li>
+<li><p><strong><em>legend.background</em></strong>: the background of the legend</p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 10: Modifying rectangular components ####</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity (%)"</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>           «legend.background» <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"blue"</span>, <span class="at">fill=</span><span class="st">"grey90"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">linewidth=</span><span class="dv">1</span>),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>           «panel.background» <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"grey10"</span>, <span class="at">color=</span><span class="st">"red"</span>)); </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="note">Note: I changed the theme from <strong>theme_bw()</strong> to <strong>theme_minimal()</strong> because <strong>theme_bw()</strong> was interfering with the <strong>panel.background</strong> outline.&nbsp; I do not know why.</span></p>
+<div id="fig-elementRect" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elementRect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-Rectangular.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementRect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Changing rectangular elements using element_rect() – and starting a nighttime theme
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="application" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="application"><span class="header-section-number">9</span> Application</h2>
+<p>Create a script file in your Project’s <strong><em>script</em></strong> named <strong><em>app04.r</em></strong> and, using the data from <strong>Lansing2016NOAA.csv</strong><em>,</em> replicate (as best you can) this canvas:</p>
+<div id="fig-replicate" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-replicate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04_Replicate.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-replicate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Plot canvas to replicate
+</figcaption>
+</figure>
+</div>
+<p><span class="note">Note: <strong><em>\n</em></strong> acts like an enter in a string… an example:</span></p>
+<div class="sourceCode" id="cb14" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cat</span>(<span class="st">"first</span><span class="sc">\n</span><span class="st">second"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>first</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="questions" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">9.1</span> Questions</h3>
+<p>Answer the following in comments inside your application script:</p>
+<ol type="1">
+<li><p>What was your level of comfort with the lesson/application?</p></li>
+<li><p>What is a way you can apply the material in this lesson towards your research or area of study?</p></li>
+<li><p>What are some things you would like to learn related to, but not covered in, this lesson?</p></li>
+</ol>
+</section>
+</section>
+<section id="extension-using-run-on-a-ggplot" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="extension-using-run-on-a-ggplot"><span class="header-section-number">10</span> Extension: Using Run on a GGPlot</h2>
+<p>When you see GGPlot examples online they often skip the steps of saving the plot to a variable and using <strong><em>plot()</em></strong> – the parts highlighted below:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>«plot1» <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  <span class="co"># 00B0 is the Unicode degree symbol</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>);     <span class="co"># 0025 is the Unicode percentage symbol</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>«<span class="fu">plot</span>(plot1)»;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Instead they just click <strong><em>Run</em></strong> (or Control-Enter) on code that looks similar to this:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  <span class="co"># 00B0 is the Unicode degree symbol</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>)      <span class="co"># 0025 is the Unicode percentage symbol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When <strong><em>Source</em></strong> is clicked, the bottom codeblock will do nothing because there is no instruction to send the canvas to the plot tab (i.e., no&nbsp;<strong><em>plot()</em></strong>).&nbsp; But when <strong><em>Run</em></strong> is clicked, R makes an assumption that you want to view the plot and will execute <strong><em>plot()</em></strong> in the background.&nbsp; This is fine if you are testing code or if the plot is temporary – it is not good programming practice if the code is a permanent part of your script.&nbsp; It is best to be explicit with your code and add the <strong><em>plot()</em></strong> instruction.</p>
+</section>
+<section id="extension-rgb-colors-and-unicode-characters" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="extension-rgb-colors-and-unicode-characters"><span class="header-section-number">11</span> Extension: RGB Colors and Unicode Characters</h2>
+<p>There are many more colors than names of colors and there are many more character than keys on a keyboard.&nbsp; This section will give a brief introduction on how one accesses the full spectrum of colors and characters.</p>
+<section id="rgb-colors" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="rgb-colors"><span class="header-section-number">11.1</span> RGB colors</h3>
+<p>The are over 16 million colors we can choose from and to access all these colors, we need to use their <strong><em>rgb</em></strong> color codes.</p>
+<p>&nbsp;</p>
+<p><strong><em>rgb</em></strong> stands for <em>red, green, blue</em> and represents the three <em>primary light colors</em>.&nbsp; You are probably more familiar with the primary pigment colors, which are red, yellow, blue (more accurately: magenta, yellow, cyan).&nbsp; The different is that <em>primary light colors combine to make white</em> (they are additive), whereas the <em>primary pigment colors combine to make black/dark brown</em> (they are subtractive).</p>
+<p>&nbsp;</p>
+<p>In R, you can set color to an <strong><em>rgb</em></strong> value using the function <strong><em>rgb()</em></strong>.</p>
+<p>&nbsp;</p>
+<p><strong><em>rgb()</em></strong> has three arguments (<strong>red</strong>, <strong>green</strong>, <strong>blue</strong>), and each argument is set to a value from <strong>0</strong> (completely off) to <strong>1</strong> (completely on).</p>
+<p>Some examples:</p>
+<ul>
+<li><p>black: <strong><em>rgb(red=0, green=0, blue=0)</em></strong></p></li>
+<li><p>white: <strong><em>rgb(red=1, green=1, blue=1)</em></strong></p></li>
+<li><p>bright blue: <strong><em>rgb(red=0, green=0, blue=1)</em></strong></p></li>
+<li><p>dark blue: <strong><em>rgb(red=0, green=0, blue=0.3)</em></strong></p></li>
+<li><p>yellow: <strong><em>rgb(red=1, green=1, blue=0)</em></strong></p></li>
+<li><p>dark grey: <strong><em>rgb(red=.3, green=.3, blue=.3)</em></strong></p></li>
+</ul>
+<p>&nbsp;</p>
+<p>It takes some time to get used to mixing light colors, but it is worth it in the end to learn how to do it as you will have access to over 16 million colors.</p>
+</section>
+<section id="unicode-characters" class="level3" data-number="11.2">
+<h3 data-number="11.2" class="anchored" data-anchor-id="unicode-characters"><span class="header-section-number">11.2</span> Unicode Characters</h3>
+<p><a href="https://en.wikipedia.org/wiki/List_of_Unicode_characters">Unicode characters</a> represent the most complete digital set of characters in the world and it even includes many emojis. Wikipedia says that there are currently almost 150,000 characters (as of January 2024), and this number is growing.</p>
+<p>&nbsp;</p>
+<p>To use a Unicode character, you need the Unicode number – and every character has a unique Unicode number.&nbsp; Unicode numbers are hexadecimal (base-16) as opposed to the base-10 numbers you are used to.&nbsp; Base-16 numbers need to use 16 character, so they use 0-9 and A-F.</p>
+<div id="fig-unicode" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unicode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-Unicode.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unicode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Unicode characters on Wikipedia, and the hexadecimal number used to refer to them
+</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
+<p>In R, you can use use Unicode characters by Unicode numbers preceded by <strong><em>\u</em></strong>.</p>
+<p>&nbsp;</p>
+<p>So, Unicode character 00A2 (the cent sign) would be written as “\u00A2”.</p>
+<p>Unicode characters can be directly used in a text output:</p>
+<p>&nbsp;</p>
+<div class="sourceCode" id="cb17" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cat</span>(<span class="st">"10\u00A2"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>¢</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can add Unicode characters to any text in a plot or use Unicode as the shape of a point.</p>
+<p>&nbsp;</p>
+<p><span class="hl">Warning: no font type supports all 150,000+ Unicode characters</span> (many are not even close).&nbsp; Sticking to more common font makes it more likely that the Unicode character is available.</p>
+</section>
+<section id="script-using-rgb-colors-and-unicode-characters" class="level3" data-number="11.3">
+<h3 data-number="11.3" class="anchored" data-anchor-id="script-using-rgb-colors-and-unicode-characters"><span class="header-section-number">11.3</span> Script using RGB colors and Unicode characters</h3>
+<p>In the following script, I used <strong>RGB</strong> colors to set the color of the points, and <strong>Unicode</strong> to represent the shape of the points.</p>
+<ul>
+<li><p>The color <strong><em>rgb(red=0.7, green=0.5, blue=0)</em></strong> is a lot of red light, half green light, and no blue light.&nbsp; It is yellowish-brown (remember these are light color, not pigment colors)</p></li>
+<li><p>The shape is Unicode character <strong>00A5</strong>, which is the Yen sign: ¥&nbsp;</p></li>
+</ul>
+<div id="fig-rgbAndUnicode" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rgbAndUnicode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-04-Unicode-RGB.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rgbAndUnicode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Using color codes and Unicode
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="trap-changing-a-theme-after-modifying" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="trap-changing-a-theme-after-modifying"><span class="header-section-number">12</span> Trap: Changing a theme after modifying</h2>
+<p>Is this example, <strong><em>theme()</em></strong> is used to modify various label and title components, but then <strong><em>theme_bw()</em></strong> is called.&nbsp; <strong><em>theme_bw()</em></strong> reset all components of the theme basically undoing the changes we made beforehand.&nbsp;&nbsp; Make sure <strong><em>theme_bw()</em></strong> is called before other theme changes are made.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/reference.R"</span>);   <span class="co"># include the script file reference.r</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/LansingNOAA2016.csv"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color=</span><span class="st">"darkgreen"</span>, <span class="at">size=</span><span class="fl">2.5</span>, <span class="at">shape=</span><span class="dv">17</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fl">0.4</span> ) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (%)"</span>) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>           «theme»(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"orangered2"</span>),</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"orangered4"</span>),</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>, <span class="at">face=</span><span class="st">"bold"</span>,</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">color =</span><span class="st">"darkblue"</span>),</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>, <span class="at">face=</span><span class="st">"bold.italic"</span>,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">color =</span><span class="st">"brown"</span>, <span class="at">family=</span><span class="st">"serif"</span>)) <span class="sc">+</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>           «<span class="fu">theme_bw</span>()»;</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-resetTheme" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resetTheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-01-03-ResettingTheme.PNG" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resetTheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: theme_bw() resets theme undoing the changes made in the theme() component above.
+</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

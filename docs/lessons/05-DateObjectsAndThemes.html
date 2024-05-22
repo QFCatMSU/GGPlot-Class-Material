@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>05: Date object and themes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>mod=true;</script>
+<script src="qfc_styles.js"></script> 
+<script>mod=true;</script>
+
+
+<link rel="stylesheet" href="https://qfcatmsu.github.io/assets/quarto/qfc_styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">05: Date object and themes</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Graphing With GGPlot Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/00-IntroductionAndSyllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00: Introduction and Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01-RStudioProjectsAndGit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01: RStudio Projects and Git Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02-Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Components</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-MappingAndAesthetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Mapping And Aesthetics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04-ElementsAndStyles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04: Elements And Styles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05-DateObjectsAndThemes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">05: Date object and themes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-ModifyingMappedElements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Modifying Mapped Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-Faceting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07: Faceting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/08-Boxplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Boxplots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/09-ReshapingAndForLoops1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09: Reshaping and For Loops 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/Info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Info</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
+   
+  <ul>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="header-section-number">1</span> Purpose</a>
+  <ul class="collapse">
+  <li><a href="#code-for-the-lesson" id="toc-code-for-the-lesson" class="nav-link" data-scroll-target="#code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</a></li>
+  </ul></li>
+  <li><a href="#get-data" id="toc-get-data" class="nav-link" data-scroll-target="#get-data"><span class="header-section-number">2</span> Get data</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-date-value" id="toc-creating-a-date-value" class="nav-link" data-scroll-target="#creating-a-date-value"><span class="header-section-number">2.1</span> Creating a date value</a></li>
+  </ul></li>
+  <li><a href="#adding-the-year-to-the-date-values" id="toc-adding-the-year-to-the-date-values" class="nav-link" data-scroll-target="#adding-the-year-to-the-date-values"><span class="header-section-number">3</span> Adding the year to the date values</a>
+  <ul class="collapse">
+  <li><a href="#save-the-date-column-to-a-vector" id="toc-save-the-date-column-to-a-vector" class="nav-link" data-scroll-target="#save-the-date-column-to-a-vector"><span class="header-section-number">3.1</span> Save the date column to a vector</a></li>
+  <li><a href="#append-the-year-to-the-date" id="toc-append-the-year-to-the-date" class="nav-link" data-scroll-target="#append-the-year-to-the-date"><span class="header-section-number">3.2</span> Append the year to the date</a></li>
+  <li><a href="#convert-the-vector-into-a-date-vector" id="toc-convert-the-vector-into-a-date-vector" class="nav-link" data-scroll-target="#convert-the-vector-into-a-date-vector"><span class="header-section-number">3.3</span> Convert the vector into a date vector</a></li>
+  <li><a href="#save-the-date-vector-to-the-data-frame" id="toc-save-the-date-vector-to-the-data-frame" class="nav-link" data-scroll-target="#save-the-date-vector-to-the-data-frame"><span class="header-section-number">3.4</span> Save the date vector to the data frame</a></li>
+  </ul></li>
+  <li><a href="#using-date-values" id="toc-using-date-values" class="nav-link" data-scroll-target="#using-date-values"><span class="header-section-number">4</span> Using date values</a>
+  <ul class="collapse">
+  <li><a href="#the-repeated-date-values" id="toc-the-repeated-date-values" class="nav-link" data-scroll-target="#the-repeated-date-values"><span class="header-section-number">4.1</span> The repeated date values</a></li>
+  <li><a href="#using-scale-component-to-modify-date-axis-proper-ggplot-method" id="toc-using-scale-component-to-modify-date-axis-proper-ggplot-method" class="nav-link" data-scroll-target="#using-scale-component-to-modify-date-axis-proper-ggplot-method"><span class="header-section-number">4.2</span> Using scale component to modify date axis (proper GGPlot method)</a></li>
+  </ul></li>
+  <li><a href="#theme-changes-outside-the-plots" id="toc-theme-changes-outside-the-plots" class="nav-link" data-scroll-target="#theme-changes-outside-the-plots"><span class="header-section-number">5</span> theme changes (outside the plots)</a>
+  <ul class="collapse">
+  <li><a href="#the-element-changes-we-made" id="toc-the-element-changes-we-made" class="nav-link" data-scroll-target="#the-element-changes-we-made"><span class="header-section-number">5.1</span> The Element changes we made&nbsp;</a></li>
+  </ul></li>
+  <li><a href="#saving-the-theme-for-later-use" id="toc-saving-the-theme-for-later-use" class="nav-link" data-scroll-target="#saving-the-theme-for-later-use"><span class="header-section-number">6</span> Saving the theme for later use</a>
+  <ul class="collapse">
+  <li><a href="#using-themes-from-another-script" id="toc-using-themes-from-another-script" class="nav-link" data-scroll-target="#using-themes-from-another-script"><span class="header-section-number">6.1</span> Using themes from another script</a></li>
+  </ul></li>
+  <li><a href="#changing-styles-on-plots-geoms" id="toc-changing-styles-on-plots-geoms" class="nav-link" data-scroll-target="#changing-styles-on-plots-geoms"><span class="header-section-number">7</span> Changing styles on plots/ geoms</a>
+  <ul class="collapse">
+  <li><a href="#changing-geom-behavior" id="toc-changing-geom-behavior" class="nav-link" data-scroll-target="#changing-geom-behavior"><span class="header-section-number">7.1</span> Changing geom behavior</a></li>
+  <li><a href="#changes-to-geoms-are-persistent" id="toc-changes-to-geoms-are-persistent" class="nav-link" data-scroll-target="#changes-to-geoms-are-persistent"><span class="header-section-number">7.2</span> Changes to geoms are persistent</a></li>
+  <li><a href="#changing-back-to-default-behavior" id="toc-changing-back-to-default-behavior" class="nav-link" data-scroll-target="#changing-back-to-default-behavior"><span class="header-section-number">7.3</span> Changing back to default behavior</a></li>
+  </ul></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">8</span> Application</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">8.1</span> Questions</a></li>
+  </ul></li>
+  <li><a href="#extension-getting-a-range-of-values-in-a-column" id="toc-extension-getting-a-range-of-values-in-a-column" class="nav-link" data-scroll-target="#extension-getting-a-range-of-values-in-a-column"><span class="header-section-number">9</span> Extension: Getting a range of values in a column</a></li>
+  <li><a href="#trap-using-the-wrong-argument-for-year" id="toc-trap-using-the-wrong-argument-for-year" class="nav-link" data-scroll-target="#trap-using-the-wrong-argument-for-year"><span class="header-section-number">10</span> Trap: Using the wrong argument for year</a></li>
+  <li><a href="#extension-more-about-paste" id="toc-extension-more-about-paste" class="nav-link" data-scroll-target="#extension-more-about-paste"><span class="header-section-number">11</span> Extension: more about paste()</a></li>
+  <li><a href="#extension-r-data-frames-and-tidyverse-tibbles" id="toc-extension-r-data-frames-and-tidyverse-tibbles" class="nav-link" data-scroll-target="#extension-r-data-frames-and-tidyverse-tibbles"><span class="header-section-number">12</span> Extension: R data frames and tidyverse tibbles</a></li>
+  <li><a href="#formatting-the-date-value-improper-ggplot-method" id="toc-formatting-the-date-value-improper-ggplot-method" class="nav-link" data-scroll-target="#formatting-the-date-value-improper-ggplot-method"><span class="header-section-number">13</span> Formatting the date value (improper GGPlot method)</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">05: Date object and themes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="purpose" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
+<ul>
+<li><p>Convert values to date format</p></li>
+<li><p>Display Dates in various formats</p></li>
+<li><p>Create a ggplot theme for use in multiple scripts</p></li>
+<li><p>Change defaults for plots/geoms</p></li>
+</ul>
+<section id="code-for-the-lesson" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</h3>
+<p>Scripts for this lesson (save both to the <strong><em>scripts</em></strong> folder inside your RStudio Project):</p>
+<ul>
+<li><p><a href="../scripts/lesson05-Dates-Themes.R">lesson script</a> (lesson05-Dates-Themes.R)</p></li>
+<li><p><a href="../scripts/ggplot_theming.R">theme scripts used in lesson</a> (ggplot_theming.R)</p></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="../Data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as previous lessons)</p>
+<ul>
+<li>Save the CSV file, called <strong><em>Lansing2016NOAA.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.</li>
+</ul>
+<p>&nbsp;</p>
+<p>In the lesson script, there is one line added to the header code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="at">file=</span><span class="st">"scripts/ggplot_theming.r"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This line includes the code for user-created GGPlot themes that will be used later in the lesson</p>
+</section>
+</section>
+<section id="get-data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="get-data"><span class="header-section-number">2</span> Get data</h2>
+<p>Let’s again use the weather data from the file LansingNOAA2016.csv and save it to a data frame called <strong><em>weatherData</em></strong> ( <a href="#fig-wholeYearTemp" class="quarto-xref">Figure&nbsp;1</a> ):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/LansingNOAA2016.csv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…and look back at one of the plots from last lesson, where we plotted the high, low, and average temperatures for the whole year:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData)», <span class="at">y=</span>maxTemp),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData)», <span class="at">y=</span>minTemp),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData)», <span class="at">y=</span>avgTemp),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>), <span class="co"># orange</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">linewidth=</span><span class="dv">2</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-wholeYearTemp" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wholeYearTemp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_TempPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wholeYearTemp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: High, low, and average temperature throughout the year.
+</figcaption>
+</figure>
+</div>
+<section id="creating-a-date-value" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="creating-a-date-value"><span class="header-section-number">2.1</span> Creating a date value</h3>
+<p>On the x-axis we kind of cheated and used the row number to represent the day (<strong><em>1:nrow(weatherData)</em></strong>) instead of the actual date.&nbsp; This is because displaying dates in GGPlot is tricky.</p>
+<p>&nbsp;</p>
+<p>The first thing to notice is that, while <strong><em>weatherData</em></strong> has a column named <strong><em>date</em></strong>, the column is not actually in <strong><em>Date</em></strong> format.&nbsp; The <strong><em>date</em></strong> column is in <strong><em>character</em></strong> (or string) format:</p>
+<div class="sourceCode" id="cb4" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(weatherData<span class="sc">$</span>date)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Looking at the&nbsp;<strong><em>date</em></strong> column in a Viewer tab can see the date is not properly formatted (mostly because it does not have a year):</p>
+<div id="fig-dateMisformat" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dateMisformat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-01-04-DateWithoutYear.PNG" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dateMisformat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: weatherData data frame, note that the date column has only the month and day (no year)
+</figcaption>
+</figure>
+</div>
+<p>GGPlot (and R in general) will only treat a data column as Date values if:</p>
+<ul>
+<li><p>the values in the column are properly formed (i.e., the values have a month, date, and year) and</p></li>
+<li><p>the column is explicitly declared as a Date variable.&nbsp;</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>Otherwise, GGPlot will treat the column as string (character) values.</p>
+</section>
+</section>
+<section id="adding-the-year-to-the-date-values" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="adding-the-year-to-the-date-values"><span class="header-section-number">3</span> Adding the year to the date values</h2>
+<p>We are going to create a new column in&nbsp;<strong><em>weatherData</em></strong> that has properly formatted date values.&nbsp; Since<span class="hl">it is generally not a good idea to directly modify values in a data frame</span>, we are going to make a copy of the <strong><em>date</em></strong> column, called <strong><em>dateYr</em></strong>, and modify the <strong><em>dateYr</em></strong> column instead.</p>
+<p>&nbsp;</p>
+<p>This process will be broken into four steps:&nbsp;</p>
+<ol type="1">
+<li><p>Save the <strong><em>date</em></strong> column in <strong><em>weatherData</em></strong> to a vector</p></li>
+<li><p>Append the year <strong>2016</strong> to all values in the vector</p></li>
+<li><p>Convert the vector into a <strong><em>Date</em></strong> vector</p></li>
+<li><p>Save the vector back to the data frame as the column <strong><em>dateYr</em></strong></p></li>
+</ol>
+<p>&nbsp;</p>
+<p><span class="note">Note: There are quicker ways to do this but it is important to understand the individual steps.</span></p>
+<section id="save-the-date-column-to-a-vector" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="save-the-date-column-to-a-vector"><span class="header-section-number">3.1</span> Save the date column to a vector</h3>
+<p>There are multiple ways in R to save a column in a data frame to a vector.&nbsp; Three ways are given below, the last two are commented out but they will produce the same results:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Add year to date values ####</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a) save the date vector from the data frame to the variable theDate</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>theDate1 <span class="ot">=</span> weatherData<span class="sc">$</span>date;         <span class="co"># get all values from the dates column</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate1 = weatherData[["date"]];  # equivalent to previous line\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate1 = weatherData[ , "date"]; # equivalent to previous 2 lines in base R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I choose to use the first method, which uses <strong><em>$</em></strong> to subset <strong><em>weatherData</em></strong>, for two reasons:</p>
+<ol type="1">
+<li><p>When you type in <strong><em>$</em></strong> after <strong><em>weatherData</em></strong>, RStudio will suggest a list of column names from <strong><em>weatherData</em></strong></p></li>
+<li><p><strong><em>$</em></strong> works for both R data frames and the TidyVerse version of a dataframe called a <span class="hl">tibble</span></p></li>
+</ol>
+<p><a href="#extension-r-data-frames-and-tidyverse-tibbles">Extension: R data frames and TidyVerse tibbles</a></p>
+<p>&nbsp;</p>
+<p>If we look at the <strong><em>Environment</em></strong>, we can see <strong><em>theDate1</em></strong> is a character vector with 366 values:</p>
+<div class="sourceCode" id="cb6" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>theDate1 chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01-01"</span> <span class="st">"01-02"</span> <span class="st">"01-03"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="#extension-getting-a-range-of-values-in-a-column">Extension: Getting a range of values in a column</a></p>
+</section>
+<section id="append-the-year-to-the-date" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="append-the-year-to-the-date"><span class="header-section-number">3.2</span> Append the year to the date</h3>
+<p>Now we want to append, or <strong><em>paste</em></strong>,the year on to every date value in the string vector <strong><em>theDate1</em></strong>.&nbsp;</p>
+<p>We will use <strong><em>paste()</em></strong> and there are three arguments to set:</p>
+<ol type="1">
+<li><p>The initial values: <strong><em>theDate</em></strong></p></li>
+<li><p>The value being appended or pasted: <strong>“-2016”</strong></p></li>
+<li><p>The separator between initial and pasted values: in this case, an empty string, “”</p>
+<ul>
+<li><span class="note">note: the default value for <strong>sep</strong> is a space</span></li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># append (paste) "-2016" to all values in theDate1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>theDate2 <span class="ot">=</span> <span class="fu">paste</span>(theDate1, <span class="st">"-2016"</span>, <span class="at">sep=</span><span class="st">""</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="#extension-more-about-paste">Extension: more about paste()</a> and the reason why argument names are not used for the first two values<strong><br>
+</strong></p>
+<p>Now every value has a year attached to it:</p>
+<div id="fig-dateValues" class="quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dateValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="fig-dateValues" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="fig-dateValues-1"><a href="#fig-dateValues-1" aria-hidden="true" tabindex="-1"></a>theDate2    chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01-01-2016"</span> <span class="st">"01-02-2016"</span> <span class="st">"01-03-2016"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dateValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Pasting the year to all values in the vector
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="convert-the-vector-into-a-date-vector" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="convert-the-vector-into-a-date-vector"><span class="header-section-number">3.3</span> Convert the vector into a date vector</h3>
+<p><strong><em>theDate2</em></strong> has values that look like proper dates but R still sees the values in&nbsp;<strong><em>theDate2</em></strong> as strings (or <strong><em>chr</em></strong>) <span class="hl"><em>not&nbsp;<strong>Date</strong></em></span>.</p>
+<p>&nbsp;</p>
+<p>To convert the values to <strong><em>Date</em></strong>, values we need to tell R:</p>
+<ul>
+<li><p>that the vector contains dates and</p></li>
+<li><p>how the date values are formatted</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>We can do both using <strong><em>as.Date()</em></strong>, and modifying two arguments:</p>
+<ol type="1">
+<li><p>the object we want to convert to dates (in this case, the vector <strong><em>theDate2</em></strong>)</p></li>
+<li><p>the <strong><em>format</em></strong> that the dates are in, which is: <strong>%m-%d-%y</strong></p>
+<ul>
+<li><p><strong><em>%m</em></strong>: 2-digit month (01 through 12)</p></li>
+<li><p><strong>-</strong>: dash used to separate month from day</p></li>
+<li><p><strong><em>%d</em></strong>: 2-digit date (01 through 31)</p></li>
+<li><p><strong>-</strong>: dash used to separate day from year</p></li>
+<li><p><strong><em>%Y</em></strong>: 4-digit year (2016)&nbsp;</p>
+<ul>
+<li><a href="#trap-using-the-wrong-argument-for-year">Trap: using the wrong argument for year</a> (lowercase <strong>y</strong> vs.&nbsp;capital <strong>Y</strong>)</li>
+</ul></li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Save the values in Date format</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>theDate3 <span class="ot">=</span> <span class="fu">as.Date</span>(theDate2, <span class="at">format=</span><span class="st">"%m-%d-%Y"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, R recognizes the values in the vector as <strong><em>Dates</em></strong>:</p>
+<div class="sourceCode" id="cb9" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>theDate3    Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] format<span class="sc">:</span> <span class="st">"2016-01-01"</span> <span class="st">"2016-01-02"</span> <span class="st">"2016-01-03"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="note">note: The <strong>Environment</strong> always shows <strong>Date</strong> values in R’s standard date format (YYYY-DD-MM),&nbsp; which is not the same as the format we used to create the date.</span></p>
+<section id="date-formats-and-conversion-specifications" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="date-formats-and-conversion-specifications"><span class="header-section-number">3.3.1</span> Date formats and conversion specifications</h4>
+<p>The official term for the representation of the different parts of the <strong><em>Date</em></strong> (e.g., <strong><em>%m</em></strong>, <strong><em>%d</em></strong>, <strong><em>%Y</em></strong>)is <span class="hl">conversion specifications,</span> which you can find here under the <strong><em>details</em></strong> section: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html</a></p>
+<p>&nbsp;</p>
+<p>This includes all the different specification for time (e.g., hours, minutes), most of which are not used in this lesson.&nbsp; <a href="https://www.geeksforgeeks.org/how-to-use-date-formats-in-r/">A more concise conversion specification sheet for this lesson, which only includes specifications for dates can be found here.</a></p>
+<p>&nbsp;</p>
+<p>The <strong><em>conversion specifications</em></strong> allow you to generalize the different components of the date – and all generalized components start with a&nbsp;<strong><em>%</em></strong>.&nbsp; When you declare the format of a datetime string, you replace the date and time components of the string with <strong><em>conversion specifications</em>.</strong>&nbsp; For instance, <strong>April 15, ’22</strong> would have the conversion specification:&nbsp; “<strong>%B %d, ’%y”</strong> where:</p>
+<ul>
+<li><p><strong><em>%B</em></strong>: Full month name</p></li>
+<li><p><strong><em>%d</em></strong>: 2-digit date&nbsp;</p></li>
+<li><p><strong><em>%y</em></strong>: 2-digit year&nbsp;</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>The conversion specification has the Date components (month, date, and year) and the other characters in the string (multiple spaces, comma, and apostrophe).</p>
+<p>&nbsp;</p>
+<p>So,&nbsp;<strong>April - 15 - 22</strong> would have the conversion specification: “<strong>%B - %d - %y”.</strong></p>
+<p>&nbsp;</p>
+<p>Some other specifications:</p>
+<ul>
+<li><p><strong><em>%m</em></strong>: Month – given as a number between 00 and 12</p></li>
+<li><p><strong><em>%a</em></strong>: Abbreviated weekday (Mon, Tue, Wed…)</p></li>
+<li><p><strong><em>%y</em></strong>: Last two digits of the year</p></li>
+<li><p><strong><em>%Y</em></strong>: Full year</p></li>
+</ul>
+</section>
+</section>
+<section id="save-the-date-vector-to-the-data-frame" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="save-the-date-vector-to-the-data-frame"><span class="header-section-number">3.4</span> Save the date vector to the data frame</h3>
+<p>We have the vector in <strong><em>Date</em></strong> format, now we need to save the values back to a new column in the data frame.&nbsp; This is pretty much the reverse of the first step and, again, there are multiple ways to do it – I present three ways and comment out the last two.</p>
+<p>&nbsp;</p>
+<p>In each case, we are saving <strong><em>theDate</em></strong> to the column in <strong><em>weatherData</em></strong> called <strong><em>dateYr</em></strong>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Save theDate back to the data frame as a new column</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>weatherData<span class="sc">$</span>dateYr <span class="ot">=</span> theDate3;</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># weatherData[["dateYr"]] = theDate3; # equivalent to previous line</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># weatherData[, "dateYr"] = theDate3; # equivalent to previous 2 lines using data frames</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-properDate" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-properDate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-01-04-SaveVectorToDF.PNG" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-properDate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The data frame now has a new column, dateYr, with properly formatted dates
+</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
+<p>We now have a column with properly formatted date values, we can go back to plotting the data….</p>
+</section>
+</section>
+<section id="using-date-values" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="using-date-values"><span class="header-section-number">4</span> Using date values</h2>
+<p>The only change from the first plot is that we are using the new <strong><em>dateYr</em></strong> column, which is in <strong><em>Date</em></strong> format, instead of using row numbers for the x-axis mappings:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Use Dates on x-axis </span><span class="al">###</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«dateYr», <span class="at">y=</span>maxTemp),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«dateYr», <span class="at">y=</span>minTemp),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«dateYr», <span class="at">y=</span>avgTemp),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>), <span class="co"># orange</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">lenwidth=</span><span class="dv">2</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-datesInPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-datesInPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_DatesInPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datesInPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: The x-axis now has date values instead of numeric
+</figcaption>
+</figure>
+</div>
+<section id="the-repeated-date-values" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="the-repeated-date-values"><span class="header-section-number">4.1</span> The repeated date values</h3>
+<p>Since all three plots, or <span class="hl"><strong><em>geoms</em></strong></span>as GGPlot calls them, use <strong><em>dateYr</em></strong> for the x-axis, we can move the x-axis mapping to <strong><em>ggplot().</em></strong> This says that all <strong><em>geoms</em></strong> will use <strong><em>dateYr</em></strong> as the <strong><em>x</em></strong> mapping.&nbsp; and we do not have to declare an x-mapping in the individual <strong><em>geoms</em></strong>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: Move x to canvas --</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">###   only works because EVERY geom uses dateYr</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  plot3<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, «<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)») <span class="sc">+</span>  <span class="co"># x mapping here</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),     <span class="co"># no x mapping here  </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp),     <span class="co"># no x mapping here</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),   <span class="co"># no x mapping here</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>), <span class="co"># orange</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">linewidth=</span><span class="dv">2</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And the plot is exactly the same.&nbsp; <span class="hl">Moving the <strong>x</strong>-mapping to <strong>ggplot()</strong> works because the x-axis mapping is the same for every&nbsp;<strong>geom</strong> in the canvas.</span></p>
+<div id="fig-datesXMapping" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-datesXMapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_DatesInPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datesXMapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Moving the x-axis to the canvas does not change the plot
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="using-scale-component-to-modify-date-axis-proper-ggplot-method" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="using-scale-component-to-modify-date-axis-proper-ggplot-method"><span class="header-section-number">4.2</span> Using scale component to modify date axis (proper GGPlot method)</h3>
+<p>GGPlot, by default, displays&nbsp;<strong><em>Date</em></strong> values as abbreviated months and four-digit years (e.g., Jan 2016, Apr 2016) as shown in <a href="#fig-datesXMapping" class="quarto-xref">Figure&nbsp;6</a> .</p>
+<p>&nbsp;</p>
+<p>If you want to change how the dates are displayed, you need to use <strong><em>scale</em></strong> components and conversion specifications.&nbsp; <strong><em>scale</em></strong> components, which we will explore much more in the next lesson, are used in GGPlot to modify the visual aspects of the axes without changing the data.&nbsp; In this case, we are visually changing the way dates are displayed.</p>
+<p>&nbsp;</p>
+<p>The scale component to modify&nbsp;<strong><em>date</em></strong> values on the <strong><em>x</em></strong>-axis is: <strong><em>scale_x_date</em></strong></p>
+<div id="fig-scaleHelp" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scaleHelp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_scale_x_date_help.jpg" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scaleHelp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: scale_x_date Help page – scroll down to see a description of the subcomponents
+</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
+<p>And we are going to modify two subcomponents in&nbsp;<strong><em>scale_x_date</em></strong>:</p>
+<ul>
+<li><p><strong><em>date_breaks</em></strong>: The distance between axis lines – we will use 5 weeks</p></li>
+<li><p><strong><em>date_labels</em></strong>: The formatting of the date – using conversion specifications</p>
+<ul>
+<li>&nbsp;we will use abbreviated months (<strong><em>%b</em></strong>), two-digit days (<strong><em>%d</em></strong>), and two-digit years (<strong><em>%y</em></strong>) (e.g., <strong>Apr 15, ’22</strong>)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a> <span class="do">#### Part 5: Convert date format and date breaks</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  plot5<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>), <span class="co"># orange</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">linewidth=</span><span class="dv">2</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"5 weeks"</span>,»</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                «<span class="at">date_labels =</span>  <span class="st">"%b %d, '%y"</span>) <span class="sc">+</span>  <span class="co"># uses conversion specifications»</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-scaleDate" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scaleDate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_Usingscale_x_date.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scaleDate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: The x-axis has formatted dates at 5-week intervals
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="theme-changes-outside-the-plots" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="theme-changes-outside-the-plots"><span class="header-section-number">5</span> theme changes (outside the plots)</h2>
+<p>Now we are going to use <strong><em>theme()</em></strong> component to modify the canvas area.&nbsp;<span class="note">Remember that <strong>theme</strong> needs to come after <strong>theme_bw()</strong> because <strong>theme_bw()</strong> will override all previous <strong>theme</strong> changes:</span></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Add theme component</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  plot6<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>), <span class="co"># orange</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">linewidth=</span><span class="dv">2</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"5 weeks"</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_labels =</span>  <span class="st">"%m/%d"</span>) <span class="sc">+</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    «theme»(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"grey25"</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">linewidth=</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"grey0"</span>),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey50"</span>, <span class="at">linetype=</span><span class="dv">4</span>),</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey100"</span>),</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightgreen"</span>),</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.45</span>),</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.42</span>),</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"blue"</span>, <span class="at">family=</span><span class="st">"mono"</span>, <span class="at">size=</span><span class="dv">9</span>)) <span class="sc">+</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And our new themed plot looks like this:</p>
+<div id="fig-themedPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-themedPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_ThemedPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-themedPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Our new (questionably) themed plot
+</figcaption>
+</figure>
+</div>
+<section id="the-element-changes-we-made" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="the-element-changes-we-made"><span class="header-section-number">5.1</span> The Element changes we made&nbsp;</h3>
+<p>The subcomponents we changed in&nbsp;<strong><em>theme</em></strong> were:</p>
+<ul>
+<li><p><strong><em>panel.background</em></strong>: the background inside the axis lines (rectangular element)</p></li>
+<li><p><strong><em>panel.grid.minor</em></strong>: grid lines for the major axis (line element)</p></li>
+<li><p><strong><em>panel.grid.major</em></strong>: grid lines for the minor axis (line element)</p></li>
+<li><p><strong><em>plot.background</em></strong>: the background outside the plot area (rectangular element)</p></li>
+<li><p><strong><em>plot.title:</em></strong> the text that represents the title of the graph (text element)</p></li>
+<li><p><strong><em>plot.subtitle:</em></strong> the text that represent the subtitle of the graph (text element)</p></li>
+<li><p><strong><em>axis.text:</em></strong> the text that represents the labels on the x and y axes (text element)</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>We talked about the first three subcomponents in the previous lesson, I will cover a little more about the last four subcomponents…</p>
+<p>&nbsp;</p>
+<p><strong><em>plot.background</em></strong> is set to a rectangular element (<strong><em>element_rect</em></strong>) with argument:</p>
+<ul>
+<li><strong><em>fill = “lightgreen”</em></strong>: set the background color outside the plot area to light green</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong><em>plot.title</em></strong> is set to a text element (<strong><em>element_text</em></strong>) with argument:</p>
+<ul>
+<li><strong><em>hjust= 0.45</em></strong>: sets the horizontal justification of the text to almost the center</li>
+</ul>
+<p>&nbsp;</p>
+<p><span class="note">note: <strong><em>hjust</em></strong> has values from <strong><em>0.0</em></strong> (left justified text) to <strong><em>1.0</em></strong> (right justified text) and <strong><em>0.5</em></strong> is centered</span></p>
+<p>&nbsp;</p>
+<p><strong><em>plot.subtitle</em></strong> is set to a text element (<strong><em>element_text</em></strong>) with argument:</p>
+<ul>
+<li><strong><em>hjust= 0.42</em></strong>: set the horizontal justification of the text to line up underneath the title</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong><em>axis.text</em></strong> is set to a text element (<strong><em>element_text</em></strong>) that represents the text labels on the x and y axes.&nbsp;</p>
+<p>We change the arguments:</p>
+<ul>
+<li><p><strong><em>color= “blue”</em></strong>: set the text color to <strong>blue</strong></p></li>
+<li><p><strong><em>family=“mono”</em></strong>: set the font type to <strong>mono</strong></p></li>
+<li><p><strong><em>linewidth</em>=9:</strong> set the font size to <strong>9</strong> pixels</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>If you want to individually change the x-axis text style or y-axis text style you can use the components: <strong><em>axis.text.x</em></strong> and <strong><em>axis.text.y</em></strong></p>
+<p>&nbsp;</p>
+<p><span class="note">Note: Changing the font family to an uncommon font can cause issues because different computers have different fonts installed.</span></p>
+</section>
+</section>
+<section id="saving-the-theme-for-later-use" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="saving-the-theme-for-later-use"><span class="header-section-number">6</span> Saving the theme for later use</h2>
+<p>Let’s say you like this theme and want to use it in other ggplots in other scripts.&nbsp; To do this, you create your own theme in a separate script file.</p>
+<p>&nbsp;</p>
+<p>In the <strong><em>scripts</em></strong> folder,&nbsp;I created a new script file named <strong><em>ggplot_theming.R</em></strong> and inside the script file:</p>
+<ol type="1">
+<li><p>create a function named <strong>theme_ugly()</strong></p></li>
+<li><p>create an object that contains the new theme (I called the object&nbsp;<strong><em>newTheme</em></strong>)</p></li>
+<li><p>set&nbsp;<strong><em>newTheme</em></strong> to the <strong><em>theme</em></strong> changes</p>
+<ul>
+<li>In this case, it is <strong><em>theme_bw()</em></strong> with seven modified subcomponents (just like in <a href="#fig-themedPlot" class="quarto-xref">Figure&nbsp;9</a>)</li>
+</ul></li>
+<li><p>return <strong><em>newTheme</em></strong> to the caller of the function</p></li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### 1) create a function with the name of your theme</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>«theme_ugly <span class="ot">=</span> <span class="cf">function</span>()»    </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### 2,3) Create an object and include everything from theme_bw()  </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  «newTheme» <span class="ot">=</span> <span class="fu">theme_bw</span>() <span class="sc">+</span>    </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## then modify theme_bw() with the seven subcomponents below</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"grey25"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">linewidth=</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"grey0"</span>),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey50"</span>, <span class="at">linetype=</span><span class="dv">4</span>),</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey100"</span>),</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightgreen"</span>),</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.45</span>),</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.42</span>),</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"blue"</span>, <span class="at">family=</span><span class="st">"mono"</span>, <span class="at">size=</span><span class="dv">9</span>));</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="do">### 4) Return newTheme to the caller</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   You will often see this step skipped -- which is a bad programming practice!</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(«newTheme»);</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="using-themes-from-another-script" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="using-themes-from-another-script"><span class="header-section-number">6.1</span> Using themes from another script</h3>
+<p>To use <strong><em>theme_ugly(),</em></strong> we need to include the theme’s script file in our current script file:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="at">file=</span><span class="st">"themes/ggplot_theming.r"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>theme_ugly()</em></strong> is a function that contains information about a theme and returns it to the caller.&nbsp; We can use <strong><em>theme_ugly()</em></strong> in our ggplot as if it were any other theme:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Use a theme saved elsewhere</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  plot7<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>), <span class="co"># orange</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">linewidth=</span><span class="dv">2</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"5 weeks"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_labels =</span>  <span class="st">"%m/%d"</span>) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">theme_ugly</span>() <span class="sc">+</span>  <span class="co"># function call to our new theme»</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And the plot looks the same as the last plot (<strong><em>theme_bw</em></strong> with seven modified components):</p>
+<div id="fig-themedPlotFromFile" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-themedPlotFromFile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_ThemedPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-themedPlotFromFile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Same plot but using theme_ugly() from a script file
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="changing-styles-on-plots-geoms" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="changing-styles-on-plots-geoms"><span class="header-section-number">7</span> Changing styles on plots/ geoms</h2>
+<p>The function <strong><em>theme_ugly()</em></strong> returns a <strong><em>theme()</em></strong> component to the caller.</p>
+<p>&nbsp;</p>
+<p>The problem is that <span class="hl"><strong>theme()</strong> cannot be used to change styles on plots (i.e., <strong>geoms</strong>)</span>. However, if you are developing a theme that you want to use across all of your plots, there is a good chance you want to define styles for the plots/<strong><em>geoms</em></strong> (e.g., set the default color for <strong><em>geom_line</em></strong>, set a default shape for points in a <strong><em>geom_point</em></strong>, set the background color of a <strong><em>geom_boxplot</em></strong>).</p>
+<p>&nbsp;</p>
+<p>Changing the default style for&nbsp;<strong><em>geoms</em></strong> is tricky in GGPlot because it involves changing the default behavior of GGPlot</p>
+<section id="changing-geom-behavior" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="changing-geom-behavior"><span class="header-section-number">7.1</span> Changing geom behavior</h3>
+<p>The function <strong><em>update_geom_defaults</em></strong> is used to change the default style for <strong><em>geoms</em></strong> in GGPlot.</p>
+<p>I have created a function in <strong><em>ggplot_theming.r</em></strong> called <strong><em>modifyGeoms()</em></strong>, which calls&nbsp;<strong><em>update_geom_defaults</em></strong> three time to modify three different <strong><em>geoms</em></strong> (<strong><em>line</em></strong>, <strong><em>point</em></strong>, and <strong><em>smooth</em></strong>):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>modifyGeoms <span class="ot">=</span> <span class="cf">function</span>()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>{ </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_geom_defaults</span>(<span class="st">"line"</span>, <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"yellow"</span>));</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_geom_defaults</span>(<span class="st">"point"</span>, <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"green"</span>));</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_geom_defaults</span>(<span class="st">"smooth"</span>, <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">linewidth=</span><span class="dv">2</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">fill=</span><span class="st">"lightblue"</span>));</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>update_geom_default</em></strong> needs to be called before you call <strong><em>ggplot()</em></strong>.&nbsp; When <strong><em>modifyGeoms()</em></strong> is called, the default color of <strong><em>geom_line</em></strong>, <strong><em>geom_point</em></strong> will be changed and the the default <strong><em>color</em></strong>, <strong><em>linetype</em></strong>, <strong><em>linewidth</em></strong>, and fill for <strong><em>geom_smooth</em></strong> will be changed.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Include geom defaults in theme </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  «<span class="fu">modifyGeoms</span>();»   <span class="co"># function that changes the geoms</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  plot7<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp)) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"5 weeks"</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_labels =</span> <span class="st">"%m/%d"</span>) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_ugly</span>() <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And see the changes made by the <strong><em>theme</em></strong> and the <strong><em>update_geom_defaults</em></strong> functions in <strong><em>theme_UglyAdv()</em></strong>.&nbsp; We can still change the color of the lines as we did earlier (<a href="#fig-themedPlotFromFile" class="quarto-xref">Figure&nbsp;10</a>) – all we did here was <span class="hl">change the default color</span> of the lines to yellow.</p>
+<div id="fig-geomChanges" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-geomChanges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-04b_GeomChanges.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-geomChanges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: A plot that uses the geom and theme changes
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="changes-to-geoms-are-persistent" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="changes-to-geoms-are-persistent"><span class="header-section-number">7.2</span> Changes to geoms are persistent</h3>
+<p>Once <strong><em>update_geom_default()</em></strong> is called, all subsequent <strong><em>ggplot()</em></strong> will adapt the new defaults in your R session. &nbsp;This means that every subsequent GGPlot will default to yellow lines in <strong><em>geom_line</em></strong>, green points in <strong><em>geom_point</em></strong>, and four default changes in <strong><em>geom_smooth</em></strong>.</p>
+<p>&nbsp;</p>
+<p>For the following code, <strong><em>theme_ugly()</em></strong> and <strong><em>modifyGeoms()</em></strong> has been removed:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: The defaults in GGPlot have been changed and will persist</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  plot8<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"5 weeks"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_labels =</span>  <span class="st">"%m/%d"</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8); </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The theme has been removed but the changes to the <strong><em>geoms</em></strong> are still there:</p>
+<div id="fig-persistentGeoms" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-persistentGeoms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-05_PersistentChanges.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-persistentGeoms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: The changes to the geoms are persistent
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="changing-back-to-default-behavior" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="changing-back-to-default-behavior"><span class="header-section-number">7.3</span> Changing back to default behavior</h3>
+<p>The easiest way to change back to the default geom behavior is to reload the ggplot package:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">"package:ggplot2"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>);   <span class="co"># unloads ggplot package from session</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span><span class="st">"ggplot2"</span>);                 <span class="co"># reload package ggplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>The first line unloads the ggplot2 package from the session</p></li>
+<li><p>The second line reloads the GGPlot package (effectively resetting GGPlot back to defaults).</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>Now the same <strong><em>ggplot()</em></strong>:&nbsp;</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  plot9<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"5 weeks"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">date_labels =</span>  <span class="st">"%m/%d"</span>) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9); </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…will go back to default behaviors:</p>
+<div id="fig-defaultGeoms" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-defaultGeoms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-05_DefaultGeoms.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-defaultGeoms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: The geoms are back to their default properties
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="application" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="application"><span class="header-section-number">8</span> Application</h2>
+<ol type="1">
+<li><p>Create a script file in your Project’s <strong><em>script</em></strong> folder called <strong><em>app05.r</em></strong>.&nbsp;</p></li>
+<li><p>Convert this string values into a Date vector:&nbsp;</p>
+<ul>
+<li>stringValues = c(“01, January-2019”, “02, January-2019”, “03, January-2019”, “04, January-2019”, “05, Januar-2019”)</li>
+</ul></li>
+<li><p>Create a column in&nbsp;<strong><em>weatherData</em></strong> named <strong><em>newDate</em></strong> that has the dates from the <strong><em>date</em></strong> column in Date format (just like <strong><em>dateYr</em></strong> in the lesson)</p></li>
+<li><p>Make a GGPlot canvas with 4 geoms</p>
+<ul>
+<li><p>scatterplot of <strong><em>heatDays</em></strong> vs&nbsp;<strong><em>newDate</em></strong></p></li>
+<li><p>scatterplot of <strong><em>coolDays</em></strong> vs <strong><em>newDate</em></strong></p></li>
+<li><p>linear regression of&nbsp;<strong><em>heatDays</em></strong> vs&nbsp;<strong><em>newDate</em></strong></p></li>
+<li><p>linear regression of&nbsp;<strong><em>coolDays</em></strong> vs <strong><em>newDate</em></strong></p></li>
+</ul></li>
+<li><p>On the GGPlot from #4:</p>
+<ul>
+<li><p>display dates in this format: (28-Jun-’16)</p></li>
+<li><p><strong><em>heatDay</em></strong> - change to red points and red regression line</p></li>
+<li><p><strong><em>coolDays</em></strong> - change to blue points and blue regression line</p></li>
+</ul></li>
+<li><p>Using <strong><em>update_geom_defaults(),</em></strong>on the ggplot from #4</p>
+<ul>
+<li><p>change the point shape to triangles and doubles the size of the points</p></li>
+<li><p>don’t forget to unload the defaults</p></li>
+</ul></li>
+<li><p>Create an external theme that:</p>
+<ol type="1">
+<li><p>right justify the title and subtitle</p></li>
+<li><p>make all fonts (titles and labels) brown and arial</p></li>
+<li><p>angles the x and y axis test 45 degrees</p></li>
+</ol></li>
+<li><p>Add the external theme to the ggplot from #4.</p></li>
+<li><p>Create a second ggplot that has the same four&nbsp;<strong><em>geoms</em></strong> but has a legend that contains <strong><em>heatDays</em></strong> and <strong><em>coolDays</em></strong></p>
+<ul>
+<li>note: you will not be able to maintain the blue and red colors (that will be next lesson)</li>
+</ul></li>
+</ol>
+<p>&nbsp;</p>
+<p>D) <a href="01c-RStudioProjects.html#application">&lt;Instructions for GitHub – link to previous lesson&gt;</a></p>
+<section id="questions" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">8.1</span> Questions</h3>
+<p>Answer the following in comments inside your application script:</p>
+<ol type="1">
+<li><p>What was your level of comfort with the lesson/application?</p></li>
+<li><p>What is a way you can apply the material in this lesson towards your research or area of study?</p></li>
+<li><p>What are some things you would like to learn related to, but not covered in, this lesson?</p></li>
+</ol>
+</section>
+</section>
+<section id="extension-getting-a-range-of-values-in-a-column" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="extension-getting-a-range-of-values-in-a-column"><span class="header-section-number">9</span> Extension: Getting a range of values in a column</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="dv">3</span>, <span class="st">"date"</span>];   <span class="co"># get the 3rd value from the date column</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, <span class="st">"date"</span>];   <span class="co"># get the 3rd through 7th values from the date column</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="fu">seq</span>(<span class="at">from=</span><span class="dv">2</span>, <span class="at">by=</span><span class="dv">2</span>), <span class="st">"date"</span><span class="er">)</span>;   <span class="co"># get all even values in the date column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="trap-using-the-wrong-argument-for-year" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="trap-using-the-wrong-argument-for-year"><span class="header-section-number">10</span> Trap: Using the wrong argument for year</h2>
+<p><strong><em>%Y</em></strong> means that the year is in the 4-digit format, whereas</p>
+<p><strong><em>%y</em></strong> means that the year is in the 2-digit format</p>
+<p>&nbsp;</p>
+<p>If you put in the wrong argument value (lowercase <strong><em>y</em></strong> instead of uppercase <strong><em>Y</em></strong>):</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> <span class="fu">as.Date</span>(theDate, <span class="at">format=</span><span class="st">"%m-%d-%y"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>then you will get an unusual result:</p>
+<div id="fig-wrongYear" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wrongYear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-01-04-PastingYearError.PNG" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wrongYear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: The year is now 2020 instead of 2016
+</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
+<p><strong>%y</strong> tells R to take the first two values of the number and make that the year.&nbsp; The first two values of the year <strong>2016</strong> is <strong>20</strong> – so the <strong>16</strong> is dropped.&nbsp; R then assumes we are in the 21<sup>st</sup> century so R assumes the year is 20<strong>20</strong>.</p>
+</section>
+<section id="extension-more-about-paste" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="extension-more-about-paste"><span class="header-section-number">11</span> Extension: more about paste()</h2>
+<p>The help page can be accessed in RStudio by going to the <strong><em>Help</em></strong> tab in the lower-left corner and searching for <strong>paste</strong>.</p>
+<p>&nbsp;</p>
+<p>If we go to the help page for <strong><em>paste()</em></strong>, it gives the usage for <strong><em>paste()</em></strong> as:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span> (..., <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>( …, )</em></strong> means that <strong><em>paste()</em></strong> will accept any number of initials values – these are the values that <strong><em>paste()</em></strong> will attempt to paste together.&nbsp;<span class="hl">These values do not have a argument name.&nbsp;</span> When using <strong><em>paste()</em></strong>, you must use argument names for <strong><em>sep</em></strong> and <strong><em>collapse</em></strong>, otherwise <strong><em>paste()</em></strong> will see these value as part of the initial set of values to be pasted together.&nbsp; There are many functions in R that accept an indeterminate number of unnamed (i.e., no argument name) values at the beginning of a function.</p>
+<p>&nbsp;</p>
+<p><strong><em>sep</em></strong> = ” ” means the default separator value is one space.&nbsp; So, if you do not set <strong><em>sep</em></strong>, you will get one space between all the values that <strong><em>paste()</em></strong> is pasting together.</p>
+</section>
+<section id="extension-r-data-frames-and-tidyverse-tibbles" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="extension-r-data-frames-and-tidyverse-tibbles"><span class="header-section-number">12</span> Extension: R data frames and tidyverse tibbles</h2>
+<p>In this lesson I introduce three ways to access a column from a data frame and save it to a vector:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Add year to date values ####</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a) save the date vector from the data frame to the variable theDate</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> weatherData<span class="sc">$</span>date;         <span class="co"># get all values from the dates column</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate = weatherData[["date"]];  # equivalent to previous line</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate = weatherData[ , "date"]; # equivalent to previous 2 lines in base R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All three of these methods are functionally the same on R data frames but they are functionally different if you are working with <strong><em>tibbles</em></strong>, which is a modern take on data frames used by packages in the TidyVerse.</p>
+<p>&nbsp;</p>
+<p>The first and second methods are the same in R-base and TidyVerse but the third method:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> weatherData[ , <span class="st">"date"</span>];&nbsp;&nbsp; <span class="co"># equivalent to previous 2 lines in base R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will save the <strong><em>date</em></strong> column <em>as a one-column tibble</em> as opposed to a vector.</p>
+<p>&nbsp;</p>
+<p>The first method also has the advantage that as soon as you type <strong><em>weatherData$</em></strong> in RStudio, RStudio will give you suggestions.&nbsp;</p>
+</section>
+<section id="formatting-the-date-value-improper-ggplot-method" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="formatting-the-date-value-improper-ggplot-method"><span class="header-section-number">13</span> Formatting the date value (improper GGPlot method)</h2>
+<p>Let’s say you want the format to be two-digit month/ two-digit day, so <strong><em>April 15</em></strong> would be <strong><em>04/15</em></strong>.</p>
+<p>You could create a formatted vector from the <strong><em>dateYr</em></strong> column:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dateYrFormatted <span class="ot">=</span> <span class="fu">format</span>(weatherData<span class="sc">$</span>dateYr, <span class="at">format=</span><span class="st">"%m/%d"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And <strong><em>dateYrFormatted</em></strong> has the dates formatted how you want:</p>
+<div class="sourceCode" id="cb29" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dateYrFormatted    chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01/01"</span> <span class="st">"01/02"</span> <span class="st">"01/03"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But, <strong><em>dateYrFormatted</em></strong> is still a&nbsp;<strong><em>chr</em></strong> (string) value:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>  plot4<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«dateYrFormatted»)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="fl">0.4</span>, <span class="at">green=</span><span class="fl">0.7</span>, <span class="at">blue=</span><span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">method=</span><span class="st">"loess"</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="fl">0.5</span>, <span class="at">blue=</span><span class="dv">0</span>), <span class="co"># orange</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">linetype=</span><span class="dv">4</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">linewidth=</span><span class="dv">2</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill=</span><span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature throughout the year"</span>,</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you try to plot this, you will get the warning:</p>
+<div id="fig-characterDates" class="quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-characterDates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="fig-characterDates" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="fig-characterDates-1"><a href="#fig-characterDates-1" aria-hidden="true" tabindex="-1"></a>geom_path<span class="sc">:</span> Each group consists of only one observation. Do you need to adjust the group aesthetic?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-characterDates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Using the “character” date values
+</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
+<p>What happened is that GGPlot saw the 366 dates as discrete values and GGplot is trying to show all 366 values on the x-axis (hence, the x-axis looks very crowded).&nbsp; Each x-axis mapping is associated with one point from the y-axis mapping (observation) – and one point cannot make a line so nothing is shown on the plot.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>07: Faceting</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>mod=true;</script>
+<script src="qfc_styles.js"></script> 
+<script>mod=true;</script>
+
+
+<link rel="stylesheet" href="https://qfcatmsu.github.io/assets/quarto/qfc_styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">07: Faceting</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Graphing With GGPlot Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/00-IntroductionAndSyllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00: Introduction and Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01-RStudioProjectsAndGit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01: RStudio Projects and Git Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02-Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Components</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-MappingAndAesthetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Mapping And Aesthetics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04-ElementsAndStyles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04: Elements And Styles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05-DateObjectsAndThemes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05: Date object and themes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-ModifyingMappedElements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Modifying Mapped Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-Faceting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">07: Faceting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/08-Boxplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Boxplots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/09-ReshapingAndForLoops1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09: Reshaping and For Loops 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/Info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Info</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
+   
+  <ul>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link active" data-scroll-target="#to-do"><span class="header-section-number">0.1</span> To-do</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">1</span> Purpose</a>
+  <ul class="collapse">
+  <li><a href="#code-for-the-lesson" id="toc-code-for-the-lesson" class="nav-link" data-scroll-target="#code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</a></li>
+  </ul></li>
+  <li><a href="#factoring-data" id="toc-factoring-data" class="nav-link" data-scroll-target="#factoring-data"><span class="header-section-number">2</span> Factoring data</a>
+  <ul class="collapse">
+  <li><a href="#mapping-columns-and-environment-variables" id="toc-mapping-columns-and-environment-variables" class="nav-link" data-scroll-target="#mapping-columns-and-environment-variables"><span class="header-section-number">2.1</span> Mapping columns and Environment variables</a></li>
+  </ul></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting"><span class="header-section-number">3</span> Faceting</a>
+  <ul class="collapse">
+  <li><a href="#facets-are-like-mappings" id="toc-facets-are-like-mappings" class="nav-link" data-scroll-target="#facets-are-like-mappings"><span class="header-section-number">3.1</span> Facets are like mappings&nbsp;</a></li>
+  <li><a href="#reversing-the-facet" id="toc-reversing-the-facet" class="nav-link" data-scroll-target="#reversing-the-facet"><span class="header-section-number">3.2</span> Reversing the facet</a></li>
+  <li><a href="#faceting-continuous-values" id="toc-faceting-continuous-values" class="nav-link" data-scroll-target="#faceting-continuous-values"><span class="header-section-number">3.3</span> faceting continuous values</a></li>
+  <li><a href="#modifying-the-histogram" id="toc-modifying-the-histogram" class="nav-link" data-scroll-target="#modifying-the-histogram"><span class="header-section-number">3.4</span> Modifying the histogram</a></li>
+  </ul></li>
+  <li><a href="#facet-in-other-plots" id="toc-facet-in-other-plots" class="nav-link" data-scroll-target="#facet-in-other-plots"><span class="header-section-number">4</span> Facet in other plots</a>
+  <ul class="collapse">
+  <li><a href="#different-scales-for-the-facets" id="toc-different-scales-for-the-facets" class="nav-link" data-scroll-target="#different-scales-for-the-facets"><span class="header-section-number">4.1</span> Different scales for the facets</a></li>
+  </ul></li>
+  <li><a href="#faceting-by-rows-and-columns" id="toc-faceting-by-rows-and-columns" class="nav-link" data-scroll-target="#faceting-by-rows-and-columns"><span class="header-section-number">5</span> Faceting by rows and columns&nbsp;</a>
+  <ul class="collapse">
+  <li><a href="#modifying-the-strips" id="toc-modifying-the-strips" class="nav-link" data-scroll-target="#modifying-the-strips"><span class="header-section-number">5.1</span> Modifying the strips</a></li>
+  <li><a href="#themes-and-element-objects" id="toc-themes-and-element-objects" class="nav-link" data-scroll-target="#themes-and-element-objects"><span class="header-section-number">5.2</span> Themes and element objects</a></li>
+  </ul></li>
+  <li><a href="#facet_wrap" id="toc-facet_wrap" class="nav-link" data-scroll-target="#facet_wrap"><span class="header-section-number">6</span> Facet_wrap</a>
+  <ul class="collapse">
+  <li><a href="#one-variable-facet_wrap" id="toc-one-variable-facet_wrap" class="nav-link" data-scroll-target="#one-variable-facet_wrap"><span class="header-section-number">6.1</span> One variable facet_wrap</a></li>
+  <li><a href="#multi-variable-facet_wrap" id="toc-multi-variable-facet_wrap" class="nav-link" data-scroll-target="#multi-variable-facet_wrap"><span class="header-section-number">6.2</span> Multi-variable facet_wrap</a></li>
+  </ul></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">7</span> Application</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">7.1</span> Questions</a></li>
+  </ul></li>
+  <li><a href="#extension-dates-redux" id="toc-extension-dates-redux" class="nav-link" data-scroll-target="#extension-dates-redux"><span class="header-section-number">8</span> Extension: dates redux</a>
+  <ul class="collapse">
+  <li><a href="#create-a-date-facet" id="toc-create-a-date-facet" class="nav-link" data-scroll-target="#create-a-date-facet"><span class="header-section-number">8.1</span> Create a date facet</a></li>
+  <li><a href="#putting-the-months-in-order" id="toc-putting-the-months-in-order" class="nav-link" data-scroll-target="#putting-the-months-in-order"><span class="header-section-number">8.2</span> Putting the months in order</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">07: Faceting</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="to-do" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="to-do"><span class="header-section-number">0.1</span> To-do</h3>
+<ul>
+<li>fix application</li>
+</ul>
+</section>
+<section id="purpose" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
+<ul>
+<li><p>Break up (facet) a plot by rows and column</p></li>
+<li><p>create a two-dimensional facet</p></li>
+</ul>
+<section id="code-for-the-lesson" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</h3>
+<p><a href="../scripts/lesson07-Faceting.R">Script for this lesson</a></p>
+<ul>
+<li>Save the R file, called <strong><em>lesson07-FacetingAndBoxplots.R</em></strong> to the <strong><em>scripts</em></strong> folder inside your RStudio Project</li>
+</ul>
+<p><a href="../Data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as previous lessons)</p>
+<ul>
+<li>Save the CSV file, called <strong><em>Lansing2016Data.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.</li>
+</ul>
+</section>
+</section>
+<section id="factoring-data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="factoring-data"><span class="header-section-number">2</span> Factoring data</h2>
+<p>Let’s start with the stacked histogram from last lesson where we mapped <strong><em>x</em></strong> to temperature and <strong><em>fill</em></strong> to <strong><em>season</em></strong> – so, a temperature histogram with seasons stacked:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Factoring the values in season ####</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  seasonOrdered <span class="ot">=</span> <span class="fu">factor</span>(weatherData<span class="sc">$</span>season,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Spring"</span>, <span class="st">"Summer"</span>, <span class="st">"Fall"</span>, <span class="st">"Winter"</span>));</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Histogram with factored seasons ####</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">fill=</span>seasonOrdered),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  <span class="co"># outline color -- not mapped</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"lightgreen"</span>, <span class="st">"pink"</span>, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"lightyellow"</span>, <span class="st">"lightblue"</span>)) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Seasons"</span>);     </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>… and the resulting stacked histogram</p>
+<div id="fig-stackedHist" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stackedHist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP1-06-StackedHistogram.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stackedHist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A stacked histogram that maps temperature to the x-axis and seasons to the fill color
+</figcaption>
+</figure>
+</div>
+<section id="mapping-columns-and-environment-variables" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="mapping-columns-and-environment-variables"><span class="header-section-number">2.1</span> Mapping columns and Environment variables</h3>
+<p>If we look at the first two lines of plot1:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>«weatherData» ) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«avgTemp», <span class="at">fill=</span>«seasonOrdered»),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are creating a canvas area with the data frame <strong><em>weatherData</em></strong>.&nbsp; For the histogram we are mapping the <strong><em>avgTemp</em></strong> column in <strong><em>weatherData</em></strong> to the <strong><em>x</em></strong>-axis and we are mapping the vector <strong><em>seasonOrdered</em></strong> to the <strong><em>fill</em></strong> (i.e., background color).</p>
+<p>&nbsp;</p>
+<p>In a <strong><em>mapping</em></strong>, GGPlot will first check the data frame initialized in the canvas to see if there is a column with the name mapped and&nbsp;<strong><em>avgTemp</em></strong> is a column in <strong><em>weatherData</em></strong>.</p>
+<p>&nbsp;</p>
+<p>If there is no column in the data frame with the name mapped then GGPlot will check the <strong><em>Environment</em></strong>.&nbsp; In the <strong><em>fill</em></strong> mapping, <strong><em>seasonOrdered</em></strong> is not a column in <strong><em>weatherData</em></strong> but <strong><em>seasonOrdered</em></strong> is a variable in the <strong><em>Environment</em></strong>.</p>
+</section>
+</section>
+<section id="faceting" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="faceting"><span class="header-section-number">3</span> Faceting</h2>
+<p>Instead of using a mapping to add more variables to a plot, we can use a facet.&nbsp; A <em>facet</em> uses a variable to&nbsp;break up the plot area by rows or columns (or both).&nbsp; Let’s use a facet to add <strong><em>season</em></strong> to the temperature histogram.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 2: Faceting the histogram ####</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(season))» <span class="sc">+</span>  <span class="co"># vars() needs to use the column</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each season now has its own row with its own temperature histogram</p>
+<div id="fig-facets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-facets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-06-Faceting-01.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-facets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Using facets to break out the seasons
+</figcaption>
+</figure>
+</div>
+<section id="facets-are-like-mappings" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="facets-are-like-mappings"><span class="header-section-number">3.1</span> Facets are like mappings&nbsp;</h3>
+<p>To “map” a column using <strong><em>facet_grid</em></strong>, you need to put the column name as an argument in <strong><em>vars()</em></strong>.&nbsp; This code “maps” the <strong><em>season</em></strong> column to rows in the plotting area:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(season) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>facet_grid</em></strong> is buggy and will not reliably use&nbsp;<strong><em>Environment</em></strong> variables like <strong><em>seasonOrdered</em></strong>.&nbsp; The only way around all the bugs is to save <strong><em>Environment</em></strong> variables to the data frame.&nbsp; We need to first save&nbsp;<strong><em>seasonOrdered</em></strong> as a column in <strong><em>weatherData</em></strong> before using it is a facet.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  weatherData<span class="sc">$</span>seasonOrdered <span class="ot">=</span> seasonOrdered;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="note">Note: <strong>weatherData</strong> has added the column <strong>seasonOrdered</strong> to the end of the data frame.</span></p>
+<p>&nbsp;</p>
+<p>And then use the column <strong><em>seasonOrdered</em></strong> from the data frame.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: Reordering the seasons ####</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(«seasonOrdered») ) <span class="sc">+</span>  <span class="co"># column in weatherData</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-orderedFacets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-orderedFacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-06-ordered-facet.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-orderedFacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Reordering the facets using the variable seasonOrdered
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="reversing-the-facet" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="reversing-the-facet"><span class="header-section-number">3.2</span> Reversing the facet</h3>
+<p><strong><em>facet_grid</em></strong> has two “mapping” subcomponents:&nbsp;<strong>rows</strong> and <strong>cols</strong>.&nbsp; In this above case (<a href="#fig-orderedFacets" class="quarto-xref">Figure&nbsp;3</a>), <strong><em>seasonOrdered</em></strong> was mapped to <strong><em>row</em></strong>.</p>
+<p>We can facet by column by mapping <strong><em>seasonOrdered</em></strong> to <strong><em>cols</em></strong> instead.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Reversing the facet equation ####</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> plot3 <span class="sc">+</span>                             <span class="co"># take all components from plot3</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( «cols» <span class="ot">=</span> <span class="fu">vars</span>(seasonOrdered) ); <span class="co"># and rewrite the facet component</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This version is not spaced as well as the previous version.&nbsp; You can change the bin sizes using the <strong><em>bin</em></strong> or <strong><em>binwidth</em></strong> components in <strong><em>geom_histogram</em></strong>.You will be using <strong><em>bin</em></strong> and <strong><em>binwidth</em></strong> in the lesson application.</p>
+<div id="fig-columnFacets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-columnFacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-06-ReverseFacet.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-columnFacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Switching the season facet to the x-axis
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="faceting-continuous-values" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="faceting-continuous-values"><span class="header-section-number">3.3</span> faceting continuous values</h3>
+<p><strong><em>facet_grid</em></strong> creates a row or column for each unique value in the column you supply in <strong><em>vars()</em></strong>.&nbsp; If you are not careful and use a continuous column like <strong><em>precip2</em></strong>, which has 59 unique numeric values, <strong><em>facet_grid</em></strong> will attempt to make 59 columns or rows.&nbsp; This will likely not work and R will either crash or time-out.&nbsp;</p>
+</section>
+<section id="modifying-the-histogram" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="modifying-the-histogram"><span class="header-section-number">3.4</span> Modifying the histogram</h3>
+<p>Let’s make two changes to the plot:</p>
+<ul>
+<li><p>add color by mapping the <strong><em>season</em></strong> to <strong><em>fill</em></strong> (<strong><em>fill</em></strong> is the background color)</p></li>
+<li><p>change to a density plot</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 5: Adding color and switching to a density plot ####</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    «geom_density»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, «<span class="at">fill=</span>season»),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">cols=</span><span class="fu">vars</span>(seasonOrdered)) <span class="sc">+</span>  <span class="co"># season has to be in the data frame</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-densityPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-densityPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-06-Density-Fill.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-densityPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: A density plot with each facet colored using the fill mapping
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="facet-in-other-plots" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="facet-in-other-plots"><span class="header-section-number">4</span> Facet in other plots</h2>
+<p>We can also use facets in a scatterplot of humidity vs.&nbsp;temperature faceted by season:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Faceting a scatterplot ####  </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    «geom_point»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(seasonOrdered) )» <span class="sc">+</span>  </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-facetSeason" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-facetSeason-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-06-facet-scatter.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-facetSeason-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Faceting a scatterplot by season
+</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
+<p>Or, use facets in a bar plot or temperature faceted by season:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6b: Faceting a barplot ####  </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  plot6b <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    «geom_bar»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(seasonOrdered) )» <span class="sc">+</span>  </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-facetBarplot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-facetBarplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP-1-06-facet-barplot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-facetBarplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Faceting a temperature barplot by season
+</figcaption>
+</figure>
+</div>
+<section id="different-scales-for-the-facets" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="different-scales-for-the-facets"><span class="header-section-number">4.1</span> Different scales for the facets</h3>
+<p>By default, <strong><em>facet_grid</em></strong> will use the same scales for each facet.&nbsp; In the case of <em>fig ##</em>, this means that the y-axis range for all four facets is the same.</p>
+<p>&nbsp;</p>
+<p>We can make <strong><em>facet_grid</em></strong> use a different scale for each facet by adding the subcomponent <strong><em>scales</em></strong>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot6c <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp)) <span class="sc">+</span>  </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">cols =</span> <span class="fu">vars</span>(seasonOrdered), </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                «<span class="at">scales=</span><span class="st">"free"</span>») <span class="sc">+</span>  </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6c);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And now each facet uses a different y-axis scale to maximize space:</p>
+<div id="fig-independentFacets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-independentFacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-07_FreeScaling.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-independentFacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Each facet row now has an independent y-axis range
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="faceting-by-rows-and-columns" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="faceting-by-rows-and-columns"><span class="header-section-number">5</span> Faceting by rows and columns&nbsp;</h2>
+<p>You can do two-dimensional facet – or, facets that have a variable for&nbsp; both row and column.&nbsp; We will return to our scatterplot of humidity vs.&nbsp;temperature and facet by season and wind speed level (i.e., low, medium, or high).</p>
+<p>The “mappings” for this plot are:</p>
+<ul>
+<li><p>x-axis: <strong><em>avgTemp</em></strong></p></li>
+<li><p>y-axis: <strong><em>relHum</em></strong></p></li>
+<li><p>rows: <strong><em>seasonOrdered</em></strong></p></li>
+<li><p>cols: <strong><em>windSpeedLevel</em></strong></p></li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Two-dimensional facets ####</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(seasonOrdered),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">cols =</span> <span class="fu">vars</span>(windSpeedLevel)) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Again, while facets are not defined as mappings, facets also map data to an aspect of the plot.</p>
+<div id="fig-2D_Facet" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2D_Facet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1_07_2D-Facet.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2D_Facet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Facet by both rows and columns (two-dimensional facet)
+</figcaption>
+</figure>
+</div>
+<section id="modifying-the-strips" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="modifying-the-strips"><span class="header-section-number">5.1</span> Modifying the strips</h3>
+<p>The containers that have the labels for the facet rows and columns are called <strong><em>strips</em></strong>.&nbsp; Like everything else in the canvas area outside of the plots, the strips can be modified using <strong><em>theme</em></strong>.&nbsp; If you look at the <a href="https://ggplot2.tidyverse.org/reference/theme.html">description for <strong><em>theme</em></strong></a>, under <strong><em>Usage</em></strong> you will see that there are 14 different aspects of strip that can be modified (i.e., 14 subcomponents of&nbsp;<strong><em>theme</em></strong> that start with <strong><em>strip</em></strong>).</p>
+<p>&nbsp;</p>
+<p>Using <strong><em>theme</em></strong>, we will change the background and text colors of the strips.&nbsp; And, using the subcomponent <strong><em>switch</em></strong> inside <strong><em>facet_grid</em></strong>, we can change the position of the strips to the opposite side:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(«strip.text» <span class="ot">=</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"purple"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          «strip.background.x» <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"red"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">fill=</span><span class="st">"yellow"</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          «strip.background.y» <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"blue"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">fill=</span><span class="st">"lightgreen"</span>)) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(seasonOrdered),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">cols =</span> <span class="fu">vars</span>(windSpeedLevel),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                «<span class="at">switch =</span> <span class="st">"both"</span>») <span class="sc">+</span>  <span class="co"># could use "x" or "y" to switch only 1 axis</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>strip</em></strong>.<strong><em>text</em></strong> and <strong><em>strip.background</em></strong> will modify both axis.&nbsp; Individual axis can be modified by attaching <strong><em>.x</em></strong> or .<strong><em>y</em></strong> to the names. So,&nbsp;<strong><em>strip.text</em></strong> modifies both axis text whereas <strong><em>strip.background.x</em></strong> modifies only the x-axis.</p>
+<div id="fig-modifyStrips" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-modifyStrips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-07_ModifyStrips.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-modifyStrips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Modifying the strips in the canvas
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="themes-and-element-objects" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="themes-and-element-objects"><span class="header-section-number">5.2</span> Themes and element objects</h3>
+<p>Like most <strong><em>theme</em></strong> components, you cannot directly set the properties of an object, instead you set the object to an&nbsp;<strong><em>element_*</em></strong> that has the properties you want so:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>strip.background.y <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"blue"</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fill=</span><span class="st">"lightgreen"</span>)<span class="er">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>… means set the&nbsp;<strong>strips</strong> on the <strong>y-axis</strong> to a <strong>rectangular element</strong> that is <strong>colored</strong> blue and <strong>filled</strong> lightgreen.</p>
+</section>
+</section>
+<section id="facet_wrap" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="facet_wrap"><span class="header-section-number">6</span> Facet_wrap</h2>
+<p>So far the positioning of the facets is determined by how many categories (or factors), the variable has.</p>
+<p>&nbsp;</p>
+<p><strong><em>season</em></strong> has 4 factors (categories) and using <strong><em>season</em></strong> as a facet will give 4 columns.&nbsp; Another option is to use <strong><em>facet_wrap</em></strong>, which will allow you facet by one or more variable and define the number of rows and columns.</p>
+<section id="one-variable-facet_wrap" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="one-variable-facet_wrap"><span class="header-section-number">6.1</span> One variable facet_wrap</h3>
+<p>We will use <strong><em>windSusDir</em></strong> to facet the humidity vs temperature scatterplot.</p>
+<p>&nbsp;</p>
+<p><strong><em>windSusDir</em></strong> gives wind by 10 degrees, so the values are 10, 20, 30, …, 360.&nbsp; This means that are <strong>36</strong> values for <strong><em>windSusDir</em></strong>.&nbsp; A regular facet would be either <strong>36</strong> rows or columns.</p>
+<p>&nbsp;</p>
+<p>With <strong><em>facet_wrap</em></strong>, we can split the facets into rows and columns by setting either <strong><em>nrow</em></strong> or <strong><em>ncol</em></strong>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">facet_wrap</span>( <span class="at">facets =</span> <span class="fu">vars</span>(windSusDir),»</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                «<span class="at">nrow =</span> <span class="dv">4</span>)» <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We only set <strong><em>nrow</em></strong> (4)– and GGPlot calculates <strong><em>ncol</em></strong> (9).&nbsp; You could declare both <strong><em>nrow</em></strong> and <strong><em>ncol</em></strong> but that is not necessary and you are risking an error if you calculate it wrong.</p>
+<div id="fig-facetWrap" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-facetWrap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-07_FacetWrap-1-01.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-facetWrap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: A facet_wrap using one variable
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="multi-variable-facet_wrap" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="multi-variable-facet_wrap"><span class="header-section-number">6.2</span> Multi-variable facet_wrap</h3>
+<p>You can facet with multiple variables and GGPlot will produce one facet cell for every possible combination of the variables.&nbsp; In this example, we facet by <strong><em>seasonOrdered</em></strong> and <strong><em>windSpeedLevel</em></strong>.&nbsp; <strong><em>seasonOrdered</em></strong> has <strong>4</strong> possible values and <strong><em>windSpeedLevel</em></strong> has <strong>3</strong>.&nbsp; So, the combination will produce <strong>12</strong> facet cells:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>( «<span class="at">facets =</span> <span class="fu">vars</span>(seasonOrdered, windSpeedLevel»),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">4</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">dir =</span> <span class="st">"v"</span>) <span class="sc">+</span>   <span class="co"># order facets vertically</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>GGPlot creates 12 facets, one for each combination of seasonOrdered and winSpeedLevel.&nbsp; <strong><em>ncol=4</em></strong> says to create 4 columns – and 3 rows.&nbsp; <strong><em>dir=“v”</em></strong> says arrange the facets vertically.&nbsp; The default is “h”, or horizontally.</p>
+<div id="fig-facetWrap_2Var" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-facetWrap_2Var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-07_Facet_Wrap-2Vars.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-facetWrap_2Var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Facet_wrap using 2 variables
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="application" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="application"><span class="header-section-number">7</span> Application</h2>
+<p>Create a script file in your Project’s <strong><em>scripts</em></strong> folder called <strong><em>app07.r</em></strong> and, using the data from <strong>Lansing2016NOAA.csv:</strong></p>
+<p>1) Make a scatterplot of temperature vs.&nbsp;humidity and</p>
+<ul>
+<li><p>facet by wind speed level in the <strong><em>x</em></strong> direction</p></li>
+<li><p>facet by wind direction in the <strong><em>y</em></strong> direction</p></li>
+<li><p>have wind speed go in descending order (high -&gt; medium -&gt; low)</p></li>
+<li><p>have wind direction go north -&gt; south -&gt; east -&gt; west</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>2) Using the plot from&nbsp;<em>fig ##</em></p>
+<ul>
+<li><p>The 2 tasks below both use a <strong><em>strip.*</em></strong> subcomponent in the <strong><em>theme</em></strong> component</p>
+<ul>
+<li><p>Change the background color and outline color of the facet labels</p></li>
+<li><p>Change the text size, color, and font type inside the facet</p></li>
+</ul></li>
+<li><p>Double the size of the bins using either bin or binwidth (they are both subcomponents of geom_histogram)</p></li>
+<li><p>Add fill mapping to season</p></li>
+<li><p>Set the season fill colors to spring: green, summer: red, fall: orange, winter: purple</p></li>
+<li><p>Change breaks on x-axis to 25, 35, …, 85</p></li>
+<li><p>Change limits on x-axis to see all the breaks</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>3) Create a scatterplot of temperature vs.&nbsp;humidity and facet by months (in order)</p>
+<ul>
+<li><p>For help, look at <em>extension: dates redux</em>.&nbsp;</p></li>
+<li><p>Modify the axes’ ranges to only include values within the facet (i.e., <strong><em>scales</em></strong> subcomponent)</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>4) Create a scatterplot of temperature vs.&nbsp;humidity and facet_wrap using any 3 variables&nbsp;</p>
+<ul>
+<li><p>Set the number of columns so that it is between 1.5x and 2x the number of rows.</p></li>
+<li><p><span class="note">Note 1: you might need to click the Zoom button in the RStudio <strong><em>Plot</em></strong> tab to properly see the results</span></p></li>
+<li><p><span class="note">Note 2: you want to use variables with a small number of factors!</span></p></li>
+</ul>
+<p>&nbsp;</p>
+<p>D) <a href="01c-RStudioProjects.html#application">&lt;Instructions for GitHub – link to previous lesson&gt;</a></p>
+<section id="questions" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">7.1</span> Questions</h3>
+<p>Answer the following in comments inside your application script:</p>
+<ol type="1">
+<li><p>What was your level of comfort with the lesson/application?</p></li>
+<li><p>What areas of the lesson/application confused or still confuses you?</p></li>
+<li><p>What are some things you would like to know more about that is related to, but not covered in, this lesson?</p></li>
+</ol>
+</section>
+</section>
+<section id="extension-dates-redux" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="extension-dates-redux"><span class="header-section-number">8</span> Extension: dates redux</h2>
+<p>We are going to facet the temperature humidity scatterplot by month – so, there will be 12 facets but only one faceting variable.</p>
+<section id="create-a-date-facet" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="create-a-date-facet"><span class="header-section-number">8.1</span> Create a date facet</h3>
+<p>Dates are not the easiest thing to deal with in R, so it is worth a revisit.&nbsp; Our goal is to facet by month using the <strong><em>dateYr</em></strong> column and it would really help if R could recognize the values as dates.&nbsp; Unfortunately, R does not see <strong><em>dateYr</em></strong> as Date values:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(weatherData<span class="sc">$</span>dateYr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>So, we need to convert <strong><em>dateYr</em></strong> into a <strong><em>Date</em></strong> format that R recognizes – we will save that to <strong><em>dateYr2</em></strong>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  dateYr2 <span class="ot">=</span> <span class="fu">as.Date</span>(weatherData<span class="sc">$</span>dateYr, <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And the <strong><em>Environment</em></strong> says <strong><em>dateYr2</em></strong> is a <strong><em>Date</em></strong> vector:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dateYr2<span class="sc">:</span>   Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>], format<span class="sc">:</span>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But <strong><em>typeof()</em></strong> will classify <strong><em>dateYr2</em></strong> as numeric (double) – this is because, deep down, <strong><em>Dates</em></strong> are stored as a number that counts from January 1, 1970 (backwards and forewords).</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(dateYr2)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"double"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we can extract the month from <strong><em>dateYr2</em></strong>, <span class="note">note: “%b” is the conversion specification for month</span></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  months <span class="ot">=</span> <span class="fu">format</span>(dateYr2, <span class="at">format=</span><span class="st">"%b"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We need to add <strong><em>months</em></strong> in the data frame before we use it as a facet:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  weatherData<span class="sc">$</span>monthsCol <span class="ot">=</span> months;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="putting-the-months-in-order" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="putting-the-months-in-order"><span class="header-section-number">8.2</span> Putting the months in order</h3>
+<p>GGPlot will order the <strong><em>months</em></strong> alphabetically because GGPlot sees the values as characters – not dates.&nbsp; To get GGPlot to facet the months in order, you will need to factor <strong><em>months</em></strong> using <strong><em>factor()</em></strong>. (<a href="#factoring-data">Factoring data</a>)<strong><em>.<br>
+</em></strong></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
