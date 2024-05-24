@@ -62,6 +62,26 @@ window.addEventListener("load", function(event)
 			//event.preventDefault();
 		});
 	}
+	
+	// find search bar
+	searchBar = document.querySelector(".sidebar-search input");
+	searchBar.setAttribute("placeholder", "Search website");
+	
+	if(typeof menuCollapse !== 'undefined' && menuCollapse == true)
+	{
+    // find expanded sidebars:
+  	sideBars = document.querySelector("div.sidebar-item-container");
+  	
+  	menuExpanders = sideBars.querySelectorAll("a.text-start");
+  	for(i=0; i<menuExpanders.length; i++)
+  	{
+  		menuExpanders[i].classList.add("collapsed");
+  		menuExpanders[i].setAttribute("aria-expanded", "false");
+  	}
+  	
+  	sideBars.nextElementSibling.classList.remove("show");
+	}
+	
 });
 
 // this still seems to work if there is no parent -- probably should check for this, though
@@ -675,14 +695,20 @@ function enablePrevious()
 
 function linksToNewWindow()
 {
-	links = document.getElementById("quarto-document-content").querySelectorAll('a[href]');
-	//links = encapObject.querySelectorAll('.quarto-document-content>a[href]');
+	// links = document.getElementById("quarto-document-content").querySelectorAll('a[href]');
+	links = document.getElementById("quarto-content").querySelectorAll('#TOC a[href], #quarto-document-content a[href]');
 	
 	for(i=0; i<links.length; i++)
 	{
+		// download script and data files
+		if(links[i].href.trim().endsWith(".R") ||	links[i].href.trim().endsWith(".csv"))
+		{
+			links[i].setAttribute("download", "");
+		}
+		
 		// only change href that go to the same page... will need to update this or it 
 		// will include anything within the same site.
-		if (links[i].href.indexOf(window.location.pathname) > -1)
+		else if (links[i].href.indexOf(window.location.pathname) > -1)
 		{
 		  hashPos = links[i].href.indexOf("#");
 	    hashID = links[i].href.substring((hashPos+1));

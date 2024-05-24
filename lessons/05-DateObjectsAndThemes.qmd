@@ -1,11 +1,6 @@
 ---
 title: "05: Date object and themes"
 # special characters for highlighting code : «»
-format:
-  html:
-    include-in-header:
-      - text: |
-         <script>mod=true;</script>
 ---
 
 ## Purpose

@@ -28,7 +28,8 @@ format:
       body-width: 1000px
     include-in-header:
       - text: |
-          <script>mod=true;</script>
+          <link rel = "shortcut icon" href = "https://qfcatmsu.github.io/assets/quarto/qfc_icon.png" />
+          <script>mod=true; menuCollapse=true;</script>
           <script src="qfc_styles.js"></script> 
     #   <script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js">
 editor: visual

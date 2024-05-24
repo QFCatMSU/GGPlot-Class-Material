@@ -1,11 +1,6 @@
 ---
 title: "07: Faceting"
 # special characters for highlighting code : «»
-format:
-  html:
-    include-in-header:
-      - text: |
-         <script>mod=true;</script>
 ---
 
 ### To-do

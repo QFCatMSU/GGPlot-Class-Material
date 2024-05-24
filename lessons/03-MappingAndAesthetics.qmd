@@ -1,11 +1,6 @@
 ---
 title: "03: Mapping And Aesthetics"
 # special characters for highlighting code : «»
-format:
-  html:
-    include-in-header:
-      - text: |
-         <script>mod=true;</script>
 ---
 
 ## Purpose
