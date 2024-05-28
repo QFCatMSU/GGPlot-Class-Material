@@ -65,7 +65,8 @@ window.addEventListener("load", function(event)
 	
 	// find search bar
 	searchBar = document.querySelector(".sidebar-search input");
-	searchBar.setAttribute("placeholder", "Search website");
+	if (searchBar !== null)
+		searchBar.setAttribute("placeholder", "Search website");
 	
 	if(typeof menuCollapse !== 'undefined' && menuCollapse == true)
 	{
@@ -696,52 +697,56 @@ function enablePrevious()
 function linksToNewWindow()
 {
 	// links = document.getElementById("quarto-document-content").querySelectorAll('a[href]');
-	links = document.getElementById("quarto-content").querySelectorAll('#TOC a[href], #quarto-document-content a[href]');
-	
-	for(i=0; i<links.length; i++)
+	quartoContent = document.getElementById("quarto-content");
+	if(quartoContent !== null)
 	{
-		// download script and data files
-		if(links[i].href.trim().endsWith(".R") ||	links[i].href.trim().endsWith(".csv"))
+		links = quartoContent.querySelectorAll('#TOC a[href], #quarto-document-content a[href]');
+	
+		for(i=0; i<links.length; i++)
 		{
-			links[i].setAttribute("download", "");
-		}
-		
-		// only change href that go to the same page... will need to update this or it 
-		// will include anything within the same site.
-		else if (links[i].href.indexOf(window.location.pathname) > -1)
-		{
-		  hashPos = links[i].href.indexOf("#");
-	    hashID = links[i].href.substring((hashPos+1));
-			links[i].removeAttribute("href");  
-			links[i].classList.add("inpageLink"); 
-						
-			(function(hashID){
-  			links[i].addEventListener("click", 
-  			  function() { 
-            element = document.getElementById(hashID);
-            // for headers 
-            
-  			    refElement = document.querySelector("[data-anchor-id='" + String(element.id) + "']");
-  			    if(!refElement)
-  			    {
-  			      // for all but headers
-  			      refElement = document.querySelector("#" + element.id);
-  			    }
-  			    scrollToElement(element.id);
-  			  });	
-			})(hashID);
-		}
-		else if (links[i].href.indexOf(window.location.hostname) > -1)
-		{
-        links[i].target = "_self"; 
-		}
-		else if(links[i].href.trim() != "" &&                        // link is not blank
-		   !(links[i].classList.contains("sameWin")) &&          // link does not contain class sameWin
-	//   	 !(links[i].classList.contains("download")) &&         // link does not contain class download
-		 	 !(links[i].classList.contains("quarto-xref")) &&      // link does not contain class quarto-xref
-		 	 (links[i].target == "_self" || !(links[i].target)) )  // link contains instruction to go to same window
-		{
-			links[i].target = "_blank";
+			// download script and data files
+			if(links[i].href.trim().endsWith(".R") ||	links[i].href.trim().endsWith(".csv"))
+			{
+				links[i].setAttribute("download", "");
+			}
+			
+			// only change href that go to the same page... will need to update this or it 
+			// will include anything within the same site.
+			else if (links[i].href.indexOf(window.location.pathname) > -1)
+			{
+				hashPos = links[i].href.indexOf("#");
+				hashID = links[i].href.substring((hashPos+1));
+				links[i].removeAttribute("href");  
+				links[i].classList.add("inpageLink"); 
+							
+				(function(hashID){
+					links[i].addEventListener("click", 
+						function() { 
+							element = document.getElementById(hashID);
+							// for headers 
+							
+							refElement = document.querySelector("[data-anchor-id='" + String(element.id) + "']");
+							if(!refElement)
+							{
+								// for all but headers
+								refElement = document.querySelector("#" + element.id);
+							}
+							scrollToElement(element.id);
+						});	
+				})(hashID);
+			}
+			else if (links[i].href.indexOf(window.location.hostname) > -1)
+			{
+					links[i].target = "_self"; 
+			}
+			else if(links[i].href.trim() != "" &&                        // link is not blank
+				 !(links[i].classList.contains("sameWin")) &&          // link does not contain class sameWin
+		//   	 !(links[i].classList.contains("download")) &&         // link does not contain class download
+				 !(links[i].classList.contains("quarto-xref")) &&      // link does not contain class quarto-xref
+				 (links[i].target == "_self" || !(links[i].target)) )  // link contains instruction to go to same window
+			{
+				links[i].target = "_blank";
+			}
 		}
 	}
 }
