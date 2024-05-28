@@ -785,19 +785,21 @@ Figure&nbsp;17: Cleaning out the windows
 <ol type="1">
 <li>In your File Manager (not in RStudio), <span class="hl">right-click</span> on the Project Folder and in:</li>
 </ol>
-<pre><code>A.  **Windows 10:**
-
-    -   Choose&nbsp;***Send to***
-
-    -   Choose ***Compressed (zipped) folder***
-
-B.  **Windows 11:**
-
-    -    Choose ***Compress to Zip file***
-
-C.  **Mac**:
-
-    -    Choose ***Compress "\&lt;Project Folder\&gt;"***</code></pre>
+<ul>
+<li><p><strong>Windows 10:</strong></p>
+<ul>
+<li><p>Click <strong><em>Send to</em></strong></p></li>
+<li><p>Click <strong><em>Compressed (zipped) folder</em></strong></p></li>
+</ul></li>
+<li><p><strong>Windows 11:</strong></p>
+<ul>
+<li>Click <strong><em>Compress to Zip file</em></strong></li>
+</ul></li>
+<li><p><strong>Mac</strong>:</p>
+<ul>
+<li>Click <strong><em>Compress “&lt;Project Folder&gt;”</em></strong></li>
+</ul></li>
+</ul>
 <ol start="2" type="1">
 <li>For all operating systems, a zipped file named <strong><em>&lt;Project Folder&gt;.zip</em></strong> with all the Project Folders’ contents is created in the same folder</li>
 </ol>
@@ -951,9 +953,9 @@ Figure&nbsp;21: Stop RStudio from automatically ending your parenthesis and quot
 <section id="use-the-console-tab" class="level3" data-number="12.2">
 <h3 data-number="12.2" class="anchored" data-anchor-id="use-the-console-tab"><span class="header-section-number">12.2</span> Use the Console tab</h3>
 <p>In R, we can install packages using <strong><em>install.packages()</em></strong>.&nbsp; So, if you wanted to install GGPlot2, you would type:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"GGPlot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"GGPlot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="note">Note: you can install multiple packages at once if you put the names in a vector:</span></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"GGPlot2"</span>, <span class="st">"gridExtra"</span>, <span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"GGPlot2"</span>, <span class="st">"gridExtra"</span>, <span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <strong><em>Console</em></strong> tab in RStudio is an R interface, and you could type in the above line to install the&nbsp;<strong><em>GGPlot2</em></strong> package.</p>
 <div id="fig-packageInstallation" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -999,7 +1001,7 @@ Figure&nbsp;24: The R plot help page in the online documentation.
 <p>&nbsp;</p>
 <p>https://stat.ethz.ch is where the official documentation for R is located.&nbsp; So, you will see this website appear quite often when you do an internet search for something R related.</p>
 <p>&nbsp;</p>
-<p>In the next lesson we will use the Help tab to find information about GGPlot functions.</p>
+<p>In a future lesson we will use the Help tab to find information about GGPlot functions.</p>
 </section>
 <section id="extension-run-vs.-source" class="level2" data-number="14">
 <h2 data-number="14" class="anchored" data-anchor-id="extension-run-vs.-source"><span class="header-section-number">14</span> Extension: Run vs.&nbsp;Source</h2>

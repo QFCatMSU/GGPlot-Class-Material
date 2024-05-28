@@ -23,8 +23,7 @@ There is a lot of setup in this lesson and the next because it assumes you are s
 
 ### - Special note about images in the lessons for this class
 
-RStudio is a rapidly evolving program, and it would be too much work to maintain all the images so that they reflect the newest version of RStudio and its visual likeness.  Some of the images in this class still reflect the 2019 version of RStudio (v1.1).  And there are minor changes that I have made to the code that I did not believe warrants putting in new images. I have tried to make sure these differences change nothing
-functionally.  Inevitably, something will fall through the cracks -- so please, contact the instructor if there is something causing a problem!
+RStudio is a rapidly evolving program, and it would be too much work to maintain all the images so that they reflect the newest version of RStudio and its visual likeness.  Some of the images in this class still reflect the 2019 version of RStudio (v1.1).  And there are minor changes that I have made to the code that I did not believe warrants putting in new images. I have tried to make sure these differences change nothing functionally.  Inevitably, something will fall through the cracks -- so please, contact the instructor if there is something causing a problem!
 
 ## Viewing file extensions and hidden files
 
@@ -274,7 +273,7 @@ You can open up a File Explorer/Finder window to the same folder by clicking **
 
 You should now be running RStudio, opened to the RStudio Project that you just created.  If you click on the ***Files*** tab in the lower-right corner, you will see all the folders and files within your RStudio Project (linked to your Project Folder). You will also see your project name in the upper-right corner (in this case, ***My_Project***).
 
-![RStudio opened with an RStudio Project (named My_Project) ](images/OpenedProjectFolder.png){#fig-fileWindows .fs}
+![RStudio opened with an RStudio Project (named My_Project)](images/OpenedProjectFolder.png){#fig-fileWindows .fs}
 
 The ***\*.RProj*** files is here and you might also see a file named ***.RHistory***. These are not files you will need to use right away but you can learn more about them at [Extension: \*.RProj and .Rhistory](#extension-.rproj-and-.rhistory-hidden-files-in-your-project-folder).
 
@@ -400,21 +399,21 @@ Answer the following in comments inside your application script:
 
 **To create a Zip file of your Project Folder**
 
-1.   In your File Manager (not in RStudio), [right-click]{.hl} on the Project Folder and in:
+1.  In your File Manager (not in RStudio), [right-click]{.hl} on the Project Folder and in:
 
-    A.  **Windows 10:**
+-   **Windows 10:**
 
-        -   Choose ***Send to***
+    -   Click ***Send to***
 
-        -   Choose ***Compressed (zipped) folder***
+    -   Click ***Compressed (zipped) folder***
 
-    B.  **Windows 11:**
+-   **Windows 11:**
 
-        -    Choose ***Compress to Zip file***
+    -   Click ***Compress to Zip file***
 
-    C.  **Mac**:
+-   **Mac**:
 
-        -    Choose ***Compress "\<Project Folder\>"***
+    -   Click ***Compress "\<Project Folder\>"***
 
 2.  For all operating systems, a zipped file named ***\<Project Folder\>.zip*** with all the Project Folders' contents is created in the same folder
 
@@ -602,7 +601,7 @@ https://stat.ethz.ch is where the official documentation for R is located.  So,
 
  
 
-In the next lesson we will use the Help tab to find information about GGPlot functions.
+In a future lesson we will use the Help tab to find information about GGPlot functions.
 
 ## Extension: Run vs. Source
 

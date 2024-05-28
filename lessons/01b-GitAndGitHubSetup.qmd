@@ -5,159 +5,27 @@ title: "01b: Git and GitHub Setup"
 
 ### To-dos
 
--   GGPlot image still show facets – switch to rows in code
--   Have checklist – allow student to go to end if they know everything
 -   Show how to use Git tab in app?
 
 ## Purpose
 
--   Installation of software and packages needed for class
+-   Setup Git on your computer
 
--   Execute, using the Source button, an R script with GGPlots
+-   Use Git to connect your RStudio Project to a GitHub repository
 
--   Set up an RStudio Project
+### Prerequisite
 
--   Connect your RStudio Project to a GitHub repository (this is where all your work will go)
+You will need a GitHub account to complete this lesson. You can sign up for an account at <https://github.com>.
 
-### Note
+## Install Git on your computer (need version 2.44 or higher)
 
-There is a lot of setup in this lesson because it assumes you are starting from scratch. Feel free to skip over sections that you already have on your computer. By the end of this lesson, I want you to have an RStudio Project on GitHub and share that project with me.
-
-***\<Checklist\>***
-
-## Viewing file extensions and hidden files
-
-By default, Windows and Mac hides file extensions from you (e.g., your Word document file is listed in the file manager as ***stuff*** instead of ***stuff.docx***).  This is not convenient when you are programming as you are working with many file types (e.g., \*.txt, \*.r, \*.csv) and, many times, the only difference between the name of two files is the extension.  For instance, you might have two files called ***weather.r*** and ***weather.csv*** in your folder -- without file extension they are both listed as **weather**.
-
- 
-
-Also, when you are programming, there are files you will need to access that are hidden by default by the operating system.
-
- 
-
-This section is technically optional, but I would highly recommend you learn how to view all file extensions -- it will greatly assist you when programming.
-
-### Viewing in newer versions of Windows 11
-
-This is easy to to do in newer versions of Windows 11:
-
--   Open the File Explorer
-
--   Click ***View*** -\> ***Show***
-
--   Check ***File name extensions*** and ***Hidden items***
-
-![Change settings to view all file extensions on Windows 11](images/FileExtensions_Win11.png){#fig-win11 .fs}
-
-### Viewing in Windows 10 and older Windows 11 versions
-
-This feature is a bit buried in these Window versions!
-
- 
-
--   Open any ***File Explorer*** window (i.e., your folder viewer)
-
--   In menu bar
-
-    -   **Windows 10**: click ***View*** -\> ***Options*** -\> ***Change folder and search options***
-
-    -   **Windows 11**: click ***3 dots*** ( **· · ·** ) -\> ***Options***
-
--   In ***Folder Options*** window (@fig-fileExt), go to the ***View*** tab
-
--   Uncheck ***Hide extensions for known file types***
-
--   Check ***Show hidden files, folder, and drives***
-
-    -   [Note: There is also a way to see hidden files in RStudio, which we will show later in this lesson]{.note}
-
--   Click ***OK***
-
-![Viewing in older versions of Windows](images/01-FileExtensions1.PNG){#fig-fileExt .fs}
-
-### Viewing in Mac
-
-File Extensions:
-
--   Open ***Finder***
-
--   Click on ***Finder*** -\> ***Preferences...***
-
--   In ***Finder Preferences*** window click on the ***Advanced*** tab
-
--   Check ***Show all filename extensions***
-
- 
-
-Hidden files:
-
--   You can temporarily see hidden files in the Finder by pressing ***Command-Shift-Dot ( . )***. 
-
--   You can use the Terminal to permanently show hidden files as [described on this webpage](https://techstacker.com/how-to-always-show-hidden-files-finder-macos/) but this is not recommended unless you are comfortable with Terminal commands.
-
-![Change settings to view all file extensions on a Mac](images/01-FileExtensionsMac.PNG){#fig-fileExtMac .fs}
-
-## Install R, RStudio, and Git on your computer
-
-We are going to install three programs on your computer: **R, RStudio, and Git**. R is a programming language and RStudio provides a structured environment for the R programming language, similar to the way Microsoft Word provides a structured environment for text editing. RStudio is patterned on other popular programming environments like [Microsoft's Visual Studio](https://visualstudio.microsoft.com/). Git allows you to version, and create a history of, your project and connect your project to a GitHub repository.
-
- 
-
-The default installation can be used for every program on Windows. For Mac, installation is a bit trickier – details below.
-
- 
-
-[Note: Even if you already have the software installed, it is a good idea to verify you have the latest version.]{.note}
-
-### Install or update R (version 4.3 or higher)
-
-The [R for Windows download is here](https://cran.r-project.org/bin/windows/base/). Click on ***Download R 4.#.# for Windows***.\
- \
-The [R for Mac download is here](https://cran.r-project.org/bin/macosx/).  
-
--   There are two versions of R for Mac 
-
-    -   ***R-4.#.#-arm64.pkg***: for Macs with an Apple-based processor (M1, M2, M3... all Macs from 2021 on use these processors)
-
-    -   ***R-4.#.#.pkg***: for Macs with an Intel-based processor
-
--   The installer will tell you If you pick the wrong one -- there is no harm except a bit of wasted time.
-
- 
-
-And for those of you using Linux -- the [R for Linux download instructions are here.](https://cran.r-project.org/bin/linux/)
-
-### Install or update RStudio (version 2023.12 or higher)
-
-You can download the [RStudio Installer](https://posit.co/download/rstudio-desktop/) here. Download the appropriate file for your computer under **Installers**, open the file, and use the default installation options.
-
-#### Special instructions for Mac users
-
-For Mac users there are some extra complexities:
-
-1.  You might be asked to install **Command Line Developer Tools** while installing RStudio. Go ahead and install the developer tools.\
-     
-
-2.  The download for RStudio is called ***RStudio-202X.XX.dmg***.  Double-clicking the file will open the window below (@fig-DMGFile).  In the window, drag the RStudio file to the Applications folder
-
-![Opening RStudio DMG file](images/GGP-01-01-MacDmgApp.PNG){#fig-DMGFile .fs}
-
-If you already have RStudio installed, you will be asked if you want to replace the old version -- go ahead and ***Replace*** it.\
- 
-
-3.  After installation, ***unmount*** the RStudio device in the ***Finder*** by clicking the eject button (@fig-unmount)
-
-![Unmounting the RStudio device (very important!)](images/GGP-01-01-MacUnmount.PNG){#fig-unmount .fs}
-
-### Installing or updating Git (version 2.44 or higher) \<move to part 2\>
-
-For ***Windows***, [click here to download and install Git](https://git-scm.com/downloads) -- click on ***Download for Windows***
+For ***Windows***, [click here to download and install Git](https://git-scm.com/downloads) -- click on ***Download for Windows***. There are a lot of questions Git asks when installing, you can choose the default choice on everything.
 
  
 
 For ***Mac***, [there is no direct installation of Git]{.hl}. I recommend using **Homebrew**, which is a useful tool for any programmer using a Mac because it gives you access to a bunch of programming tools.
 
-#### Homebrew installation of Git on Mac:
+### Homebrew installation of Git on Mac:
 
 -   Go to the [Homebrew homepage](https://brew.sh/)
 
@@ -171,6 +39,11 @@ For ***Mac***, [there is no direct installation of Git]{.hl}. I recommend using 
 
 ``` bash
 brew install git 
+```
+
+-   And then install the credential manager by typing in the Terminal:
+
+``` bash
 brew install --cask git_crendential_manager
 ```
 
@@ -178,255 +51,23 @@ brew install --cask git_crendential_manager
 
 If you cannot get ***Homebrew*** to work, [other options are available here](https://git-scm.com/download/mac). ***MacPort*** is the best alternative. ***XCode*** will work but it is a huge installation (at least 20GB), and most of it is not going to be used. The ***Binary Installer*** option is the easiest but is too outdated.
 
-## Installing the GGPlot2 package
-
-The package, ***GGPlot2***, does not come with R or RStudio -- so we are going to install the ***GGPlot2*** package in RStudio.
-
- 
-
-To install the package ***GGPlot2*** using RStudio (@fig-ggplot2):
-
-1.  Click ***Tools*** -\> ***Install Packages...***
-2.  In the ***Install Packages*** window, type **GGPlot2** in the ***Packages*** textbox
-3.  Click ***Install***
-
- 
-
-***GGPlot2*** requires many other packages (its dependencies) -- and RStudio will install those packages along with GGPlot2.  Be patient, as this could take a little time.
-
-![Installing the GGPlot2 Package in RStudio](images/GGP-01-01-InstallGGPlot.PNG){#fig-ggplot2 .fs}
-
- 
-
-[Extension: Different ways to install packages]
-
-## RStudio Projects and Project Folders
-
-Most of the work you will do in R involves multiple scripts, data files, and perhaps other types of files.  All these files together make up your project and they exist within a ***Project Folder***, which is the folder on your computer than contains all the files and subfolders for your project -- and [it is very important that you keep all files associated with a project within a Project Folder.]{.hl}
-
- 
-
-In this class we will be using **RStudio** to create, edit, and execute **R** scripts.  In **RStudio**, there is a feature called **RStudio Projects**, which is a Project Folder, that makes it much easier to move, share, and host your project on GitHub.  [You need to keep all of your class work in an RStudio Project.]{.hl}
-
-### Create a new RStudio Project
-
-To create a new RStudio Project:
-
--   open RStudio
-
--   click ***File*** -\> ***New Project*** 
-
--   In the ***Create Project*** window click ***New Directory***
-
--   In the ***Project Type*** window click ***New Project***
-
-![Creating a new RStudio Project](images/R-1-01_RStudioNewProj.png){#fig-newRStudioProject .fs}
-
- 
-
-In the ***Create New Project*** window:
-
--   The ***Directory name*** is the name of the Project Folder that will contain your whole RStudio Project
-
--   The Project Folder will be created in the folder listed in the second textbox (***Create project as subdirectory of:***)
-
- 
-
-In @fig-projectDir, the Project Folder named ***My_Project*** will contain the RStudio Project and is in the ***Desktop*** folder.  [Note: you can name the folder whatever you want and put it in any folder location.]{.note}
-
-![Creating a directory for the RStudio Project](images/R-1-01_RStudioProjectDirectory.png){#fig-projectDir .fs}
-
- 
-
-[Extension: RStudio Project in an existing directory]
-
-### RStudio Project Files Tab
-
-[The **Files** tab (bottom-right corner) in RStudio is a File Manager,]{.hl} and it allows you to do many things that you can do in your operating systems File Manager (called File Explorer in Windows and Finder in Mac). The ***Files*** tab can be used to open, add, remove, or rename files and folders. When we first create the RStudio Project, the ***Files*** tab will be set to the Project Folder (in my case: ***C:/Users/Charlie/Desktop/My_Project***) and there is one file in the folder: ***My_Project.Rproj***.
-
- 
-
-Whenever you create an RStudio Project, an ***.Rproj*** file is added to the Project Folder. This main purpose of this file is to designate this folder as the working directory for your project.  Double-clicking on the ***.Rproj*** file will open your Project in RStudio (just like double-clicking a ***.docx*** file opens the file in Word).
-
-![Files tab opened to the Project Folder](images/GH_RStudioInitFiles.png){#fig-filesTab .fs}
-
-### Viewing hidden files
-
-By default, the ***Files*** tab shows file extension but it does not show hidden files.  If you click on ***More -\> Show Hidden Files***, you will also see the hidden folder ***.Rproj.user*** -- this is not a folder you will use in this class.
-
- 
-
-[Extension: \*.RProj and .Rhistory (hidden files in your Project Folder)](#extension-.rproj-and-.rhistory-hidden-files-in-your-project-folder)
-
-### Add Subfolders
-
-We will use the ***Files*** tab in RStudio (bottom-right tab) to create two subfolders: ***scripts*** and ***data***.
-
- 
-
-To add two folders named scripts and data:
-
--   Click on ***New Folder*** in the ***Files*** tab
-
--   Enter ***scripts*** in the textbox and click ***OK***
-
--   Repeat the last two steps to add a folder called ***data***
-
-![Adding folders using the Files tab in RStudio](images/R-1-01_AddFolders.png){#fig-addFolders .fs}
-
-### Add files to the project
-
-We are going to download two files and add them to your new RStudio Project.
-
- 
-
-Download these files by ***right-clicking*** on the link and choosing ***Save Link As...***:
-
--   [lesson01-Setup.r](../scripts/lesson01-Setup.R) (right-click, choose ***Save Link as...***): put this file in your ***scripts*** directory
-
--   [Lansing2016NOAA.csv](../Data/Lansing2016NOAA.csv): put this file in your ***data*** directory
-
- 
-
-[note: if you left-click on the .r file above, it will open in a browser tab -- it can be saved from there but it is not as convenient]{.note}
-
-### Opening File Manager from Files tab
-
-The ***Files*** tab can do a lot of things that File Explorer/Finder can do -- but not everything.  For instance, you cannot drag and drop files in the ***Files*** tab like you can in File Explorer/Finder.
-
- 
-
-You can open up a File Explorer/Finder window to the same folder by clicking ***More... -\> Show Folder in New Window***.
-
-![The Files tab and the File Manager -- both show (almost) the same thing](images/R-1-01_OpenFileManager.png){#fig-fileExplorers .fs}
-
-### RStudio Project File Manager
-
-You should now be running RStudio, opened to the RStudio Project that you just created.  If you click on the ***Files*** tab in the lower-right corner, you will see all the folders and files within your RStudio Project (linked to your Project Folder).
-
-![The Files tab and the File Explorer in Windows-- both show the same thing.](images/GGP-01-01-FileManagers.PNG){#fig-fileWindows .fs}
-
-The ***\*.RProj*** files is here and you might also see a file named ***.RHistory***. These are not files you will need to use right away but you can learn more about them at [Extension: \*.RProj and .Rhistory](#extension-.rproj-and-.rhistory-hidden-files-in-your-project-folder).
-
-## RStudio Basics
-
-Now we are going to execute the script file, ***lesson01-Setup.R***, that we just downloaded to your RStudio Project's ***script*** folder*.*
-
- 
-
-***lesson01-Setup.R*** takes weather data from the other downloaded file, ***Lansing2016Weather.csv*** and creates boxplots showing how Wind Direction and Wind Speed relate to the Change In Temperature.
-
- 
-
-The code in ***lesson01-Setup.R*** is something you will progressively learn throughout the course -- for now we are executing the script to test your setup and help you become familiar with the RStudio environment.
-
-### Open your RStudio Project
-
-There are multiple ways to open an RStudio Project -- three of them are:
-
--   Open your Project Folder in File Explorer (Windows) or Finder (Mac) window and double-click the **\*.Rproj** file (where **\*** is the name of your Project)
-
--   In RStudio, click ***File*** -\> ***Open Project...*** -\> navigate to the Project Folder and click the **\*.Rproj** file
-
--   In RStudio, click ***File*** -\> ***Recent Projects*** -\> choose the RStudio Project you just created
-
-### Open a script file in your Project
-
-We are going to execute the script file that we just downloaded. 
-
-To open the script file either:
-
--   In ***Files*** tab, go to the ***scripts*** folder and click on ***lesson01-Setup.R*** or
-
--   In RStudio click ***File -\> Open File -\>*** and then find  ***lesson01-Setup.R*** in the ***scripts*** folder and click ***Open***.
-
- 
-
-After opening the script file, you should see something that looks like this (@fig-openScript) on your screen:
-
-![Opening your first script in RStudio](images/GGP-01-01-FirstScript.PNG){#fig-openScript .fs}
-
-### Setting up RStudio tabs for scripts
-
-When we are editing and executing an R script, we generally have the following RStudio tabs open (@fig-tabs):
-
-1.  **File Viewer** -- text viewer and editor for the opened script files (upper-left corner)
-
-2.  **Console** -- displays information about the execution of your script file (lower-left corner)
-
-3.  **Environment** -- displays data points, or variables, from the execution of your script file (upper-right corner)
-
-4.  **Plots** -- plots produced by the execution of your script file are displayed here (lower-right corner)
-
- 
-
-The fourth (lower-right corner) tab is on ***Files***, so we switched the tab to ***Plots***:
-
-![The Tabs most commonly used in RStudio](images/GGP-01-01-RStudioTabs.PNG){#fig-tabs .fs}
-
- 
-
-[Note: the **Help** tab in the lower-right corner is something you might find useful.]{.note} [Extension: The Help Tab]
-
-### Common buttons used in RStudio
-
-The script file, ***lesson01-Setup.r***, is a fully functioning script that takes temperature and wind data from the Comma Separated Value (CSV) file, ***Lansing2016Weather.csv***, and plots out the data -- the code will be explained later. I am going to use this program to demonstrate a few of the useful buttons in RStudio.
-
- 
-
-The one button you will use most in R is ***Source***, which executes your whole script.  Press the ***Source*** button to execute the script (@fig-source).
-
- 
-
-[Note: If you have already used R, there is a good chance you highlight lines of code and click **Run** to execute just those lines.  We are not using this method in this class.  For this class, you should always use **Source** to execute your code.]{.note}  For more information go to [Extension: Run vs. Source]
-
-![Running (Sourcing) the script](images/GGP-01-01-Source.PNG){#fig-source .fs}
-
-After the script is run:
-
--   The **Environment** tab displays values for the data (variables) in the script (e.g., ***weatherData***, ***windLabels***).
-
--   The **Console** tab displays information about the execution of the script.
-
--   The **Plot** tab displays the box plots.  If there are multiple plots, you can use the arrow buttons to switch between the plots.
-
-### Cleaning up the RStudio windows
-
-There many times where you want to clean up the windows, which can get very crowded with information from old script executions.
-
--   To clean the **Environment,** **Plot**, and **Console** tabs use the brush button ( @fig-source).
-
-![Cleaning out the windows](images/GGP-01-CleanWindows.PNG){#fig-cleanTabs .fs}
-
- 
-
-If you click ***Source*** again, the **Environment, Plot,** and **Console** tabs will once again be populated with data from the script.
-
-## ~~Git and GitHub (extension)~~
-
-~~***Git*** and ***GitHub*** are two terms that are often conflated. [Git]{.hl} is versioning software -- you use Git on your computer to create a retrievable history of your project.  With this project history, you can bring back previous versions of files or your entire Project.  Git calls this a [repository]{.hl}.~~
-
-[~~GitHub~~]{.hl} ~~is an online software development platform where you can store, sync, and share your Git repository.  When combined, Git and GitHub make a very powerful project-management system. For this class, we will use Git and GitHub for your class assignments.~~
-
-~~While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to entry.~~
-
 ## Terminal
 
-<a lot of interaction with Git happens in the Terminal> We will be using the ***Terminal*** tab in RStudio to setup Git and to connect your project to a repository on GitHub. The ***Terminal*** in RStudio is a tab in the lower right area in RStudio. The ***Terminal*** tab is similar to the Command Prompt in Windows or Terminal in Mac
+We will be using the ***Terminal*** tab in RStudio to setup Git and to connect your project to a repository on GitHub. The ***Terminal*** in RStudio is a tab in the lower right area in RStudio. The ***Terminal*** tab is similar to the Command Prompt in Windows or Terminal in Mac
 
  
 
-Most of the Terminal command used in this lesson will only work if you are in the correct RStudio Project. The RStudio Project name (in my case, GGPlot-Class-Material) is in the upper-right corner of RStudio.
+Most of the Terminal command used in this lesson will only work if you are in the correct RStudio Project. The RStudio Project name (in this case, ***My_Project***) is in the upper-right corner of RStudio.
 
-![RStudio Terminal tab and Project Folder](images/RStudioTerminalAndProject.png){#fig-RStudioTermProj .fs}
+![RStudio Terminal tab (don't forget to check the Project Folder)](images/RStudioTerminalAndProject.png){#fig-RStudioTermProj .fs}
 
 ## Configuring Git on your computer
 
-To use Git for your project, you first need to configure Git on your computer with a username and email. The username and email are used by Git and GitHub to identify who made what changes in the project history. You should use your GitHub username and email.
+To use Git for your project, you first need to configure Git on your computer with your GitHub username and email. The username and email are used by Git and GitHub to identify who made what changes in the project history – this is especially important when you are collaborating on a project.
 
  
 
-Git will allow you to choose any username and email – [Git will not check if you put in wrong or invalid values]{.hl}.
+[Git will not check if you put in wrong or in]{.hl}[valid usernames and emails]{.hl}.
 
 ### Adding the username and email
 
@@ -440,19 +81,19 @@ The first command sets the global user name (replace ***userName*** with your G
 git config --global user.name "userName"
 ```
 
-And the second command sets the global user ***email*** (replace ***email*** with your GitHub email):
+And the second command sets the global user ***email*** (replace ***email*** with the email you used to signup for GitHub):
 
 ``` bash
 git config --global user.email "email"
 ```
 
-![The Terminal Tab in RStudio with the two commands above (your prompt might look different)](images/GH-TerminalTab.jpg){#fig-terminalTab .fs}
+![Changing Git username and email using the Terminal tab](images/GH_EmailAndUsername.png){#fig-terminalTab .fs}
 
-### Viewing the configured values (optional)
+### Viewing the configured values 
 
 You can check if you successfully changed the username and email by executing these lines in the ***Terminal*** tab:
 
-``` bash
+``` {.bash tab="Terminal"}
 git config user.name 
 git config user.email
 ```
@@ -460,7 +101,7 @@ git config user.email
 After executing the two above command, *your **Terminal** tab should look similar* to this:
 
 ::: {#fig-testGitConfig}
-``` bash
+``` {.bash tab="Terminal"}
 $ git config user.name 
 cbelinsky  
 $ git config user.email 
@@ -480,10 +121,11 @@ We are now going to create a Git repository in the same folder as your RStudio P
 
 1.  Make sure your RStudio Project is open
 
-    -   Look for your Project name in the upper-right corner \<image\>
+    -   Look for your Project name in the upper-right corner (@fig-RStudioTermProj)
 
-2.  Type `git init -b main` in the Terminal \<explain line and extension: why main?\>
+2.  Type `git init -b main` in the Terminal
 
+    -   This command ***init***ializes ***git*** and sets the initial ***b***ranch name to ***main***
     -   You should get a message in the Terminal like:
         -   `Initialized empty Git repository in C:/Users/Charlie/...`
 
@@ -491,13 +133,13 @@ We are now going to create a Git repository in the same folder as your RStudio P
 
 ### RStudio Git tab
 
-When you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. However, I will only be presenting instruction for the Terminal. \<do both now??\>
+When you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. However, I will only be presenting instruction for the Terminal.
 
 ![The Git tab has been added to the RStudio Project](images/GH_02_GitTab.png){#fig-GitTab .fs}
 
 ## Create a GitHub repository
 
-A GitHub repository is an online storage location that syncs with the Git repository on your computer. ~~You have choice to use the GitHub repository I emailed you or create a GitHub repository of your own.~~ ~~The latter is a little more work but you will learn more about GitHub. If you want to use the repository given to you be the instructor skip to [Linking your Git repository to a GitHub repository]~~
+A [GitHub repository]{.hl} is an online storage location that syncs with the Git repository (Project Folder) on your computer.
 
  
 
@@ -512,31 +154,15 @@ To create a GitHub repository (@fig-GitURL)
     -   ***Private*** means that only users you add in ***Settings -\> Manage Access*** can view the repository
 5.  Click ***Create Repository***
 
-![The URL for the GitHub repository you just created](images/GitHub%20Intro.PNG){#fig-GitURL .fs}
-
-### Inviting the instructor to your repository
-
-To invite a user (or, as GitHub calls them, ***collaborator***) to your repository:
-
-1.  Go to the GitHub home page for your repository and click ***Settings***
-
-2.  Click ***Collaborators and teams***
-
-3.  Click ***Add people***
-
-    -   You can use either the person's GitHub ID or their email address associated with their GitHub ID
-
-    -   in this case: ***belinsky\@msu.edu*** or ***belinskyc***
-
-![Inviting a user to your GitHub Repository](images/GH-addUser1.PNG){#fig-invite .fs}
+![Creating a new repository on GitHub](images/GH_CreateRepo.png){#fig-GitURL .fs}
 
 ### Get the GitHub URL
 
 To link the Git repository on your computer with this GitHub repository, you will need the URL for the GitHub repository. After you create the new repository, a window will appear ( @fig-GitHubURL) with the URL at the top in the ***Quick Setup*** section. [Copy this URL and save it]{.hl}-- you will use it in the next section.
 
-![The URL of your GitHub repository](images/GitHub%20Repository%20URL.PNG){#fig-GitHubURL .fs}
+![The URL of your GitHub repository](images/GH_RepoUrl.png){#fig-GitHubURL .fs}
 
-The GitHub repository link is the URL that takes you directory to the online project.  A GitHub repository link is always in this format:
+The GitHub repository link is the URL that takes you directly to the online project.  A GitHub repository link is always in this format:
 
 `https://github.com/<github_user_name>/<github_repository_name>.git`**\
 **
@@ -545,13 +171,27 @@ So, if my GitHub username is ***QFCatMSU*** and my repository name is ***gitHubT
 
 `https://github.com/qfcatmsu/githubtest.git`
 
-[Note: capital/lowercase does not matt]{.note}[er and .git is optional]{.note}
+[Note: capital/lowercase does not matter and .git is optional]{.note}
 
  
 
-If you lose the ***Quick Setup*** page then the URL is going to be the part of the URL for your repository circled below:
+If you lose the ***Quick Setup*** page then the URL is going to be the part of the URL for your repository circled in @fig-GitHubURL
 
-![Another way to get the URL for your GitHub repository](images/GH_02_URL.png){#fig-AltURL .fs}
+### Inviting the instructor to your repository
+
+To invite a user (or, as GitHub calls them, ***collaborator***) to your repository:
+
+1.  Go to the GitHub home page for your repository and click ***Settings***
+
+2.  Click ***Collaborators***
+
+3.  Click ***Add people***
+
+    -   You can use either the person's GitHub ID or their email address associated with their GitHub ID
+
+    -   for your instructor, this is: ***belinsky\@msu.edu*** or ***belinskyc***
+
+![Inviting a user to your GitHub Repository](images/GH_AddUser.png){#fig-invite .fs alt="Inviting a user to your GitHub Repository"}
 
 ## Linking your Git repository to a GitHub repository
 
@@ -594,7 +234,7 @@ To upload your changes to GitHub, in the Terminal type:
 ``` bash
 git add -A
 git commit -m "A message about the changes to your project"
-git push -u origin master
+git push -u origin main
 ```
 
 You will repeat these lines every time you turn in an application.
@@ -633,23 +273,13 @@ Let's go to your GitHub account to verify that the project files are there (@fig
 
  
 
-You should notice that the files changed in the newest Commit have your Commit message attached (my Commit message: "A description you made...") and the last commit for these files is recent (in this case: 7 minutes). 
+You should notice that the files changed in the newest Commit have your Commit message attached (my Commit message: "A message about...") and the last commit for these files is recent (in this case: 9 minutes). 
 
-![GitHub after a new Commit was pushed](images/GitHub-GitHub.PNG){#fig-GitHubPostCommit .fs}
+![GitHub after a new Commit was pushed](images/GH_First Push.png){#fig-GitHubPostCommit .fs}
 
 ## Application
 
-1.  In your RStudio Project, create a new script file (***File*** -\> ***New File*** -\> ***R Script***)
-
-2.  Copy and paste this lesson's script, ***lesson01-Setup1.r***, to the new script.
-
-3.  Change the colors in the boxplot (edit lines 17-21)
-
-    -   Here is a [comprehensive list of color names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) you can use in R
-
-4.  Save the script as ***app01.r***, and to your ***script*** folder
-
-5.  Send the change to GitHub be executing these lines in the Terminal \<show how these can be done in Git Tab – can show in one image\>:
+1.  Send the change to GitHub be executing these lines in the Terminal \<show how these can be done in Git Tab – can show in one image\>:
 
     -   git add -A
 
@@ -657,7 +287,7 @@ You should notice that the files changed in the newest Commit have your Commit m
 
     -   git push -u origin master
 
-6.  Create an Issue in GitHub
+2.  Create an Issue in GitHub
 
     1.  Go to your repository
 
@@ -681,240 +311,10 @@ Answer the following in comments inside your application script:
 
 3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
 
-## Color Schemes (extension)
+## ~~Git and GitHub (extension)~~
 
-I am not a big fan of the default color scheme in RStudio.  It does not create enough differentiation between the different components of a script.  For instance, comments (red arrows) are in green and quoted items (blue arrows) are in just a slightly different green (@fig-colors).
+~~***Git*** and ***GitHub*** are two terms that are often conflated. [Git]{.hl} is versioning software -- you use Git on your computer to create a retrievable history of your project.  With this project history, you can bring back previous versions of files or your entire Project.  Git calls this a [repository]{.hl}.~~
 
-![The text color for comments and quotes](images/GGP-01-01-CommentsVsQuotes.png){#fig-colors .fs}
+[~~GitHub~~]{.hl} ~~is an online software development platform where you can store, sync, and share your Git repository.  When combined, Git and GitHub make a very powerful project-management system. For this class, we will use Git and GitHub for your class assignments.~~
 
-### Changing the color scheme
-
-A good color scheme can really help a programmer by allowing them to quickly identify parts of a script and common errors, like misplaced quotes.
-
- 
-
-RStudio offers many color schemes -- you can change the color scheme by:
-
-1.  clicking on ***Tools*** in the main menu (circled in @fig-colorSchemes)
-
-2.  choose ***Global Options***
-
-3.  When the ***Global Options*** window open (in @fig-colorSchemes), click on ***Appearance***
-
-![Color schemes for RStudio (note: the Editor font might be different in your window -- that is OK)](images/GGP-01-01-ColorScheme.PNG){#fig-colorSchemes .fs}
-
- 
-
-The image above shows the Xcode color scheme ( @fig-colorSchemes).  I prefer **Xcode** because it does a good job differentiating the different aspects of the script. Notice how the comments (in green) are now clearly distinguished from the quotes (in red).
-
- 
-
-You can choose from around 20 themes in the **Editor theme** window and you can change the theme anytime without affecting anything else.
-
-### Adding more color to differentiate output
-
-There are a couple more helpful options in RStudio that use color to distinguish components of your code and the output in the ***Console*** tab.
-
- 
-
-To make these changes go to
-
-***Tools -\> Global Options... -\> Code -\> Display*** and check:
-
--   [Highlight R function calls]{.hl}
-
- 
-
-***Tools -\> Console*** and check:
-
--   [Show syntax highlighting in console input]{.hl}
-
-![Console Window changes](images/GGP-01-01-ConsoleWindow-01.PNG){#fig-consoleChanges .fs}
-
-## Stop RStudio from automatically adding matching parenthesis and quotes (extension)
-
-A common complaint I have gotten from my students is they hate the way RStudio tries to be "helpful" by automatically adding matching parenthesis or quotes when the user types in a parenthesis or start quote.
-
- 
-
-You can turn off this feature by:
-
--   going to ***Tools -\> Global Options... -\> Code  -\> Editing***
-
--   uncheck [Insert matching parens/quotes]{.hl}
-
--   set **Surround selection on text insertion** to ***Never***
-
-![Stop RStudio from automatically ending your parenthesis and quotes.](images/GGP-01-01-EndParensQuotes.PNG){#fig-stopAutoInsert .fs}
-
-## Extension: RStudio Project in an existing directory
-
-If you have a GitHub repository with files in it already and want to set it as a Project Folder on your computer...
-
- 
-
-To create a new RStudio Project inside a directory that already exists (has scripts and data)
-
--   open RStudio
-
--   click ***File*** -\> ***New Project*** 
-
--   In the ***Create Project*** window click ***Existing Directory***
-
--   ***Browse*** to the folder you want to be the ***Project working directory*** and click ***Create Project***
-
- 
-
-RStudio will add a \****.RProj*** file to the folder -- this is what makes the folder an RStudio Project.
-
-## Extension: Working directories in R and RStudio (why RStudio Projects)
-
-This topic is, in this author's opinion, the most frustrating topic in R.  This is a topic that can generally be hidden from new programming students but the unique way R handles working directories makes it complex to share projects.
-
- 
-
-[A working directory is the folder location used when one file is looking for another file]{.hl}*.*  It is best shown by its use-case: a script file that is reading in information from another file -- this file can be a data file or another script file.
-
- 
-
-For example, let's say we have a script file called ***weather.r*** and it is pulling in data from the file ***weather2020.csv***.  ***weather.r*** needs to first find the folder location for ***weather2020.csv*** before it can access the file.  To do this, ***weather.r*** needs a path to ***weather2020.csv***.  This path can be thought of as map directions between two points -- and the working directory is the starting point.
-
- 
-
-For the vast majority of programming languages, there is no concept of a working directory.  The process of files calling other files works like google maps -- a route is specified between the two files starting with the folder the caller (e.g., weather.r) is in and ending where the callee (e.g., weather.csv) is. The path between the two files is called [a relative file path. ]{.hl}
-
-### R's default handling of working directories (it is not good...)
-
-In R, the starting point, or working directory, is fixed for all R files opened in a session (called a session variable).  Using the google maps analogy, this is like saying the map starting point is fixed for everyone -- it does not matter where you actually are located.  You can change the working directory in your script using ***setwd()*** but [this changes the working directories for all R files]{.hl} in the session.  In other words, you are simply changing the starting point to a new location and all files will now use that location.
-
-### Absolute file paths (a bad fix to the problem)
-
-One way to get around working directories is to use an absolute file path.  So, instead of mapping between ***weather.R*** and ***weather.csv***, you just give the file path for weather.csv on your computer (called the absolute file path).
-
- 
-
-This will look something like: ***c:\\Users\\RStudent\\Documents\\WeatherProj\\Data\\weather.csv***
-
- 
-
-Doing this means you do not have to worry about working directories.  But this solution breaks as soon as you move files on your computer or move them to another computer.  The reason is that the file path changes.  Absolute file paths make it almost impossible to share file and should not be used.
-
-### How RStudio Projects handle working directory (the least-worst option)
-
-An RStudio Project sets the working directory to the Project Folder.  So, for ***weather.r*** to find ***weather.csv*** inside an RStudio Project, it just needs to know where ***weather.csv*** is located relative to the project folder.  Most likely this will be something like: ***Data\\weather.csv***. This makes it far easier to share your project because the path to ***weather.csv*** will be the same on any computer.
-
-While I believe this is by far the best method for handling working directory issues, it comes with a major caveat:[You need to open script files from within the RStudio Project.]{.hl}  Opening the project sets the working directory for all script files used in the session.  If you a file outside of the Project session, then the working directory is not set by the project.
-
-### The default working directory
-
-A working directory is not defined for a file, it is defined for a session.  So, all files within that session will have the same working directory.  IF you change the working directory in one file, you change it for every file within the session.  This leads to awkward behavior where one R file can change the behavior of another R file within the same session by using ***setwd()***.
-
-## Extension: Different ways to install packages
-
-Here are three different ways in RStudio to install packages used in your script
-
-### Use the RStudio menu
-
-To install packages using the RStudio menu:
-
-1.  Click ***Tools*** -\> ***Install Packages...***
-
-2.  In the ***Install Packages*** window, type the package name in the ***Packages*** textbox (RStudio will give suggestions based on what you have typed)
-
-    -   [note: you can type in multiple packages using spaces to separate them]{.note}
-
-3.  Click ***Install***
-
-### Use the Console tab
-
-In R, we can install packages using ***install.packages()***.  So, if you wanted to install GGPlot2, you would type:
-
-``` r
-install.packages("GGPlot2")
-```
-
-[Note: you can install multiple packages at once if you put the names in a vector:]{.note}
-
-``` r
-install.packages(c("GGPlot2", "gridExtra", "tidyverse")
-```
-
-The ***Console*** tab in RStudio is an R interface, and you could type in the above line to install the ***GGPlot2*** package.
-
-![Using the RStudio Console to install a package](images/GGP-01-01-UsingConsole.PNG){#fig-packageInstallation .fs}
-
-### Have RStudio install the packages
-
-RStudio looks through your script and will prompt you to install packages used in your script that you do not have installed. With a click, RStudio installs all needed packages and dependencies.
-
-![RStudio looking for packages needed by the script-- click Install and RStudio installs the required package(s)](images/RStudioProj_InstallPAckages.PNG){#fig-RStudioInstall .fs}
-
-## Extension: The Help tab
-
-The ***Help*** tab is essentially an intelligent online search through the R documentation.  So, if you type **plot** in the search bar and hit enter, the R plot help page from the online documentation will appear.  [Note: you could have done the same thing by typing **?plot** in the **Console** tab**.**]{.hl}
-
-![The R plot help page in the online documentation.](images/GGP-01-01-HelpWindow.PNG){#fig-helpTab .fs}
-
- 
-
-The page that appears in the **Help** tab (@fig-helpTab) is this page: [https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/plot.html](https://stat.ethz.ch/R-manual/R-devel/library/base/html/plot.html)
-
- 
-
-https://stat.ethz.ch is where the official documentation for R is located.  So, you will see this website appear quite often when you do an internet search for something R related.
-
- 
-
-In the next lesson we will use the Help tab to find information about GGPlot functions.
-
-## Extension: Run vs. Source
-
-Technically speaking, the difference between ***Run*** and ***Source*** is:
-
--   ***Source*** will execute all the code in a script file.
-
--   ***Run*** will execute either:
-
-    -   The code that is highlighted (if code is highlighted) ***OR***
-
-    -   The command that the cursor is on (if the command is on more than one line) ***OR***
-
-    -   The whole line the cursor is on
-
- 
-
-The real difference lies in a historical discussion of scripting vs. programming, which is a discussion beyond this class.  Suffice to say, R was originally intended to be more like an advanced calculator than a programming language. The script files would contain multiple lines of code that could be execute independently and in any order (think of these as buttons on a calculator).  The user could click a "button" to pull in data, click another "button" to run statistical analysis on the data, and click a third "button" to output the analysis.  This is what the ***Run*** button does.
-
- 
-
-However, as R has grown, the focus has shifted towards developing well-structured code just like any modern programming language (e.g., Python, C, Java). [This means executing the script as a whole instead of in parts.]{.hl}  This is what ***Source*** does.  Executing your script as a whole instead of in parts has many advantages as the code is easier to debug, easier to share, and much better organized -- because you are forced to organize it. In the not-so-humble opinion of this author, learning to treat your script as a whole is a vital part of learning how to program.  For this reason, we will always be using the ***Source*** button in this class. 
-
-## Extension: Create a standalone R script
-
-There are two ways to create script file in RStudio:
-
-1.  A standalone script
-
-2.  As part of an RStudio Project
-
- 
-
-Many people use the first method.  In this class we exclusively use the second method.  The first method of creating a script file is fine for testing something out.  The second method is far better for organizing larger projects and sharing your code with others.
-
- 
-
-The reason the second method is better is because a project consist of many file that need to talk each-other.  Script files will call other scripts file or read in data from data files.  In order to makes this work, the script files need to know how to find the other files. In an RStudio Project, this is easy because the working directory is always the Project Folder of your project -- and all files in the project are contained within the Project Folder.  So, you just need to look for the file relative to the Project Folder.
-
- 
-
-R Programmers often get around the lack of a Project Folder/defined working directory by setting the working directory in code using ***setwd()***.  This can work locally but becomes problematic when files are shared or moved.  Whereas, RStudio Project always maintain their folder structure.
-
-## ~~Extension: \*.RProj and .Rhistory~~ {#extension-.rproj-and-.rhistory-hidden-files-in-your-project-folder}
-
-~~The ***\*.RProj*** file (where \* is the name of your project) stores basic information about your project -- you do not need to edit this file. In your file manager, double-clicking ***\*.RProj*** opens the RStudio Project.  Inside RStudio, clicking on ***\*.RProj*** brings up the Project Options window (@fig-projectOptions), which you can also get to by clicking on ***Tools -\> Project Options.***\
-~~
-
-![~~Project Options window~~](images/GGP-01-01-ProjectOptionsWindow.PNG){#fig-projectOptions .fs}
-
-~~\
-The ***.Rhistory*** file stores commands and information from the ***Console** tab* (bottom-left corner).  For this class, you will not need to use the ***.Rhistory*** file.~~
+~~While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to entry.~~
