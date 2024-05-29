@@ -5,15 +5,17 @@ title: "01a: RStudio Projects Setup"
 
 ### To-dos
 
--   Have checklist – allow student to go to end if they know everything
+-   Have checklist
 
 ## Purpose
 
 -   Installation of software and packages needed for class
 
+-   Set up an RStudio Project
+
 -   Execute, using the Source button, an R script with GGPlots
 
--   Set up an RStudio Project
+-   Share project
 
 ### Note
 
@@ -23,11 +25,11 @@ There is a lot of setup in this lesson and the next because it assumes you are s
 
 ### - Special note about images in the lessons for this class
 
-RStudio is a rapidly evolving program, and it would be too much work to maintain all the images so that they reflect the newest version of RStudio and its visual likeness.  Some of the images in this class still reflect the 2019 version of RStudio (v1.1).  And there are minor changes that I have made to the code that I did not believe warrants putting in new images. I have tried to make sure these differences change nothing functionally.  Inevitably, something will fall through the cracks -- so please, contact the instructor if there is something causing a problem!
+RStudio is a rapidly evolving program, and it would be too much work to maintain all the images so that they reflect the newest version of RStudio and its visual likeness.  Some of the images in this class reflect older versions of RStudio and there are minor changes that I have made to the code that I did not believe warrants putting in new images. I have tried to make sure these differences change nothing functionally.  Inevitably, something will fall through the cracks -- so please, contact the instructor if there is a problem!
 
 ## Viewing file extensions and hidden files
 
-By default, Windows and Mac hides file extensions from you (e.g., your Word document file is listed in the file manager as ***stuff*** instead of ***stuff.docx***).  This is not convenient when you are programming as you are working with many file types (e.g., \*.txt, \*.r, \*.csv) and, many times, the only difference between the name of two files is the extension.  For instance, you might have two files called ***weather.r*** and ***weather.csv*** in your folder -- without file extension they are both listed as **weather**.
+By default, Windows and Mac hides file extensions from you (e.g., your Word document file is listed in the file manager as ***stuff*** instead of ***stuff.docx***).  This is not convenient when you are programming as you are working with many file types (e.g., \*.txt, \*.r, \*.csv) and, many times, the only difference between the name of two files is the extension.  For instance, you might have two files called ***weather.r*** and ***weather.csv*** in your folder -- without file extensions they are both listed as **weather**.
 
  
 
@@ -99,7 +101,7 @@ Hidden files:
 
 ## Install R and RStudio on your computer
 
-We are going to install three programs on your computer: **R** and **RStudio**. R is a programming language and RStudio provides a structured environment for the R programming language, similar to the way Microsoft Word provides a structured environment for text editing. RStudio is patterned on other popular programming environments like [Microsoft's Visual Studio](https://visualstudio.microsoft.com/).
+We are going to install **R** and **RStudio** on your computer. R is a programming language and RStudio provides a structured environment for the R programming language, similar to the way Microsoft Word provides a structured environment for document editing. RStudio is patterned on other popular programming environments like [Microsoft's Visual Studio](https://visualstudio.microsoft.com/).
 
  
 
@@ -107,7 +109,7 @@ On Windows the default installation can be used for R and RStudio. For Mac, inst
 
  
 
-[Note: Even if you already have the software installed, it is a good idea to verify you have the latest version.]{.note}
+[Note: Even if you already have the software installed, it is a good idea to verify you have a recent version.]{.note}
 
 ### Install or update R (need version 4.3 or higher)
 
@@ -181,7 +183,7 @@ In this class we will be using **RStudio** to create, edit, and execute **R** sc
 
 ### Create a new RStudio Project
 
-To create a new RStudio Project:
+To create a new RStudio Project, which is also your project folder:
 
 -   open RStudio
 
@@ -221,9 +223,9 @@ Whenever you create an RStudio Project, an ***.Rproj*** file is added to the Pro
 
 ![Files tab opened to the Project Folder](images/GH_RStudioInitFiles.png){#fig-filesTab .fs}
 
-### Viewing hidden files
+### Viewing hidden files in RStudio
 
-By default, the ***Files*** tab shows file extension but it does not show hidden files.  If you click on ***More -\> Show Hidden Files***, you will also see the hidden folder ***.Rproj.user*** -- this is not a folder you will use in this class.
+By default, the ***Files*** tab shows file extension but it does not show hidden files.  If you click on ***More -\> Show Hidden Files***, you will see the hidden folder ***.Rproj.user*** -- this is not a folder you will use in this class.
 
  
 
@@ -237,7 +239,7 @@ We will use the ***Files*** tab in RStudio (bottom-right tab) to create two subf
 
  
 
-To add two folders named scripts and data:
+To add two folders named ***scripts*** and ***data***:
 
 -   Click on ***New Folder*** in the ***Files*** tab
 
@@ -250,10 +252,6 @@ To add two folders named scripts and data:
 ### Add files to the project
 
 We are going to download two files and add them to your new RStudio Project.
-
- 
-
-Download these files by ***right-clicking*** on the link and choosing ***Save Link As...***:
 
 -   [lesson01-Setup.r](../scripts/lesson01-Setup.R): put this file in your ***scripts*** directory
 
@@ -287,7 +285,7 @@ Now we are going to execute the script file, ***lesson01-Setup.R***, that we jus
 
  
 
-The code in ***lesson01-Setup.R*** is something you will progressively learn throughout the course -- for now we are executing the script to test your setup and help you become familiar with the RStudio environment.
+The code in ***lesson01-Setup.R*** is something you will learn throughout the course -- for now we are executing the script to test your setup and help you become familiar with the RStudio environment.
 
 ### Open your RStudio Project
 
@@ -301,8 +299,6 @@ There are multiple ways to open an RStudio Project -- three of them are:
 
 ### Open a script file in your Project
 
-We are going to execute the script file that we just downloaded. 
-
 To open the script file either:
 
 -   In ***Files*** tab, go to the ***scripts*** folder and click on ***lesson01-Setup.R*** or
@@ -314,6 +310,8 @@ To open the script file either:
 After opening the script file, you should see something that looks like this (@fig-openScript) on your screen:
 
 ![Opening your first script in RStudio](images/GGP-01-01-FirstScript.PNG){#fig-openScript .fs}
+
+The script will only execute if [it is opened inside your RStudio Project]{.hl}.
 
 ### Setting up RStudio tabs for scripts
 
@@ -363,7 +361,7 @@ After the script is run:
 
 There many times where you want to clean up the windows, which can get very crowded with information from old script executions.
 
--   To clean the **Environment,** **Plot**, and **Console** tabs use the brush button ( @fig-source).
+-   To clean the **Environment,** **Plot**, and **Console** tabs use the brush button (@fig-source).
 
 ![Cleaning out the windows](images/GGP-01-CleanWindows.PNG){#fig-cleanTabs .fs}
 
@@ -383,7 +381,7 @@ If you click ***Source*** again, the **Environment, Plot,** and **Console** tabs
 
 4.  Save the script as ***app01.r***, and to your ***script*** folder
 
-5.  Zip your Project Folder and email the Zip file to the instructor: belinsky\@msu.edu
+5.  [Zip your Project Folder] and email the Zip file to the instructor: belinsky\@msu.edu
 
 ### Questions to answer
 
@@ -395,11 +393,9 @@ Answer the following in comments inside your application script:
 
 3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
 
-### Zipping your Project Folder
+### Zip your Project Folder
 
-**To create a Zip file of your Project Folder**
-
-1.  In your File Manager (not in RStudio), [right-click]{.hl} on the Project Folder and in:
+In your File Manager (not in RStudio), [right-click]{.hl} on the Project Folder and in:
 
 -   **Windows 10:**
 
@@ -415,7 +411,7 @@ Answer the following in comments inside your application script:
 
     -   Click ***Compress "\<Project Folder\>"***
 
-2.  For all operating systems, a zipped file named ***\<Project Folder\>.zip*** with all the Project Folders' contents is created in the same folder
+For all operating systems, a zipped file named ***\<Project Folder\>.zip*** with all the Project Folders' contents is created in the same folder. You can email the zip file.
 
 ## Extension: Color Schemes
 

@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#create-a-new-rstudio-project" id="toc-create-a-new-rstudio-project" class="nav-link" data-scroll-target="#create-a-new-rstudio-project"><span class="header-section-number">5.1</span> Create a new RStudio Project</a></li>
   <li><a href="#rstudio-project-files-tab" id="toc-rstudio-project-files-tab" class="nav-link" data-scroll-target="#rstudio-project-files-tab"><span class="header-section-number">5.2</span> RStudio Project Files Tab</a></li>
-  <li><a href="#viewing-hidden-files" id="toc-viewing-hidden-files" class="nav-link" data-scroll-target="#viewing-hidden-files"><span class="header-section-number">5.3</span> Viewing hidden files</a></li>
+  <li><a href="#viewing-hidden-files-in-rstudio" id="toc-viewing-hidden-files-in-rstudio" class="nav-link" data-scroll-target="#viewing-hidden-files-in-rstudio"><span class="header-section-number">5.3</span> Viewing hidden files in RStudio</a></li>
   <li><a href="#add-subfolders" id="toc-add-subfolders" class="nav-link" data-scroll-target="#add-subfolders"><span class="header-section-number">5.4</span> Add Subfolders</a></li>
   <li><a href="#add-files-to-the-project" id="toc-add-files-to-the-project" class="nav-link" data-scroll-target="#add-files-to-the-project"><span class="header-section-number">5.5</span> Add files to the project</a></li>
   <li><a href="#opening-file-manager-from-files-tab" id="toc-opening-file-manager-from-files-tab" class="nav-link" data-scroll-target="#opening-file-manager-from-files-tab"><span class="header-section-number">5.6</span> Opening File Manager from Files tab</a></li>
@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">7</span> Application</a>
   <ul class="collapse">
   <li><a href="#questions-to-answer" id="toc-questions-to-answer" class="nav-link" data-scroll-target="#questions-to-answer"><span class="header-section-number">7.1</span> Questions to answer</a></li>
-  <li><a href="#zipping-your-project-folder" id="toc-zipping-your-project-folder" class="nav-link" data-scroll-target="#zipping-your-project-folder"><span class="header-section-number">7.2</span> Zipping your Project Folder</a></li>
+  <li><a href="#zip-your-project-folder" id="toc-zip-your-project-folder" class="nav-link" data-scroll-target="#zip-your-project-folder"><span class="header-section-number">7.2</span> Zip your Project Folder</a></li>
   </ul></li>
   <li><a href="#extension-color-schemes" id="toc-extension-color-schemes" class="nav-link" data-scroll-target="#extension-color-schemes"><span class="header-section-number">8</span> Extension: Color Schemes</a>
   <ul class="collapse">
@@ -323,15 +323,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="to-dos" class="level3" data-number="0.1">
 <h3 data-number="0.1" class="anchored" data-anchor-id="to-dos"><span class="header-section-number">0.1</span> To-dos</h3>
 <ul>
-<li>Have checklist – allow student to go to end if they know everything</li>
+<li>Have checklist</li>
 </ul>
 </section>
 <section id="purpose" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
 <ul>
 <li><p>Installation of software and packages needed for class</p></li>
-<li><p>Execute, using the Source button, an R script with GGPlots</p></li>
 <li><p>Set up an RStudio Project</p></li>
+<li><p>Execute, using the Source button, an R script with GGPlots</p></li>
+<li><p>Share project</p></li>
 </ul>
 <section id="note" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="note"><span class="header-section-number">1.1</span> Note</h3>
@@ -340,12 +341,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="special-note-about-images-in-the-lessons-for-this-class" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="special-note-about-images-in-the-lessons-for-this-class"><span class="header-section-number">1.2</span> - Special note about images in the lessons for this class</h3>
-<p>RStudio is a rapidly evolving program, and it would be too much work to maintain all the images so that they reflect the newest version of RStudio and its visual likeness.&nbsp; Some of the images in this class still reflect the 2019 version of RStudio (v1.1).&nbsp; And there are minor changes that I have made to the code that I did not believe warrants putting in new images. I have tried to make sure these differences change nothing functionally.&nbsp; Inevitably, something will fall through the cracks – so please, contact the instructor if there is something causing a problem!</p>
+<p>RStudio is a rapidly evolving program, and it would be too much work to maintain all the images so that they reflect the newest version of RStudio and its visual likeness.&nbsp; Some of the images in this class reflect older versions of RStudio and there are minor changes that I have made to the code that I did not believe warrants putting in new images. I have tried to make sure these differences change nothing functionally.&nbsp; Inevitably, something will fall through the cracks – so please, contact the instructor if there is a problem!</p>
 </section>
 </section>
 <section id="viewing-file-extensions-and-hidden-files" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="viewing-file-extensions-and-hidden-files"><span class="header-section-number">2</span> Viewing file extensions and hidden files</h2>
-<p>By default, Windows and Mac hides file extensions from you (e.g., your Word document file is listed in the file manager as <strong><em>stuff</em></strong> instead of <strong><em>stuff.docx</em></strong>).&nbsp; This is not convenient when you are programming as you are working with many file types (e.g., *.txt, *.r, *.csv) and, many times, the only difference between the name of two files is the extension.&nbsp; For instance, you might have two files called <strong><em>weather.r</em></strong> and <strong><em>weather.csv</em></strong> in your folder – without file extension they are both listed as <strong>weather</strong>.</p>
+<p>By default, Windows and Mac hides file extensions from you (e.g., your Word document file is listed in the file manager as <strong><em>stuff</em></strong> instead of <strong><em>stuff.docx</em></strong>).&nbsp; This is not convenient when you are programming as you are working with many file types (e.g., *.txt, *.r, *.csv) and, many times, the only difference between the name of two files is the extension.&nbsp; For instance, you might have two files called <strong><em>weather.r</em></strong> and <strong><em>weather.csv</em></strong> in your folder – without file extensions they are both listed as <strong>weather</strong>.</p>
 <p>&nbsp;</p>
 <p>Also, when you are programming, there are files you will need to access that are hidden by default by the operating system.</p>
 <p>&nbsp;</p>
@@ -428,11 +429,11 @@ Figure&nbsp;3: Change settings to view all file extensions on a Mac
 </section>
 <section id="install-r-and-rstudio-on-your-computer" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="install-r-and-rstudio-on-your-computer"><span class="header-section-number">3</span> Install R and RStudio on your computer</h2>
-<p>We are going to install three programs on your computer: <strong>R</strong> and <strong>RStudio</strong>. R is a programming language and RStudio provides a structured environment for the R programming language, similar to the way Microsoft Word provides a structured environment for text editing. RStudio is patterned on other popular programming environments like <a href="https://visualstudio.microsoft.com/">Microsoft’s Visual Studio</a>.</p>
+<p>We are going to install <strong>R</strong> and <strong>RStudio</strong> on your computer. R is a programming language and RStudio provides a structured environment for the R programming language, similar to the way Microsoft Word provides a structured environment for document editing. RStudio is patterned on other popular programming environments like <a href="https://visualstudio.microsoft.com/">Microsoft’s Visual Studio</a>.</p>
 <p>&nbsp;</p>
 <p>On Windows the default installation can be used for R and RStudio. For Mac, installation is a bit trickier – details below.</p>
 <p>&nbsp;</p>
-<p><span class="note">Note: Even if you already have the software installed, it is a good idea to verify you have the latest version.</span></p>
+<p><span class="note">Note: Even if you already have the software installed, it is a good idea to verify you have a recent version.</span></p>
 <section id="install-or-update-r-need-version-4.3-or-higher" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="install-or-update-r-need-version-4.3-or-higher"><span class="header-section-number">3.1</span> Install or update R (need version 4.3 or higher)</h3>
 <p>The <a href="https://cran.r-project.org/bin/windows/base/">R for Windows download is here</a>. Click on <strong><em>Download R 4.#.# for Windows</em></strong>.<br>
@@ -520,7 +521,7 @@ Figure&nbsp;6: Installing the GGPlot2 Package in RStudio
 <p>In this class we will be using <strong>RStudio</strong> to create, edit, and execute <strong>R</strong> scripts.&nbsp; In <strong>RStudio</strong>, there is a feature called <strong>RStudio Projects</strong>, which is a Project Folder, that makes it much easier to move, share, and host your project on GitHub.&nbsp; <span class="hl">You need to keep all of your class work in an RStudio Project.</span></p>
 <section id="create-a-new-rstudio-project" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="create-a-new-rstudio-project"><span class="header-section-number">5.1</span> Create a new RStudio Project</h3>
-<p>To create a new RStudio Project:</p>
+<p>To create a new RStudio Project, which is also your project folder:</p>
 <ul>
 <li><p>open RStudio</p></li>
 <li><p>click <strong><em>File</em></strong> -&gt; <strong><em>New Project</em></strong>&nbsp;</p></li>
@@ -574,9 +575,9 @@ Figure&nbsp;9: Files tab opened to the Project Folder
 </figure>
 </div>
 </section>
-<section id="viewing-hidden-files" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="viewing-hidden-files"><span class="header-section-number">5.3</span> Viewing hidden files</h3>
-<p>By default, the <strong><em>Files</em></strong> tab shows file extension but it does not show hidden files.&nbsp; If you click on <strong><em>More -&gt; Show Hidden Files</em></strong>, you will also see the hidden folder <strong><em>.Rproj.user</em></strong> – this is not a folder you will use in this class.</p>
+<section id="viewing-hidden-files-in-rstudio" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="viewing-hidden-files-in-rstudio"><span class="header-section-number">5.3</span> Viewing hidden files in RStudio</h3>
+<p>By default, the <strong><em>Files</em></strong> tab shows file extension but it does not show hidden files.&nbsp; If you click on <strong><em>More -&gt; Show Hidden Files</em></strong>, you will see the hidden folder <strong><em>.Rproj.user</em></strong> – this is not a folder you will use in this class.</p>
 <p>&nbsp;</p>
 <div id="fig-hiddenFiles" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -594,7 +595,7 @@ Figure&nbsp;10: Showing hidden files
 <h3 data-number="5.4" class="anchored" data-anchor-id="add-subfolders"><span class="header-section-number">5.4</span> Add Subfolders</h3>
 <p>We will use the <strong><em>Files</em></strong> tab in RStudio (bottom-right tab) to create two subfolders:&nbsp;<strong><em>scripts</em></strong> and <strong><em>data</em></strong>.</p>
 <p>&nbsp;</p>
-<p>To add two folders named scripts and data:</p>
+<p>To add two folders named <strong><em>scripts</em></strong> and <strong><em>data</em></strong>:</p>
 <ul>
 <li><p>Click on <strong><em>New Folder</em></strong> in the <strong><em>Files</em></strong> tab</p></li>
 <li><p>Enter <strong><em>scripts</em></strong> in the textbox and click <strong><em>OK</em></strong></p></li>
@@ -614,8 +615,6 @@ Figure&nbsp;11: Adding folders using the Files tab in RStudio
 <section id="add-files-to-the-project" class="level3" data-number="5.5">
 <h3 data-number="5.5" class="anchored" data-anchor-id="add-files-to-the-project"><span class="header-section-number">5.5</span> Add files to the project</h3>
 <p>We are going to download two files and add them to your new RStudio Project.</p>
-<p>&nbsp;</p>
-<p>Download these files by&nbsp;<strong><em>right-clicking</em></strong> on the link and choosing <strong><em>Save Link As…</em></strong>:</p>
 <ul>
 <li><p><a href="../scripts/lesson01-Setup.R">lesson01-Setup.r</a>: put this file in your <strong><em>scripts</em></strong> directory</p></li>
 <li><p><a href="../Data/lesson01-Setup.csv">lesson01-Setup.csv</a>: put this file in your <strong><em>data</em></strong> directory</p></li>
@@ -659,7 +658,7 @@ Figure&nbsp;13: RStudio opened with an RStudio Project (named My_Project)
 <p>&nbsp;</p>
 <p><strong><em>lesson01-Setup.R</em></strong> takes weather data from the other downloaded file, <strong><em>lesson01-Setup.csv</em></strong> and creates boxplots showing how Wind Direction and Wind Speed relate to the Change In Temperature.</p>
 <p>&nbsp;</p>
-<p>The code in <strong><em>lesson01-Setup.R</em></strong> is something you will progressively learn throughout the course – for now we are executing the script to test your setup and help you become familiar with the RStudio environment.</p>
+<p>The code in <strong><em>lesson01-Setup.R</em></strong> is something you will learn throughout the course – for now we are executing the script to test your setup and help you become familiar with the RStudio environment.</p>
 <section id="open-your-rstudio-project" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="open-your-rstudio-project"><span class="header-section-number">6.1</span> Open your RStudio Project</h3>
 <p>There are multiple ways to open an RStudio Project – three of them are:</p>
@@ -671,7 +670,6 @@ Figure&nbsp;13: RStudio opened with an RStudio Project (named My_Project)
 </section>
 <section id="open-a-script-file-in-your-project" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="open-a-script-file-in-your-project"><span class="header-section-number">6.2</span> Open a script file in your Project</h3>
-<p>We are going to execute the script file that we just downloaded.&nbsp;</p>
 <p>To open the script file either:</p>
 <ul>
 <li><p>In <strong><em>Files</em></strong> tab, go to the <strong><em>scripts</em></strong> folder and click on <strong><em>lesson01-Setup.R</em></strong> or</p></li>
@@ -689,6 +687,7 @@ Figure&nbsp;14: Opening your first script in RStudio
 </figcaption>
 </figure>
 </div>
+<p>The script will only execute if <span class="hl">it is opened inside your RStudio Project</span>.</p>
 </section>
 <section id="setting-up-rstudio-tabs-for-scripts" class="level3" data-number="6.3">
 <h3 data-number="6.3" class="anchored" data-anchor-id="setting-up-rstudio-tabs-for-scripts"><span class="header-section-number">6.3</span> Setting up RStudio tabs for scripts</h3>
@@ -742,7 +741,7 @@ Figure&nbsp;16: Running (Sourcing) the script
 <h3 data-number="6.5" class="anchored" data-anchor-id="cleaning-up-the-rstudio-windows"><span class="header-section-number">6.5</span> Cleaning up the RStudio windows</h3>
 <p>There many times where you want to clean up the windows, which can get very crowded with information from old script executions.</p>
 <ul>
-<li>To clean the <strong>Environment,</strong> <strong>Plot</strong>, and <strong>Console</strong> tabs&nbsp;use the brush button ( <a href="#fig-source" class="quarto-xref">Figure&nbsp;16</a>).</li>
+<li>To clean the <strong>Environment,</strong> <strong>Plot</strong>, and <strong>Console</strong> tabs&nbsp;use the brush button (<a href="#fig-source" class="quarto-xref">Figure&nbsp;16</a>).</li>
 </ul>
 <div id="fig-cleanTabs" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -768,7 +767,7 @@ Figure&nbsp;17: Cleaning out the windows
 <li>Here is a <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">comprehensive list of color names</a> you can use in R</li>
 </ul></li>
 <li><p>Save the script as <strong><em>app01.r</em></strong>, and to your <strong><em>script</em></strong> folder</p></li>
-<li><p>Zip your Project Folder and email the Zip file to the instructor: belinsky@msu.edu</p></li>
+<li><p><a href="#zip-your-project-folder">Zip your Project Folder</a> and email the Zip file to the instructor: belinsky@msu.edu</p></li>
 </ol>
 <section id="questions-to-answer" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="questions-to-answer"><span class="header-section-number">7.1</span> Questions to answer</h3>
@@ -779,12 +778,9 @@ Figure&nbsp;17: Cleaning out the windows
 <li><p>What are some things you would like to know more about that is related to, but not covered in, this lesson?</p></li>
 </ol>
 </section>
-<section id="zipping-your-project-folder" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="zipping-your-project-folder"><span class="header-section-number">7.2</span> Zipping your Project Folder</h3>
-<p><strong>To create a Zip file of your Project Folder</strong></p>
-<ol type="1">
-<li>In your File Manager (not in RStudio), <span class="hl">right-click</span> on the Project Folder and in:</li>
-</ol>
+<section id="zip-your-project-folder" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="zip-your-project-folder"><span class="header-section-number">7.2</span> Zip your Project Folder</h3>
+<p>In your File Manager (not in RStudio), <span class="hl">right-click</span> on the Project Folder and in:</p>
 <ul>
 <li><p><strong>Windows 10:</strong></p>
 <ul>
@@ -800,9 +796,7 @@ Figure&nbsp;17: Cleaning out the windows
 <li>Click <strong><em>Compress “&lt;Project Folder&gt;”</em></strong></li>
 </ul></li>
 </ul>
-<ol start="2" type="1">
-<li>For all operating systems, a zipped file named <strong><em>&lt;Project Folder&gt;.zip</em></strong> with all the Project Folders’ contents is created in the same folder</li>
-</ol>
+<p>For all operating systems, a zipped file named <strong><em>&lt;Project Folder&gt;.zip</em></strong> with all the Project Folders’ contents is created in the same folder. You can email the zip file.</p>
 </section>
 </section>
 <section id="extension-color-schemes" class="level2" data-number="8">
