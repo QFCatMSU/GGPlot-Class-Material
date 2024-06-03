@@ -1,0 +1,402 @@
+---
+title: "10: Reshaping and For Loops 2"
+# special characters for highlighting code : «»
+---
+
+### To do
+
+-    Test #3 in the application
+
+-    End: color first day in each month –??
+
+-   Grep example ??
+
+## Purpose
+
+-    Reshape and use for loops to plot multiple columns by name
+
+-    Plot text values
+
+-    plot a subset of values using ***seq()*** and ***which()***.
+
+### Code for the lesson
+
+[The script for the lesson is here](../scripts/lesson10-ReshapingAndForLoops2.R)
+
+-    Save the R file, called ***lesson10-ReshapingAndForLoops2.R*** to the ***scripts*** folder inside your RStudio Project
+
+[The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv) 
+
+-    Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+
+### Data
+
+For this lesson we will go back to using the 2016 Lansing weather data frame:
+
+``` r
+  weatherData = read.csv(file="data/Lansing2016NOAA.csv", 
+                         stringsAsFactors = FALSE);
+```
+
+## Specifying column using name
+
+We are going to go through multiple ways to plot multiple columns in a data frame -- in this case, three temperature columns: ***minTemp***, ***maxTemp***, and ***avgTemp***.
+
+First, we will code the plots for the three columns from ***weatherData*** separately, mapping:
+
+-    ***x*** to the ***dateYr*** column 
+
+    -   [note: we need to explicitly tell GGPlot that **dateYr** is a **Date object**]{.note}
+
+-    ***y*** to the three temperature columns
+
+-    ***color*** to the name we give the mapping (the name the goes in the legend) 
+
+``` r
+  plot1 = ggplot(data=weatherData) +
+    geom_line(mapping=aes(x=as.Date(dateYr), 
+                          y=minTemp,
+                          color = "Min")) +  
+    geom_line(mapping=aes(x=as.Date(dateYr), 
+                          y=maxTemp,
+                          color = "Max")) +
+    geom_line(mapping=aes(x=as.Date(dateYr), 
+                          y=avgTemp,
+                          color="Avg")) +
+    labs(color = "Temperatures");  # name of color mapping in the legend
+  plot(plot1);
+```
+
+![Plotting the three temperature columns in weatherData](images/GGP_1-06c_ThreeLines.png){#fig-plot3Cols .fs}
+
+Later in this lesson we will deal with:
+
+-   reordering the legend (right now it is in alphabetical order)
+
+-   changing the line color (right now GGPlot is using the default color options)
+
+## Plotting a reshaped data frame
+
+Since the three line plots have similar code, it would be nice to reduce the code to one line plot that handles all three lines.
+
+ 
+
+The most common way to do this is to create a reshaped data frame.  Again, this is not the method I prefer but it is the most commonly used method.
+
+ 
+
+It is easier to reshape a data frame that has only the columns you need -- and we only need four columns from ***weatherData*** in @fig-partialDF  ***dateYr***, ***minTemp***, ***maxTemp***, and ***avgTemp***.  We will first create a data frame that only has these four columns:
+
+``` r
+  partialWD = weatherData[, c("dateYr", "minTemp","maxTemp", "avgTemp")];
+```
+
+![The partial data frame with 366 rows and 4 column (1 date and 3 temperature)](images/GGP_1-06c_partialDF.jpg){#fig-partialDF .fs}
+
+### Reshaping the partial data frame
+
+And then reshape the partial data frame using ***reshape()***:
+
+``` r
+  WD_Melt = reshape(partialWD ,         # data frame to manipulate 
+              direction="long",         # how to manipulate (long form)  
+              varying=c("minTemp", "maxTemp", "avgTemp"), # columns to "melt"
+              v.name="temperatures",    # name of melted column
+              times=c("minTemp", "maxTemp", "avgTemp"),   # names for column
+              timevar = "tempType",     # name of new column with all temp names
+              ids = "dateYr",           # group by date
+              idvar = "dateYr");        # give the name dateYr to the new column
+```
+
+There are eight argument used in ***reshape()***, let's take these arguments two at a time:
+
+We are reshaping the data frame ***partialWD*** in the ***long*** ("melted") direction:
+
+``` r
+data = partialWD
+direction="long"
+```
+
+We are combining the three temperature columns, which will have 366\*3 = **1098** values, and the name of the new combined column is ***temperatures***:
+
+``` r
+varying=c("minTemp", "maxTemp", "avgTemp")
+v.name="temperatures"
+```
+
+We are creating a full column from the column names ("minTemp", "maxTemp", "avgTemp"), essentially exploding out the 3 column names to a column with 1098 values named **tempType**:
+
+``` r
+times=c("minTemp", "maxTemp", "avgTemp")
+timevar="tempType"
+```
+
+We are also exploding out the original 366 ***dateYr*** values to a new columns with **1098** values also named ***dateYr***:
+
+``` r
+id = "dateYr"
+idvar = "dateYr"
+```
+
+The new reshaped data frame with ***dateYr*** repeated 3 times and the temperature column names repeated 366 times:
+
+![The reshaped data frame has 1098 rows (366 \* 3)](images/GGP_1-06c_MeltedDF.jpg){#fig-meltedDF .fs}
+
+### Plotting the reshaped data  frame
+
+We can use one ***geom_line*** component to plot the reshaped data frame. 
+
+The ***geom_line*** component maps:
+
+-    ***x*** to the ***temperatures*** column
+
+-    ***y*** to the ***tempType*** column 
+
+-    ***color*** to the ***dateYr*** column
+
+ 
+
+The ***color*** mapping is how we create three separate line plots -- each put into the legend and mapped to a different color.
+
+![The plot from the reshaped data frame](images/GGP_1-06c_ReshapedPlot.png){#fig-reshapedDF_Plots .fs}
+
+### Using for loops to plot the columns
+
+Again, I find reshaping a data frame to be an inelegant solution because it creates a new data frame that is more complex than the original.
+
+ 
+
+I believe it is best to maintain the original data frame when plotting.
+
+ 
+
+We can plot the three columns using a ***for*** loop.  Unlike last lesson where we cycled through the the column index, this time we will cycle through the column names.  
+
+To do this, we first need a vector of names to cycle through:
+
+``` r
+  columnNames = c("minTemp", "maxTemp", "avgTemp");
+```
+
+There are three values in the vector (and, hence, 3 columns to cycle through) so our for loop cycle from 1 to 3.
+
+``` r
+  for (i in 1:3)
+```
+
+And we are going to map:
+
+-    ***x*** to the ***dateYr*** column in Date form (this is true for all three cycles/plots)
+
+-    ***y*** to the column name in ***columnNames*** indexed by ***i***
+
+-    ***color*** to the name of the column given by ***columnNames***
+
+``` r
+      geom_line(mapping=aes(x=as.Date(weatherData$dateYr), 
+                            y=weatherData[,columnNames[!!(i)]],
+                            color=columnNames[!!(i)]));
+```
+
+``` r
+  plot3 = ggplot();
+  for (i in 1:3)
+  {
+    plot3 = plot3 + 
+      geom_line(mapping=aes_(x=as.Date(weatherData$dateYr), 
+                             y=weatherData[,columnNames[!!(i)]],
+                             color=columnNames[!!(i)]));
+  }
+  plot(plot3);
+```
+
+***plot3*** looks exactly like the plot created using the reshaped data frame, ***plot2*** (@fig-meltedDF)
+
+![Plot using for loops](images/GGP_1-06c_ReshapedPlot.png){#fig-forLoopPlot .fs}
+
+## Cleaning up the plot
+
+We are going to make a copy of the last plot and append these changes:
+
+-    reorder the legend by temperature type (instead of alphabetical order) 
+
+-    change the line colors to match the temperature type (instead of using GGPlot defaults)
+
+-    add a theme and labels
+
+ 
+
+***scale_color_manual*** can reorder the legend and change the line colors using these arguments:
+
+-    ***breaks***: how you want the breaks in the data to be ordered
+
+-    ***values***: the color values you want to match the newly ordered breaks
+
+``` r
+   plot5 = plot3 +     # make copy of last plot and add...
+    scale_color_manual(breaks=c("minTemp", "avgTemp", "maxTemp"),
+                       values=c("blue",    "green",   "red")) +
+    theme_bw() +
+    labs(x = "Date",
+         y = "Temperatures",
+         color="Temp Types"); 
+  plot(plot5);
+```
+
+![Changing the legend and adding theme and labels to plots](images/GGP_1-06c_CleanedPlot.png){#fig-addThemeLegend .fs}
+
+## Conditionally put values in a plot
+
+For this section we will use ***seq()*** and ***which()*** to selectively add values to a scatterplot (in this case, add text labels using ***geom_text***).
+
+ 
+
+We will start with a humidity vs temperature scatterplot:
+
+``` r
+  plot6 = ggplot() +   # data frame not declared here
+    geom_point(mapping=aes(x=weatherData$avgTemp, 
+                           y=weatherData$relHum),
+               color="gray") +    # color is not a mapping here -- only a style
+    theme_bw() +
+    labs(x = "Temperature",
+         y = "Humidity",
+         title = "Humidity vs Temperature",
+         subtitle="Lansing, MI -- 2016");
+  plot(plot6);
+```
+
+We have moved the data frame to the ***mapping*** instead of declaring it in ***ggplot()***.  For this plot, it would work either way but for the next 2 plots the data frame has to be in the mapping.
+
+![Humidity vs temperature plot](images/GGP_1-06b_HumVsTemp.png){#fig-HumTempPlot .fs}
+
+### Geom_text to plot labels
+
+We are going to add dates to the points on the scatterplot.  The date labels will be plotted from the ***dateYr*** column using the ***geom_text*** component.
+
+There are three mappings you need to use in ***geom_text***:
+
+-    ***x*** and ***y***: to get the position
+
+-    ***label***: the text to add to the position given by ***x*** and ***y*** (the temperature and humidity)
+
+``` r
+  plot7 = plot6 +
+    geom_text(mapping=aes(«x»=weatherData$avgTemp,   # at x = ...
+                          «y»=weatherData$relHum,    # and y = ...
+                          «label»=weatherData$date), # add the label ...
+              color="red");                        # in the color red
+  plot(plot7);
+```
+
+But plotting all 366 ***date*** values is a bit chaotic:
+
+![Using geom_text to add the date for every point](images/GGP_1_06c_GeomTextAll.png){#fig-geomText .fs}
+
+### Selectively add labels using *seq()*
+
+Adding every label makes a big mess of the plot.  Instead of plotting all value, we will selectively add labels, in this case, put every fifteenth date on the plot.
+
+ 
+
+We can do that by creating a sequence that has every fifteenth value indexed:
+
+``` r
+  every15 = seq(from=1, to=366, by=15);
+```
+
+***every15*** has **25** values representing the ***date*** indexes that will be plotted  -- we can see them in the ***Console***:
+
+``` {.r tab="Console"}
+> every15
+ [1]   1  16  31  46  61  76  91 106 121 136 151 166 181 196 211 226 241 256 271
+[20] 286 301 316 331 346 361
+```
+
+And using ***every15*** to subset the columns mapped in ***geom_text***:
+
+``` r
+  plot8 = plot6 +
+    geom_text(mapping=aes(x=weatherData$avgTemp[every15],   # at x = ...
+                          y=weatherData$relHum[every15],    # and y = ...
+                          label=weatherData$date[every15]), # add the label ...
+              color="red");                                 # in the color red
+  plot(plot8);
+```
+
+![Using geom_text to plot every 15th date on the scatterplot](images/GGP_1-06c_Every15.png){#fig-every15thValue .fs}
+
+### Conditionally add labels using ***which***
+
+We can also conditionally add labels to the scatterplot. The condition will be to add dates for the extreme values in the plot.
+
+ 
+
+The extreme values are defined as either:
+
+-    humidity above 90 or below 40
+
+-    temperature above 80 or below 10. 
+
+ 
+
+There are four conditions here and [if any of the four conditions are TRUE]{.hl}, then the ***date*** should be added.  This means the four conditions are ***OR***ed ( **\|** ) together.  Let's create an index vector for these four conditions using ***which()***:
+
+There are 10 index values that meet one of the four condition given in ***extremePoints***:
+
+``` {.r tab="Environment"}
+  extremePoints = which(weatherData$relHum > 90  | weatherData$relHum < 40 |
+                        weatherData$avgTemp > 80 | weatherData$avgTemp < 10);
+```
+
+And we will use ***extremePoints*** to subset the columns in ***geom_text***:
+
+``` r
+  plot9 = plot6 +
+    geom_text(mapping=aes(x=weatherData$avgTemp[extremePoints],  
+                          y=weatherData$relHum[extremePoints],
+                          label=weatherData$date[extremePoints]),
+              color = "red") +
+    theme_bw();
+  plot(plot9);
+```
+
+And the ten dates are added to the points on the edge of the plot:
+
+![Using which to subset the data ](images/GGP_1-06c_WhichPlot.png){#fig-which .fs}
+
+## Application
+
+Create a script file in your Project's ***scripts*** folder called ***app10.r*** and, using the data from **Lansing2016NOAA.csv:**
+
+1.   In comments at the top of your script file answer:
+
+    A. What happens if you allow for lazy evaluation in ***plot3*** (@fig-forLoopPlot)?  Be specific about what GGPlot plots.
+
+2.   Using both reshaping and ***for*** loops, plot the four humidity columns in ***weatherData*** against average temp with wind speed as ***color*** mapping
+
+    1.   Use column names
+
+    2.   Add titles and labels -- right justify the title
+
+    3.   Correct the legend so that wind speeds are in increasing order and colors goes from lighter to darker blues
+
+    4.   Change the size of the lines and the linetype
+
+3.   Create a text plot of Precipitation (***precip2***) vs Humidity (***relHum***) that is selectively labelled with ***windspeed***
+
+    1.  Map the color of the points to ***windSpeed***
+
+        -    Use a color gradient that goes from green to blue to purple
+
+    2.  Label the points that have precipitation over 0.1in ***and*** humidity greater than 80%
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.   What was your level of comfort with the lesson/application?
+
+2.   What areas of the lesson/application confused or still confuses you?
+
+3.   What are some things you would like to know more about that is related to, but not covered in, this lesson?

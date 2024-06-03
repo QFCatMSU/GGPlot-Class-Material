@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10: Reshaping and For Loops 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="shortcut icon" href="https://qfcatmsu.github.io/assets/quarto/qfc_icon.png">
+<script>mod=true; menuCollapse=true;</script>
+<script src="qfc_styles.js"></script> 
+
+
+<link rel="stylesheet" href="https://qfcatmsu.github.io/assets/quarto/qfc_styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">10: Reshaping and For Loops 2</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Graphing With GGPlot Lessons</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/00-IntroductionAndSyllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00: Introduction and Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01a-RStudioProjectsSetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01a: RStudio Projects Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01b-GitAndGitHubSetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01b: Git and GitHub Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02-Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Components</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-MappingAndAesthetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Mapping And Aesthetics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04-ElementsAndStyles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04: Elements And Styles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05-DateObjectsAndThemes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05: Date object and themes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-ModifyingMappedElements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Modifying Mapped Elements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-Faceting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07: Faceting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/08-Boxplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Boxplots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/09-ReshapingAndForLoops1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09: Reshaping and For Loops 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/10-ReshapingAndForLoops2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">10: Reshaping and For Loops 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/Info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Info</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
+   
+  <ul>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link active" data-scroll-target="#to-do"><span class="header-section-number">0.1</span> To do</a></li>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">1</span> Purpose</a>
+  <ul class="collapse">
+  <li><a href="#code-for-the-lesson" id="toc-code-for-the-lesson" class="nav-link" data-scroll-target="#code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">1.2</span> Data</a></li>
+  </ul></li>
+  <li><a href="#specifying-column-using-name" id="toc-specifying-column-using-name" class="nav-link" data-scroll-target="#specifying-column-using-name"><span class="header-section-number">2</span> Specifying column using name</a></li>
+  <li><a href="#plotting-a-reshaped-data-frame" id="toc-plotting-a-reshaped-data-frame" class="nav-link" data-scroll-target="#plotting-a-reshaped-data-frame"><span class="header-section-number">3</span> Plotting a reshaped data frame</a>
+  <ul class="collapse">
+  <li><a href="#reshaping-the-partial-data-frame" id="toc-reshaping-the-partial-data-frame" class="nav-link" data-scroll-target="#reshaping-the-partial-data-frame"><span class="header-section-number">3.1</span> Reshaping the partial data frame</a></li>
+  <li><a href="#plotting-the-reshaped-data-frame" id="toc-plotting-the-reshaped-data-frame" class="nav-link" data-scroll-target="#plotting-the-reshaped-data-frame"><span class="header-section-number">3.2</span> Plotting the reshaped data&nbsp; frame</a></li>
+  <li><a href="#using-for-loops-to-plot-the-columns" id="toc-using-for-loops-to-plot-the-columns" class="nav-link" data-scroll-target="#using-for-loops-to-plot-the-columns"><span class="header-section-number">3.3</span> Using for loops to plot the columns</a></li>
+  </ul></li>
+  <li><a href="#cleaning-up-the-plot" id="toc-cleaning-up-the-plot" class="nav-link" data-scroll-target="#cleaning-up-the-plot"><span class="header-section-number">4</span> Cleaning up the plot</a></li>
+  <li><a href="#conditionally-put-values-in-a-plot" id="toc-conditionally-put-values-in-a-plot" class="nav-link" data-scroll-target="#conditionally-put-values-in-a-plot"><span class="header-section-number">5</span> Conditionally put values in a plot</a>
+  <ul class="collapse">
+  <li><a href="#geom_text-to-plot-labels" id="toc-geom_text-to-plot-labels" class="nav-link" data-scroll-target="#geom_text-to-plot-labels"><span class="header-section-number">5.1</span> Geom_text to plot labels</a></li>
+  <li><a href="#selectively-add-labels-using-seq" id="toc-selectively-add-labels-using-seq" class="nav-link" data-scroll-target="#selectively-add-labels-using-seq"><span class="header-section-number">5.2</span> Selectively add labels using <em>seq()</em></a></li>
+  <li><a href="#conditionally-add-labels-using-which" id="toc-conditionally-add-labels-using-which" class="nav-link" data-scroll-target="#conditionally-add-labels-using-which"><span class="header-section-number">5.3</span> Conditionally add labels using <strong><em>which</em></strong></a></li>
+  </ul></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">6</span> Application</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">6.1</span> Questions</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">10: Reshaping and For Loops 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="to-do" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="to-do"><span class="header-section-number">0.1</span> To do</h3>
+<ul>
+<li><p>Test #3 in the application</p></li>
+<li><p>End: color first day in each month –??</p></li>
+<li><p>Grep example ??</p></li>
+</ul>
+</section>
+<section id="purpose" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
+<ul>
+<li><p>Reshape and use for loops to plot multiple columns by name</p></li>
+<li><p>Plot text values</p></li>
+<li><p>plot a subset of values using <strong><em>seq()</em></strong> and <strong><em>which()</em></strong>.</p></li>
+</ul>
+<section id="code-for-the-lesson" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</h3>
+<p><a href="../scripts/lesson10-ReshapingAndForLoops2.R">The script for the lesson is here</a></p>
+<ul>
+<li>Save the R file, called <strong><em>lesson10-ReshapingAndForLoops2.R</em></strong> to the <strong><em>scripts</em></strong> folder inside your RStudio Project</li>
+</ul>
+<p><a href="../data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a>&nbsp;</p>
+<ul>
+<li>Save the CSV file, called <strong><em>Lansing2016Data.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.&nbsp;</li>
+</ul>
+</section>
+<section id="data" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="data"><span class="header-section-number">1.2</span> Data</h3>
+<p>For this lesson we will go back to using the 2016 Lansing weather data frame:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/Lansing2016NOAA.csv"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="specifying-column-using-name" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="specifying-column-using-name"><span class="header-section-number">2</span> Specifying column using name</h2>
+<p>We are going to go through multiple ways to plot multiple columns in a data frame – in this case, three temperature columns:&nbsp;<strong><em>minTemp</em></strong>, <strong><em>maxTemp</em></strong>, and <strong><em>avgTemp</em></strong>.</p>
+<p>First, we will code the plots for the three columns from&nbsp;<strong><em>weatherData</em></strong> separately, mapping:</p>
+<ul>
+<li><strong><em>x</em></strong> to the <strong><em>dateYr</em></strong> column&nbsp;</li>
+</ul>
+<pre><code>-   [note: we need to explicitly tell GGPlot that **dateYr** is a **Date object**]{.note}</code></pre>
+<ul>
+<li><p><strong><em>y</em></strong> to the three temperature columns</p></li>
+<li><p><strong><em>color</em></strong> to the name we give the mapping (the name the goes in the legend)&nbsp;</p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.Date</span>(dateYr), </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>minTemp,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> <span class="st">"Min"</span>)) <span class="sc">+</span>  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.Date</span>(dateYr), </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>maxTemp,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> <span class="st">"Max"</span>)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.Date</span>(dateYr), </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>avgTemp,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"Avg"</span>)) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Temperatures"</span>);  <span class="co"># name of color mapping in the legend</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-plot3Cols" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plot3Cols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_ThreeLines.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot3Cols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Plotting the three temperature columns in weatherData
+</figcaption>
+</figure>
+</div>
+<p>Later in this lesson we will deal with:</p>
+<ul>
+<li><p>reordering the legend (right now it is in alphabetical order)</p></li>
+<li><p>changing the line color (right now GGPlot is using the default color options)</p></li>
+</ul>
+</section>
+<section id="plotting-a-reshaped-data-frame" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="plotting-a-reshaped-data-frame"><span class="header-section-number">3</span> Plotting a reshaped data frame</h2>
+<p>Since the three line plots have similar code, it would be nice to reduce the code to one line plot that handles all three lines.</p>
+<p>&nbsp;</p>
+<p>The most common way to do this is to create a reshaped data frame.&nbsp; Again, this is not the method I prefer but it is the most commonly used method.</p>
+<p>&nbsp;</p>
+<p>It is easier to reshape a data frame that has only the columns you need – and we only need four columns from <strong><em>weatherData</em></strong> in <a href="#fig-partialDF" class="quarto-xref">Figure&nbsp;2</a>&nbsp; <strong><em>dateYr</em></strong>, <strong><em>minTemp</em></strong>, <strong><em>maxTemp</em></strong>, and <strong><em>avgTemp</em></strong>.&nbsp; We will first create a data frame that only has these four columns:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  partialWD <span class="ot">=</span> weatherData[, <span class="fu">c</span>(<span class="st">"dateYr"</span>, <span class="st">"minTemp"</span>,<span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-partialDF" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-partialDF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_partialDF.jpg" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-partialDF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The partial data frame with 366 rows and 4 column (1 date and 3 temperature)
+</figcaption>
+</figure>
+</div>
+<section id="reshaping-the-partial-data-frame" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="reshaping-the-partial-data-frame"><span class="header-section-number">3.1</span> Reshaping the partial data frame</h3>
+<p>And then reshape the partial data frame using <strong><em>reshape()</em></strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  WD_Melt <span class="ot">=</span> <span class="fu">reshape</span>(partialWD ,         <span class="co"># data frame to manipulate </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">direction=</span><span class="st">"long"</span>,         <span class="co"># how to manipulate (long form)  </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">varying=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>), <span class="co"># columns to "melt"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">v.name=</span><span class="st">"temperatures"</span>,    <span class="co"># name of melted column</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">times=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>),   <span class="co"># names for column</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">timevar =</span> <span class="st">"tempType"</span>,     <span class="co"># name of new column with all temp names</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">ids =</span> <span class="st">"dateYr"</span>,           <span class="co"># group by date</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">idvar =</span> <span class="st">"dateYr"</span>);        <span class="co"># give the name dateYr to the new column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are eight argument used in&nbsp;<strong><em>reshape()</em></strong>, let’s take these arguments two at a time:</p>
+<p>We are reshaping the data frame <strong><em>partialWD</em></strong> in the&nbsp;<strong><em>long</em></strong> (“melted”) direction:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> partialWD</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>direction<span class="ot">=</span><span class="st">"long"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are combining the three temperature columns, which will have 366*3 = <strong>1098</strong> values, and the name of the new combined column is <strong><em>temperatures</em></strong>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>varying<span class="ot">=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>v.name<span class="ot">=</span><span class="st">"temperatures"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are creating a full column from the column names (“minTemp”, “maxTemp”, “avgTemp”), essentially exploding out the 3 column names to a column with 1098 values named&nbsp;<strong>tempType</strong>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>timevar<span class="ot">=</span><span class="st">"tempType"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are also exploding out the original 366 <strong><em>dateYr</em></strong> values to a&nbsp;new columns with <strong>1098</strong> values also named&nbsp;<strong><em>dateYr</em></strong>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="st">"dateYr"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>idvar <span class="ot">=</span> <span class="st">"dateYr"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The new reshaped data frame with <strong><em>dateYr</em></strong> repeated 3 times and the temperature column names repeated 366 times:</p>
+<div id="fig-meltedDF" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-meltedDF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_MeltedDF.jpg" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-meltedDF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The reshaped data frame has 1098 rows (366 * 3)
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="plotting-the-reshaped-data-frame" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="plotting-the-reshaped-data-frame"><span class="header-section-number">3.2</span> Plotting the reshaped data&nbsp; frame</h3>
+<p>We can use one <strong><em>geom_line</em></strong> component to plot the reshaped data frame.&nbsp;</p>
+<p>The&nbsp;<strong><em>geom_line</em></strong> component maps:</p>
+<ul>
+<li><p><strong><em>x</em></strong> to the <strong><em>temperatures</em></strong> column</p></li>
+<li><p><strong><em>y</em></strong> to the <strong><em>tempType</em></strong> column&nbsp;</p></li>
+<li><p><strong><em>color</em></strong> to the <strong><em>dateYr</em></strong> column</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>The <strong><em>color</em></strong> mapping is how we create three separate line plots – each put into the legend and mapped to a different color.</p>
+<div id="fig-reshapedDF_Plots" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reshapedDF_Plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_ReshapedPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reshapedDF_Plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The plot from the reshaped data frame
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="using-for-loops-to-plot-the-columns" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="using-for-loops-to-plot-the-columns"><span class="header-section-number">3.3</span> Using for loops to plot the columns</h3>
+<p>Again, I find reshaping a data frame to be an inelegant solution because it creates a new data frame that is more complex than the original.</p>
+<p>&nbsp;</p>
+<p>I believe it is best to maintain the original data frame when plotting.</p>
+<p>&nbsp;</p>
+<p>We can plot the three columns using a <strong><em>for</em></strong> loop.&nbsp; Unlike last lesson where we cycled through the the column index, this time we will cycle through the column names. &nbsp;</p>
+<p>To do this, we first need a vector of names to cycle through:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  columnNames <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are three values in the vector (and, hence, 3 columns to cycle through) so our for loop cycle from 1 to 3.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And we are going to map:</p>
+<ul>
+<li><p><strong><em>x</em></strong> to the <strong><em>dateYr</em></strong> column in Date form (this is true for all three cycles/plots)</p></li>
+<li><p><strong><em>y</em></strong> to the column name in <strong><em>columnNames</em></strong> indexed by <strong><em>i</em></strong></p></li>
+<li><p><strong><em>color</em></strong> to the name of the column given by <strong><em>columnNames</em></strong></p></li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.Date</span>(weatherData<span class="sc">$</span>dateYr), </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y=</span>weatherData[,columnNames[<span class="sc">!!</span>(i)]],</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color=</span>columnNames[<span class="sc">!!</span>(i)]));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>();</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    plot3 <span class="ot">=</span> plot3 <span class="sc">+</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes_</span>(<span class="at">x=</span><span class="fu">as.Date</span>(weatherData<span class="sc">$</span>dateYr), </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y=</span>weatherData[,columnNames[<span class="sc">!!</span>(i)]],</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">color=</span>columnNames[<span class="sc">!!</span>(i)]));</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>plot3</em></strong> looks exactly like the plot created using the reshaped data frame, <strong><em>plot2</em></strong> (<a href="#fig-meltedDF" class="quarto-xref">Figure&nbsp;3</a>)</p>
+<div id="fig-forLoopPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-forLoopPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_ReshapedPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-forLoopPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Plot using for loops
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="cleaning-up-the-plot" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="cleaning-up-the-plot"><span class="header-section-number">4</span> Cleaning up the plot</h2>
+<p>We are going to make a copy of the last plot and append these changes:</p>
+<ul>
+<li><p>reorder the legend by temperature type (instead of alphabetical order)&nbsp;</p></li>
+<li><p>change the line colors to match the temperature type (instead of using GGPlot defaults)</p></li>
+<li><p>add a theme and labels</p></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong><em>scale_color_manual</em></strong> can reorder the legend and change the line colors using these arguments:</p>
+<ul>
+<li><p><strong><em>breaks</em></strong>: how you want the breaks in the data to be ordered</p></li>
+<li><p><strong><em>values</em></strong>: the color values you want to match the newly ordered breaks</p></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>   plot5 <span class="ot">=</span> plot3 <span class="sc">+</span>     <span class="co"># make copy of last plot and add...</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"avgTemp"</span>, <span class="st">"maxTemp"</span>),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">values=</span><span class="fu">c</span>(<span class="st">"blue"</span>,    <span class="st">"green"</span>,   <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperatures"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">color=</span><span class="st">"Temp Types"</span>); </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-addThemeLegend" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-addThemeLegend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_CleanedPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-addThemeLegend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Changing the legend and adding theme and labels to plots
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="conditionally-put-values-in-a-plot" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="conditionally-put-values-in-a-plot"><span class="header-section-number">5</span> Conditionally put values in a plot</h2>
+<p>For this section we will use <strong><em>seq()</em></strong> and <strong><em>which()</em></strong> to selectively add values to a scatterplot (in this case, add text labels using <strong><em>geom_text</em></strong>).</p>
+<p>&nbsp;</p>
+<p>We will start with a humidity vs temperature scatterplot:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span>   <span class="co"># data frame not declared here</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>weatherData<span class="sc">$</span>avgTemp, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y=</span>weatherData<span class="sc">$</span>relHum),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">"gray"</span>) <span class="sc">+</span>    <span class="co"># color is not a mapping here -- only a style</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>);</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We have moved the data frame to the <strong><em>mapping</em></strong> instead of declaring it in <strong><em>ggplot()</em></strong>.&nbsp; For this plot, it would work either way but for the next 2 plots the data frame has to be in the mapping.</p>
+<div id="fig-HumTempPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-HumTempPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06b_HumVsTemp.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-HumTempPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Humidity vs temperature plot
+</figcaption>
+</figure>
+</div>
+<section id="geom_text-to-plot-labels" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="geom_text-to-plot-labels"><span class="header-section-number">5.1</span> Geom_text to plot labels</h3>
+<p>We are going to add dates to the points on the scatterplot.&nbsp; The date labels will be plotted from the <strong><em>dateYr</em></strong> column using the <strong><em>geom_text</em></strong> component.</p>
+<p>There are three mappings you need to use in <strong><em>geom_text</em></strong>:</p>
+<ul>
+<li><p><strong><em>x</em></strong> and <strong><em>y</em></strong>: to get the position</p></li>
+<li><p><strong><em>label</em></strong>: the text to add to the position given by <strong><em>x</em></strong> and <strong><em>y</em></strong> (the temperature and humidity)</p></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">mapping=</span><span class="fu">aes</span>(«x»<span class="ot">=</span>weatherData<span class="sc">$</span>avgTemp,   <span class="co"># at x = ...</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                          «y»<span class="ot">=</span>weatherData<span class="sc">$</span>relHum,    <span class="co"># and y = ...</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                          «label»<span class="ot">=</span>weatherData<span class="sc">$</span>date), <span class="co"># add the label ...</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"red"</span>);                        <span class="co"># in the color red</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But plotting all 366&nbsp;<strong><em>date</em></strong> values is a bit chaotic:</p>
+<div id="fig-geomText" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-geomText-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1_06c_GeomTextAll.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-geomText-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Using geom_text to add the date for every point
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="selectively-add-labels-using-seq" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="selectively-add-labels-using-seq"><span class="header-section-number">5.2</span> Selectively add labels using <em>seq()</em></h3>
+<p>Adding every label makes a big mess of the plot.&nbsp; Instead of plotting all value, we will selectively add labels, in this case, put every fifteenth date on the plot.</p>
+<p>&nbsp;</p>
+<p>We can do that by creating a sequence that has every fifteenth value indexed:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  every15 <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>, <span class="at">to=</span><span class="dv">366</span>, <span class="at">by=</span><span class="dv">15</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>every15</em></strong> has <strong>25</strong> values representing the <strong><em>date</em></strong> indexes that will be plotted&nbsp; – we can see them in the <strong><em>Console</em></strong>:</p>
+<div class="sourceCode" id="cb18" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> every15</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]   <span class="dv">1</span>  <span class="dv">16</span>  <span class="dv">31</span>  <span class="dv">46</span>  <span class="dv">61</span>  <span class="dv">76</span>  <span class="dv">91</span> <span class="dv">106</span> <span class="dv">121</span> <span class="dv">136</span> <span class="dv">151</span> <span class="dv">166</span> <span class="dv">181</span> <span class="dv">196</span> <span class="dv">211</span> <span class="dv">226</span> <span class="dv">241</span> <span class="dv">256</span> <span class="dv">271</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">20</span>] <span class="dv">286</span> <span class="dv">301</span> <span class="dv">316</span> <span class="dv">331</span> <span class="dv">346</span> <span class="dv">361</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And using <strong><em>every15</em></strong> to subset the columns mapped in <strong><em>geom_text</em></strong>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>weatherData<span class="sc">$</span>avgTemp[every15],   <span class="co"># at x = ...</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>weatherData<span class="sc">$</span>relHum[every15],    <span class="co"># and y = ...</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">label=</span>weatherData<span class="sc">$</span>date[every15]), <span class="co"># add the label ...</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"red"</span>);                                 <span class="co"># in the color red</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-every15thValue" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-every15thValue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_Every15.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-every15thValue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Using geom_text to plot every 15th date on the scatterplot
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="conditionally-add-labels-using-which" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="conditionally-add-labels-using-which"><span class="header-section-number">5.3</span> Conditionally add labels using <strong><em>which</em></strong></h3>
+<p>We can also conditionally add labels to the scatterplot. The condition will be to add dates for the extreme values in the plot.</p>
+<p>&nbsp;</p>
+<p>The extreme values are defined as either:</p>
+<ul>
+<li><p>humidity above 90 or below 40</p></li>
+<li><p>temperature above 80 or below 10.&nbsp;</p></li>
+</ul>
+<p>&nbsp;</p>
+<p>There are four conditions here and <span class="hl">if any of the four conditions are TRUE</span>, then the <strong><em>date</em></strong> should be added.&nbsp; This means the four conditions are <strong><em>OR</em></strong>ed ( <strong>|</strong> ) together.&nbsp; Let’s create an index vector for these four conditions using <strong><em>which()</em></strong>:</p>
+<p>There are 10 index values that meet one of the four condition given in&nbsp;<strong><em>extremePoints</em></strong>:</p>
+<div class="sourceCode" id="cb20" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  extremePoints <span class="ot">=</span> <span class="fu">which</span>(weatherData<span class="sc">$</span>relHum <span class="sc">&gt;</span> <span class="dv">90</span>  <span class="sc">|</span> weatherData<span class="sc">$</span>relHum <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">|</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                        weatherData<span class="sc">$</span>avgTemp <span class="sc">&gt;</span> <span class="dv">80</span> <span class="sc">|</span> weatherData<span class="sc">$</span>avgTemp <span class="sc">&lt;</span> <span class="dv">10</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And we will use <strong><em>extremePoints</em></strong> to subset the columns in <strong><em>geom_text</em></strong>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>weatherData<span class="sc">$</span>avgTemp[extremePoints],  </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>weatherData<span class="sc">$</span>relHum[extremePoints],</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">label=</span>weatherData<span class="sc">$</span>date[extremePoints]),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>();</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And the ten dates are added to the points on the edge of the plot:</p>
+<div id="fig-which" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-which-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GGP_1-06c_WhichPlot.png" class="fs img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-which-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Using which to subset the data&nbsp;
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="application" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="application"><span class="header-section-number">6</span> Application</h2>
+<p>Create a script file in your Project’s <strong><em>scripts</em></strong> folder called <strong><em>app10.r</em></strong> and, using the data from <strong>Lansing2016NOAA.csv:</strong></p>
+<ol type="1">
+<li>In comments at the top of your script file answer:</li>
+</ol>
+<pre><code>A. What happens if you allow for lazy evaluation in ***plot3*** (@fig-forLoopPlot)?&nbsp; Be specific about what GGPlot plots.</code></pre>
+<ol start="2" type="1">
+<li>Using both reshaping and <strong><em>for</em></strong> loops, plot the four humidity columns in <strong><em>weatherData</em></strong> against average temp with wind speed as <strong><em>color</em></strong> mapping</li>
+</ol>
+<pre><code>1.   Use column names
+
+2.   Add titles and labels -- right justify the title
+
+3.   Correct the legend so that wind speeds are in increasing order and colors goes from lighter to darker blues
+
+4.   Change the size of the lines and the linetype</code></pre>
+<ol start="3" type="1">
+<li>Create a text plot of Precipitation (<strong><em>precip2</em></strong>) vs Humidity (<strong><em>relHum</em></strong>) that is selectively labelled with <strong><em>windspeed</em></strong></li>
+</ol>
+<pre><code>1.  Map the color of the points to ***windSpeed***
+
+    -    Use a color gradient that goes from green to blue to purple
+
+2.  Label the points that have precipitation over 0.1in ***and*** humidity greater than 80%</code></pre>
+<section id="questions" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">6.1</span> Questions</h3>
+<p>Answer the following in comments inside your application script:</p>
+<ol type="1">
+<li><p>What was your level of comfort with the lesson/application?</p></li>
+<li><p>What areas of the lesson/application confused or still confuses you?</p></li>
+<li><p>What are some things you would like to know more about that is related to, but not covered in, this lesson?</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
