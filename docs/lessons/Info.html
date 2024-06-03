@@ -384,17 +384,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="0.2" class="anchored" data-anchor-id="my-infos"><span class="header-section-number">0.2</span> My Infos</h3>
 <ul>
 <li><p>Editing asset files in the working directory will rerender the files in docs</p></li>
-<li><p>Don’t think you can have a filename start with “_”</p></li>
-<li><p>Sometimes have to reopen RStudio to get rendering to open in a browser</p>
-<ul>
-<li>Restart R also works</li>
-</ul></li>
-<li><p>Copy from editor mode but use codeblocks from regular mode</p></li>
-<li><p>Copying in ## at beginning of code line creates headers in Quarto</p>
-<ul>
-<li>best to create blank codeblock and then copy code to it</li>
-</ul></li>
-<li></li>
+<li><p>Filenames starting with “_” and ignored by Quarto (Except for yml)</p></li>
+<li><p>Need to stop Background Jobs before rendering again if you want a webpage to open</p></li>
+<li><p>All file in docs are recreated after rendering</p></li>
+<li><p>If YAML changes, all files need to be rerendered</p></li>
 </ul>
 
 

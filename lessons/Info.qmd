@@ -155,16 +155,18 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
 -   Editing asset files in the working directory will rerender the files in docs
 
--   Don't think you can have a filename start with "\_"
+-   Filenames starting with "\_" and ignored by Quarto (Except for yml)
 
--   Sometimes have to reopen RStudio to get rendering to open in a browser
+-   Need to stop Background Jobs before rendering again if you want a webpage to open
 
-    -   Restart R also works
+-   All file in docs are recreated after rendering
 
--   Copy from editor mode but use codeblocks from regular mode
+-   If YAML changes, all files need to be rerendered
 
--   Copying in \## at beginning of code line creates headers in Quarto
+### Git/GitHub issues
 
-    -   best to create blank codeblock and then copy code to it
+-   creating a new branch inherits everything from current branch
 
--   
+-   git reset HEAD –hard \# tracked files
+
+-   git clean -fd \# untracked files and directories

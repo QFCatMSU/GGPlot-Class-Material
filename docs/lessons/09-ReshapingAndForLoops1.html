@@ -235,37 +235,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#importing-the-data" id="toc-importing-the-data" class="nav-link" data-scroll-target="#importing-the-data"><span class="header-section-number">2.1</span> Importing the data</a></li>
   </ul></li>
-  <li><a href="#plotting-multiple-columns" id="toc-plotting-multiple-columns" class="nav-link" data-scroll-target="#plotting-multiple-columns"><span class="header-section-number">3</span> Plotting multiple columns</a></li>
-  <li><a href="#plotting-multiple-columns-reshaping" id="toc-plotting-multiple-columns-reshaping" class="nav-link" data-scroll-target="#plotting-multiple-columns-reshaping"><span class="header-section-number">4</span> Plotting multiple columns (reshaping)</a>
+  <li><a href="#plotting-one-column" id="toc-plotting-one-column" class="nav-link" data-scroll-target="#plotting-one-column"><span class="header-section-number">3</span> Plotting one column</a></li>
+  <li><a href="#plotting-multiple-columns-as-one" id="toc-plotting-multiple-columns-as-one" class="nav-link" data-scroll-target="#plotting-multiple-columns-as-one"><span class="header-section-number">4</span> Plotting multiple columns as one</a></li>
+  <li><a href="#plotting-multiple-columns-reshaping" id="toc-plotting-multiple-columns-reshaping" class="nav-link" data-scroll-target="#plotting-multiple-columns-reshaping"><span class="header-section-number">5</span> Plotting multiple columns (reshaping)</a>
   <ul class="collapse">
-  <li><a href="#comparing-original-and-reshaped-data-frame" id="toc-comparing-original-and-reshaped-data-frame" class="nav-link" data-scroll-target="#comparing-original-and-reshaped-data-frame"><span class="header-section-number">4.1</span> Comparing original and reshaped data frame</a></li>
-  <li><a href="#creating-the-reshaped-data-frame" id="toc-creating-the-reshaped-data-frame" class="nav-link" data-scroll-target="#creating-the-reshaped-data-frame"><span class="header-section-number">4.2</span> Creating the reshaped data frame</a></li>
-  <li><a href="#the-reshaped-data-frame" id="toc-the-reshaped-data-frame" class="nav-link" data-scroll-target="#the-reshaped-data-frame"><span class="header-section-number">4.3</span> The reshaped data frame</a></li>
-  <li><a href="#plotting-the-reshaped-data-frame" id="toc-plotting-the-reshaped-data-frame" class="nav-link" data-scroll-target="#plotting-the-reshaped-data-frame"><span class="header-section-number">4.4</span> Plotting the reshaped data frame</a></li>
+  <li><a href="#comparing-original-and-reshaped-data-frame" id="toc-comparing-original-and-reshaped-data-frame" class="nav-link" data-scroll-target="#comparing-original-and-reshaped-data-frame"><span class="header-section-number">5.1</span> Comparing original and reshaped data frame</a></li>
+  <li><a href="#creating-the-reshaped-data-frame" id="toc-creating-the-reshaped-data-frame" class="nav-link" data-scroll-target="#creating-the-reshaped-data-frame"><span class="header-section-number">5.2</span> Creating the reshaped data frame</a></li>
+  <li><a href="#the-reshaped-data-frame" id="toc-the-reshaped-data-frame" class="nav-link" data-scroll-target="#the-reshaped-data-frame"><span class="header-section-number">5.3</span> The reshaped data frame</a></li>
+  <li><a href="#plotting-the-reshaped-data-frame" id="toc-plotting-the-reshaped-data-frame" class="nav-link" data-scroll-target="#plotting-the-reshaped-data-frame"><span class="header-section-number">5.4</span> Plotting the reshaped data frame</a></li>
   </ul></li>
-  <li><a href="#manually-create-plots" id="toc-manually-create-plots" class="nav-link" data-scroll-target="#manually-create-plots"><span class="header-section-number">5</span> Manually create plots</a>
+  <li><a href="#manually-create-plots" id="toc-manually-create-plots" class="nav-link" data-scroll-target="#manually-create-plots"><span class="header-section-number">6</span> Manually create plots</a>
   <ul class="collapse">
-  <li><a href="#manual-plot-with-three-geom_lines" id="toc-manual-plot-with-three-geom_lines" class="nav-link" data-scroll-target="#manual-plot-with-three-geom_lines"><span class="header-section-number">5.1</span> Manual plot with three geom_lines</a></li>
-  <li><a href="#generalizing-the-mappings-use-index-numbers-instead-of-column-names" id="toc-generalizing-the-mappings-use-index-numbers-instead-of-column-names" class="nav-link" data-scroll-target="#generalizing-the-mappings-use-index-numbers-instead-of-column-names"><span class="header-section-number">5.2</span> Generalizing the mappings: use index numbers instead of column names</a></li>
-  <li><a href="#generalize-the-color-mappings" id="toc-generalize-the-color-mappings" class="nav-link" data-scroll-target="#generalize-the-color-mappings"><span class="header-section-number">5.3</span> Generalize the <strong><em>color</em></strong> mappings</a></li>
-  <li><a href="#generalize-the-x-mapping" id="toc-generalize-the-x-mapping" class="nav-link" data-scroll-target="#generalize-the-x-mapping"><span class="header-section-number">5.4</span> Generalize the <strong><em>x</em></strong> mapping</a></li>
+  <li><a href="#manual-plot-with-three-geom_lines" id="toc-manual-plot-with-three-geom_lines" class="nav-link" data-scroll-target="#manual-plot-with-three-geom_lines"><span class="header-section-number">6.1</span> Manual plot with three geom_lines</a></li>
+  <li><a href="#generalizing-the-mappings-use-index-numbers-instead-of-column-names" id="toc-generalizing-the-mappings-use-index-numbers-instead-of-column-names" class="nav-link" data-scroll-target="#generalizing-the-mappings-use-index-numbers-instead-of-column-names"><span class="header-section-number">6.2</span> Generalizing the mappings: use index numbers instead of column names</a></li>
+  <li><a href="#generalize-the-color-mappings" id="toc-generalize-the-color-mappings" class="nav-link" data-scroll-target="#generalize-the-color-mappings"><span class="header-section-number">6.3</span> Generalize the <strong><em>color</em></strong> mappings</a></li>
+  <li><a href="#generalize-the-x-mapping" id="toc-generalize-the-x-mapping" class="nav-link" data-scroll-target="#generalize-the-x-mapping"><span class="header-section-number">6.4</span> Generalize the <strong><em>x</em></strong> mapping</a></li>
   </ul></li>
-  <li><a href="#using-for-loops-and-lazy-evaluations" id="toc-using-for-loops-and-lazy-evaluations" class="nav-link" data-scroll-target="#using-for-loops-and-lazy-evaluations"><span class="header-section-number">6</span> Using <strong>for</strong> loops and Lazy Evaluations</a>
+  <li><a href="#using-for-loops-and-lazy-evaluations" id="toc-using-for-loops-and-lazy-evaluations" class="nav-link" data-scroll-target="#using-for-loops-and-lazy-evaluations"><span class="header-section-number">7</span> Using <strong>for</strong> loops and Lazy Evaluations</a>
   <ul class="collapse">
-  <li><a href="#establish-the-ggplot-canvas" id="toc-establish-the-ggplot-canvas" class="nav-link" data-scroll-target="#establish-the-ggplot-canvas"><span class="header-section-number">6.1</span> Establish the ggplot canvas</a></li>
-  <li><a href="#adding-geoms-line-plots-to-the-canvas" id="toc-adding-geoms-line-plots-to-the-canvas" class="nav-link" data-scroll-target="#adding-geoms-line-plots-to-the-canvas"><span class="header-section-number">6.2</span> Adding geoms (line plots) to the canvas</a></li>
-  <li><a href="#lazy-evaluation" id="toc-lazy-evaluation" class="nav-link" data-scroll-target="#lazy-evaluation"><span class="header-section-number">6.3</span> Lazy Evaluation&nbsp;</a></li>
+  <li><a href="#establish-the-ggplot-canvas" id="toc-establish-the-ggplot-canvas" class="nav-link" data-scroll-target="#establish-the-ggplot-canvas"><span class="header-section-number">7.1</span> Establish the ggplot canvas</a></li>
+  <li><a href="#adding-geoms-line-plots-to-the-canvas" id="toc-adding-geoms-line-plots-to-the-canvas" class="nav-link" data-scroll-target="#adding-geoms-line-plots-to-the-canvas"><span class="header-section-number">7.2</span> Adding geoms (line plots) to the canvas</a></li>
+  <li><a href="#lazy-evaluation" id="toc-lazy-evaluation" class="nav-link" data-scroll-target="#lazy-evaluation"><span class="header-section-number">7.3</span> Lazy Evaluation&nbsp;</a></li>
   </ul></li>
-  <li><a href="#local-variables-the-lazy-evaluation-fix" id="toc-local-variables-the-lazy-evaluation-fix" class="nav-link" data-scroll-target="#local-variables-the-lazy-evaluation-fix"><span class="header-section-number">7</span> Local variables: The Lazy Evaluation fix</a>
+  <li><a href="#local-variables-the-lazy-evaluation-fix" id="toc-local-variables-the-lazy-evaluation-fix" class="nav-link" data-scroll-target="#local-variables-the-lazy-evaluation-fix"><span class="header-section-number">8</span> Local variables: The Lazy Evaluation fix</a>
   <ul class="collapse">
-  <li><a href="#alternative-fix" id="toc-alternative-fix" class="nav-link" data-scroll-target="#alternative-fix"><span class="header-section-number">7.1</span> Alternative fix</a></li>
-  <li><a href="#aes_-warning" id="toc-aes_-warning" class="nav-link" data-scroll-target="#aes_-warning"><span class="header-section-number">7.2</span> aes_() warning</a></li>
+  <li><a href="#alternative-fix" id="toc-alternative-fix" class="nav-link" data-scroll-target="#alternative-fix"><span class="header-section-number">8.1</span> Alternative fix</a></li>
+  <li><a href="#aes_-warning" id="toc-aes_-warning" class="nav-link" data-scroll-target="#aes_-warning"><span class="header-section-number">8.2</span> aes_() warning</a></li>
   </ul></li>
-  <li><a href="#appending-theme-and-labels" id="toc-appending-theme-and-labels" class="nav-link" data-scroll-target="#appending-theme-and-labels"><span class="header-section-number">8</span> Appending theme and labels</a></li>
-  <li><a href="#aesthetic-changes" id="toc-aesthetic-changes" class="nav-link" data-scroll-target="#aesthetic-changes"><span class="header-section-number">9</span> Aesthetic changes&nbsp;</a></li>
-  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">10</span> Application</a>
+  <li><a href="#appending-theme-and-labels" id="toc-appending-theme-and-labels" class="nav-link" data-scroll-target="#appending-theme-and-labels"><span class="header-section-number">9</span> Appending theme and labels</a></li>
+  <li><a href="#aesthetic-changes" id="toc-aesthetic-changes" class="nav-link" data-scroll-target="#aesthetic-changes"><span class="header-section-number">10</span> Aesthetic changes&nbsp;</a></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">11</span> Application</a>
   <ul class="collapse">
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">10.1</span> Questions</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">11.1</span> Questions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -300,6 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="0.1" class="anchored" data-anchor-id="to-do"><span class="header-section-number">0.1</span> To-do</h3>
 <ul>
 <li>include an explanation for why ggplot with for loops are easier to debug than ggplots with melted dataframes</li>
+<li>for loops using column names instead of numbers?</li>
 </ul>
 </section>
 <section id="purpose" class="level2" data-number="1">
@@ -308,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>reshaped data frames</p></li>
 <li><p><strong><em>for</em></strong> loops</p></li>
-<li><p>dealing with Lazy Evaluation</p></li>
+<li><p>forcing local evaluation</p></li>
 </ul>
 <section id="code-for-the-lesson" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="code-for-the-lesson"><span class="header-section-number">1.1</span> Code for the lesson</h3>
@@ -356,8 +358,12 @@ Figure&nbsp;2: The Jan_Avg data frame – with an “X” added to the years in 
 </div>
 </section>
 </section>
-<section id="plotting-multiple-columns" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="plotting-multiple-columns"><span class="header-section-number">3</span> Plotting multiple columns</h2>
+<section id="plotting-one-column" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="plotting-one-column"><span class="header-section-number">3</span> Plotting one column</h2>
+<p>&lt;next … merging multiple columns into one column (melting)&gt;</p>
+</section>
+<section id="plotting-multiple-columns-as-one" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="plotting-multiple-columns-as-one"><span class="header-section-number">4</span> Plotting multiple columns as one</h2>
 <p>Our goal is to create a line plot for each column in the data frame in <a href="#fig-XinColumnName" class="quarto-xref">Figure&nbsp;2</a>.</p>
 <div id="fig-linePlots" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -369,19 +375,25 @@ Figure&nbsp;3: 7 lines plot, 1 for each column in Jan_Avg
 </figcaption>
 </figure>
 </div>
+<p>We are going to look at two very distinct ways to handle this situation</p>
+<p>1) Changing the data frame to put all the plotted data into one column (called reshaping) – feels more like legacy</p>
+<p>2) Use for loops to go through all of the column</p>
+<p>Basic steps:</p>
+<p>Move the data from all columns you want to plot into one column</p>
+<p>Create two more columns that maintain the row and column information from the original data frame</p>
 </section>
-<section id="plotting-multiple-columns-reshaping" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="plotting-multiple-columns-reshaping"><span class="header-section-number">4</span> Plotting multiple columns (reshaping)</h2>
+<section id="plotting-multiple-columns-reshaping" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="plotting-multiple-columns-reshaping"><span class="header-section-number">5</span> Plotting multiple columns (reshaping)</h2>
 <p>The generally accepted solution for plotting multiple columns in a data frame is to reshape the data frame.&nbsp; I do not like this solution because it involves manipulating the data frame in an unintuitive and inefficient manor, but it is a widely-used technique you should be familiar with.</p>
-<section id="comparing-original-and-reshaped-data-frame" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="comparing-original-and-reshaped-data-frame"><span class="header-section-number">4.1</span> Comparing original and reshaped data frame</h3>
-<p>The original data frame has 7 column with 31 row of temperature values – so, 217 temperature values in all.</p>
+<section id="comparing-original-and-reshaped-data-frame" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="comparing-original-and-reshaped-data-frame"><span class="header-section-number">5.1</span> Comparing original and reshaped data frame</h3>
+<p>The original data frame has 7 columns, representing the seven years of data, each with 31 row of temperature values – so, 217 temperature values in all.</p>
 <p>&nbsp;</p>
-<p>In the reshaped data frame, we put all 217 temperature values in one column – <span class="hl">we are&nbsp;melting the seven temperature columns into one column</span><em>.</em>&nbsp; So, the reshaped data frame will have 217 rows.</p>
+<p>In the reshaped data frame, we put all 217 temperature values from the seven columns in one column. This is called <span class="hl">melting</span> a data frame.&nbsp; So, the reshaped data frame will have 217 rows.</p>
 <p>&nbsp;</p>
-<p>The original data frame (<a href="#fig-XinColumnName" class="quarto-xref">Figure&nbsp;2</a>) has information about the year (column names: 2016-2022) and date (rows name: 1-31).&nbsp; We need to maintain the year and date information in the reshaped data frame meaning <span class="hl">we need to create a column for the date and the year.</span></p>
+<p>The original data frame (<a href="#fig-XinColumnName" class="quarto-xref">Figure&nbsp;2</a>) has information about the year (column names: 2016-2022) and date (rows name: 1-31).&nbsp; We need to maintain the year and date information across every row in the reshaped data frame meaning <span class="hl">we need to create a column for the date and the year.</span></p>
 <p>&nbsp;</p>
-<p>The reshaped data frame will have 217 rows (31*7) and three columns: temperature, year, and date:</p>
+<p>The reshaped data frame will have 217 rows (31*7) and three columns: <strong><em>temperature</em></strong>, <strong><em>year</em></strong>, and <strong><em>date</em></strong>:</p>
 <div id="fig-reshapingData" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-reshapingData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -392,9 +404,10 @@ Figure&nbsp;4: The original data frame (31 rows, 7 columns) and the reshaped (me
 </figcaption>
 </figure>
 </div>
+<p>&lt;explain more about how the row and column info must be maintained&gt;</p>
 </section>
-<section id="creating-the-reshaped-data-frame" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="creating-the-reshaped-data-frame"><span class="header-section-number">4.2</span> Creating the reshaped data frame</h3>
+<section id="creating-the-reshaped-data-frame" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="creating-the-reshaped-data-frame"><span class="header-section-number">5.2</span> Creating the reshaped data frame</h3>
 <p>We can use the <strong><em>reshape()</em></strong> function to create the new data frame.&nbsp;</p>
 <p>In this new data frame we need to&nbsp;</p>
 <ul>
@@ -411,23 +424,25 @@ Figure&nbsp;4: The original data frame (31 rows, 7 columns) and the reshaped (me
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">idvar =</span> <span class="st">"dayNum"</span>);        <span class="co"># name for new column of dates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are eight argument used in <strong><em>reshape()</em></strong>, let’s take these arguments two at a time…</p>
 <p>&nbsp;</p>
-<p>We are reshaping the data frame&nbsp;<strong><em>Jan_Avg</em></strong> in the&nbsp;<strong><em>long</em></strong> direction (called <em>melting</em>):</p>
+<p>We are reshaping the data frame&nbsp;<strong><em>Jan_Avg</em></strong> in the&nbsp;<strong><em>long</em></strong> direction (called <span class="hl"><em>melting</em></span>):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> Jan_Avg</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>direction<span class="ot">=</span><span class="st">"long"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><span id="note">note: the other direction is “wide” (often called <strong>casting</strong>)</span></p>
+<p><span class="note">note: the other direction is “wide” (often called <strong>casting</strong>)</span></p>
 <p>&nbsp;</p>
 <p>We are combining the temperature values in columns&nbsp;<strong>1</strong> through <strong>7:</strong> <strong><em>c(1:7)</em></strong> and the name of the new combined column is&nbsp;<strong><em>temperatures</em></strong>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> Jan_Avg</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>direction<span class="ot">=</span><span class="st">"long"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>varying <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)      <span class="co"># which columns to combine</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>v.name<span class="ot">=</span><span class="st">"temperatures"</span> <span class="co"># name of combined column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>&lt;but each temperature has an associated day and year – this needs to be maintained, so we need to create a column for day and year…&gt;</p>
+<p>&nbsp;</p>
 <p>We are creating a new column from the seven column names in the old data frame (<strong><em>X2016, X2017…</em></strong>). The new column assigns a year to each temperature value (i.e., each row) and the new column is named&nbsp;<strong>years</strong>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">colnames</span>(Jan_Avg)   <span class="co">#X2016, X2017...</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>timevar<span class="ot">=</span><span class="st">"years"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">colnames</span>(Jan_Avg)   <span class="co"># column names (year) associated with each temp</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>timevar<span class="ot">=</span><span class="st">"years"</span>           <span class="co"># combined column name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We are also creating a new column from the 31 row names (<strong>1</strong> through <strong>31</strong>).&nbsp; The new column assigns a date to each temperature value (i.e., each row) and the new column is named <strong><em>dayNum</em></strong>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg))   <span class="co"># same as 1:31</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Jan_Avg))   <span class="co"># row name (day) associated with each temp</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>idvar <span class="ot">=</span> <span class="st">"dayNum"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="the-reshaped-data-frame" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="the-reshaped-data-frame"><span class="header-section-number">4.3</span> The reshaped data frame</h3>
+<section id="the-reshaped-data-frame" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="the-reshaped-data-frame"><span class="header-section-number">5.3</span> The reshaped data frame</h3>
 <p>I add this line to change the row names back to row numbers.&nbsp; The line functionally does nothing but it makes the data frame easier to read in the RStudio viewer tab:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(Jan_Avg_Melt) <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">217</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you open <strong><em>Jan_Avg_Melt</em></strong> (<em>fig ##</em>) you will see there are <strong>217</strong> rows, representing the <strong>217</strong> daily temperatures.&nbsp; Each temperature has a day and a year associated with it and that information is reflected in the other columns of the data frame.</p>
@@ -453,8 +468,8 @@ Figure&nbsp;5: The reshaped data frame with the year and dayNum in their own col
 </figure>
 </div>
 </section>
-<section id="plotting-the-reshaped-data-frame" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="plotting-the-reshaped-data-frame"><span class="header-section-number">4.4</span> Plotting the reshaped data frame</h3>
+<section id="plotting-the-reshaped-data-frame" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="plotting-the-reshaped-data-frame"><span class="header-section-number">5.4</span> Plotting the reshaped data frame</h3>
 <p>We can use one <strong><em>geom_line</em></strong> component to plot all seven years in the reshaped data frame.</p>
 <p>&nbsp;</p>
 <p>The&nbsp;<strong><em>geom_line</em></strong> component maps:</p>
@@ -480,15 +495,15 @@ Figure&nbsp;6: The line plots from the reshaped data frame
 </div>
 </section>
 </section>
-<section id="manually-create-plots" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="manually-create-plots"><span class="header-section-number">5</span> Manually create plots</h2>
+<section id="manually-create-plots" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="manually-create-plots"><span class="header-section-number">6</span> Manually create plots</h2>
 <p>The main reason I do not like the reshaping method is that it creates a new data frame that is less intuitive than the original.&nbsp; I believe that the script should be manipulated to meet the needs of the data – not the other way around.&nbsp; And we have a perfectly good programming technique to cycle through, and plot, columns in a data frame: <strong><em>for</em></strong> loops.</p>
 <p>&nbsp;</p>
 <p>We can code one&nbsp;<strong><em>for</em></strong> loop with one <strong><em>geom_line</em></strong> that cycled through the seven columns of the original data frame to create the seven plots.</p>
-<section id="manual-plot-with-three-geom_lines" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="manual-plot-with-three-geom_lines"><span class="header-section-number">5.1</span> Manual plot with three geom_lines</h3>
-<p>We will start by plotting three of the seven columns in <strong><em>Jan_Avg</em></strong>.&nbsp; The code is similar to what we have done in previous lessons except the data frame, <strong><em>Jan_Avg</em></strong>, is not set when we initiate the canvas (i.e., not added as <strong><em>data</em></strong> in&nbsp;<strong><em>ggplot()</em></strong>).&nbsp; Instead, we use the data frame in the <strong><em>mapping</em></strong> of the <strong><em>geoms</em></strong>.&nbsp; <em>Note: In GGPlot it is easier to use data frames in</em> <strong>mapping</strong> <em>when using <strong>for</strong> loops for reasons that would take us down a rabbit hole.</em></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span>                          «<span class="co"># the data frame is not declared here»</span></span>
+<section id="manual-plot-with-three-geom_lines" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="manual-plot-with-three-geom_lines"><span class="header-section-number">6.1</span> Manual plot with three geom_lines</h3>
+<p>We will start by plotting three of the seven columns in <strong><em>Jan_Avg</em></strong>.&nbsp; The code is similar to what we have done in previous lessons except the data frame, <strong><em>Jan_Avg</em></strong>, is not set when we initiate the canvas (i.e., not added as <strong><em>data</em></strong> in&nbsp;<strong><em>ggplot()</em></strong>).&nbsp; Instead, we use the data frame in the <strong><em>mapping</em></strong> of the <strong><em>geoms</em></strong>.&nbsp; <span class="note">Note: In GGPlot it is easier to use data frames in <strong>mapping</strong> when using <strong>for</strong> loops for reasons that would take us down a rabbit hole<em>.</em></span></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span>                «<span class="co"># the data frame is not declared here»</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>, </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>«Jan_Avg»<span class="sc">$</span>X2016,  <span class="co"># the data frame is used here instead</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"2016"</span>)) <span class="sc">+</span></span>
@@ -509,7 +524,7 @@ Figure&nbsp;6: The line plots from the reshaped data frame
 <li><p>The <strong><em>y</em></strong> mapping is to the specific column of temperatures we are plotting, <strong><em>X2016,X2017</em></strong>, *<strong>X2018 …</strong></p></li>
 <li><p>The <strong><em>color</em></strong> mapping is the <strong><em>year</em></strong>, which is hard coded in this example (a value instead of a variable).&nbsp;</p>
 <ul>
-<li><span class="note">Note: quotes are necessary for year because year needs to be a discrete value (character), not a continuous value (numeric) – otherwise GGPlot will try to calculate in-between values</span></li>
+<li><span class="note">Note: quotes are necessary for year because year needs to be a discrete value (character), not a continuous value (numeric) – otherwise GGPlot will try to calculate in-between values</span> &lt;show in extension&gt;</li>
 </ul></li>
 </ul>
 <div id="fig-threeColumnPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -523,8 +538,8 @@ Figure&nbsp;7: Plotting 3 columns one at a time
 </figure>
 </div>
 </section>
-<section id="generalizing-the-mappings-use-index-numbers-instead-of-column-names" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="generalizing-the-mappings-use-index-numbers-instead-of-column-names"><span class="header-section-number">5.2</span> Generalizing the mappings: use index numbers instead of column names</h3>
+<section id="generalizing-the-mappings-use-index-numbers-instead-of-column-names" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="generalizing-the-mappings-use-index-numbers-instead-of-column-names"><span class="header-section-number">6.2</span> Generalizing the mappings: use index numbers instead of column names</h3>
 <p>Our goal is to create code for one <strong><em>geom_line</em></strong> that can be used in a <strong><em>for</em></strong> loop to create all 7 line plots.&nbsp; To do this, we need to generalize the code.</p>
 <p>&nbsp;</p>
 <p>In a <strong><em>for</em></strong> loop, it is easier to index the columns by number instead of name (next lesson we will use names).&nbsp;</p>
@@ -563,9 +578,9 @@ Figure&nbsp;8: plot3 looks exactly like plot2
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">14</span>]  <span class="sc">-</span><span class="fl">5.1</span>  <span class="sc">-</span><span class="fl">4.6</span>  <span class="sc">-</span><span class="fl">2.8</span>   <span class="fl">1.6</span>   <span class="fl">2.7</span>   <span class="fl">1.8</span>   <span class="fl">1.6</span>   <span class="fl">6.8</span>   <span class="fl">6.6</span>   <span class="fl">4.2</span>   <span class="fl">3.1</span>   <span class="fl">3.1</span>   <span class="fl">2.1</span>  </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">27</span>]  <span class="sc">-</span><span class="fl">0.7</span>  <span class="sc">-</span><span class="fl">2.2</span>  <span class="sc">-</span><span class="fl">3.0</span>  <span class="sc">-</span><span class="fl">6.8</span>  <span class="sc">-</span><span class="fl">3.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="generalize-the-color-mappings" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="generalize-the-color-mappings"><span class="header-section-number">5.3</span> Generalize the <strong><em>color</em></strong> mappings</h3>
-<p>The <strong><em>color</em></strong> mapping is currently&nbsp;<span class="hl">hard coded</span> – meaning&nbsp;<strong><em>color</em></strong> is set to a value (in quotes) instead of a variable.&nbsp; We are going to change this so that the year comes from the column name.&nbsp; This makes it easier to code the plot in a <strong><em>for</em></strong> loop because we can cycle through the column names using their index values:</p>
+<section id="generalize-the-color-mappings" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="generalize-the-color-mappings"><span class="header-section-number">6.3</span> Generalize the <strong><em>color</em></strong> mappings</h3>
+<p>The <strong><em>color</em></strong> mapping is currently&nbsp;<span class="hl">hard coded</span> (e.g., “2016”, , “2017”, etc..) – meaning&nbsp;<strong><em>color</em></strong> is set to a value (in quotes) instead of a variable.&nbsp; We are going to change this so that the year comes from the column name.&nbsp; This makes it easier to code the plot in a <strong><em>for</em></strong> loop because we can cycle through the column names using their index values:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>Jan_Avg[,<span class="dv">1</span>],  </span>
@@ -596,8 +611,8 @@ Figure&nbsp;9: The line plot after generalizing the y and color mappings
 </figure>
 </div>
 </section>
-<section id="generalize-the-x-mapping" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="generalize-the-x-mapping"><span class="header-section-number">5.4</span> Generalize the <strong><em>x</em></strong> mapping</h3>
+<section id="generalize-the-x-mapping" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="generalize-the-x-mapping"><span class="header-section-number">6.4</span> Generalize the <strong><em>x</em></strong> mapping</h3>
 <p>Generalizing the <strong><em>x</em></strong> mapping not necessary, but <span class="hl">it is good programming practice to generalize your code</span> because it makes your code more flexible and easier to debug.</p>
 <p>&nbsp;</p>
 <p><strong><em>x</em></strong> maps to the day numbers <strong>1-31</strong>, this is the same as the row numbers.&nbsp; In GGPlot if the rows are not given names then <span class="hl">the row numbers are the row names</span>.</p>
@@ -638,8 +653,8 @@ Figure&nbsp;10: After generalizing the x mapping, we still have the same plot as
 </div>
 </section>
 </section>
-<section id="using-for-loops-and-lazy-evaluations" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="using-for-loops-and-lazy-evaluations"><span class="header-section-number">6</span> Using <strong>for</strong> loops and Lazy Evaluations</h2>
+<section id="using-for-loops-and-lazy-evaluations" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="using-for-loops-and-lazy-evaluations"><span class="header-section-number">7</span> Using <strong>for</strong> loops and Lazy Evaluations</h2>
 <p>We have now generalized the script for the <strong><em>geom_line</em></strong> so that it is easier to put in a <strong><em>for</em></strong> loop.&nbsp; We will now recreate the seven line plots using a <strong><em>for</em></strong> loop.</p>
 <p>&nbsp;</p>
 <p>We will do this in three steps:</p>
@@ -650,16 +665,16 @@ Figure&nbsp;10: After generalizing the x mapping, we still have the same plot as
 </ol>
 <p>&nbsp;</p>
 <p><span class="note">Note: Our first effort to use <strong>for</strong> loops will fail – in a very instructive way that introduces Lazy Evaluations, a topic that creeps up from time to time</span></p>
-<section id="establish-the-ggplot-canvas" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="establish-the-ggplot-canvas"><span class="header-section-number">6.1</span> Establish the ggplot canvas</h3>
+<section id="establish-the-ggplot-canvas" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="establish-the-ggplot-canvas"><span class="header-section-number">7.1</span> Establish the ggplot canvas</h3>
 <p><strong><em>ggplot()</em></strong> is the function that establishes a ggplot canvas.&nbsp; Effectively, what <strong><em>ggplot()</em></strong> is doing is creating a <strong><em>List</em></strong> object that holds all the plot data, information, and styling.</p>
 <p>&nbsp;</p>
 <p>We start with creating a <strong><em>List</em></strong> object with nothing in it (i.e., an empty <strong><em>ggplot()</em></strong> canvas):</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot6 <span class="ot">=</span> <span class="fu">ggplot</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A <strong><em>List</em></strong> object named <strong><em>plot6</em></strong> has been put into the <strong><em>Environment</em></strong> and now we are going to fill it with plot data.</p>
 </section>
-<section id="adding-geoms-line-plots-to-the-canvas" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="adding-geoms-line-plots-to-the-canvas"><span class="header-section-number">6.2</span> Adding geoms (line plots) to the canvas</h3>
+<section id="adding-geoms-line-plots-to-the-canvas" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="adding-geoms-line-plots-to-the-canvas"><span class="header-section-number">7.2</span> Adding geoms (line plots) to the canvas</h3>
 <p>We want to create a line plot for all seven column in&nbsp;<strong><em>Jan_Avg</em></strong>.&nbsp; This means we want to cycle through the seven columns using a <strong><em>for</em></strong> loop:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)   <span class="co"># cycle through columns 1-7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And each time the <strong><em>for</em></strong> loop cycles we want to append one line plot to the canvas,&nbsp;<strong><em>plot6</em></strong>.&nbsp;</p>
@@ -693,8 +708,8 @@ Figure&nbsp;11: Only the last column was plotted – this is a case of Lazy Eval
 </figure>
 </div>
 </section>
-<section id="lazy-evaluation" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="lazy-evaluation"><span class="header-section-number">6.3</span> Lazy Evaluation&nbsp;</h3>
+<section id="lazy-evaluation" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="lazy-evaluation"><span class="header-section-number">7.3</span> Lazy Evaluation&nbsp;</h3>
 <p>It looks as though only the last of the seven columns was plotted once ( <a href="#fig-lazyEval" class="quarto-xref">Figure&nbsp;11</a>) but, actually, <span class="hl">the last column was plotted seven times</span>.</p>
 <p>&nbsp;</p>
 <p>This happened because of the way R/GGPlot handles indexes when compiling <strong><em>for</em></strong> loops.&nbsp; The compilers sees the <strong><em>for</em></strong> loop will executes seven times and stacks up the code from the seven loops like this:</p>
@@ -717,8 +732,8 @@ Figure&nbsp;11: Only the last column was plotted – this is a case of Lazy Eval
 <p>Lazy Evaluation is one of the more unintuitive problems that happens a lot in programming.&nbsp;</p>
 </section>
 </section>
-<section id="local-variables-the-lazy-evaluation-fix" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="local-variables-the-lazy-evaluation-fix"><span class="header-section-number">7</span> Local variables: The Lazy Evaluation fix</h2>
+<section id="local-variables-the-lazy-evaluation-fix" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="local-variables-the-lazy-evaluation-fix"><span class="header-section-number">8</span> Local variables: The Lazy Evaluation fix</h2>
 <p>One solution to Lazy Evaluation is to force evaluation of&nbsp;<strong><em>i</em></strong> while cycling through the <strong><em>for</em></strong> loop.&nbsp; This is done using <strong><em>local()</em></strong>.&nbsp; Inside <strong><em>local()</em></strong>, we declare that <strong><em>i</em></strong> is local and needs to be evaluated now.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Stopping the Lazy Evaluation by forcing local variables</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>(); </span>
@@ -745,8 +760,8 @@ Figure&nbsp;12: Plot of all seven column after we forced local evaluation
 </figcaption>
 </figure>
 </div>
-<section id="alternative-fix" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="alternative-fix"><span class="header-section-number">7.1</span> Alternative fix</h3>
+<section id="alternative-fix" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="alternative-fix"><span class="header-section-number">8.1</span> Alternative fix</h3>
 <p>GGPlot does have a built-in mapping function that avoids Lazy Evaluation – <strong><em>aes_()</em></strong>.</p>
 <p><em>Note: that is&nbsp;<strong>aes()</strong> with an added underscore ( <strong>_</strong> ).</em></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: Stopping the Lazy Evaluation by using aes_()</span></span>
@@ -771,16 +786,16 @@ Figure&nbsp;13: plot8 is exactly the same as plot7
 </figure>
 </div>
 </section>
-<section id="aes_-warning" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="aes_-warning"><span class="header-section-number">7.2</span> aes_() warning</h3>
+<section id="aes_-warning" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="aes_-warning"><span class="header-section-number">8.2</span> aes_() warning</h3>
 <p><strong><em>aes_()</em></strong> is a more elegant solution than&nbsp;<strong><em>local()</em></strong>, but you will get a warning when using <strong><em>aes_()</em></strong>:</p>
 <div class="sourceCode" id="cb26" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Warning message<span class="sc">:</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">aes_()</span><span class="st">`</span> was deprecated <span class="cf">in</span> ggplot2 <span class="dv">3</span>.<span class="dv">0</span>.<span class="fl">0.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This means that GGPlot is considering removing support for <strong><em>aes_()</em></strong> and it could stop working at some point in the future.&nbsp; My guess is that it will work for a long time as there are many reasons people use <strong><em>aes_()</em></strong> – but, this is not a guarantee and why I teach both the&nbsp;<strong><em>aes_()</em></strong> and <strong><em>local()</em></strong> methods when dealing with Lazy Evaluation.</p>
 </section>
 </section>
-<section id="appending-theme-and-labels" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="appending-theme-and-labels"><span class="header-section-number">8</span> Appending theme and labels</h2>
+<section id="appending-theme-and-labels" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="appending-theme-and-labels"><span class="header-section-number">9</span> Appending theme and labels</h2>
 <p>Our ggplot canvas, <strong><em>plot8</em></strong>, now has 7 line plots.&nbsp; Let’s add the <strong><em>theme</em></strong> and <strong><em>labs</em></strong> components but, instead of appending to <strong><em>plot8</em></strong>, we will create a copy of <strong><em>plot8</em></strong> named <strong><em>plot9</em></strong> and append the <strong><em>theme</em></strong> and <strong><em>labs</em></strong> components&nbsp;to <strong><em>plot9</em></strong>:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> plot8 <span class="sc">+</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
@@ -799,8 +814,8 @@ Figure&nbsp;14: The line plots with appended theme and labs
 </figure>
 </div>
 </section>
-<section id="aesthetic-changes" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="aesthetic-changes"><span class="header-section-number">9</span> Aesthetic changes&nbsp;</h2>
+<section id="aesthetic-changes" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="aesthetic-changes"><span class="header-section-number">10</span> Aesthetic changes&nbsp;</h2>
 <p>We are going to make the final plot of this lesson (<a href="#fig-linePlots_For" class="quarto-xref">Figure&nbsp;14</a>) look a little nicer with the following changes:</p>
 <ol type="1">
 <li><p>remove the <strong><em>X</em></strong> from the year in the legend</p></li>
@@ -860,8 +875,8 @@ Figure&nbsp;15: An improved version of the plot
 </figure>
 </div>
 </section>
-<section id="application" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="application"><span class="header-section-number">10</span> Application</h2>
+<section id="application" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="application"><span class="header-section-number">11</span> Application</h2>
 <p>Create a script file in your Project’s <strong><em>scripts</em></strong> folder called <strong><em>app09.r</em></strong> and using the data from <strong><em>Jan_TAVG.csv</em></strong>:</p>
 <p>1) In comments at the top of your script answer the following:</p>
 <ul>
@@ -887,8 +902,8 @@ Figure&nbsp;15: An improved version of the plot
 </ul>
 <p>&nbsp;</p>
 <p>D) <a href="01c-RStudioProjects.html#application">&lt;Instructions for GitHub – link to previous lesson&gt;</a></p>
-<section id="questions" class="level3" data-number="10.1">
-<h3 data-number="10.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">10.1</span> Questions</h3>
+<section id="questions" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">11.1</span> Questions</h3>
 <p>Answer the following in comments inside your application script:</p>
 <ol type="1">
 <li><p>What was your level of comfort with the lesson/application?</p></li>

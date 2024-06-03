@@ -15,7 +15,7 @@ Plot multiple columns in a data frame using:
 
 -   ***for*** loops
 
--   dealing with Lazy Evaluation
+-   forcing local evaluation
 
 ### Code for the lesson
 
@@ -47,49 +47,67 @@ To start this lesson, we are going to use a new dataset inside the ***data*** fo
 
  
 
-When you read data in using ***read.csv***, the data is put into a data frame.  An "X" is added to the years in the header row  (i.e., the column names) because header rows are technically variable names and variable names cannot start with a number, so R add an "X" to make the variable name valid.  [Note: R allows invalid variable names in header rows of data frame but you should avoid this.]{.note}
+When you read data in using ***read.csv***, the data is put into a data frame.  An "X" is added to the years in the column names  (i.e., the header row) because column names are technically variable names and variable names cannot start with a number, so R add an "X" to make the variable name valid.  [Note: R allows invalid variable names as column names for data frame, but you should avoid this.]{.note}
 
  
 
 ![The Jan_Avg data frame -- with an "X" added to the years in the header row](images/GGP_1-06b_JanAvg.jpg){#fig-XinColumnName .fs}
 
-## Plotting multiple columns
+## Plotting multiple columns as one
 
-Our goal is to create a line plot for each column in the data frame in @fig-XinColumnName.
+Our goal is to create a line plot for each column in the Jan_Avg data frame in @fig-XinColumnName, which will look like this:
 
 ![7 lines plot, 1 for each column in Jan_Avg](images/GGP_1-06b_ForLoops.png){#fig-linePlots .fs}
 
-## Plotting multiple columns (reshaping)
+We could plot the seven columns individually, but we want a solution that can be extended to any situation (i.e., any number of columns to plot). We are going to look at two distinct ways to handle this situation.
 
-The generally accepted solution for plotting multiple columns in a data frame is to reshape the data frame.  I do not like this solution because it involves manipulating the data frame in an unintuitive and inefficient manor, but it is a widely-used technique you should be familiar with.
+1.  Manipulating the data frame to put all the data points (e.g., temperature values) into one column. This is called [reshaping]{.hl} the data frame.
 
-### Comparing original and reshaped data frame
+2.  Using ***for*** loops to cycle through all of the columns.
 
-The original data frame has 7 column with 31 row of temperature values -- so, 217 temperature values in all.
+## Reshaping the data frame
 
- 
-
-In the reshaped data frame, we put all 217 temperature values in one column -- [we are melting the seven temperature columns into one column]{.hl}*.*  So, the reshaped data frame will have 217 rows.
+The generally accepted ggplot solution for plotting multiple columns in a data frame is to reshape the data frame.  I do not like this solution because it involves manipulating the data frame in an unintuitive manor, but it is a widely-used technique you should be familiar with.
 
  
 
-The original data frame (@fig-XinColumnName) has information about the year (column names: 2016-2022) and date (rows name: 1-31).  We need to maintain the year and date information in the reshaped data frame meaning [we need to create a column for the date and the year.]{.hl}
+The basic steps are (@fig-reshapingData):
 
- 
+-   Move the data from all the columns you want to plot into one column (in red). In this example, all temperature values from the seven columns go into one column.
 
-The reshaped data frame will have 217 rows (31\*7) and three columns: temperature, year, and date:
+-   Expand the column names to a new column (in blue). In this example, the columns names are the years.
+
+-   Expand the row names to a new column (in green). In this example, the rows names are the date.
 
 ![The original data frame (31 rows, 7 columns) and the reshaped (melted) data frame (217 rows, 3 columns)](images/GGP_1-06b_ReshapingDataFrame.png){#fig-reshapingData .fs}
 
+### Comparing original and reshaped data frame
+
+The original data frame has 7 columns, representing the seven years of temperature data, each column has 31 rows -- so, 217 temperature values in all.
+
+ 
+
+In the reshaped data frame, we put all 217 temperature values from the seven columns in one column. This is called [melting]{.hl} a data frame.  So, the reshaped data frame will have 217 rows.
+
+ 
+
+The rows and column names of the original data frame (@fig-XinColumnName) have information about the date (1-31) and year (2016-2022).  We need to maintain the year and date information across every row in the reshaped data frame meaning [we need to create a column for the date and the year.]{.hl}
+
+ 
+
+The reshaped data frame will have 217 rows (31\*7) and three columns: ***temperature***, ***year***, and ***date*** ( @fig-reshapingData )
+
 ### Creating the reshaped data frame
 
-We can use the ***reshape()*** function to create the new data frame. 
+We can use the ***reshape()*** function to create the new data frame.
+
+ 
 
 In this new data frame we need to 
 
 -   combine the seven temperature columns into one column
 
--   maintain the year (old column names) and date (old row names) information in new columns
+-   maintain the year (original column names) and date (original row names) information in new columns
 
 ``` r
   Jan_Avg_Melt = reshape(data=Jan_Avg,        # data frame to manipulate
@@ -106,35 +124,35 @@ There are eight argument used in ***reshape()***, let's take these arguments two
 
  
 
-We are reshaping the data frame ***Jan_Avg*** in the ***long*** direction (called *melting*):
+We are reshaping the data frame ***Jan_Avg*** in the ***long*** direction (called [*melting*]{.hl}):
 
 ``` r
 data = Jan_Avg
 direction="long"
 ```
 
-[note: the other direction is "wide" (often called **casting**)]{#note}
+[note: the other direction is "wide" (often called **casting**)]{.note}
 
  
 
 We are combining the temperature values in columns **1** through **7:** ***c(1:7)*** and the name of the new combined column is ***temperatures***:
 
 ``` r
-data = Jan_Avg
-direction="long"
+varying = c(1:7)      # which data columns to combine
+v.name="temperatures" # name of combined column
 ```
 
 We are creating a new column from the seven column names in the old data frame (***X2016, X2017...***). The new column assigns a year to each temperature value (i.e., each row) and the new column is named **years**:
 
 ``` r
-times=colnames(Jan_Avg)   #X2016, X2017...
-timevar="years"
+times=colnames(Jan_Avg)   # column names (year) associated with each temp
+timevar="years"           # combined column name
 ```
 
 We are also creating a new column from the 31 row names (**1** through **31**).  The new column assigns a date to each temperature value (i.e., each row) and the new column is named ***dayNum***:
 
 ``` r
-ids = as.numeric(rownames(Jan_Avg))   # same as 1:31
+ids = as.numeric(rownames(Jan_Avg))   # row name (day) associated with each temp
 idvar = "dayNum"
 ```
 
@@ -146,19 +164,13 @@ I add this line to change the row names back to row numbers.  The line function
 rownames(Jan_Avg_Melt) = 1:217;
 ```
 
-If you open ***Jan_Avg_Melt*** (*fig \##*) you will see there are **217** rows, representing the **217** daily temperatures.  Each temperature has a day and a year associated with it and that information is reflected in the other columns of the data frame.
+If you open ***Jan_Avg_Melt*** (@fig-meltedFrame) you will see there are **217** rows, representing the **217** daily temperatures.  On the same row as the temperature, there are columns that give the associated day and year.
 
  
 
 -   The ***year*** changes every 31 rows so rows **1-31** are ***X2106***, **32-62** are ***X21017***, ***63-93*** are **2018,** etc..
 
-```         
--   The ***year*** was the column names on the original data frame ***Jan_Avg***
-```
-
 -   The ***dayNum*** cycles every 31 rows so the ***dayNum*** goes up by 1 each row and resets to ***1*** on rows **32**, **63**, **94,** **125**, **156**, and **187**.
-
-    -   ***dayNum*** was the row names on the original data frame ***Jan_Avg***
 
 ![The reshaped data frame with the year and dayNum in their own column](images/GGP_1-06b_MeltedDF.jpg){#fig-meltedFrame .fs}
 
@@ -187,7 +199,7 @@ The ***color*** mapping is how we create seven separate line plots -- each year 
 
 ![The line plots from the reshaped data frame](images/GGP_1-06b_ReshapedPlot.png){#fig-reshapedLinePlot .fs}
 
-## Manually create plots
+## Create plots using **for** loops
 
 The main reason I do not like the reshaping method is that it creates a new data frame that is less intuitive than the original.  I believe that the script should be manipulated to meet the needs of the data -- not the other way around.  And we have a perfectly good programming technique to cycle through, and plot, columns in a data frame: ***for*** loops.
 
@@ -195,12 +207,12 @@ The main reason I do not like the reshaping method is that it creates a new data
 
 We can code one ***for*** loop with one ***geom_line*** that cycled through the seven columns of the original data frame to create the seven plots.
 
-### Manual plot with three geom_lines
+### Manually plotting multiple geom_lines
 
-We will start by plotting three of the seven columns in ***Jan_Avg***.  The code is similar to what we have done in previous lessons except the data frame, ***Jan_Avg***, is not set when we initiate the canvas (i.e., not added as ***data*** in ***ggplot()***).  Instead, we use the data frame in the ***mapping*** of the ***geoms***.  *Note: In GGPlot it is easier to use data frames in* **mapping** *when using **for** loops for reasons that would take us down a rabbit hole.*
+We will start by plotting three of the seven columns in ***Jan_Avg***.  The code is similar to what we have done in previous lessons except the data frame, ***Jan_Avg***, is not set when we initiate the canvas (i.e., not added as ***data*** in ***ggplot()***).  Instead, we use the data frame in the ***mapping*** of the ***geoms***.  [Note: In GGPlot it is easier to use data frames in **mapping** when using **for** loops for reasons that would take us down a rabbit hole*.*]{.note}
 
 ``` r
-  plot2 = ggplot() +                          «# the data frame is not declared here»
+  plot2 = ggplot() +                «# the data frame is not declared here»
     geom_line(mapping=aes(x=1:31, 
                           y=«Jan_Avg»$X2016,  # the data frame is used here instead
                           color="2016")) +
@@ -221,11 +233,11 @@ There are three mapping for each ***geom_line***:
 
 -   The ***x*** mapping for each plot is **1** through **31** since we are looking at the dates from January **1**^st^ to January **31**^st^
 
--   The ***y*** mapping is to the specific column of temperatures we are plotting, ***X2016,X2017***, \***X2018 ...**
+-   The ***y*** mapping is to the specific column of temperatures we are plotting, ***X2016, X2017***, **X2018 ...**
 
 -   The ***color*** mapping is the ***year***, which is hard coded in this example (a value instead of a variable). 
 
-    -   [Note: quotes are necessary for year because year needs to be a discrete value (character), not a continuous value (numeric) -- otherwise GGPlot will try to calculate in-between values]{.note}
+    -   [Note: quotes are necessary for year because year needs to be a discrete value (character), not a continuous value (numeric)]{.note} – there is an application question regarding this
 
 ![Plotting 3 columns one at a time](images/GGP_1-06b_BasicPlot.png){#fig-threeColumnPlot .fs}
 
@@ -276,7 +288,7 @@ You can put ***Jan_Avg\[,2\]*** in the ***Console*** to convince yourself that t
 
 ### Generalize the ***color*** mappings
 
-The ***color*** mapping is currently [hard coded]{.hl} -- meaning ***color*** is set to a value (in quotes) instead of a variable.  We are going to change this so that the year comes from the column name.  This makes it easier to code the plot in a ***for*** loop because we can cycle through the column names using their index values:
+The ***color*** mapping is currently [hard coded]{.hl} (e.g., "2016", "2017", etc..) -- meaning ***color*** is set to a value (in quotes) instead of a variable.  We are going to change this so that the year comes from the column name.  This makes it easier to code the plot in a ***for*** loop because we can cycle through the column names using their index values:
 
 ``` r
   plot4 = ggplot() +
@@ -303,57 +315,9 @@ You can put ***colnames(Jan_Avg)*** in the ***Console*** to convince yourself th
 [1] "X2016" "X2017" "X2018" "X2019" "X2020" "X2021" "X2022"
 ```
 
-***plot4*** will look almost exactly like ***plot2*** (*fig \##*) -- except the years in the legend are preceded with an ***X***, something we will fix later in the lesson:
+***plot4*** will look almost exactly like ***plot2*** (@fig-threeColumnPlot) -- except the years in the legend are preceded with an ***X***, something we will fix later in the lesson:
 
 ![The line plot after generalizing the y and color mappings](images/GGP_1-06b_LinePlotX.png){#fig-generalizedMapping .fs}
-
-### Generalize the ***x*** mapping
-
-Generalizing the ***x*** mapping not necessary, but [it is good programming practice to generalize your code]{.hl} because it makes your code more flexible and easier to debug.
-
- 
-
-***x*** maps to the day numbers **1-31**, this is the same as the row numbers.  In GGPlot if the rows are not given names then [the row numbers are the row names]{.hl}.
-
- 
-
-We can see that the row names are the same as the row numbers in the ***Console***:
-
-``` {.r tab="Console"}
-> rownames(Jan_Avg)
- [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16"
-[17] "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31"
-```
-
-The row names are put in quotes, which means *they are characters -- not numeric*.  We want the ***x*** mapping to be continuous so we need numeric values:
-
-``` {.r tab="Console"}
-> rownames(Jan_Avg)
- [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16"
-[17] "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31"
-```
-
-We will map ***x*** to the numeric row names:
-
-``` r
- plot5 = ggplot() +
-    geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31
-                          y=Jan_Avg[,1],    # column 1, also Jan_Avg$X2016
-                          color=colnames(Jan_Avg)[1])) +
-    geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31
-                          y=Jan_Avg[,2],    # column 2, also Jan_Avg$X2017
-                          color=colnames(Jan_Avg)[2])) +
-    geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31
-                          y=Jan_Avg[,3],    # column 3, also Jan_Avg$X2018
-                          color=colnames(Jan_Avg)[3])) +
-    theme_bw() + 
-    labs(x = "Date",
-         y = "Temp (Celsius)",
-         color = "Year");
-  plot(plot5);
-```
-
-![After generalizing the x mapping, we still have the same plot as before](images/GGP_1-06b_PlotMultColumns.png){#fig-generalizedXMap .fs}
 
 ## Using **for** loops and Lazy Evaluations
 
@@ -465,21 +429,19 @@ Lazy Evaluation is one of the more unintuitive problems that happens a lot in pr
 
 ## Local variables: The Lazy Evaluation fix
 
-One solution to Lazy Evaluation is to force evaluation of ***i*** while cycling through the ***for*** loop.  This is done using ***local()***.  Inside ***local()***, we declare that ***i*** is local and needs to be evaluated now.
+One solution to Lazy Evaluation is to force evaluation of ***i*** while cycling through the ***for*** loop.  This is done using ***!!()***.
 
 ``` r
   #### Part 7: Stopping the Lazy Evaluation by forcing local variables
   plot7 = ggplot(); 
   
   for(i in 1:ncol(Jan_Avg))   # same as 1:7
-  {
-    plot7 = plot7 + 
-     «local({»   # An instruction to evaluate local variables immediately
-        «i=i;»   # Makes the i value local
-        geom_line(mapping=aes(x=as.numeric(rownames(Jan_Avg)), 
-                              y=Jan_Avg[,i], 
-                              color=colnames(Jan_Avg)[i]));  
-      «})»       # End the instruction to use local variables
+  { 
+    # force local evaluation of i by replacing i with !!(i)
+    plot7 = plot7 +
+        geom_line(mapping=aes(x=1:31, 
+                              y=Jan_Avg[,!!(i)],  
+                              color=colnames(Jan_Avg)[!!(i)]));   
   }
   plot(plot7);
 ```
@@ -488,50 +450,17 @@ This forces R to evaluate ***i*** each time through the ***for*** loop and we se
 
 ![Plot of all seven column after we forced local evaluation](images/GGP_1-06b_NoLazyEval.png){#fig-noLazyEval .fs}
 
-### Alternative fix
-
-GGPlot does have a built-in mapping function that avoids Lazy Evaluation -- ***aes\_()***.
-
-*Note: that is **aes()** with an added underscore ( **\_** ).*
-
-``` r
-  #### Part 8: Stopping the Lazy Evaluation by using aes_()
-  plot8 = ggplot(); 
-  
-  for(i in 1:ncol(Jan_Avg))   # same as 1:7
-  { 
-    plot8 = plot8 +
-        geom_line(mapping=«aes_»(x=as.numeric(rownames(Jan_Avg)), 
-                               y=Jan_Avg[,i], 
-                               color=colnames(Jan_Avg)[i]));   
-  }
-  plot(plot8);
-```
-
-![plot8 is exactly the same as plot7](images/GGP_1-06b_NoLazyEval-01.png){#fig-noLAzyEval2 .fs}
-
-### aes\_() warning
-
-***aes\_()*** is a more elegant solution than ***local()***, but you will get a warning when using ***aes\_()***:
-
-``` {.r tab="Console"}
-Warning message:
-`aes_()` was deprecated in ggplot2 3.0.0.
-```
-
-This means that GGPlot is considering removing support for ***aes\_()*** and it could stop working at some point in the future.  My guess is that it will work for a long time as there are many reasons people use ***aes\_()*** -- but, this is not a guarantee and why I teach both the ***aes\_()*** and ***local()*** methods when dealing with Lazy Evaluation.
-
 ## Appending theme and labels
 
-Our ggplot canvas, ***plot8***, now has 7 line plots.  Let's add the ***theme*** and ***labs*** components but, instead of appending to ***plot8***, we will create a copy of ***plot8*** named ***plot9*** and append the ***theme*** and ***labs*** components to ***plot9***:
+Our ggplot canvas, ***plot7***, now has 7 line plots.  Let's add the ***theme*** and ***labs*** components but, instead of appending to ***plot7***, we will create a copy of ***plot7*** named ***plot8*** and append the ***theme*** and ***labs*** components to ***plot8***:
 
 ``` r
-  plot9 = plot8 +
+  plot8 = plot7 +
     theme_bw() + 
     labs(x = "Date",
          y = "Temp (Celsius)",
          color = "Year");
-  plot(plot9);
+  plot(plot8);
 ```
 
 ![The line plots with appended theme and labs](images/GGP_1-06b_ForLoops-01.png){#fig-linePlots_For .fs}
@@ -578,34 +507,31 @@ And we will use the ***viridis*** package to give us a better colors.  [viridi
                         direction = 1) + # -1 reverses colors
 ```
 
-Putting it all together (you can also use ***aes\_()*** instead of ***local()***):
+Putting it all together:
 
 ``` r
-  yearNum = substring(colnames(Jan_Avg), first=2);  
+ yearNum = substring(colnames(Jan_Avg), first=2);  
   
-  plot10 = ggplot();   # create a new canvas
+  plot9 = ggplot();   # create a new canvas
   
   for(i in 1:ncol(Jan_Avg))
   {
-    plot10 = plot10 +    # append to plot8 the geom_line
-      local({
-        i=i;
-        geom_line(mapping=aes(x=as.numeric(rownames(Jan_Avg)),  
-                              y=Jan_Avg[,i],
-                              color=yearNum[i]),  # change to substring
+    plot9 = plot9 +    # append to plot9 the geom_line
+        geom_line(mapping=aes(x=1:31,  
+                              y=Jan_Avg[,!!(i)],
+                              color=yearNum[!!(i)]),  # change to substring
                   linewidth = 1.5);    # change the size of the line
-      });
-  }
- 
-  plot10 = plot10 +    # append these components
+  } 
+  
+  plot9 = plot9 +    # append these components
     theme_bw() + 
-    scale_color_viridis(discrete = TRUE, # values are discrete (not continuous)
-                        option = "H",    # options are A-H, default is D (Viridis)
+    scale_color_viridis(discrete = TRUE, # values are discrete (FALSE: continuous)
+                        option = "H",    # options are A-H, default is D
                         direction = 1) + # -1 reverses colors
     labs(x = "Date",
          y = "Temp (\U00B0 C)",          # use unicode for the degree symbol
          color = "Year");
-  plot(plot10);
+  plot(plot9);
 ```
 
 And our new plot:
@@ -657,3 +583,33 @@ Answer the following in comments inside your application script:
 2.  What is a way you can apply the material in this lesson towards your research or area of study?
 
 3.  What are some things you would like to learn related to, but not covered in, this lesson?
+
+## Extension: Generalize the ***x*** mapping
+
+Generalizing the ***x*** mapping not necessary, but [it is good programming practice to generalize your code]{.hl} because it makes your code more flexible and easier to debug.
+
+ 
+
+***x*** maps to the day numbers **1-31**, this is the same as the row numbers.  In GGPlot if the rows are not given names then [the row numbers are the row names]{.hl}.
+
+ 
+
+We can see that the row names are the same as the row numbers in the ***Console***:
+
+``` {.r tab="Console"}
+> rownames(Jan_Avg)  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16" [17] "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31"
+```
+
+The row names are put in quotes, which means [they are characters -- not numeric]{.hl}.  We want the ***x*** mapping to be continuous so we need numeric values:
+
+``` {.r tab="Console"}
+> rownames(Jan_Avg)  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16" [17] "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31"
+```
+
+We will map ***x*** to the numeric row names:
+
+``` r
+ plot5 = ggplot() +     geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31                           y=Jan_Avg[,1],    # column 1, also Jan_Avg$X2016                           color=colnames(Jan_Avg)[1])) +     geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31                           y=Jan_Avg[,2],    # column 2, also Jan_Avg$X2017                           color=colnames(Jan_Avg)[2])) +     geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31                           y=Jan_Avg[,3],    # column 3, also Jan_Avg$X2018                           color=colnames(Jan_Avg)[3])) +     theme_bw() +      labs(x = "Date",          y = "Temp (Celsius)",          color = "Year");   plot(plot5);
+```
+
+![After generalizing the x mapping, we still have the same plot as before](images/GGP_1-06b_PlotMultColumns.png){#fig-generalizedXMap .fs alt="After generalizing the x mapping, we still have the same plot as before"}

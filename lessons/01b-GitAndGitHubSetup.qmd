@@ -331,7 +331,7 @@ Answer the following in comments inside your application script:
 
 While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to entry.
 
-## Extension: Use Git Tab 
+## Extension: Use Git Tab
 
 The Git tab can be used to sync changes from your Project Folder to your GitHub repository.
 

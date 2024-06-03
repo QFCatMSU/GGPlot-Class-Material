@@ -68,7 +68,7 @@
          color = "Year");
   plot(plot3);
   
-  ### Part 4: Generalize the and color (column names) mapping 
+  ### Part 4: Generalize the color (column names) mapping 
   #   Note: Years became X2016, X2017, X2018 -- fix that in a bit...
   plot4 = ggplot() +   
     geom_line(mapping=aes(x=1:31, 
@@ -86,7 +86,10 @@
          color = "Year");
   plot(plot4);
   
-  ### Part 5: Generalize the and x (row names) mapping 
+  
+  ### Make this into an extension ###
+  ## Note that you have to generalize y and color, but not x
+  ### Part 5: Generalize the x (row names) mapping 
   #   Note: This is not needed here -- but generalizing your code is good
   #         programming practice
   plot5 = ggplot() +   
@@ -107,7 +110,7 @@
   
   
   ### Part 6: Use a for loop to plot all 7 lines
-  #   This will not work because of LAZY EVALUATION (yes, that is a real term)
+  #   This will not work because of Lazy Evaluation 
   #   Why this does not work is important to understand
   plot6 = ggplot(); 
   
@@ -115,7 +118,7 @@
   for(i in 1:ncol(Jan_Avg))   # same as 1:7
   {
     plot6 = plot6 + 
-        geom_line(mapping=aes(x=as.numeric(rownames(Jan_Avg)), 
+        geom_line(mapping=aes(x=1:31, 
                               y=Jan_Avg[,i],                # columns 1-7
                               color=colnames(Jan_Avg)[i])); # column names 1-7
   }
@@ -124,59 +127,42 @@
   
   #### Part 7: Stopping the Lazy Evaluation by forcing local variables
   plot7 = ggplot(); 
-
+  
   for(i in 1:ncol(Jan_Avg))   # same as 1:7
   { 
+    # force local evaluation of i by replacing i with !!(i)
     plot7 = plot7 +
-     local({   # An instruction to evaluate local variables immediately
-        i=i;   # Makes the i value local
-        geom_line(mapping=aes(x=as.numeric(rownames(Jan_Avg)), 
-                              y=Jan_Avg[,i], 
-                              color=colnames(Jan_Avg)[i]));   
-       })      # End the instruction to use local variables
+        geom_line(mapping=aes(x=1:31, 
+                              y=Jan_Avg[,!!(i)],  
+                              color=colnames(Jan_Avg)[!!(i)]));   
   }
   plot(plot7);
   
-  #### Part 8: Stopping the Lazy Evaluation by using aes_()
-  plot8 = ggplot(); 
-  
-  for(i in 1:ncol(Jan_Avg))   # same as 1:7
-  { 
-    plot8 = plot8 +
-        geom_line(mapping=aes_(x=as.numeric(rownames(Jan_Avg)), 
-                               y=Jan_Avg[,i], 
-                               color=colnames(Jan_Avg)[i]));   
-  }
-  plot(plot8);
-  
-  #### Part 9: Copy plot8 and append a theme and labels
+  #### Part 8: Copy plot7 and append a theme and labels
   #    Note: you could have started over and created the 7 lines again
-  plot9 = plot8 +
+  plot8 = plot7 +
     theme_bw() + 
     labs(x = "Date",
          y = "Temp (Celsius)",
          color = "Year");
-  plot(plot9);
+  plot(plot8);
 
-  ### Part 10: Make some changes to the plot 
+  ### Part 9: Make some changes to the plot 
   # Convert from "X2016" to "2016" using substring to remove the first character
   yearNum = substring(colnames(Jan_Avg), first=2);  
   
-  plot10 = ggplot();   # create a new canvas
+  plot9 = ggplot();   # create a new canvas
   
   for(i in 1:ncol(Jan_Avg))
   {
-    plot10 = plot10 +    # append to plot8 the geom_line
-      local({
-        i=i;
-        geom_line(mapping=aes(x=as.numeric(rownames(Jan_Avg)),  
-                              y=Jan_Avg[,i],
-                              color=yearNum[i]),  # change to substring
+    plot9 = plot9 +    # append to plot9 the geom_line
+        geom_line(mapping=aes(x=1:31,  
+                              y=Jan_Avg[,!!(i)],
+                              color=yearNum[!!(i)]),  # change to substring
                   linewidth = 1.5);    # change the size of the line
-      });
   } 
   
-  plot10 = plot10 +    # append these components
+  plot9 = plot9 +    # append these components
     theme_bw() + 
     scale_color_viridis(discrete = TRUE, # values are discrete (FALSE: continuous)
                         option = "H",    # options are A-H, default is D
@@ -184,7 +170,7 @@
     labs(x = "Date",
          y = "Temp (\U00B0 C)",          # use unicode for the degree symbol
          color = "Year");
-  plot(plot10);
+  plot(plot9);
   
   ### Viridis info:
   # https://www.rdocumentation.org/packages/viridis/versions/0.6.2/topics/scale_fill_viridis
