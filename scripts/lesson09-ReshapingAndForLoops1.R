@@ -15,16 +15,14 @@
                          varying=c(1:7),           # columns to combine (melt)
                          v.name="temperatures",    # name of new combined column
                          #### The new subsetting column 
-                         times=colnames(Jan_Avg),  # values for the grouping columnn 
+                         times=colnames(Jan_Avg),  # values for the grouping column 
                          timevar = "year",         # name of the groups
                          #### The new individual column
                          ids = as.numeric(rownames(Jan_Avg)),  # values for the individuals
                          idvar = "dayNum",   # name of the individuals columns
+                         ### Makes the data frame easier to read
                          new.row.names = 1:217);         
 
-  # Makes the data frame easier to read -- does not functionally change anything
-  rownames(Jan_Avg_Melt) = 1:217;
-  
   # Plot temperature (y) ~ dayNum (x) and subset by year (color)
   plot1 = ggplot(data = Jan_Avg_Melt) +
     geom_line(mapping=aes(x=dayNum, y=temperatures, color=year));

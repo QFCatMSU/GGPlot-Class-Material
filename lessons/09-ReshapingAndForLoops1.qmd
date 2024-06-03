@@ -117,10 +117,11 @@ In this new data frame we need to 
                     times=colnames(Jan_Avg),  # old column names (years)
                     timevar = "year",         # name for new column of years
                     ids = as.numeric(rownames(Jan_Avg)),  # old row names (dates)
-                    idvar = "dayNum");        # name for new column of dates
+                    idvar = "dayNum",         # name for new column of dates
+                    new.row.names = 1:217);   # renaming rows
 ```
 
-There are eight argument used in ***reshape()***, let's take these arguments two at a time...
+There are nine arguments used in ***reshape()***, let's take these arguments two at a time...
 
  
 
@@ -156,13 +157,13 @@ ids = as.numeric(rownames(Jan_Avg))   # row name (day) associated with each temp
 idvar = "dayNum"
 ```
 
-### The reshaped data frame
-
-I add this line to change the row names back to row numbers.  The line functionally does nothing but it makes the data frame easier to read in the RStudio viewer tab:
+I add this argument to change the row names back to row numbers.  The line functionally does nothing but it makes the data frame easier to read in the RStudio viewer tab:
 
 ``` r
-rownames(Jan_Avg_Melt) = 1:217;
+new.row.names = 1:217
 ```
+
+### The reshaped data frame
 
 If you open ***Jan_Avg_Melt*** (@fig-meltedFrame) you will see there are **217** rows, representing the **217** daily temperatures.  On the same row as the temperature, there are columns that give the associated day and year.
 
@@ -612,4 +613,4 @@ We will map ***x*** to the numeric row names:
  plot5 = ggplot() +     geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31                           y=Jan_Avg[,1],    # column 1, also Jan_Avg$X2016                           color=colnames(Jan_Avg)[1])) +     geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31                           y=Jan_Avg[,2],    # column 2, also Jan_Avg$X2017                           color=colnames(Jan_Avg)[2])) +     geom_line(mapping=aes(x=«as.numeric(rownames(Jan_Avg))»,  # 1:31                           y=Jan_Avg[,3],    # column 3, also Jan_Avg$X2018                           color=colnames(Jan_Avg)[3])) +     theme_bw() +      labs(x = "Date",          y = "Temp (Celsius)",          color = "Year");   plot(plot5);
 ```
 
-![After generalizing the x mapping, we still have the same plot as before](images/GGP_1-06b_PlotMultColumns.png){#fig-generalizedXMap .fs alt="After generalizing the x mapping, we still have the same plot as before"}
+![After generalizing the x mapping, we still have the same plot as before](images/GGP_1-06b_PlotMultColumns.png){#fig-generalizedXMap .fs}
