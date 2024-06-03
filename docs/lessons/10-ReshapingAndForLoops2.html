@@ -220,6 +220,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/11-Annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11: Annotations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/12-Multipaneling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12: Multipaneling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/Info.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Info</span></a>
   </div>
@@ -628,27 +640,24 @@ Figure&nbsp;10: Using which to subset the data&nbsp;
 <h2 data-number="6" class="anchored" data-anchor-id="application"><span class="header-section-number">6</span> Application</h2>
 <p>Create a script file in your Project’s <strong><em>scripts</em></strong> folder called <strong><em>app10.r</em></strong> and, using the data from <strong>Lansing2016NOAA.csv:</strong></p>
 <ol type="1">
-<li>In comments at the top of your script file answer:</li>
+<li><p>In comments at the top of your script file answer:</p>
+<p>A. What happens if you allow for lazy evaluation in <strong><em>plot3</em></strong> (<a href="#fig-forLoopPlot" class="quarto-xref">Figure&nbsp;5</a>)?&nbsp; Be specific about what GGPlot plots.</p></li>
+<li><p>Using both reshaping and <strong><em>for</em></strong> loops, plot the four humidity columns in <strong><em>weatherData</em></strong> against average temp with wind speed as <strong><em>color</em></strong> mapping</p>
+<ol type="A">
+<li><p>Use column names</p></li>
+<li><p>Add titles and labels – right justify the title</p></li>
+<li><p>Correct the legend so that wind speeds are in increasing order and colors goes from lighter to darker blues</p></li>
+<li><p>Change the size of the lines and the linetype</p></li>
+</ol></li>
+<li><p>Create a text plot of Precipitation (<strong><em>precip2</em></strong>) vs Humidity (<strong><em>relHum</em></strong>) that is selectively labelled with <strong><em>windspeed</em></strong></p>
+<ol type="A">
+<li><p>Map the color of the points to <strong><em>windSpeed</em></strong></p>
+<ul>
+<li>Use a color gradient that goes from green to blue to purple</li>
+</ul></li>
+<li><p>Label the points that have precipitation over 0.1in <strong><em>and</em></strong> humidity greater than 80%</p></li>
+</ol></li>
 </ol>
-<pre><code>A. What happens if you allow for lazy evaluation in ***plot3*** (@fig-forLoopPlot)?&nbsp; Be specific about what GGPlot plots.</code></pre>
-<ol start="2" type="1">
-<li>Using both reshaping and <strong><em>for</em></strong> loops, plot the four humidity columns in <strong><em>weatherData</em></strong> against average temp with wind speed as <strong><em>color</em></strong> mapping</li>
-</ol>
-<pre><code>1.   Use column names
-
-2.   Add titles and labels -- right justify the title
-
-3.   Correct the legend so that wind speeds are in increasing order and colors goes from lighter to darker blues
-
-4.   Change the size of the lines and the linetype</code></pre>
-<ol start="3" type="1">
-<li>Create a text plot of Precipitation (<strong><em>precip2</em></strong>) vs Humidity (<strong><em>relHum</em></strong>) that is selectively labelled with <strong><em>windspeed</em></strong></li>
-</ol>
-<pre><code>1.  Map the color of the points to ***windSpeed***
-
-    -    Use a color gradient that goes from green to blue to purple
-
-2.  Label the points that have precipitation over 0.1in ***and*** humidity greater than 80%</code></pre>
 <section id="questions" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">6.1</span> Questions</h3>
 <p>Answer the following in comments inside your application script:</p>

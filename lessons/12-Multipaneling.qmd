@@ -1,0 +1,623 @@
+---
+title: "12: Multipaneling"
+# special characters for highlighting code : «»
+---
+
+## Purpose
+
+-    Using grep to find values that meet multiple conditions
+
+-    Arrange multiple plots on a canvas
+
+-    Customizing plots on a canvas
+
+### Get data
+
+[The script for this lesson is here](../scripts/lesson12-Multipaneling.R)
+
+-    Save the R file, called ***lesson12-Multipaneling.R*** to the ***scripts*** folder inside your RStudio Project
+
+ 
+
+[The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv) (same as last lesson)
+
+-    Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+
+### Add library for multiple plots
+
+In this lesson we are going to put multiple plots on one canvas.  To do this we must first install an R package called ***gridExtra***.
+
+ 
+
+To install ***gridExtra*** in RStudio:
+
+-    go to ***Tools*** -\> ***Install Packages***
+
+-    in the Packages textbox type in ***gridExtra*** then
+
+-   click ***Install***
+
+ 
+
+You will also need to add the ***gridExtra*** library to your script:
+
+``` r
+library(package=gridExtra);
+```
+
+## Conditional comparisons of vector values
+
+We are going to working with the ***weatherType*** column in ***weatherData***.  ***weatherType*** consists of codes that indicate the type of weather events that occurred during the day.  For instance **RA** means rain, **BR** means breezy, **HZ** means hazy. The weather events are separated by commas within the cell.
+
+![weatherType column in weatherData](images/GGP-01-10-WeatherType.PNG){#fig-weatherTypeCol .fs}
+
+The problem with the way ***weatherType*** is presented is that it makes it hard to find days with one specific weather condition (like rain, ***RA***).  The following code will only give you the index values of days that were exclusively rainy (i.e., no other weather event except for **RA**):
+
+``` r
+which(weatherData$weatherType == "RA") # find rainy days
+```
+
+A common way to deal with this situation is to break the column up into multiple columns, each representing one weather condition (**RA**, **HZ**, **BR**, etc...).  A more robust way is to use ***grep()*** to find the codes within the column.
+
+### grep() to find weather event
+
+We can use ***grep()*** to find patterns within a column.  In this case, patterns that match the characters **RA** and **BR** (rainy and breezy):
+
+``` r
+#### Part 1: using grep to find days with a specific weather event
+rainyDays = grep(weatherData$weatherType, pattern="RA");   # any day with rain
+breezyDays = grep(weatherData$weatherType, pattern="BR");  # any breezy day
+```
+
+***rainyDays*** has **124** values, meaning there were **124** days with some rain (the code **RA**)
+
+***breezyDays*** has **172** values, meaning there were **172** days with strong winds (the code **BR**)
+
+![Finding the index values of the days with rain and those that were breezy](images/GGP-1-08-GrepEvents.jpg){#fig-indexValues .fs}
+
+### Plotting a subset of values
+
+We will now plot humidity vs temperature for only the **172** days that were breezy using ***breezyDays*** to subset of ***weatherData***.
+
+ 
+
+We usually would start the plot with:
+
+``` r
+ggplot(data=weatherData)
+```
+
+But, we only want a subset of the ***weatherData*** data frame -- the rows given by the values in ***breezyDays***:
+
+``` r
+ggplot(data=weatherData[breezyDays,])
+```
+
+Otherwise, the plot should look familiar:
+
+``` r
+#### Part 2: Scatterplot for Humidity vs. Temperature on breezy days
+plotA = ggplot(«data=weatherData[breezyDays,]») +    # 172 days were breezy
+        geom_point(mapping=aes(x=avgTemp, y=relHum)) +
+        theme_classic() +
+        labs(title = "Humidity vs. Temperature (Breezy Days)",
+             subtitle = "Lansing, Michigan: 2016",
+             x = "Degrees (Fahrenheit)",
+             y = "Relative Humidity");
+plot(plotA);
+```
+
+We have a plot with 172 points, matching the 172 days it was breezy (or, the 172 index values in ***breezyDays***).
+
+![Scatterplot of humidity vs. temperature on breezy days](images/GGP-01-10-PlotSubset.PNG){#fig-scatterPlot .fs}
+
+## Combining conditions
+
+Next we want to find index values for various combinations of weather events for example:
+
+-    days with two events (e.g., rainy **and** breezy)
+
+-    days with at least one of two events (e.g., rainy **or** breezy)
+
+-    days with exclusively one event (e.g., rainy **and not** breezy)
+
+ 
+
+R has three functions, called *[set operations](https://stat.ethz.ch/R-manual/R-patched/library/base/html/sets.html)*, that can perform the above tasks:
+
+-    ***intersect()*** -- the vector equivalent of an **AND** statement (rainy ***&*** breezy)
+
+-    ***union()*** -- the vector equivalent of an **OR** statement (rainy ***\|*** breezy)
+
+-    ***setdiff()*** -- the vector equivalent of an **AND NOT** statement (rainy ***& !***breezy)
+
+ 
+
+The following code creates a vector that contains the index values for days that were [both rainy and windy]{.hl}:
+
+``` r
+rainyAndBreezy = intersect(rainyDays, breezyDays);
+```
+
+Let's code for the four possible combinations of windy and rainy conditions: 
+
+``` r
+#### Part 3: Combine event using set operations
+rainyAndBreezy = intersect(rainyDays, breezyDays); # days with rain AND wind
+rainyOrBreezy = union(rainyDays, breezyDays);      # days with rain OR wind
+rainyNotBreezy = setdiff(rainyDays, breezyDays);   # days with rain but NOT wind
+breezyNotRainy = setdiff(breezyDays, rainyDays);   # days with wind but NOT rain
+```
+
+We can see that there were **82** days that were breezy but not rainy represented by the **82** index values in ***breezyNotRainy***.  There were **34** days that were rainy but not breezy, represented by the **34** index values in ***rainyNotBreezy*** -- the first of those days being the 69^th^ day of the year, which is in early April.
+
+![Vectors that contain the indexes for combined weather events](images/GGP-01-10-CombinedEvents.PNG){#fig-combinedEvents .fs}
+
+### Reversing conditions
+
+You can use ***setdiff*** to get the inverse of a condition
+
+``` r
+notRainyAndNotBreezy = setdiff(1:nrow(weatherData), rainyOrBreezy);
+```
+
+The first argument, ***1:nrow(weatherData)*** creates a sequence from 1 to 366 (i.e., all values)
+
+The second argument, ***rainyOrBreezy***, gives the ***206*** days it was rainy or breezy
+
+ 
+
+***setDiff*** returns the values in the first argument that are not in the second argument.
+
+ 
+
+So, ***setDiff*** return the **366-206 = 160**, values not in ***rainyOrBreezy***.
+
+``` {.r tab="Environment"}
+rainyOrBreezy:        int [1:«206»] 8 9 10 15 25 ...
+notRainyAndNotBreezy: int [1:«160»] 2 3 4 5 6 7 ...
+```
+
+[**rainyOrBreezy** does not give all the numbers in order.]{.hl}  Use ***sort()*** to see the numbers in order:
+
+``` {.r tab="Console"}
+> sort(rainyOrBreezy)
+  [1]   1   4   8   9  10  11  12  13  14  15  18  20  21
+ [14]  22  23  25  26  27  28  31  32  33  34  35  36  37
+ [27]  40  46  47  48  55  56  59  60  61  62  63  64  65 ...
+```
+
+## Set up for multiple plots
+
+We now have six combinations of the weather events **rainy** and **breezy** to plot:
+
+1.   breezy days (plotted in @fig-scatterPlot)
+
+2.   rainy days
+
+3.   rainy AND breezy days
+
+4.   rainy OR breezy days
+
+5.   rainy AND NOT breezy days
+
+6.  breezy AND NOT rainy days
+
+###  Create plot data
+
+We have already created the plot data for breezy days (#1).  We are now going to create the plot data for combinations #2 through #6.  [We are not rendering the plots yet (i.e., we are not using the **plot()** function) -- we are just creating the data for the plots.]{.hl}
+
+ 
+
+The ***data*** for each plot will be a subset of ***weatherData*** given by variables that indexed the combined weather conditions in @fig-combinedEvents:
+
+``` r
+#### Part 4: Creating plots for all rainy day/breezy day combinations
+plotB = ggplot(data=weatherData«[rainyDays,]») +
+        geom_point(mapping=aes(x=avgTemp, y=relHum)) +
+        theme_classic() +
+        labs(title = "Humidity vs. Temperature (rainy days)",
+             subtitle = "Lansing, Michigan: 2016",
+             x = "Degrees (Fahrenheit)",
+             y = "Relative Humidity");
+
+plotC = ggplot(data=weatherData«[rainyAndBreezy,]») +
+        geom_point(mapping=aes(x=avgTemp, y=relHum)) +
+        theme_classic() +
+        labs(title = "Hum vs. Temp (Rainy AND Breezy)",
+             subtitle = "Lansing, Michigan: 2016",
+             x = "Degrees (Fahrenheit)",
+             y = "Relative Humidity");
+
+plotD = ggplot(data=weatherData«[rainyOrBreezy,]») +
+        geom_point(mapping=aes(x=avgTemp, y=relHum)) +
+        theme_classic() +
+        labs(title = "Hum vs. Temp (Rainy or Breezy)",
+             subtitle = "Lansing, Michigan: 2016",
+             x = "Degrees (Fahrenheit)",
+             y = "Relative Humidity");
+
+plotE = ggplot(data=weatherData«[rainyNotBreezy,]») +
+        geom_point(mapping=aes(x=avgTemp, y=relHum)) +
+        theme_classic() +
+        labs(title = "Hum vs. Temp (Rainy and NOT Breezy)",
+             subtitle = "Lansing, Michigan: 2016",
+             x = "Degrees (Fahrenheit)",
+             y = "Relative Humidity");
+
+plotF = ggplot(data=weatherData«[breezyNotRainy,]») +
+        geom_point(mapping=aes(x=avgTemp, y=relHum)) +
+        theme_classic() +
+        labs(title = "Hum vs. Temp (Breezy and NOT Rainy)",
+             subtitle = "Lansing, Michigan: 2016",
+             x = "Degrees (Fahrenheit)",
+             y = "Relative Humidity");
+```
+
+![Creating the plot data for each event combination](images/GGP-01-10-MultiplePlots.PNG){#fig-eventCombinations .fs}
+
+## Multiple plots on one canvas
+
+We have not created any plots yet, we have created the data for six different plots.  Up until now, we have used ***plot()*** to put one plot on a canvas or we added **facets** to place multiple plots on one axis. Now, we are going to *create a canvas with multiple plots* using ***arrangeGrob()*** in the ***gridExtra*** library.
+
+ 
+
+There is [documentation for ***arrangeGrob()***](https://www.rdocumentation.org/packages/gridExtra/versions/2.3/topics/arrangeGrob) but it is not very intuitive -- however, you should know that ***grob*** stands for ***gr***aphical ***ob***jects, and plots are considered graphical objects.
+
+Also, notice that the first argument for ***arrangeGrob*** is three dots ( **...** ):
+
+``` r
+arrangeGrob(«...», grobs = list(...), layout_matrix, vp = NULL,
+  name = "arrange", as.table = TRUE, respect = FALSE, clip = "off",
+  nrow = NULL, ncol = NULL, widths = NULL, heights = NULL, top = NULL,
+  bottom = NULL, left = NULL, right = NULL, padding = unit(0.5, "line"))
+```
+
+( **...** ) means means that ***arrangePlot*** can take any number of plot variables -- in our first example, we will be using six plot variables.
+
+ 
+
+We are going to arrange the six plots created above (@fig-eventCombinations) on a canvas using three different methods:
+
+-    by rows
+
+-   by columns
+
+-   customized using a matrix
+
+### Plots in rows
+
+The plots that will be added to the canvas must go first in ***arrangeGrob()***.  You can put as many plots in as you want separated by commas.  After you put in all the plot names, you set arguments (e.g., number of rows or columns) for the canvas.
+
+ 
+
+For this canvas, we set the number of rows argument, or ***nrow** * to **3**.  This means ***arrangeGrob()*** will place the plots listed into 3 rows (using as many columns as necessary).  Since there are six plots, each of the 3 rows will have 2 plots.
+
+``` r
+#### Part 5: Arranging plots on one canvas by rows
+  multi1=arrangeGrob(plotA, plotB, plotC, plotD, plotE, plotF,
+                     nrow=3);
+  plot(multi1);
+```
+
+[Note: like ***ggplot()***, ***arrangeGrob()*** creates plot data.]{.note}  In the above case the plot data is saved to ***multi1*** and then ***plot(multi1)*** renders the data in the RStudio Viewer.
+
+![Arranging plots by rows in a canvas](images/GGP-01-10-PlotByRows.PNG){#fig-byRows .fs}
+
+ 
+
+[Extension: Adding labels to the grid area]
+
+### Plots in columns
+
+Arranging plots by column works almost the same way as arranging by rows except we use the argument ***ncol.***
+
+ 
+
+For this canvas we are going to put the plots in the reverse order (***plotF, plotE***...) and skip the last plot (***plotA***) -- so there are only five plots.  Since we set ***ncol*** to **3** and there are **5** plots, ***arrangeGrob()*** creates two rows but leaves an empty space at the end of the last row.
+
+``` r
+#### Part 6: Arranging plots on canvas by columns
+  multi2=arrangeGrob(plotF, plotE, plotD, plotB, plotA,
+                     ncol=3);
+  plot(multi2);
+```
+
+![Arranging plots by columns in a canvas](images/GGP-01-10-PlotByCols.PNG){#fig-byColumn .fs}
+
+### Customized canvas
+
+The argument in ***arrangeGrob()*** that is probably most used in ***layout_matrix*** because it allows a lot more flexibility in the plot layout.
+
+ 
+
+***layout_matrix*** is set to a 2D matrix where you can customize the placement of the plots.  The rows and columns of the matrix (with their corresponding plot numbers) match the canvas layout of the plots.
+
+ 
+
+In the following example:
+
+-    All six plots are used (***plotA*** through ***plotF***)
+
+-    The first row on the canvas will have the 4^th^, 5^th^, and 6^th^ plots (***plotD***, ***plotE***, and ***plotF***)
+
+-    The second row on the canvas will have the 3^rd^, 2^nd^, and 1^st^ plots (***plotC***, ***plotB***, and ***plotA***)
+
+``` r
+#### Part 7: Customize arrangements using matrix
+  multi3=arrangeGrob(plotA, plotB, plotC, plotD, plotE, plotF,
+                     layout_matrix = rbind(c(4,5,6),   # plotD, plotE, plotF
+                                           c(3,2,1))); # plotC, plotB, plotA
+  plot(multi3);
+```
+
+[Note: The numbers in the matrix represents the order the plots are listed.]{.note}
+
+![The six plots using the matrix layout](images/GGP-01-10 MatrixLayout.PNG){#fig-byMatrix .fs}
+
+### Empty spaces within the canvas
+
+We can use ***NA*** to represent an empty space (i.e., no plot).
+
+ 
+
+The code:
+
+``` r
+layout_matrix = rbind(c(NA,1,2),     # row 1: nothing, 1st plot, 2nd plot
+                      c(3,NA,NA)));  # row 2: 3rd plot, nothing, nothing
+```
+
+Tells ***arrangeGrob()*** to create a canvas that has 2 rows and 3 columns. 
+
+-    Row 1 has nothing in the first column, the 1^st^ plot in the second column, and the 2^nd^ plot in the third column
+
+-    Row 2 has the 3^rd^ plot in the first column and nothing in the second or third column
+
+ 
+
+In the following code, [**plotC** is the 1^st^ plot,]{.hl} ***plotD*** is the 2^nd^ plot, and ***plotE*** is the 3^rd^ plot:
+
+``` r
+#### Part 8: Add empty spaces to customized arrangement
+  multi4=arrangeGrob(plotC, plotD, plotE,
+                     layout_matrix = rbind(c(NA,1,2),   # none, plotC, plotD
+                                           c(3,NA,NA)));# plotE, none, none
+  plot(multi4);
+```
+
+![Using layout_matrix to customize the canvas](images/GGP-01-10-Matrix.PNG){#fig-byLayoutMatrix .fs}
+
+### Sizing plots
+
+We can also use ***layout_matrix*** to resize plots by extending them across rows and columns.
+
+The following code makes the:
+
+-    1st plot 2 columns by 2 rows,
+
+-    2nd plot 1 column by 1 row
+
+-    3rd plot 2 columns by 1 row
+
+-    4th plot 1 column by 2 rows
+
+``` r
+layout_matrix = rbind(c(1,1,2),
+                      c(1,1,NA),
+                      c(4,3,3),
+                      c(4,NA,NA)));
+```
+
+Let's put the **4x3** matrix in ***arrangeGrob()***:
+
+``` r
+#### Part 9: Extending plots across rows and columns
+  multi5=arrangeGrob(plotA, plotB, plotC, plotD,
+                     layout_matrix = rbind(c(1,1,2),
+                                           c(1,1,NA),
+                                           c(4,3,3),
+                                           c(4,NA,NA)));
+  plot(multi5);
+```
+
+![Extending plots across rows and down columns](images/GGP-01-10-SizingPlots.PNG){#fig-extending .fs}
+
+## Errors in layout_matrix
+
+[**arrangeGrob()** is very sensitive]{.hl}and often produces unintuitive errors.  In this section, we will look at some of the issues and the errors associated with the issues. 
+
+### Issue 1: Plots listed must be used in matrix
+
+All plots listed in ***arrangeGrob()*** must be used in the matrix
+
+ 
+
+Issue: ***plotB*** is listed but not used in the matrix:
+
+``` r
+#### Issue 1: Plots listed must be used in matrix
+####          plotB (#2) is not used in the layout_matrix
+  error1 = arrangeGrob(plotA, «plotB», plotC, plotD, plotE,
+                      layout_matrix = rbind(c(1,1,5),
+                                            c(1,1,NA),
+                                            c(4,3,3),
+                                            c(4,NA,NA)));
+  plot(error1);  # Error in t:b : NA/NaN argument
+```
+
+Executing this grid without using ***plotB*** (#2) produces the unintuitive error:
+
+[Error in t:b : NA/NaN argument]{.hl}
+
+### Invalid index numbers in matrix
+
+Issue: index **5** is used in the matrix but there is no 5^th^ plot
+
+``` r
+#### Issue 2: Invalid index error (there is no 5th plot)
+  issue2 = arrangeGrob(plotA, plotB, plotC, plotD,
+                     layout_matrix = rbind(c(1,1,5),
+                                           c(1,1,NA),
+                                           c(4,3,2),
+                                           c(4,NA,NA)));
+  plot(issue2);
+```
+
+When executing this grid, the number will be ignored by ***layout_matrix()*** and nothing will be plotted in that area.  No warning or error is given.
+
+![Nothing is plotted in the area of the grid with an invalid plot index (5).](images/GGP-01-10-Issue2-InvalidIndex.PNG){#fig-invalidPlotIndex .fs}
+
+### Extending plots to fill a rectangle
+
+***arrangeGrob()*** makes two big assumptions:
+
+1.   All plots take up a rectangular space on the grid
+
+2.   All plots are represented only once on the canvas
+
+ 
+
+If you arrange the index numbers in the matrix in a non-rectangular fashion, ***arrangeGrob()*** will "fill" in the rest of the rectangle.
+
+In the following code, ***arrangeGrob()*** will extend ***plotA*** across the 2 rows and 2 columns
+
+``` r
+#### Issue 3: The grid will extend discontinuous plots to fill a rectangle
+####          plotA will be extended to a rectangle that is 2x2
+  issue3 = arrangeGrob(plotA, plotB,
+                       layout_matrix = rbind(c(«1»,«NA»,2),
+                                             c(«NA»,«1»,NA)));
+  plot(issue3);
+```
+
+![Plots are extended to fill the rectangular area they represent in the grid.](images/GGP-01-10-Issue3-ExtendPlots.PNG){#fig-extendedPlotsIssue .fs}
+
+### Overlapping plots
+
+In this example, ***arrangeGrob()*** assumes that ***plotA*** is **2** rows x **3** columns (it takes up the whole plot area).  This means that ***plotA*** and ***plotB*** both use the spot on the 1st row, 3rd column.
+
+ 
+
+In this case, ***plotB*** overlaps ***plotA*** in the one grid space because ***plotB*** comes after ***plotA*** in ***arrangeGrob()***.
+
+``` r
+#### Issue 4: Overlapping plots -- priority goes to the later plot
+####          In this case, plotB overlaps plotA
+  issue4 = arrangeGrob(plotA, plotB,
+                       layout_matrix = rbind(c(1,NA,«2»),
+                                             c(NA,NA,1)));
+  plot(issue4);
+```
+
+![Plots overlapping in layout_matrix(), the later plot get priority.](images/GGP-01-10-Issue4-OverlappingPlots-01.PNG){#fig-overlappingPlots .fs}
+
+### Hidden plots due to overlapping
+
+***arrangeGrob()*** puts plots with higher indexes on top.  So, if we reverse the previous canvas and stretch ***plotB*** across the whole canvas then ***plotB*** will still overlap ***plotA.***  This effectively hides ***plotA***.
+
+``` r
+#### Issue 5: Hidden plots due to overlapping
+####          In this case, plotB completely covers up plotA
+  issue5 = arrangeGrob(plotA, plotB,
+                       layout_matrix = rbind(c(2,NA,1),
+                                             c(NA,NA,2)));
+  plot(issue5);
+```
+
+![A plot is hidden because it is overlapped by another plot.](images/GGP-01-10-Issue5-HiddenPlots.PNG){#fig-hiddenPlot .fs}
+
+### Time elapsed warning
+
+When the canvas area is complicated, the plot will sometimes not be fully drawn.  This is an inconsistent error that happens in RStudio on slower computers.
+
+ 
+
+Theoretically, this should show ***plotD*** across the whole canvas, covering up the other plots. 
+
+``` r
+#### Part 10: Error in plot placement
+  issue6 = arrangeGrob(plotA, plotB, plotC, plotD,
+                       layout_matrix = rbind(c(1,1,4),
+                                             c(1,1,NA),
+                                             c(4,3,2),
+                                             c(4,NA,NA)));
+  plot(issue6);
+```
+
+This code will sometimes give an elapsed time warning like:
+
+[In unique.default(lengths(x)) : reached elapsed time limit]{.hl}
+
+ 
+
+[Note: this is a warning I would get years ago about 20% of the time on this plot.]{.note}  Now I am not getting it.  I do not know if it is because of improvements to R/RStudio/GGPlot/gridExtra, my computer, or some combination.
+
+ 
+
+If the full canvas does not get drawn when you execute the script, you can press the ***Zoom*** button to open the canvas in a new window.
+
+![Using the Zoom button to open a plot in a new window.](images/GGP-01-10-Issue6-ZoomButton.PNG){#fig-zoomButton .fs}
+
+## Application
+
+Find how different weather conditions in the ***weatherType*** column correlate with ***tempDept***. [Note: **tempDept** is how far the temperature for the day was from the historic average temperature for that day.]{.note}
+
+ 
+
+1.   Create a script file in your Class Project called ***app12.r***.
+
+2.   Create a histogram of ***tempDept*** restricted to days that meet a condition in the ***weatherType*** column:
+
+    -   To restrict the data, you can subset with the indices that meet the condition (e.g., ***data=weatherData\[daysWithRain,\]***)
+
+3.  Repeat step 2 for two more conditions in the ***weatherType*** column (so, three histograms in all)
+
+4.   Create a histogram of ***tempDept*** restricted to days where [two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy AND breezy).
+
+5.   Create a histogram of ***tempDept*** restricted to days where [one of two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy OR breezy).
+
+6.   For all histograms, place a vertical line at the average ***tempDept*** (of the restricted data) and label the line with the average value
+
+    -   ***geom_vline*** is an option here
+
+7.  Using ***arrangeGrob()***, place the 5 histograms you created in the previous steps on one canvas
+
+8.   Using ***arrangeGrob()***, pick three histograms from steps 2-4 and place them on a canvas
+
+    -   Resize at least 2 of the histogram so they take up more than 1 cell
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.   What was your level of comfort with the lesson/application?
+
+2.   What areas of the lesson/application confused or still confuses you?
+
+3.   What are some things you would like to know more about that is related to, but not covered in, this lesson?
+
+## Extension: Adding labels to the grid area
+
+You can labels to every side of the grid using the arguments ***right***, ***left***, ***top***, and ***bottom*** in ***arrangeGrid()***.  However, the labels will all be in standard font, black, and 12px.  Styling the labels is tricky and uses ***textGrob*** and ***gpar*** within the grid package.
+
+ 
+
+The plot below has unstyled labels for the ***top*** and ***right*** of the grid and styled labels for the ***bottom*** and ***left***:
+
+``` r
+  #### Extension: Adding labels to a grob:
+  multi1Lab=arrangeGrob(plotA, plotB, plotC, plotD, plotE, plotF,
+                     nrow=3,
+                     «top»="top label",    
+                     «bottom»=grid::textGrob("bottom label", 
+                                           gp=grid::gpar(col="blue", fontsize=40)),
+                     «right»="right label",
+                     «left»=grid::textGrob("left label", 
+                                         gp=grid::gpar(col="red", fontsize=20)));
+  plot(multi1Lab);
+```
+
+Styling grid labels can leads to inconsistent results -- in this case the left label was turned 90 degrees.
+
+![Adding labels to each side of the grid](images/GGP_1-12_GridLabels.png){#fig-gridLabels .fs}
