@@ -102,7 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <link rel="shortcut icon" href="https://qfcatmsu.github.io/assets/quarto/qfc_icon.png">
 <script>mod=true; menuCollapse=true;</script>
-<script src="qfc_styles.js"></script> 
+<script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js"></script>
+ 
 
 
 <link rel="stylesheet" href="https://qfcatmsu.github.io/assets/quarto/qfc_styles.css">
@@ -422,7 +423,7 @@ Figure&nbsp;3: Scatterplot of humidity vs.&nbsp;temperature on breezy days
 <li><p>days with exclusively one event (e.g., rainy <strong>and not</strong> breezy)</p></li>
 </ul>
 <p>&nbsp;</p>
-<p>R has three functions, called <em><a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/sets.html">set operations</a></em>, that can perform the above tasks:</p>
+<p>R has three functions, called <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/sets.html"><em>set operations</em></a>, that can perform the above tasks:</p>
 <ul>
 <li><p><strong><em>intersect()</em></strong> – the vector equivalent of an <strong>AND</strong> statement (rainy <strong><em>&amp;</em></strong> breezy)</p></li>
 <li><p><strong><em>union()</em></strong> – the vector equivalent of an <strong>OR</strong> statement (rainy <strong><em>|</em></strong> breezy)</p></li>
@@ -557,7 +558,7 @@ Figure&nbsp;5: Creating the plot data for each event combination
 <h3 data-number="5.1" class="anchored" data-anchor-id="plots-in-rows"><span class="header-section-number">5.1</span> Plots in rows</h3>
 <p>The plots that will be added to the canvas must go first in <strong><em>arrangeGrob()</em></strong>.&nbsp; You can put as many plots in as you want separated by commas.&nbsp; After you put in all the plot names, you set arguments (e.g., number of rows or columns) for the canvas.</p>
 <p>&nbsp;</p>
-<p>For this canvas, we set the number of rows argument, or <em><strong>nrow</strong> </em> to <strong>3</strong>.&nbsp; This means <strong><em>arrangeGrob()</em></strong> will place the plots listed into 3 rows (using as many columns as necessary).&nbsp; Since there are six plots, each of the 3 rows will have 2 plots.</p>
+<p>For this canvas, we set the number of rows argument, or <strong><em>nrow</em></strong> to <strong>3</strong>.&nbsp; This means <strong><em>arrangeGrob()</em></strong> will place the plots listed into 3 rows (using as many columns as necessary).&nbsp; Since there are six plots, each of the 3 rows will have 2 plots.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 5: Arranging plots on one canvas by rows</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  multi1<span class="ot">=</span><span class="fu">arrangeGrob</span>(plotA, plotB, plotC, plotD, plotE, plotF,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nrow=</span><span class="dv">3</span>);</span>

@@ -30,39 +30,6 @@ format:
       - text: |
           <link rel = "shortcut icon" href = "https://qfcatmsu.github.io/assets/quarto/qfc_icon.png" />
           <script>mod=true; menuCollapse=true;</script>
-          <script src="qfc_styles.js"></script> 
-    #   <script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js">
+          <script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js"></script>
+           
 editor: visual
-
-
-
-
-
-
-# title-slide-attributes:
-#     data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
-#     data-background-size: "40%"
-#     data-background-position: "6% 95%"
-# author: "Charlie Belinsky<br>belinsky@msu.edu"
-# date-format: "D MMMM YYYY"
-# date: today
-# format: 
-#   html:
-#     css: ../presStyle.css
-  #  slide-number: c/t
-   # multiplex: true
-   # controls: true
-    #controls-layout: bottom-right
-#    touch: true
- #   theme: simple
-  # pdf:
- #   latex-auto-install: false  # use quarto update tinytex instead
-    # toc: true
-    # number-sections: true
-    # colorlinks: true
-  #  linestretch: 1.5
-# highlight-style: kate
-# include-after-body:
-#   text: |
-#     <script type="application/javascript" src="../presStyle.js"></script>
-#     <!-- need a general place for this (github) -->

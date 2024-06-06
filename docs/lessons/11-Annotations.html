@@ -102,8 +102,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <link rel="shortcut icon" href="https://qfcatmsu.github.io/assets/quarto/qfc_icon.png">
 <script>mod=true; menuCollapse=true;</script>
-<script src="qfc_styles.js"></script> 
+<script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js"></script>
+ 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="https://qfcatmsu.github.io/assets/quarto/qfc_styles.css">
 </head>
@@ -804,7 +834,7 @@ Figure&nbsp;16: Polygon and ellipse for question 2 in the application
 </figcaption>
 </figure>
 </div>
-<p>3) Using <strong><em>annotate</em></strong>, create a plot of $$y&nbsp;=&nbsp;x{“version”:“1.1”,“math”:“&lt;math xmlns=”http://www.w3.org/1998/Math/MathML”&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;&nbsp;&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;&nbsp;&lt;/mo&gt;&lt;msqrt&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/msqrt&gt;&lt;/math&gt;“}:$$</p>
+<p>3) Using <strong><em>annotate</em></strong>, create a plot of <span class="math inline">\(y=\sqrt{x}\)</span></p>
 <ul>
 <li><p>Use <strong><em>geom</em></strong> = “line”</p></li>
 <li><p>create 1000 points on the x-axis (i.e, a sequence from 1 to 1000) )</p></li>

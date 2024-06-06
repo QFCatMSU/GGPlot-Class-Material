@@ -27,7 +27,7 @@ title: "02: Components"
 
 -   Save the CSV file, called ***Lansing2016NOAA.csv*** to the ***data*** folder inside your RStudio Project (this is the same file as last lesson). 
 
--   *It is best to use the operating system's File Explorer/Finder* to move the CSV file to the proper folder.   
+-   [It is best to use the operating system's File Explorer/Finder]{.hl} to move the CSV file to the proper folder.   
 
     -   [Trap: Using Excel to move files]
 

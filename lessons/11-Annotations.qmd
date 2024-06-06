@@ -473,7 +473,7 @@ Create a script file in your Project's ***scripts*** folder called ***app11.r***
 
 ![Polygon and ellipse for question 2 in the application](images/GGP-1-07-App-Ellipse.jpg){#fig-PolyAndEllipse .fs}
 
-3\) Using ***annotate***, create a plot of \$\$y = x{"version":"1.1","math":"\<math xmlns="http://www.w3.org/1998/Math/MathML"\>\<mi\>y\</mi\>\<mo\> \</mo\>\<mo\>=\</mo\>\<mo\> \</mo\>\<msqrt\>\<mi\>x\</mi\>\</msqrt\>\</math\>"}:\$\$
+3\) Using ***annotate***, create a plot of $y=\sqrt{x}$
 
 -   Use ***geom*** = "line"
 

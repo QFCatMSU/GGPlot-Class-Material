@@ -170,3 +170,19 @@ library(package=ggplot2);             # include all GGPlot2 functions
 -   git reset HEAD –hard \# tracked files
 
 -   git clean -fd \# untracked files and directories
+
+### Testing Equations and tables here...
+
+$$
+\overline{q}_m=\frac{\Delta m}{\Delta t}
+$$ {#eq-first}
+
+::: {#fig-eq2}
+sadfkhjadkflsa $\overline{q}_m=\frac{\Delta m}{\Delta t}$ fk;sajhdfl
+:::
+
+| Col1 |          Col2 |     Col3     | Col4        | Col5    | Col6 |
+|------|--------------:|:------------:|-------------|---------|------|
+|      |               | sdfgsfdgsdfg | $aselkfhal$ | ertgwer |      |
+|      | sdgsdgsdfgfds |              |             | dsgsdg  |      |
+|      |               |              |             |         |      |

@@ -5,23 +5,23 @@ title: "12: Multipaneling"
 
 ## Purpose
 
--    Using grep to find values that meet multiple conditions
+-   Using grep to find values that meet multiple conditions
 
--    Arrange multiple plots on a canvas
+-   Arrange multiple plots on a canvas
 
--    Customizing plots on a canvas
+-   Customizing plots on a canvas
 
 ### Get data
 
 [The script for this lesson is here](../scripts/lesson12-Multipaneling.R)
 
--    Save the R file, called ***lesson12-Multipaneling.R*** to the ***scripts*** folder inside your RStudio Project
+-   Save the R file, called ***lesson12-Multipaneling.R*** to the ***scripts*** folder inside your RStudio Project
 
  
 
 [The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv) (same as last lesson)
 
--    Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+-   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
 
 ### Add library for multiple plots
 
@@ -31,9 +31,9 @@ In this lesson we are going to put multiple plots on one canvas.  To do this we
 
 To install ***gridExtra*** in RStudio:
 
--    go to ***Tools*** -\> ***Install Packages***
+-   go to ***Tools*** -\> ***Install Packages***
 
--    in the Packages textbox type in ***gridExtra*** then
+-   in the Packages textbox type in ***gridExtra*** then
 
 -   click ***Install***
 
@@ -115,21 +115,21 @@ We have a plot with 172 points, matching the 172 days it was breezy (or, the 172
 
 Next we want to find index values for various combinations of weather events for example:
 
--    days with two events (e.g., rainy **and** breezy)
+-   days with two events (e.g., rainy **and** breezy)
 
--    days with at least one of two events (e.g., rainy **or** breezy)
+-   days with at least one of two events (e.g., rainy **or** breezy)
 
--    days with exclusively one event (e.g., rainy **and not** breezy)
+-   days with exclusively one event (e.g., rainy **and not** breezy)
 
  
 
-R has three functions, called *[set operations](https://stat.ethz.ch/R-manual/R-patched/library/base/html/sets.html)*, that can perform the above tasks:
+R has three functions, called [*set operations*](https://stat.ethz.ch/R-manual/R-patched/library/base/html/sets.html), that can perform the above tasks:
 
--    ***intersect()*** -- the vector equivalent of an **AND** statement (rainy ***&*** breezy)
+-   ***intersect()*** -- the vector equivalent of an **AND** statement (rainy ***&*** breezy)
 
--    ***union()*** -- the vector equivalent of an **OR** statement (rainy ***\|*** breezy)
+-   ***union()*** -- the vector equivalent of an **OR** statement (rainy ***\|*** breezy)
 
--    ***setdiff()*** -- the vector equivalent of an **AND NOT** statement (rainy ***& !***breezy)
+-   ***setdiff()*** -- the vector equivalent of an **AND NOT** statement (rainy ***& !***breezy)
 
  
 
@@ -191,15 +191,15 @@ notRainyAndNotBreezy: int [1:«160»] 2 3 4 5 6 7 ...
 
 We now have six combinations of the weather events **rainy** and **breezy** to plot:
 
-1.   breezy days (plotted in @fig-scatterPlot)
+1.  breezy days (plotted in @fig-scatterPlot)
 
-2.   rainy days
+2.  rainy days
 
-3.   rainy AND breezy days
+3.  rainy AND breezy days
 
-4.   rainy OR breezy days
+4.  rainy OR breezy days
 
-5.   rainy AND NOT breezy days
+5.  rainy AND NOT breezy days
 
 6.  breezy AND NOT rainy days
 
@@ -279,7 +279,7 @@ arrangeGrob(«...», grobs = list(...), layout_matrix, vp = NULL,
 
 We are going to arrange the six plots created above (@fig-eventCombinations) on a canvas using three different methods:
 
--    by rows
+-   by rows
 
 -   by columns
 
@@ -291,7 +291,7 @@ The plots that will be added to the canvas must go first in ***arrangeGrob()***.
 
  
 
-For this canvas, we set the number of rows argument, or ***nrow** * to **3**.  This means ***arrangeGrob()*** will place the plots listed into 3 rows (using as many columns as necessary).  Since there are six plots, each of the 3 rows will have 2 plots.
+For this canvas, we set the number of rows argument, or ***nrow*** to **3**.  This means ***arrangeGrob()*** will place the plots listed into 3 rows (using as many columns as necessary).  Since there are six plots, each of the 3 rows will have 2 plots.
 
 ``` r
 #### Part 5: Arranging plots on one canvas by rows
@@ -337,11 +337,11 @@ The argument in ***arrangeGrob()*** that is probably most used in ***layout_matr
 
 In the following example:
 
--    All six plots are used (***plotA*** through ***plotF***)
+-   All six plots are used (***plotA*** through ***plotF***)
 
--    The first row on the canvas will have the 4^th^, 5^th^, and 6^th^ plots (***plotD***, ***plotE***, and ***plotF***)
+-   The first row on the canvas will have the 4^th^, 5^th^, and 6^th^ plots (***plotD***, ***plotE***, and ***plotF***)
 
--    The second row on the canvas will have the 3^rd^, 2^nd^, and 1^st^ plots (***plotC***, ***plotB***, and ***plotA***)
+-   The second row on the canvas will have the 3^rd^, 2^nd^, and 1^st^ plots (***plotC***, ***plotB***, and ***plotA***)
 
 ``` r
 #### Part 7: Customize arrangements using matrix
@@ -353,7 +353,7 @@ In the following example:
 
 [Note: The numbers in the matrix represents the order the plots are listed.]{.note}
 
-![The six plots using the matrix layout](images/GGP-01-10 MatrixLayout.PNG){#fig-byMatrix .fs}
+![The six plots using the matrix layout](images/GGP-01-10%20MatrixLayout.PNG){#fig-byMatrix .fs}
 
 ### Empty spaces within the canvas
 
@@ -370,9 +370,9 @@ layout_matrix = rbind(c(NA,1,2),     # row 1: nothing, 1st plot, 2nd plot
 
 Tells ***arrangeGrob()*** to create a canvas that has 2 rows and 3 columns. 
 
--    Row 1 has nothing in the first column, the 1^st^ plot in the second column, and the 2^nd^ plot in the third column
+-   Row 1 has nothing in the first column, the 1^st^ plot in the second column, and the 2^nd^ plot in the third column
 
--    Row 2 has the 3^rd^ plot in the first column and nothing in the second or third column
+-   Row 2 has the 3^rd^ plot in the first column and nothing in the second or third column
 
  
 
@@ -394,13 +394,13 @@ We can also use ***layout_matrix*** to resize plots by extending them across row
 
 The following code makes the:
 
--    1st plot 2 columns by 2 rows,
+-   1st plot 2 columns by 2 rows,
 
--    2nd plot 1 column by 1 row
+-   2nd plot 1 column by 1 row
 
--    3rd plot 2 columns by 1 row
+-   3rd plot 2 columns by 1 row
 
--    4th plot 1 column by 2 rows
+-   4th plot 1 column by 2 rows
 
 ``` r
 layout_matrix = rbind(c(1,1,2),
@@ -472,9 +472,9 @@ When executing this grid, the number will be ignored by ***layout_matrix()*** an
 
 ***arrangeGrob()*** makes two big assumptions:
 
-1.   All plots take up a rectangular space on the grid
+1.  All plots take up a rectangular space on the grid
 
-2.   All plots are represented only once on the canvas
+2.  All plots are represented only once on the canvas
 
  
 
@@ -565,37 +565,43 @@ Find how different weather conditions in the ***weatherType*** column correlate 
 
  
 
-1.   Create a script file in your Class Project called ***app12.r***.
+1.  Create a script file in your Class Project called ***app12.r***.
 
-2.   Create a histogram of ***tempDept*** restricted to days that meet a condition in the ***weatherType*** column:
+2.  Create a histogram of ***tempDept*** restricted to days that meet a condition in the ***weatherType*** column:
 
-    -   To restrict the data, you can subset with the indices that meet the condition (e.g., ***data=weatherData\[daysWithRain,\]***)
+```         
+-   To restrict the data, you can subset with the indices that meet the condition (e.g., ***data=weatherData\[daysWithRain,\]***)
+```
 
 3.  Repeat step 2 for two more conditions in the ***weatherType*** column (so, three histograms in all)
 
-4.   Create a histogram of ***tempDept*** restricted to days where [two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy AND breezy).
+4.  Create a histogram of ***tempDept*** restricted to days where [two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy AND breezy).
 
-5.   Create a histogram of ***tempDept*** restricted to days where [one of two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy OR breezy).
+5.  Create a histogram of ***tempDept*** restricted to days where [one of two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy OR breezy).
 
-6.   For all histograms, place a vertical line at the average ***tempDept*** (of the restricted data) and label the line with the average value
+6.  For all histograms, place a vertical line at the average ***tempDept*** (of the restricted data) and label the line with the average value
 
-    -   ***geom_vline*** is an option here
+```         
+-   ***geom_vline*** is an option here
+```
 
 7.  Using ***arrangeGrob()***, place the 5 histograms you created in the previous steps on one canvas
 
-8.   Using ***arrangeGrob()***, pick three histograms from steps 2-4 and place them on a canvas
+8.  Using ***arrangeGrob()***, pick three histograms from steps 2-4 and place them on a canvas
 
-    -   Resize at least 2 of the histogram so they take up more than 1 cell
+```         
+-   Resize at least 2 of the histogram so they take up more than 1 cell
+```
 
 ### Questions
 
 Answer the following in comments inside your application script:
 
-1.   What was your level of comfort with the lesson/application?
+1.  What was your level of comfort with the lesson/application?
 
-2.   What areas of the lesson/application confused or still confuses you?
+2.  What areas of the lesson/application confused or still confuses you?
 
-3.   What are some things you would like to know more about that is related to, but not covered in, this lesson?
+3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
 
 ## Extension: Adding labels to the grid area
 
