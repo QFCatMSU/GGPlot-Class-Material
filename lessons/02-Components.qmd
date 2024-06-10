@@ -505,7 +505,7 @@ C\) Create a scatterplot in GGPlot in the ***app1-02.r*** script:
 
  
 
-D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
+D\) [Inform instructor you have finished the application by creating an Issue in GitHub.](01b-GitAndGitHubSetup.html#Issues){target="_blank"}
 
 ### Questions to answer
 
@@ -581,7 +581,7 @@ When you are working in GGPlot and have diagnostic features turned on in RStudio
 
 ![The diagnostic features in RStudio -- the highlighted line is causing the scope warning](images/GGP_1-02_Warning-01.jpg){#fig-yellowTriangle .fs}
 
-You will almost always see multiple yellow warning signs on the side of your code (@fig-warnings)  The warning [no symbol named 'Date' in scope]{.hl}means that RStudio does not recognize ***Date*** as a variable or a function. This is because ***Date*** is a variable within the GGPlot function ***geom_point()***, and the debugger is not sophisticated enough to always search through the GGPlot functions.
+You will almost always see multiple yellow warning signs on the side of your code (@fig-warnings)  The warning [no symbol named 'Date' in scope]{.hl} means that RStudio does not recognize ***Date*** as a variable or a function. This is because ***Date*** is a variable within the GGPlot function ***geom_point()***, and the debugger is not sophisticated enough to always search through the GGPlot functions.
 
  
 

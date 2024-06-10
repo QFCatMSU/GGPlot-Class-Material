@@ -6,3 +6,5 @@
 .vscode
 /Test/
 lessons/crawler.r
+lessons/firewall.r
+*_fw.*
