@@ -86,7 +86,6 @@ The line above tells GGPlot to map the column ***avgTemp*** to the ***x***-axis 
 
 We have a humidity vs. temperature plot but we might want to add more data (i.e., another dimension) to this plot, like ***season***.  Since there are just four seasons, one way to do it is to represent each season with a different color.  The four seasons can be mapped on to the existing plot using the mapping ***color***.
 
-::: {#fig-stuff}
 ``` r
   #### Part 3: adding color to represent season ####
   plot3 = ggplot( data=weatherData ) +
@@ -100,9 +99,6 @@ We have a humidity vs. temperature plot but we might want to add more data (i.e.
     theme( axis.text.x=element_text(angle=90, vjust=0.5) );
   plot(plot3);
 ```
-
-this is a figure
-:::
 
 Now the plot has an added dimension: point colors that represent season:
 
@@ -148,7 +144,7 @@ Since most of the ***precip2*** values are 0.1 or less, most of the points are o
 
 Sometimes columns that look numeric are not treated as numeric -- this is because they contain some string values.  [In R, if a vector/column has one string value, the whole vector/column is treated as a string]{.hl}.  For instance, the ***precip*** column uses ***T*** to indicate a trace of precipitation (less than 0.01 inch).  We can see "T" values if we look at the first **10** values of ***precip***.
 
-``` {tab="Console"}
+``` {.r tab="Console"}
 > weatherData$precip[1:10]
  [1] "0.04" "0.00" "T"    "T"    "0.00" "0.00" "0.00" "0.15" "0.53" "0.18"
 ```

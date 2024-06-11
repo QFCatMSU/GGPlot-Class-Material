@@ -7,6 +7,10 @@ website:
       - section: "Graphing With GGPlot Lessons"  
         contents: lessons/*.qmd
 
+language:
+  search-box-placeholder: Search All Lessons
+# puts placeholder in but not the correct text
+
 project:
   render:
   - lessons/*.qmd

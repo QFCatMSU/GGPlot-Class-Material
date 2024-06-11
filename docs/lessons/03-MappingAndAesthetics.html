@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.37">
+<meta name="generator" content="quarto-1.5.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -388,26 +388,17 @@ Figure&nbsp;2: Both GGPlot codeblocks above produce the same plot
 <section id="mapping-color-to-the-plot" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="mapping-color-to-the-plot"><span class="header-section-number">4</span> Mapping color to the plot</h2>
 <p>We have a humidity vs.&nbsp;temperature plot but we might want to add more data (i.e., another dimension) to this plot, like <strong><em>season</em></strong>.&nbsp; Since there are just four seasons, one way to do it is to represent each season with a different color.&nbsp; The four seasons can be mapped on to the existing plot using the mapping <strong><em>color</em></strong>.</p>
-<div id="fig-stuff" class="quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-stuff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="fig-stuff"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="fig-stuff-1"><a href="#fig-stuff-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: adding color to represent season ####</span></span>
-<span id="fig-stuff-2"><a href="#fig-stuff-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="fig-stuff-3"><a href="#fig-stuff-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>season») ) <span class="sc">+</span></span>
-<span id="fig-stuff-4"><a href="#fig-stuff-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="fig-stuff-5"><a href="#fig-stuff-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="fig-stuff-6"><a href="#fig-stuff-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="fig-stuff-7"><a href="#fig-stuff-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="fig-stuff-8"><a href="#fig-stuff-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="fig-stuff-9"><a href="#fig-stuff-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="fig-stuff-10"><a href="#fig-stuff-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
-<span id="fig-stuff-11"><a href="#fig-stuff-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stuff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: this is a figure
-</figcaption>
-</figure>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: adding color to represent season ####</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>season») ) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now the plot has an added dimension: point colors that represent season:</p>
 <div id="fig-mappingColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -415,14 +406,14 @@ Figure&nbsp;3: this is a figure
 <img src="images/GGP-1-03-ColorMap.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mappingColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Mapping season to the color of the point in the scatterplot
+Figure&nbsp;3: Mapping season to the color of the point in the scatterplot
 </figcaption>
 </figure>
 </div>
 <p><span class="note">Note: For those of you thinking that winter is much drier than summer – you are correct, but the plot gives <strong>relative</strong> humidity – not total moisture in the air.</span></p>
 <section id="legend-and-mapping" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="legend-and-mapping"><span class="header-section-number">4.1</span> Legend and mapping</h3>
-<p>Whenever you put a mapping in to GGPlot beyond <strong><em>x</em></strong> and <strong><em>y</em></strong>, GGPlot will create a legend for that mapping.&nbsp; In <a href="#fig-mappingColor" class="quarto-xref">Figure&nbsp;4</a> the legend gives the colors for each season, and the title of the legend (<strong><em>season</em></strong>) is the column name.&nbsp; Summer days (colored blue) is clearly on the high end of the temperature axis, where winter (colored purple) is on the low end.</p>
+<p>Whenever you put a mapping in to GGPlot beyond <strong><em>x</em></strong> and <strong><em>y</em></strong>, GGPlot will create a legend for that mapping.&nbsp; In <a href="#fig-mappingColor" class="quarto-xref">Figure&nbsp;3</a> the legend gives the colors for each season, and the title of the legend (<strong><em>season</em></strong>) is the column name.&nbsp; Summer days (colored blue) is clearly on the high end of the temperature axis, where winter (colored purple) is on the low end.</p>
 <p>&nbsp;</p>
 <p>Everything in the legend can be modified, something we will do next lesson<em>.</em></p>
 </section>
@@ -431,17 +422,17 @@ Figure&nbsp;4: Mapping season to the color of the point in the scatterplot
 <p><strong><em>season</em></strong> is a string value with four distinct values, or categories: Summer, Fall, Winter, and Spring.&nbsp; A small number of discrete values maps well to <strong><em>color</em></strong>.</p>
 <p>&nbsp;</p>
 <p>Continuous values can also be mapped to <strong><em>color</em></strong> –&nbsp; GGPlot will create a gradient of colors to handle the continuous values.&nbsp; For instance, if we use the <strong><em>precip2</em></strong> column, which gives precipitation in inches and goes from <strong>0</strong> to about <strong>1.5</strong>, we get a default blue gradient of colors to represent the values:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3b: adding color to represent precipitation ####</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>preicp2») ) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3b: adding color to represent precipitation ####</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>preicp2») ) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Since most of the <strong><em>precip2</em></strong> values are 0.1 or less, most of the points are on the dark side of the gradient.&nbsp; There are only a few light blue points on the plot, represent the days with 1 inch or more or rain.</p>
 <div id="fig-mapNumericVal" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -449,7 +440,7 @@ Figure&nbsp;4: Mapping season to the color of the point in the scatterplot
 <img src="images/GGP-1-03-PrecipColor.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mapNumericVal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Mapping a numeric value to color – this creates a gradient
+Figure&nbsp;4: Mapping a numeric value to color – this creates a gradient
 </figcaption>
 </figure>
 </div>
@@ -457,8 +448,8 @@ Figure&nbsp;5: Mapping a numeric value to color – this creates a gradient
 <section id="mapping-colors-to-numerous-string-values" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="mapping-colors-to-numerous-string-values"><span class="header-section-number">4.3</span> Mapping colors to numerous string values</h3>
 <p>Sometimes columns that look numeric are not treated as numeric – this is because they contain some string values.&nbsp; <span class="hl">In R, if a vector/column has one string value, the whole vector/column is treated as a string</span>.&nbsp; For instance, the <strong><em>precip</em></strong> column uses <strong><em>T</em></strong> to indicate a trace of precipitation (less than 0.01 inch).&nbsp; We can see “T” values if we look at the first <strong>10</strong> values of <strong><em>precip</em></strong>.</p>
-<pre data-tab="Console"><code>&gt; weatherData$precip[1:10]
- [1] "0.04" "0.00" "T"    "T"    "0.00" "0.00" "0.00" "0.15" "0.53" "0.18"</code></pre>
+<div class="sourceCode" id="cb6" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> weatherData<span class="sc">$</span>precip[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">"0.04"</span> <span class="st">"0.00"</span> <span class="st">"T"</span>    <span class="st">"T"</span>    <span class="st">"0.00"</span> <span class="st">"0.00"</span> <span class="st">"0.00"</span> <span class="st">"0.15"</span> <span class="st">"0.53"</span> <span class="st">"0.18"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If we try to map <strong><em>precip</em></strong> to <strong><em>color</em></strong>, GGPlot treats each unique “string” value as distinct and discrete value, creating a very busy legend:</p>
 <div id="fig-busyLegend" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -466,7 +457,7 @@ Figure&nbsp;5: Mapping a numeric value to color – this creates a gradient
 <img src="images/GGP-1-03-PrecipStringColor.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-busyLegend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Mapping a column with numerous “string” values
+Figure&nbsp;5: Mapping a column with numerous “string” values
 </figcaption>
 </figure>
 </div>
@@ -475,17 +466,17 @@ Figure&nbsp;6: Mapping a column with numerous “string” values
 <section id="mapping-size-to-the-plot" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="mapping-size-to-the-plot"><span class="header-section-number">5</span> Mapping size to the plot</h2>
 <p>The values in <strong><em>precip2</em></strong> are probably better represented by <strong><em>size</em></strong> than <strong><em>color</em></strong>.&nbsp; We can map the precipitation on to the size of the points on the plot by using the <strong><em>size</em></strong> mapping:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: adding size to represent precipitation ####</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">size=</span>«precip2») ) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: adding size to represent precipitation ####</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">size=</span>«precip2») ) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Again, anytime you map something other than <strong><em>x</em></strong> or <strong><em>y</em></strong>,&nbsp; GGPlot creates a legend.&nbsp; The title on the legend is <strong><em>precip2</em></strong> because the column’s name is <strong><em>precip2</em></strong>.</p>
 <p>&nbsp;</p>
 <p><span class="note">Note: GGPlot does not directly translate the <strong>precip2</strong> values to size, otherwise half of the values would be 0 since half the days had no precipitation.</span></p>
@@ -495,24 +486,24 @@ Figure&nbsp;6: Mapping a column with numerous “string” values
 <img src="images/GGP-1-03-SizeMap-02.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pointSize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Mapping the precipitation to the size of the points
+Figure&nbsp;6: Mapping the precipitation to the size of the points
 </figcaption>
 </figure>
 </div>
 <section id="mapping-size-to-a-string-value" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="mapping-size-to-a-string-value"><span class="header-section-number">5.1</span> Mapping size to a string value</h3>
 <p>You can also map <strong><em>size</em></strong> to a string value, like <strong><em>season</em></strong>, but discrete values generally do not work with <strong><em>size</em></strong>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4b: adding size to represent precipitation ####</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot4b <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">size=</span>season») ) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4b: adding size to represent precipitation ####</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  plot4b <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">size=</span>season») ) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And you will also get this warning message in the <strong><em>Console</em></strong> from GGPlot:&nbsp;</p>
 <p><span class="hl">Using size for a discrete variable is not advised.&nbsp;</span></p>
 <div id="fig-sizeString" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -521,7 +512,7 @@ Figure&nbsp;7: Mapping the precipitation to the size of the points
 <img src="images/GGP-1-03-Size-String.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sizeString-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Mapping size to a string value
+Figure&nbsp;7: Mapping size to a string value
 </figcaption>
 </figure>
 </div>
@@ -532,16 +523,16 @@ Figure&nbsp;8: Mapping size to a string value
 <p><strong><em>Alpha</em></strong> measures the transparency of an object and is often used to help deal with overlapping object or when the plot is too busy.&nbsp; When you map <strong><em>alpha</em></strong> to a numeric value, the lowest value will be mapped to an <strong><em>alpha</em></strong> of <span class="hl">almost</span><strong>0</strong> (i.e., almost transparent) and the highest value will be mapped to an <strong><em>alpha</em></strong> of <strong>1</strong> (i.e., completely opaque), with in-between values mapped between <strong>0</strong> and <strong>1</strong>.</p>
 <p>&nbsp;</p>
 <p>We can map the precipitation column, <strong><em>precip2,</em></strong> to <strong><em>alpha</em></strong>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  plot4c <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">alpha=</span>precip2») ) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4c);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  plot4c <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">alpha=</span>precip2») ) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4c);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And, because most of the values are near zero, the plot looks less busy:</p>
 <div id="fig-alpha" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -549,7 +540,7 @@ Figure&nbsp;8: Mapping size to a string value
 <img src="images/GGP-1-03-Alpha.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alpha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Mapping alpha to a numeric value
+Figure&nbsp;8: Mapping alpha to a numeric value
 </figcaption>
 </figure>
 </div>
@@ -557,27 +548,27 @@ Figure&nbsp;9: Mapping alpha to a numeric value
 <section id="legend-title-and-position" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="legend-title-and-position"><span class="header-section-number">7</span> Legend title and position</h2>
 <p>By default, the title of the legend is the same as the mapping – in all the cases above, the title is the column name.&nbsp; So, <strong><em>alpha=precip2</em></strong> means the title of the legend will default to <strong><em>precip2</em></strong>.&nbsp; The legend title can be changed in <strong><em>labs()</em></strong> by setting the mapping name (in this case, <strong><em>alpha</em></strong>) to the title you want:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>          «<span class="at">alpha =</span> <span class="st">"Precipitation"</span>») <span class="sc">+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>          «<span class="at">alpha =</span> <span class="st">"Precipitation"</span>») <span class="sc">+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The position of the legend can be changed using the <strong><em>legend.position</em></strong> subcomponent (argument) in <strong><em>theme()</em></strong>.&nbsp; The value of <strong><em>legend.position</em></strong> is set to a two value vector with values from <strong>0</strong> to <strong>1</strong>.&nbsp; The first value represents the <strong>x</strong>-position of the legend, the second values represents the <strong>y</strong>-position:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>),</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.2</span>)»);  <span class="co"># x=0.15, y=0.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.2</span>)»);  <span class="co"># x=0.15, y=0.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Putting the title and position together with the rest of the plot:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">alpha=</span>precip2) ) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>          «<span class="at">alpha =</span> <span class="st">"Precipitation"</span>») <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>),</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.2</span>)»);  <span class="co"># x=0.15, y=0.2</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">alpha=</span>precip2) ) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>          «<span class="at">alpha =</span> <span class="st">"Precipitation"</span>») <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.2</span>)»);  <span class="co"># x=0.15, y=0.2</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="note">Note: <strong><em>theme()</em></strong> must come after <strong><em>theme_bw()</em></strong>, otherwise the changes will be overwritten by <strong><em>theme_bw()</em></strong></span></p>
 <div id="fig-legendChange" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -585,7 +576,7 @@ Figure&nbsp;9: Mapping alpha to a numeric value
 <img src="images/GGP-1-03-LegendTitlePosition.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-legendChange-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Changing the legend’s title and position
+Figure&nbsp;9: Changing the legend’s title and position
 </figcaption>
 </figure>
 </div>
@@ -595,34 +586,34 @@ Figure&nbsp;10: Changing the legend’s title and position
 <p>We can using multiple mappings to add more dimensions to the plot. For instance, we can map <strong><em>season</em></strong> to <strong><em>color</em></strong> and map <strong><em>precip2</em></strong> to <strong><em>size</em></strong> on the same plot.</p>
 <p>&nbsp;</p>
 <p>The titles on the legend for&nbsp;<strong><em>size</em></strong> and <strong><em>precip2</em></strong> can also be changed in <strong><em>labs()</em></strong>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">size=</span>precip2, <span class="at">color=</span>season») ) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>          «<span class="at">size =</span> <span class="st">"Precipitation"</span>»,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>          «<span class="at">color =</span> <span class="st">"Seasons"</span>») <span class="sc">+</span>    <span class="co"># changes order</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"left"</span>);</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">size=</span>precip2, <span class="at">color=</span>season») ) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          «<span class="at">size =</span> <span class="st">"Precipitation"</span>»,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          «<span class="at">color =</span> <span class="st">"Seasons"</span>») <span class="sc">+</span>    <span class="co"># changes order</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"left"</span>);</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-sizeAndColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sizeAndColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/GGP-1-03-SizeandColor.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sizeAndColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Using both size and color in the mapping
+Figure&nbsp;10: Using both size and color in the mapping
 </figcaption>
 </figure>
 </div>
 <section id="setting-legend-to-a-fixed-position" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="setting-legend-to-a-fixed-position"><span class="header-section-number">8.1</span> Setting legend to a fixed position</h3>
 <p>One other change to the plot in <em>fig ##</em> was to move the legend to the left side of the plot:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="st">"left"</span>»);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="st">"left"</span>»);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can either set the position of the legend to either:</p>
 <ul>
 <li><p>an <strong>x,y</strong> coordinate or</p></li>
@@ -639,57 +630,57 @@ Figure&nbsp;11: Using both size and color in the mapping
 <p>Since <strong><em>geom_smooth()</em></strong> adds data to the plot area, we need to use the <strong><em>mapping</em></strong> subcomponent to tell <strong><em>GGPlot</em></strong> what data is being mapped to the plot area and how. In this case we are mapping&nbsp;<strong><em>relHum</em></strong> vs.&nbsp;<strong><em>avgTemp</em></strong>.</p>
 <p>&nbsp;</p>
 <p>We also add the <strong><em>method</em></strong> subcomponent to <strong><em>geom_smooth()</em></strong> to set the smoothing method we will use on the data.&nbsp; In this case, linear model (<strong><em>lm</em></strong>).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: adding a linear model ####</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">size=</span>precip2, <span class="at">color=</span>season) ) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">geom_smooth</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),» </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                « <span class="at">method=</span><span class="st">"lm"</span>» ) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"Precipitation"</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Seasons"</span>) <span class="sc">+</span>    <span class="co"># changes order</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="st">"none"</span>»);  <span class="co"># get rid of legend</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: adding a linear model ####</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">size=</span>precip2, <span class="at">color=</span>season) ) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">geom_smooth</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),» </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                « <span class="at">method=</span><span class="st">"lm"</span>» ) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"Precipitation"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Seasons"</span>) <span class="sc">+</span>    <span class="co"># changes order</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="st">"none"</span>»);  <span class="co"># get rid of legend</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-linearModel" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-linearModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/GGP-1-03-LM.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linearModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Adding a linear model – and removing the legend
+Figure&nbsp;11: Adding a linear model – and removing the legend
 </figcaption>
 </figure>
 </div>
 <section id="overlapping-plots" class="level3" data-number="9.1">
 <h3 data-number="9.1" class="anchored" data-anchor-id="overlapping-plots"><span class="header-section-number">9.1</span> Overlapping plots</h3>
-<p>When two plots overlap, as the linear model and the scatterplot do in <a href="#fig-linearModel" class="quarto-xref">Figure&nbsp;12</a>, the component that is later in the <strong><em>ggplot()</em></strong> call overlaps the earlier component.&nbsp; So, in the above case, the linear model overlaps the scatterplot.&nbsp; To have the scatterplot overlap the linear model, just switch the two components around:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    «geom_smooth»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum), </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method=</span><span class="st">"lm"</span> ) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    «geom_point»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">size=</span>precip2, <span class="at">color=</span>season) ) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"Precipitation"</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Seasons"</span>) <span class="sc">+</span>    <span class="co"># changes order</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"none"</span>);</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When two plots overlap, as the linear model and the scatterplot do in <a href="#fig-linearModel" class="quarto-xref">Figure&nbsp;11</a>, the component that is later in the <strong><em>ggplot()</em></strong> call overlaps the earlier component.&nbsp; So, in the above case, the linear model overlaps the scatterplot.&nbsp; To have the scatterplot overlap the linear model, just switch the two components around:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    «geom_smooth»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method=</span><span class="st">"lm"</span> ) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    «geom_point»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">size=</span>precip2, <span class="at">color=</span>season) ) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"Precipitation"</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Seasons"</span>) <span class="sc">+</span>    <span class="co"># changes order</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) ,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.position =</span> <span class="st">"none"</span>);</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-switchComponents" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-switchComponents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/GGP-1-03-overlappingComponents.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-switchComponents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Switching the order of the components to change which plot is on top
+Figure&nbsp;12: Switching the order of the components to change which plot is on top
 </figcaption>
 </figure>
 </div>
