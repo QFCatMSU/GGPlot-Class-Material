@@ -1,19 +1,19 @@
 website:  
   bread-crumbs: false
+  page-navigation: true
   sidebar:
     search: true
-    collapse-level: 1   # does not work because a page within is opened
-    contents: 
-      - section: "Graphing With GGPlot Lessons"  
-        contents: lessons/*.qmd
+    collapse-level: 2   # does not work because a page within is opened
+    contents:
+      - section: "Graphing With GGPlot"
+        contents: lessons/[0-9]*.qmd  # only show filenames starting with a number
 
-language:
-  search-box-placeholder: Search All Lessons
-# puts placeholder in but not the correct text
+# language:
+#    search-box-placeholder: Search All Lessons # Does not work
 
 project:
   render:
-  - lessons/*.qmd
+  - lessons/[0-9]*.qmd
   type: website
   output-dir: docs
 

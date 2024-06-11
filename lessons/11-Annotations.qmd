@@ -1,0 +1,535 @@
+---
+title: "11: Annotations"
+# special characters for highlighting code : «»
+---
+
+## Purpose
+
+-   Manually add text, points, and lines to a canvas 
+
+-   List objects 
+
+### Code for the lesson
+
+[The script for the lesson is here](../scripts/lesson11-Annotations.R)
+
+-   Save the R file, called ***lesson11-Annotations.R*** to the ***scripts*** folder inside your RStudio Project
+
+ 
+
+[The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv) (same as last lesson)
+
+-   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+
+## Styling elements of a plot
+
+Let's start with the temperature boxes separated by wind direction from the boxplots lesson: 
+
+``` r
+  ### Part 1: Boxplots ####
+  ### Re-order the directions on the x-axis using factor(s)
+  windDirOrdered = factor(weatherData$windDir,
+                          levels=c("North", "East", "South", "West"));
+  
+  #### A Boxplot ####
+  plot1 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                 na.rm = TRUE) +
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot1);
+```
+
+![A boxplot of temperature by wind direction](images/GGP-1-07-Boxplot.png){#fig-boxPlot .fs}
+
+### *ggpot_build* and rendered data
+
+We might want to provide more information about the outliers on the plot.  The first thing we need to do is get the outliers from the data.  The way to get the outliers in GGPlot is to use ***ggplot_build()***.  ***ggplot_build()*** creates a List that *contains all the calculated data for the plot.*  This is what GGPlot uses in the background to render to the plot.
+
+``` r
+  renderedData = ggplot_build(plot1);
+```
+
+In the ***Environment*** tab you can see that ***renderedData*** is Lists within Lists.  The structure is kind of crazy but we do see the outliers for the four temperature boxes:
+
+![The outliers, three Lists deep, inside the ggplot_build data](images/GGP-1-07-RenderedData.png){#fig-ggplot_build_data .fs}
+
+### Navigating Lists in RStudio
+
+RStudio can help you create the code that extract the ***outliers*** List by: 
+
+-   Double-click on ***renderedData*** in the ***Environment***
+
+-   In the Viewer tab, click on ***renderedData*** -\> ***data*** -\> ***\[\[1\]\]***
+
+-   Click on the icon that appears on the right when you hover over ***outliers***
+
+![Using RStudio to navigate a List ](images/GGP_1-11_ListOutlier.jpg){#fig-navList .fs}
+
+ 
+
+RStudio puts this code into the Console:
+
+``` {.r tab="Console"}
+> renderedData[["data"]][[1]][["outliers"]]
+```
+
+You can set that code equal to a variable named outliers and outliers 
+
+``` r
+outliers = renderedData[["data"]][[1]][["outliers"]]
+```
+
+Or, equivalently you can use ***\$*** in place of ***\[\[  \]\]*** for named variables:
+
+``` r
+outliers = renderedData$data[[1]]$outliers;
+```
+
+[Note: **\[\[1\]\]** means the first variable in **data** -- this variable is unnamed so it has to be in **\[\[ \]\]**.]{.note}
+
+### Outliers in Environment
+
+***outliers*** is now a List variable in the ***Environment*** tab.
+
+ 
+
+There are four boxes in our boxplot (@fig-boxPlot).  The List ***outliers*** has four numeric vectors -- each vector represents the boxes in order.  The number of values in each vector in the number of outliers in each box along with the value of the outlier.  So, the first box had no outliers, the fourth had 12.
+
+::: {#fig-outliers .fs}
+``` r
+▼ outliers:    List of 4
+   $ : num(0)
+   $ : num -28
+   $ : num [1:3] -14 18 17
+   $ : num [1:12] -22 -26 18 -24 20 ...
+```
+
+**outliers** for the four boxes in the **Environment**
+:::
+
+## Annotating text
+
+We are going to the information from ***renderedData*** to manually label the one outlier in the second box (East).  That outlier is at **-28** (meaning there was a day in which the easterly winds were associated with a 28 degree drop in temperature).
+
+ 
+
+To add text to a plot we use the annotate component. [The ***annotate*** component](https://ggplot2.tidyverse.org/reference/annotate.html) can be used with the ***geom*** subcomponent to manually add text, lines, and other shapes to a plot. 
+
+``` r
+plot3 = plot1 + 
+  annotate(geom="text",   # type of annotation
+           x=1.9,         # x coordinate of annotation
+           y=-28,         # y coordinate of annotation
+           label="-28",   # the annotation
+           color="blue"); # can add style subcomponents
+plot(plot3);
+```
+
+![Adding a text annotation to a plot](images/GGP-1-07-TextAnnotation.png){#fig-textAnnotation .fs}
+
+### The coordinates in annotate
+
+When you have an axis with categorical values like the wind direction axis, then each objects gets numbered.
+
+ 
+
+So, the ***North*** box is at positionis 1, ***East*** is at 2, ***South*** is at 3, and ***West*** is at 4.  But, you can also put objects in-between the plot. So, ***y=3.5*** would be half-way between ***South*** and ***West***.
+
+ 
+
+I did not want to put the label right on top of the point, so I move it over slightly to the left by using **x=1.9** (just left of the ***East*** box)instead of **x=2**. 
+
+### Place multiple values at once
+
+The third box, ***South***, has three outliers (***-14, 18, 17***), and we can add all the outlier values in one ***annotate*** by using vectors instead of single values for the subcomponents:
+
+``` r
+  #### Part 4: Add multiple text values to the plot ####
+  plot4 = plot1 + 
+    annotate(geom="text",  
+             x=c(2.9, 3.1, 2.9),        
+             y=c(-14,18,17),        
+             label=c(-14,18,17),   # could use outliers[[3]] here
+             color=c("blue", "red", "red"));
+  plot(plot4);
+```
+
+![Adding multiple text objects in one annotate component](images/GGP-1-07-MultipleObjects.png){#fig-multipleTextObjects .fs}
+
+### Adding outliers from the List 
+
+We could have directly used the values from the List.  To extract the 3 outliers from the unnamed 3rd vector (representing the third box):
+
+``` r
+  thirdBoxOutliers = outliers[[3]];
+```
+
+Then we can use ***thirdBoxOutliers*** instead of manually adding the three values:
+
+``` r
+  plot5 = plot1 + 
+    annotate(geom="text",  
+             x=c(2.9, 3.1, 2.9),        
+             y=«thirdBoxOutliers»,        
+             label=«thirdBoxOutliers»,   
+             color=c("blue", "red", "red"));
+  plot(plot5);
+```
+
+This code produces a plot that is exactly the same as @fig-multipleTextObjects.
+
+## Adding lines (segments) to a plot
+
+We are going to add the date for the highest outlier on the fourth box (West winds), which is January 28.  There is no easy way to extract the date from the outlier value -- I show one way to get the most extreme outlier in [Extension: extracting the date of the outliers using code].  We can also just look in the ***Environment*** and see that a -26 degree change occurred on Feb 19, which represents the highest outlier in the ***West*** box.
+
+ 
+
+We also use ***annotate*** to add a line to a plot.  The ***geom*** is "segment" and you need to supply four values, the x and y starting and ending points (***x, xend, y, yend***).  The segment connect the text to the outlier point:
+
+``` r
+  plot7 = plot1 + 
+    annotate(geom="text",  
+             x=3,        
+             y=26,  
+             label="2-19",     
+             color="red") +
+    annotate(geom="segment", # create a line
+             x=3.2,          # starts just after the third box
+             xend=3.95,      # ends just before the fourth box
+             y=26,           # starts at 26 (y-direction)
+             yend=26);       # ends at 26 (y-direction)
+  plot(plot7);
+```
+
+[Note: in GGPlot, **lines** go across the whole plot and are horizontal or vertical, **segments** are lines that goes between any two points.]{.note}
+
+![Adding a line to a plot](images/GGP-1-07-AddText.png){#fs-addLine .fs}
+
+### Styling the line and adding an arrow
+
+You can style the line with ***linewidth***, ***linetype***, and ***color*** just like in ***geom_line***.  You can also add an arrow to the line using the function ***arrow().*** [Note: **arrow()** comes from the package **grid**, which is already included with the package **ggplot2**.]{.note}
+
+``` r
+  #### Part 8 Style the line and add an arrow ####
+  plot8 = plot1 + 
+    annotate(geom="text",  
+             x=3,        
+             y=26,    
+             label="2-19",   
+             color="red") +
+    annotate(geom="segment",
+             x=3.2, 
+             xend=3.95,
+             y=26, 
+             yend=26,
+             color = "red",
+             linetype=2,
+             linewidth = 0.5,
+             arrow = arrow());
+  plot(plot8);
+```
+
+![Styling the line and adding an arrow](images/GGP-1-07-Arrow.png){#fig-arrow .fs}
+
+## Adding a rectangle to the plot
+
+Adding a rectangle to the plot is very similar to adding a segment except the subcomponents name change slightly.  Instead of ***x, xend, y, yend,*** you use ***xmin, xmax, ymin, ymax***:
+
+``` r
+  #### Part 9 Adding a box to the plot ####
+  plot9 = plot8 + 
+    annotate(geom="rect",   # rectangle
+             xmin = 2.8,    # starting x
+             xmax = 3.2,    # ending x point
+             ymin = 23.5,   # starting y point
+             ymax = 28.5,   # ending y point
+             alpha = 0.2,
+             linetype=2,
+             color = "red",
+             fill = "grey80");
+  plot(plot9);
+```
+
+![Adding a box to the plot](images/GGP-1-07-AddBox.png){#fig-addBox .fs}
+
+### Layering objects in GGPlot
+
+In GGPlot, the layers are determined by the order.  This means the box in @fig-boxPlot appears in front of the text because the box was laid out after the text, which is part of  ***plot8***.  This is not much of a problem here because the box has an ***alpha*** of **0.2**, but if you increase ***alpha*** you will see the box cover up the text.  The only way to fix this is to redo the plot so that the text component is laid out after the box component. 
+
+## Adding points
+
+We can add points to the plot using ***annotate*** -- it is very similar to adding text:
+
+``` r
+  #### Part 10: Adding a point to a plot ####
+  plot10 =  plot1 +
+    annotate(geom="point",
+             x = 2,
+             y = 25,
+             size = 3,
+             color =rgb(red=0, green=.3, blue=.7),
+             fill = rgb(red=1, green=1, blue=0),
+             shape = 24);
+  plot(plot10);
+```
+
+![Adding a point to the plot](images/GGP-1-07-point.png){#fig-addPoint .fs}
+
+### Adding multiple points
+
+And like text, we can add multiple points using vectors.  We are going to manually add 5 points to the plot using one ***annotate*** component:
+
+ 
+
+First we define the position, size, and color of the 5 points -- and save them to vectors:
+
+``` r
+  #### Part 11: Adding multiple points to a plot ####
+  ### data for 5 points
+  xVector = c(1, 1.3, 1.6, 1.9, 2.2);
+  yVector = c(15, 17, 19, 21, 23);
+  pointSize = c(5,4,3,2,1);
+  pointFill = c("yellow", "orange", "red", "green", "pink");
+```
+
+Then use the vectors above to populate the subcomponents of annotate:
+
+``` r
+  plot11 =  plot1 +
+    annotate(geom="point",
+             x = xVector,
+             y = yVector,
+             size = pointSize,
+             color =rgb(red=0, green=.3, blue=.7),  # same for all points
+             fill = pointFill,
+             shape = 24);                           # same for all points
+  plot(plot11);
+```
+
+![Adding multiple points to a plot](images/GGP-1-07-MultiplePoints.png){#fig-addMultiplePoints .fs}
+
+### Creating a scatterplot
+
+You could even recreate a complete scatterplot using ***annotate*** and ***geom="point"***.
+
+``` r
+  plot12 = ggplot() + # creating a canvas without a data frame
+    theme_bw() +
+    annotate(geom="point",
+             x = weatherData$avgTemp,  # adding every point in avgTemp
+             y = weatherData$relHum,   # ... and relHum
+             size = 3,
+             color = "blue",
+             fill = "red",
+             shape = 21) + 
+    labs(title="Scatterplot using annotate",
+         x = "Average Temperature",
+         y = "Relative Humidity");
+  plot(plot12);
+```
+
+![A scatterplot using annotate to add all the points](images/GGP-1-07-AnnotateScatterplot.png){#fig-annotateScatterplot .fs}
+
+## Polygons
+
+You can also use points to create a polygon using ***geom="polygon"***.  The number of sides for the polygon is the number of points given in ***x*** and ***y*** [plus 1]{.hl}. 
+
+``` r
+  #### Part 13: Polygons ####
+  plot13 = plot12 +
+      annotate(geom="polygon",  # connects all the points
+           «x = c(60,55,30,35),  # 4 points -- 5 sided polygon»
+           «y = c(60,50,40,80),»
+           color = "blue",
+           fill = "green",
+           linetype = 4,
+           alpha = 0.4);
+  plot(plot13);
+```
+
+A polygon will connect all the ***x,y*** values and create a final connection back to the original ***x,y*** values -- in this case, ***60,60***. 
+
+![Adding a polygon to the plot](images/GGP-1-07-Polygon.png){#fig-addPolygon .fs}
+
+## Add horizontal and vertical lines
+
+We can use ***annotate*** with ***geom***="segment" to add any line to a plot.  But, there is an easier way if you just want to add a vertical or horizontal line that goes all the way across the plot.  For that, we use the ***geom_vline*** and ***geom_hline*** components.
+
+ 
+
+First, let's get the mean average temperature and mean relative humidity:
+
+``` r
+  meanTemp = mean(weatherData$avgTemp);
+  meanHum = mean(weatherData$relHum);
+```
+
+The values are:
+
+``` {.r tab="Environment"}
+meanTemp: 50.6584...
+meanHum: 68.7704...
+```
+
+Now, let's create a horizontal line that represents the mean temperature and a vertical line that represents the mean humidity.
+
+ 
+
+In this case the mappings are ***xintercept*** (for the vertical line) and ***yintercept*** (for the horizontal line)
+
+``` r
+  plot14 = plot12 +
+    geom_vline(mapping=aes(xintercept = meanTemp),
+               color = "orange",
+               linewidth = 2) +
+    geom_hline(mapping=aes(yintercept = meanHum),
+               color="purple",
+               linewidth=2);
+  plot(plot14);
+```
+
+![Adding a horizontal and vertical line to the plot](images/GGP-1-07-Hor-Vert-Lines.png){#fig-addLines .fs}
+
+ 
+
+You can also add horizontal and vertical lines using annotate in [Extension: Add horizontal and vertical lines using annotate] -- but it is a bit buggy.
+
+## Adding circles and ellipses
+
+Neither ***annotate*** nor GGPlot provides a convenient way to add circles and ellipses to a plot -- we will use the ***ggforce*** package to do this.  ***ggforce*** adds two new plot components [***geom_circle***](https://ggforce.data-imaginist.com/reference/geom_circle.html)and [***geom_ellipse***](https://ggforce.data-imaginist.com/reference/geom_ellipse.html).  Both components use subcomponents that are similar to the subcomponents used in other ggplot plotting components.
+
+``` r
+  #### Part 15: Add a simple circle ####
+  ## The circle is skewed because the plot axes are not the same scale
+  plot14 = plot12 +
+     # coord_fixed() +  # sets axes to same scale so circle is visually a circle
+       geom_circle(mapping=aes(x0 = 50, y0 = 50, r = 10),
+                 alpha=0.2,   
+                 color = "blue",
+                 fill = "green",
+                 linewidth=3,
+                 linetype=3);
+  plot(plot15);
+```
+
+The main difference in setup between ***geom_circle*** and other plotting components is that you need to map three value: ***x0, y0***, and ***r***.  ***x0*** and ***y0*** represent the circle's center and ***r*** represents the radius.
+
+ 
+
+Axes often have different scales that will skew the circle.  If you want to visually maintain the circle then you need to rescale the axes -- this is done using ***coord_fixed()***, which is commented out in my code.
+
+![Adding a circle to the plot](images/GGP-1-07-Circle.png){#fig-addCircle .fs}
+
+### Ellipse
+
+***geom_ellipse*** is similar to ***geom_circle*** except that you need more values to define an ellipse.  The mapped values are:
+
+-   ***x0, y0***: center point of the ellipse
+
+-   ***a, b***: the two radii of the ellipse
+
+-   ***angle***: spins the ellipse 
+
+``` r
+  plot16 = plot12 + 
+    geom_ellipse(mapping=aes(x0 = 50, y0 = 50, a = 20, b=10, angle=-90),
+                 alpha=0.2,   
+                 color = "blue",
+                 fill = "green",
+                 linewidth=3,
+                 linetype=3);
+  plot(plot16);
+```
+
+![Adding an ellipse to a plot](images/GGp-1-07-Ellipse.png){#fig-addEllipse .fs}
+
+## Application
+
+Create a script file in your Project's ***scripts*** folder called ***app11.r*** and, using the data from **Lansing2016NOAA.csv:**
+
+1\) Using the plot from @fig-boxPlot:
+
+-   Using ***annotate***, add three outlier points to the East box (two above and one below).
+
+-   Change the color, shape, and size of the points
+
+-   Labels the points with their value
+
+-   Put black boxes ***behind*** the labels
+
+2\) Using annotate create a scatterplot of just the first 100 values of relative humidity vs. average temperature:
+
+-   Create a 5-point polygon that covers all temperature points less than or equal to 20 degrees (shown circled in red in image below)
+
+    -   the image is just showing you which points to cover -- you are not trying to replicate the shape in the image!
+
+-   Add a horizontal and vertical lines that represent the median temperature and median humidity for the 100 values
+
+-   Create an ellipse that covers the 9 points circled in grey below
+
+![Polygon and ellipse for question 2 in the application](images/GGP-1-07-App-Ellipse.jpg){#fig-PolyAndEllipse .fs}
+
+3\) Using ***annotate***, create a plot of $y=\sqrt{x}$
+
+-   Use ***geom*** = "line"
+
+-   create 1000 points on the x-axis (i.e, a sequence from 1 to 1000) )
+
+-   create 1000 points on the y-axis (i.e, a sequence from sqrt(1 to 1000) )
+
+-   add an arrow to the end of the curve
+
+### Questions
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What areas of the lesson/application confused or still confuses you?
+
+3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+
+## Extension: extracting the date of the outliers using code
+
+The code is beyond the scope of this class and finding other outlier values gets even trickier... 
+
+``` r
+  # Get the index of all days with west winds
+  «westWindDays» = which(weatherData$windDir == "West"); 
+  
+  # find the maximum change in temperature on days with west winds
+  «maxTempChange» = max(weatherData$changeMaxTemp[«westWindDays»],
+                      na.rm = TRUE);  # need to remove NA values
+  
+  # find the index of the the day that had the max value (28)
+  «dayMaxChange» = which.max(weatherData$changeMaxTemp[«westWindDays»]);
+  
+  # Get the date from the index (2-19)
+  date = weatherData$date[westWindDays[dayMaxChange]];
+```
+
+## Extension: Add horizontal and vertical lines using annotate
+
+When we used ***geom_hline*** and ***geom_vline*** to create line, we put the information needed for the line (***xintercept*** and ***yintercept***) inside the ***mapping***.  This is inconsistent with what ***mapping*** is intended for because we are hardcoding, not mapping*,* the value from the data.  There is a more conceptually consistent way to plot horizontal and vertical lines using ***annotate*** but there is a bug:
+
+``` r
+  ##### Part 14b: Using annotate for vertical and horizontal lines (buggy) ####
+  plot14b = plot12 +
+    annotate(geom="vline",
+             xintercept = meanTemp,
+             x = meanTemp, # x must be included but is ignored (this is a bug)
+             color = "orange",
+             linewidth= 2) +
+    annotate(geom="hline",
+             yintercept = meanHum,
+             y = meanHum,  # y must be included but is ignored (this is a bug)
+             color = "purple",
+             linewidth= 2);
+  plot(plot14b);
+```
+
+The above code produces the same plot as @fig-addLines but uses ***annotate***, which is designed for hardcoded (i.e., non-mapped) values.  The problem is that you need to include the intercept values twice: once for the axis (***x, y***) and once for the intercept (***xintercept, yintercept***) -- and you will get a warning regarding ***x*** and ***y***.  Otherwise, the code works fine. 

@@ -65,7 +65,7 @@ Students should be familiar with basic programming structures covered in a typic
 
 [To test your hardware in Zoom]{.hl}, open Zoom and make sure you are on the ***Home*** tab and click the ***Settings Icon*** (@fig-zoomImg) and the **Settings** Window will open @fig-zoomImg.  Go to the ***Audio*** and ***Video*** tabs to test your microphone, speakers, and webcam.  If you are using a Mac, the view is different but the buttons are the same.
 
-![Testing the audio and video in Zoom (click on picture to resize).](images/R-00-Zoom.PNG){#fig-zoomImg .flexSize fig-align="left"}
+![Testing the audio and video in Zoom (click on picture to resize).](images/R-00-Zoom.PNG){#fig-zoomImg .fs fig-align="left"}
 
 ### Accessing the class
 
