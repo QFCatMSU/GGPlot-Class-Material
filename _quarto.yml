@@ -5,15 +5,15 @@ website:
     search: true
     collapse-level: 2   # does not work because a page within is opened
     contents:
-      - section: "Graphing With GGPlot"
-        contents: lessons/[0-9]*.qmd  # only show filenames starting with a number
+      - section: "<b>Graphing With GGPlot class</b>"
+        contents: lessons/*.qmd  # using regex will add another menu level (don't know why)
 
-# language:
-#    search-box-placeholder: Search All Lessons # Does not work
+language:
+  search-box-placeholder: Search All Lessons # does not work...
 
 project:
   render:
-  - lessons/[0-9]*.qmd
+  - lessons/[0-9]*.qmd  # only render files whose names start with a number
   type: website
   output-dir: docs
 
@@ -22,7 +22,7 @@ format:
     page-layout: full
     css: "https://qfcatmsu.github.io/assets/quarto/qfc_styles.css"
     toc: true
-    toc-title: Lesson Content
+    toc-title: "<b>Lesson Content</b>"
     toc-location: left
     fig-align: left
     theme: default

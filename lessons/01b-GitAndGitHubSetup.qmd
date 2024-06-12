@@ -25,19 +25,19 @@ For this class, we will use Git and GitHub for your class assignments.
 
  
 
-***Git*** and ***GitHub*** are two terms that are often conflated. [Git]{.hl} is versioning software -- you use Git on your computer to document and create a history of your project.  Using the project history, you can bring back previous versions of files or your entire Project.  Git calls the project, along with its full history, a [repository]{.hl}.
+***Git*** and ***GitHub*** are two terms that are often conflated. [Git]{.hl} is versioning software -- you use Git on your computer to document and create a history of your project folder.  Using the project history, you can bring back previous versions of files or your entire Project.  Git calls the project folder, along with its full history, a [repository]{.hl}.
 
  
 
-[GitHub]{.hl} is an online software develoment platform and a place to store, sync, and share your Git repository. When combined, Git and GitHub make a very powerful project-management system.
+[GitHub]{.hl} is an online software development platform and a place to store, sync, and share your Git repository. When combined, Git and GitHub make a very powerful project-management system.
 
  
 
-While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to entry. This lesson is designed to allow you to do the very basics in Git and GitHub.
+While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to getting started. This lesson is designed to allow you to do the very basics in Git and GitHub.
 
 ## Install Git on your computer (need version 2.44 or higher)
 
-For ***Windows***, [click here to download and install Git](https://git-scm.com/downloads) -- click on ***Download for Windows***. Git asks a lot of questions during installation and you can choose the default option for everything.
+For ***Windows***, [go here to download and install Git](https://git-scm.com/downloads) -- click on ***Download for Windows***. Git asks a lot of questions during installation and you can choose the default option for everything.
 
  
 
@@ -75,13 +75,13 @@ We will be using the ***Terminal*** tab in RStudio to setup Git and to connect y
 
  
 
-Most of the Terminal command used in this lesson will only work if you are in the correct RStudio Project. The RStudio Project name (in @fig-RStudioTermProj it is ***My_Project***) is in the upper-right corner of RStudio.
+Most of the Terminal command used in this lesson will only work if you are in the correct RStudio Project. The RStudio Project name (in @fig-RStudioTermProj it is ***My_Project***) is in the upper-right corner of RStudio (circled in red).
 
 ![RStudio Terminal tab (don't forget to check the Project Folder)](images/RStudioTerminalAndProject.png){#fig-RStudioTermProj .fs}
 
 ## Configuring Git on your computer
 
-To use Git for your project, you first need to configure Git on your computer with your GitHub username and email. The username and email are used by Git and GitHub to identify who made what changes in the project history – this is especially important when you are collaborating on a project.
+Before you use Git, you first need to configure Git on your computer with your GitHub username and email (i.e., the email you use to sign up for your GitHub account). The username and email are used by Git to identify who made what changes in the project history – this is especially important when you are collaborating on a project.
 
  
 
@@ -93,13 +93,13 @@ We will use the RStudio ***Terminal*** tab to enter these values.
 
  
 
-The first command sets the global user name (replace ***userName*** with your GitHub ID):
+The first command sets the user name in Git (replace ***userName*** with your GitHub ID):
 
 ``` {.bash tab="Terminal"}
 git config --global user.name "userName"
 ```
 
-And the second command sets the global user ***email*** (replace ***email*** with the email you used to signup for GitHub):
+The second command sets the user ***email*** in Git (replace ***email*** with the email you used to signup for GitHub):
 
 ``` {.bash tab="Terminal"}
 git config --global user.email "email"
@@ -135,7 +135,7 @@ Both RStudio Projects and Git Repositories are set up in your Project Folder (i.
 
  
 
-**To add a Git repository to your RStudio Project folder**
+**To add a Git repository to your Project Folder**
 
 1.  Make sure your RStudio Project is open
 
@@ -151,7 +151,7 @@ Both RStudio Projects and Git Repositories are set up in your Project Folder (i.
 
 ### RStudio Git tab
 
-When you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class.
+After you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This tab is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. It is not necessary to use the ***Git*** tab.
 
 ![The Git tab has been added to the RStudio Project](images/GH_02_GitTab.png){#fig-GitTab .fs}
 
@@ -235,7 +235,7 @@ Then you first need to remove the current GitHub repository (i.e., the ***origin
 git remote rm origin
 ```
 
-and then repeat this line (using your GitHub URL)
+and then repeat this line (using the correct GitHub URL)
 
 ``` bash
 git remote add origin "https://github.com/myUserName/myRepository.git"
@@ -262,6 +262,10 @@ You will repeat these lines every time you turn in an application.
 -   The second line accepts, and adds a message about, your changes
 
 -   The third line sends the changes with the message to GitHub.
+
+ 
+
+[Note: you can also use the Git tab as shown in [Extension: Use Git Tab]]{.note}
 
 ### Authenticating with GitHub
 
@@ -339,9 +343,9 @@ Answer the following in comments inside your application script:
 
 ## Extension: Use Git Tab
 
-The Git tab can be used to sync changes from your Project Folder to your GitHub repository.
+The ***Git*** tab can be used to sync changes from your Project Folder to your GitHub repository.
 
-1.  In the Git tab, click ***Commit*** and the ***RStudio Review Changes*** window appears
+1.  In the ***Git*** tab, click ***Commit*** and the ***RStudio Review Changes*** window appears
 
 2.  On the left, check the files you want to sync with your GitHub repository (you do not have to check all of them)
 
