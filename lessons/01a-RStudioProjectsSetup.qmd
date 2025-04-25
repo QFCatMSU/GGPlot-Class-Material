@@ -306,9 +306,9 @@ There are multiple ways to open an RStudio Project -- three of them are:
 
 To open the script file either:
 
--   In ***Files*** tab, go to the ***scripts*** folder and click on ***lesson01-Setup.R*** or
+-   In ***Files*** tab, go to the ***scripts*** folder and click on ***RSProj_Setup.R*** or
 
--   In RStudio click ***File -\> Open File -\>*** and then find  ***lesson01-Setup.R*** in the ***scripts*** folder and click ***Open***.
+-   In RStudio click ***File -\> Open File -\>*** and then find  ***RSProj_Setup.R*** in the ***scripts*** folder and click ***Open***.
 
  
 
