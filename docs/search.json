@@ -781,6 +781,17 @@
     ]
   },
   {
+    "objectID": "lessons/01a-RStudioProjectsSetup.html#questions-about-the-material",
+    "href": "lessons/01a-RStudioProjectsSetup.html#questions-about-the-material",
+    "title": "01a: RStudio Projects Setup",
+    "section": "2 Questions about the material…",
+    "text": "2 Questions about the material…\nIf you have any questions about the material in this lesson, feel free to email them to the instructor, Charlie Belinsky, at belinsky@msu.edu.",
+    "crumbs": [
+      "<b>Graphing With GGPlot class</b>",
+      "01a: RStudio Projects Setup"
+    ]
+  },
+  {
     "objectID": "lessons/01a-RStudioProjectsSetup.html#viewing-file-extensions-and-hidden-files",
     "href": "lessons/01a-RStudioProjectsSetup.html#viewing-file-extensions-and-hidden-files",
     "title": "01a: RStudio Projects Setup",
@@ -803,11 +814,11 @@
     ]
   },
   {
-    "objectID": "lessons/01a-RStudioProjectsSetup.html#installing-the-ggplot2-package",
-    "href": "lessons/01a-RStudioProjectsSetup.html#installing-the-ggplot2-package",
+    "objectID": "lessons/01a-RStudioProjectsSetup.html#installing-a-package",
+    "href": "lessons/01a-RStudioProjectsSetup.html#installing-a-package",
     "title": "01a: RStudio Projects Setup",
-    "section": "4 Installing the GGPlot2 package",
-    "text": "4 Installing the GGPlot2 package\nThe package, GGPlot2, does not come with R or RStudio – so we are going to install the GGPlot2 package in RStudio.\n \nTo install the package GGPlot2 using RStudio (Figure 6):\n\nClick Tools -&gt; Install Packages…\nIn the Install Packages window, type GGPlot2 in the Packages textbox\nClick Install\n\n \nGGPlot2 requires many other packages (its dependencies) – and RStudio will install those packages along with GGPlot2.  Be patient, as this could take a little time.\n\n\n\n\n\n\nFigure 6: Installing the GGPlot2 Package in RStudio\n\n\n\n \nExtension: Different ways to install packages",
+    "section": "5 Installing a package",
+    "text": "5 Installing a package\nGGPlot2, is a widely used package that does not come with R or RStudio – so we are going to install the GGPlot2 package using RStudio.\n \nTo install the package GGPlot2 using RStudio (Figure 6):\n\nClick Tools -&gt; Install Packages…\nIn the Install Packages window, type GGPlot2 in the Packages textbox\nClick Install\n\n \nGGPlot2 requires many other packages (its dependencies) – and RStudio will install those packages along with GGPlot2.  Be patient, as this could take a little time.\n\n\n\n\n\n\nFigure 6: Installing the GGPlot2 Package in RStudio\n\n\n\n \nExtension: Different ways to install packages",
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "01a: RStudio Projects Setup"
@@ -829,7 +840,7 @@
     "href": "lessons/01a-RStudioProjectsSetup.html#rstudio-basics",
     "title": "01a: RStudio Projects Setup",
     "section": "7 RStudio Basics",
-    "text": "7 RStudio Basics\nNow we are going to execute the script file, RSProj_Setup.R, that we just downloaded to your RStudio Project’s scripts folder.\n \nRSProj_Setup.R takes weather data from the other downloaded file, RSProj_Setup.csv and creates boxplots showing how Wind Direction and Wind Speed relate to the Change In Temperature.\n \nWe are executing the script to test your setup and help you become familiar with the RStudio environment. If you are taking the GGPlot class, the code in RSProj_Setup.R is something you will learn throughout the course. For this lesson,\n\n7.1 Open your RStudio Project\nThere are multiple ways to open an RStudio Project – three of them are:\n\nOpen your Project Folder in File Explorer (Windows) or Finder (Mac) window and double-click the &lt;Project_Name&gt;.Rproj file\nIn RStudio, click File -&gt; Open Project… -&gt; navigate to the Project Folder and click the *&lt;Project_Name&gt;.Rproj file\nIn RStudio, click File -&gt; Recent Projects -&gt; choose the RStudio Project you just created\n\n\n\n7.2 Open a script file in your Project\nTo open the script file either:\n\nIn Files tab, go to the scripts folder and click on lesson01-Setup.R or\nIn RStudio click File -&gt; Open File -&gt; and then find  lesson01-Setup.R in the scripts folder and click Open.\n\n \nAfter opening the script file, you should see something that looks like this (Figure 14) on your screen:\n\n\n\n\n\n\nFigure 14: Opening your first script in RStudio\n\n\n\nThe script will only execute if it is opened inside your RStudio Project.\n\n\n7.3 Setting up RStudio tabs for scripts\nWhen we are editing and executing an R script, we generally have the following RStudio tabs open (Figure 15):\n\nFile Viewer – text viewer and editor for the opened script files (upper-left corner)\nConsole – displays information about the execution of your script file (lower-left corner)\nEnvironment – displays data points, or variables, from the execution of your script file (upper-right corner)\nPlots – plots produced by the execution of your script file are displayed here (lower-right corner)\n\n \nThe fourth (lower-right corner) tab is on Files, so we switched the tab to Plots:\n\n\n\n\n\n\nFigure 15: The Tabs most commonly used in RStudio\n\n\n\n \nNote: the Help tab in the lower-right corner is something you might find useful. Extension: The Help Tab\n\n\n7.4 Common buttons used in RStudio\nThe script file, RSProj_Setup.r, is a fully functioning script that takes temperature and wind data from the Comma Separated Value (CSV) file, RSProj_Setup.csv, and plots out the data. I am going to use this program to demonstrate a few of the useful buttons in RStudio.\n \nThe one button you will use most in R is Source, which executes your whole script.  Press the Source button to execute the script (Figure 16).\n \nNote: If you have already used R, there is a good chance you highlight lines of code and click Run to execute just those lines.  We are not using this method in this class.  For this class, you should always use Source to execute your code.  For more information go to Extension: Run vs. Source\n\n\n\n\n\n\nFigure 16: Running (Sourcing) the script\n\n\n\nAfter the script is run:\n\nThe Environment tab displays values for the data (variables) in the script (e.g., weatherData, windLabels).\nThe Console tab displays information about the execution of the script.\nThe Plot tab displays the box plots.  If there are multiple plots, you can use the arrow buttons to switch between the plots.\n\n\n\n7.5 Cleaning up the RStudio windows\nThere many times where you want to clean up the windows, which can get very crowded with information from old script executions.\n\nTo clean the Environment, Plot, and Console tabs use the brush button (Figure 16).\n\n\n\n\n\n\n\nFigure 17: Cleaning out the windows\n\n\n\n \nIf you click Source again, the Environment, Plot, and Console tabs will once again be populated with data from the script.",
+    "text": "7 RStudio Basics\nNow we are going to execute the script file, RSProj_Setup.R, that we just downloaded to your RStudio Project’s scripts folder.\n \nRSProj_Setup.R takes weather data from the other downloaded file, RSProj_Setup.csv and creates boxplots showing how Wind Direction and Wind Speed relate to the Change In Temperature.\n \nWe are executing the script to test your setup and help you become familiar with the RStudio environment. If you are taking the GGPlot class, the code in RSProj_Setup.R is something you will learn throughout the course. For this lesson,\n\n7.1 Open your RStudio Project\nThere are multiple ways to open an RStudio Project – three of them are:\n\nOpen your Project Folder in File Explorer (Windows) or Finder (Mac) window and double-click the &lt;Project_Name&gt;.Rproj file\nIn RStudio, click File -&gt; Open Project… -&gt; navigate to the Project Folder and click the *&lt;Project_Name&gt;.Rproj file\nIn RStudio, click File -&gt; Recent Projects -&gt; choose the RStudio Project you just created\n\n\n\n7.2 Open a script file in your Project\nTo open the script file either:\n\nIn Files tab, go to the scripts folder and click on RSProj_Setup.R or\nIn RStudio click File -&gt; Open File -&gt; and then find  RSProj_Setup.R in the scripts folder and click Open.\n\n \nAfter opening the script file, you should see something that looks like this (Figure 14) on your screen:\n\n\n\n\n\n\nFigure 14: Opening your first script in RStudio\n\n\n\nThe script will only execute if it is opened inside your RStudio Project.\n\n\n7.3 Setting up RStudio tabs for scripts\nWhen we are editing and executing an R script, we generally have the following RStudio tabs open (Figure 15):\n\nFile Viewer – text viewer and editor for the opened script files (upper-left corner)\nConsole – displays information about the execution of your script file (lower-left corner)\nEnvironment – displays data points, or variables, from the execution of your script file (upper-right corner)\nPlots – plots produced by the execution of your script file are displayed here (lower-right corner)\n\n \nThe fourth (lower-right corner) tab is on Files, so we switched the tab to Plots:\n\n\n\n\n\n\nFigure 15: The Tabs most commonly used in RStudio\n\n\n\n \nNote: the Help tab in the lower-right corner is something you might find useful. Extension: The Help Tab\n\n\n7.4 Common buttons used in RStudio\nThe script file, RSProj_Setup.r, is a fully functioning script that takes temperature and wind data from the Comma Separated Value (CSV) file, RSProj_Setup.csv, and plots out the data. I am going to use this program to demonstrate a few of the useful buttons in RStudio.\n \nThe one button you will use most in R is Source, which executes your whole script.  Press the Source button to execute the script (Figure 16).\n \nNote: If you have already used R, there is a good chance you highlight lines of code and click Run to execute just those lines.  We are not using this method in this class.  For this class, you should always use Source to execute your code.  For more information go to Extension: Run vs. Source\n\n\n\n\n\n\nFigure 16: Running (Sourcing) the script\n\n\n\nAfter the script is run:\n\nThe Environment tab displays values for the data (variables) in the script (e.g., weatherData, windLabels).\nThe Console tab displays information about the execution of the script.\nThe Plot tab displays the box plots.  If there are multiple plots, you can use the arrow buttons to switch between the plots.\n\n\n\n7.5 Cleaning up the RStudio windows\nThere many times where you want to clean up the windows, which can get very crowded with information from old script executions.\n\nTo clean the Environment, Plot, and Console tabs use the brush button (Figure 16).\n\n\n\n\n\n\n\nFigure 17: Cleaning out the windows\n\n\n\n \nIf you click Source again, the Environment, Plot, and Console tabs will once again be populated with data from the script.",
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "01a: RStudio Projects Setup"
@@ -929,17 +940,6 @@
     "title": "01a: RStudio Projects Setup",
     "section": "16 Extension: Create a standalone R script",
     "text": "16 Extension: Create a standalone R script\nThere are two ways to create script file in RStudio:\n\nA standalone script\nAs part of an RStudio Project\n\n \nMany people use the first method.  In this class we exclusively use the second method.  The first method of creating a script file is fine for testing something out.  The second method is far better for organizing larger projects and sharing your code with others.\n \nThe reason the second method is better is because a project consist of many file that need to talk each-other.  Script files will call other scripts file or read in data from data files.  In order to makes this work, the script files need to know how to find the other files. In an RStudio Project, this is easy because the working directory is always the Project Folder of your project – and all files in the project are contained within the Project Folder.  So, you just need to look for the file relative to the Project Folder.\n \nR Programmers often get around the lack of a Project Folder/defined working directory by setting the working directory in code using setwd().  This can work locally but becomes problematic when files are shared or moved.  Whereas, RStudio Project always maintain their folder structure.",
-    "crumbs": [
-      "<b>Graphing With GGPlot class</b>",
-      "01a: RStudio Projects Setup"
-    ]
-  },
-  {
-    "objectID": "lessons/01a-RStudioProjectsSetup.html#extension-.rproj-and-.rhistory-hidden-files-in-your-project-folder",
-    "href": "lessons/01a-RStudioProjectsSetup.html#extension-.rproj-and-.rhistory-hidden-files-in-your-project-folder",
-    "title": "01a: RStudio Projects Setup",
-    "section": "16 Extension: *.RProj and .Rhistory",
-    "text": "16 Extension: *.RProj and .Rhistory\nThe *.RProj file (where * is the name of your project) stores basic information about your project – you do not need to edit this file. In your file manager, double-clicking *.RProj opens the RStudio Project.  Inside RStudio, clicking on *.RProj brings up the Project Options window (Figure 25), which you can also get to by clicking on Tools -&gt; Project Options.\n\n\n\n\n\n\n\nFigure 25: Project Options window\n\n\n\n\nThe .Rhistory file stores commands and information from the Console tab (bottom-left corner).  For this class, you will not need to use the .Rhistory file.",
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "01a: RStudio Projects Setup"
@@ -1845,28 +1845,6 @@
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "11: Annotations"
-    ]
-  },
-  {
-    "objectID": "lessons/01a-RStudioProjectsSetup.html#questions-about-the-material",
-    "href": "lessons/01a-RStudioProjectsSetup.html#questions-about-the-material",
-    "title": "01a: RStudio Projects Setup",
-    "section": "2 Questions about the material…",
-    "text": "2 Questions about the material…\nIf you have any questions about the material in this lesson, feel free to email them to the instructor, Charlie Belinsky, at belinsky@msu.edu.",
-    "crumbs": [
-      "<b>Graphing With GGPlot class</b>",
-      "01a: RStudio Projects Setup"
-    ]
-  },
-  {
-    "objectID": "lessons/01a-RStudioProjectsSetup.html#installing-a-package",
-    "href": "lessons/01a-RStudioProjectsSetup.html#installing-a-package",
-    "title": "01a: RStudio Projects Setup",
-    "section": "5 Installing a package",
-    "text": "5 Installing a package\nGGPlot2, is a widely used package that does not come with R or RStudio – so we are going to install the GGPlot2 package using RStudio.\n \nTo install the package GGPlot2 using RStudio (Figure 6):\n\nClick Tools -&gt; Install Packages…\nIn the Install Packages window, type GGPlot2 in the Packages textbox\nClick Install\n\n \nGGPlot2 requires many other packages (its dependencies) – and RStudio will install those packages along with GGPlot2.  Be patient, as this could take a little time.\n\n\n\n\n\n\nFigure 6: Installing the GGPlot2 Package in RStudio\n\n\n\n \nExtension: Different ways to install packages",
-    "crumbs": [
-      "<b>Graphing With GGPlot class</b>",
-      "01a: RStudio Projects Setup"
     ]
   }
 ]
