@@ -1,5 +1,6 @@
 ---
 title: "04: Elements And Styles"
+short: "04"
 # special characters for highlighting code : «»
 ---
 
@@ -120,7 +121,7 @@ In this example, we used four subcomponents in ***geom_point()***:
 
 ### Mapping properties vs. subcomponents
 
-Properties like ***color, size, and shape*** can be used to map data to a plot component (arguments for ***aes()*** as in *fig \##*) or they can be used to directly set the property of a plot component (subcomponents of the plot as in *fig \##*).  *They can not be used for both*.  If you use these properties as both a mapping and a subcomponent, the subcomponent will override the mapping.
+Properties like ***color, size, and shape*** can be used to map data to a plot component (arguments for ***aes()*** as in @fig-mappings) or they can be used to directly set the property of a plot component (subcomponents of the plot as in @fig-directStyle).  [They can not be used for both.]{.hl}  If you use these properties as both a mapping and a subcomponent, the subcomponent will override the mapping.
 
 ``` r
 #### Part 3: Overriding mapped styles ####
@@ -337,9 +338,9 @@ And to modify these subcomponents, you need to use the function that matches the
 
 ### Subcomponent groups
 
-The ***theme()*** page can be a bit tricky to read.  Many of the subcomponents are grouped together (*fig \##*) and the groupings can be hard to see.
+The ***theme()*** page can be a bit tricky to read.  Many of the subcomponents are grouped together (@fig-elements) and the groupings can be hard to see.
 
-In the image below ( @fig-elementGroups ), there are three groupings highlighted:
+In the image below (@fig-elementGroups), there are three groupings highlighted:
 
 -   axis titles
 
@@ -609,7 +610,7 @@ We will modify the following rectangular elements:
 
 ## Application
 
-Create a script file in your Project's ***script*** named ***app04.r*** and, using the data from **Lansing2016NOAA.csv***,* replicate (as best you can) this canvas:
+Using data from **Lansing2016NOAA.csv***,* replicate (as best you can) this canvas:
 
 ![Plot canvas to replicate](images/GGP_1-04_Replicate.png){#fig-replicate .fs}
 
@@ -621,15 +622,7 @@ first
 second
 ```
 
-### Questions
-
-Answer the following in comments inside your application script:
-
-1.  What was your level of comfort with the lesson/application?
-
-2.  What is a way you can apply the material in this lesson towards your research or area of study?
-
-3.  What are some things you would like to learn related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}
 
 ## Extension: Using Run on a GGPlot
 

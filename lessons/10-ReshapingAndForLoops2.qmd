@@ -1,5 +1,6 @@
 ---
 title: "10: Reshaping and For Loops 2"
+short: "10"
 # special characters for highlighting code : «»
 ---
 
@@ -369,36 +370,34 @@ And the ten dates are added to the points on the edge of the plot:
 
 ## Application
 
-Create a script file in your Project's ***scripts*** folder called ***app10.r*** and, using the data from **Lansing2016NOAA.csv:**
+Use data from **Lansing2016NOAA.csv.**
 
-1.  In comments at the top of your script file answer:
+ 
 
-    A. What happens if you allow for lazy evaluation in ***plot3*** (@fig-forLoopPlot)?  Be specific about what GGPlot plots.
+1\) In comments at the top of your script file answer:
 
-2.  Using both reshaping and ***for*** loops, plot the four humidity columns in ***weatherData*** against average temp with wind speed as ***color*** mapping
+-   What happens if you allow for lazy evaluation in ***plot3*** (@fig-forLoopPlot)?  Be specific about what GGPlot plots.
 
-    A.  Use column names
+ 
 
-    B.  Add titles and labels -- right justify the title
+2\) Using both reshaping and ***for*** loops, plot the four humidity columns in ***weatherData*** against average temp with wind speed as ***color*** mapping
 
-    C.  Correct the legend so that wind speeds are in increasing order and colors goes from lighter to darker blues
+-   Use column names
 
-    D.  Change the size of the lines and the linetype
+-   Add titles and labels -- right justify the title
 
-3.  Create a text plot of Precipitation (***precip2***) vs Humidity (***relHum***) that is selectively labelled with ***windspeed***
+-   Correct the legend so that wind speeds are in increasing order and colors goes from lighter to darker blues
 
-    A.  Map the color of the points to ***windSpeed***
+-   Change the size of the lines and the linetype
 
-        -   Use a color gradient that goes from green to blue to purple
+ 
 
-    B.  Label the points that have precipitation over 0.1in ***and*** humidity greater than 80%
+3\) Create a text plot of Precipitation (***precip2***) vs Humidity (***relHum***) that is selectively labelled with ***windspeed***
 
-### Questions
+-   Map the color of the points to ***windSpeed***
 
-Answer the following in comments inside your application script:
+    -   Use a color gradient that goes from green to blue to purple
 
-1.  What was your level of comfort with the lesson/application?
+-   Label the points that have precipitation over 0.1in ***and*** humidity greater than 80%
 
-2.  What areas of the lesson/application confused or still confuses you?
-
-3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}

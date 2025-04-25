@@ -1,5 +1,6 @@
 ---
 title: "03: Mapping And Aesthetics"
+short: "03"
 # special characters for highlighting code : «»
 ---
 
@@ -296,7 +297,7 @@ The titles on the legend for ***size*** and ***precip2*** can also be changed i
 
 ### Setting legend to a fixed position
 
-One other change to the plot in *fig \##* was to move the legend to the left side of the plot:
+One other change to the plot in @fig-sizeAndColorwas to move the legend to the left side of the plot:
 
 ``` r
     theme( axis.text.x=element_text(angle=90, vjust=0.5) ,
@@ -372,11 +373,7 @@ When two plots overlap, as the linear model and the scatterplot do in @fig-linea
 
 ## Application
 
-Save everything in this application in your Class Project's ***scripts*** folder and name the file ***app1-03.r***
-
- 
-
-A\) For the linear model in the last plot, add a mapping of ***color=season***.
+1\) For the linear model in the last plot, add a mapping of ***color=season***.
 
    In comments in your script:
 
@@ -388,7 +385,7 @@ A\) For the linear model in the last plot, add a mapping of ***color=season***.
 
  
 
-B\) Create a scatterplot that maps the four columns ***windDir***, ***windSpeed***, ***precip2***, and ***tempDept*** to a scatterplot
+2\) Create a scatterplot that maps the four columns ***windDir***, ***windSpeed***, ***precip2***, and ***tempDept*** to a scatterplot
 
 -   you choose the mappings
 
@@ -404,28 +401,14 @@ B\) Create a scatterplot that maps the four columns ***windDir***, ***windSpeed*
 
  
 
-In comments in your script:
+3\) In comments in your script:
 
        What patterns can you find in the plot?
 
  
 
-C\) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component. 
+4\) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component. 
 
      [Note: ***shape*** is a common mapping that was not used in this lesson.]{.note}
 
- 
-
-D\) Zip you Project Folder (instructions for Windows and Mac in lesson 01 application)
-
-*E) Email the zipped Project Folder to your instructor*
-
-### Questions to answer
-
-Answer the following in comments inside your application script:
-
-1.  What was your level of comfort with the lesson/application?
-
-2.  What areas of the lesson/application confused or still confuses you?
-
-3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}

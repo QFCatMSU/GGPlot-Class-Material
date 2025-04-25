@@ -21,11 +21,11 @@ library(package=ggplot2);             # include all GGPlot2 functions
 
 #### Assets
 
--   non-breaking spaces??
+-   \<done\> non-breaking spaces??
 
--   collapse class lesson list
+-   \<done\> collapse class lesson list
 
--   mod scripts that have highlighting?
+-   \<done\> mod scripts that have highlighting?
 
 -   \<done\> link to other lessons
 

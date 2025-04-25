@@ -1,5 +1,6 @@
 ---
 title: "05: Date object and themes"
+short: "05"
 # special characters for highlighting code : «»
 ---
 
@@ -222,7 +223,7 @@ Now, R recognizes the values in the vector as ***Dates***:
 theDate3    Date[1:366] format: "2016-01-01" "2016-01-02" "2016-01-03" ...
 ```
 
-[note: The **Environment** always shows **Date** values in R's standard date format (YYYY-DD-MM),  which is not the same as the format we used to create the date.]{.note}
+[note: The **Environment** always shows **Date** values in R's standard date format (YYYY-MM-DD),  which is not the same as the format we used to create the date.]{.note}
 
 #### Date formats and conversion specifications
 
@@ -691,65 +692,65 @@ Now the same ***ggplot()***: 
 
 ## Application
 
-1.  Create a script file in your Project's ***script*** folder called ***app05.r***. 
+1\) Convert this string values into a Date vector: 
 
-2.  Convert this string values into a Date vector: 
-
-    -   stringValues = c("01, January-2019", "02, January-2019", "03, January-2019", "04, January-2019", "05, Januar-2019")
-
-3.  Create a column in ***weatherData*** named ***newDate*** that has the dates from the ***date*** column in Date format (just like ***dateYr*** in the lesson)
-
-4.  Make a GGPlot canvas with 4 geoms
-
-    -   scatterplot of ***heatDays*** vs ***newDate***
-
-    -   scatterplot of ***coolDays*** vs ***newDate***
-
-    -   linear regression of ***heatDays*** vs ***newDate***
-
-    -   linear regression of ***coolDays*** vs ***newDate***
-
-5.  On the GGPlot from #4:
-
-    -   display dates in this format: (28-Jun-'16)
-
-    -   ***heatDay*** - change to red points and red regression line
-
-    -   ***coolDays*** - change to blue points and blue regression line
-
-6.  Using ***update_geom_defaults(),***on the ggplot from #4
-
-    -   change the point shape to triangles and doubles the size of the points
-
-    -   don't forget to unload the defaults
-
-7.  Create an external theme that:
-
-    1.  right justify the title and subtitle
-
-    2.  make all fonts (titles and labels) brown and arial
-
-    3.  angles the x and y axis test 45 degrees
-
-8.  Add the external theme to the ggplot from #4.
-
-9.  Create a second ggplot that has the same four ***geoms*** but has a legend that contains ***heatDays*** and ***coolDays***
-
-    -   note: you will not be able to maintain the blue and red colors (that will be next lesson)
+-   stringValues = c("01, January-2019", "02, January-2019", "03, January-2019", "04, January-2019", "05, January-2019")
 
  
 
-D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
+2\) Create a column in ***weatherData*** named ***newDate*** that has the dates from the ***date*** column in ***Date*** format (just like ***dateYr*** in the lesson)
 
-### Questions
+ 
 
-Answer the following in comments inside your application script:
+3\) Make a GGPlot canvas with 4 geoms
 
-1.  What was your level of comfort with the lesson/application?
+-   scatterplot of ***heatDays*** vs ***newDate***
 
-2.  What is a way you can apply the material in this lesson towards your research or area of study?
+-   scatterplot of ***coolDays*** vs ***newDate***
 
-3.  What are some things you would like to learn related to, but not covered in, this lesson?
+-   linear regression of ***heatDays*** vs ***newDate***
+
+-   linear regression of ***coolDays*** vs ***newDate***
+
+ 
+
+4\) On the GGPlot from #3:
+
+-   display dates in this format: (28-Jun-'16)
+
+-   ***heatDay*** - change to red points and red regression line
+
+-   ***coolDays*** - change to blue points and blue regression line
+
+ 
+
+5\) Using ***update_geom_defaults(),***on the ggplot from #3
+
+-   change the point shape to triangles and doubles the size of the points
+
+-   don't forget to unload the defaults
+
+ 
+
+6\) Create an external theme that:
+
+-   right justify the title and subtitle
+
+-   make all fonts (titles and labels) brown and arial
+
+-   angles the x and y axis test 45 degrees
+
+ 
+
+7\) Add the external theme to the ggplot from #3.
+
+ 
+
+8\) Create another ggplot that has the same four ***geoms*** and a legend mapped to ***color*** that contains ***heatDays*** and ***coolDays***
+
+-   [note: you will not be able to maintain the blue and red colors (that will be next lesson)]{.note}
+
+{{< include ../assets/_AppInstructions.qmd >}}
 
 ## Extension: Getting a range of values in a column
 

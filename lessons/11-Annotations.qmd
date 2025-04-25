@@ -1,5 +1,6 @@
 ---
 title: "11: Annotations"
+short: "11"
 # special characters for highlighting code : «»
 ---
 
@@ -449,7 +450,9 @@ Axes often have different scales that will skew the circle.  If you want to vis
 
 ## Application
 
-Create a script file in your Project's ***scripts*** folder called ***app11.r*** and, using the data from **Lansing2016NOAA.csv:**
+Use data from **Lansing2016NOAA.csv**
+
+ 
 
 1\) Using the plot from @fig-boxPlot:
 
@@ -460,6 +463,8 @@ Create a script file in your Project's ***scripts*** folder called ***app11.r***
 -   Labels the points with their value
 
 -   Put black boxes ***behind*** the labels
+
+ 
 
 2\) Using annotate create a scatterplot of just the first 100 values of relative humidity vs. average temperature:
 
@@ -473,6 +478,8 @@ Create a script file in your Project's ***scripts*** folder called ***app11.r***
 
 ![Polygon and ellipse for question 2 in the application](images/GGP-1-07-App-Ellipse.jpg){#fig-PolyAndEllipse .fs}
 
+ 
+
 3\) Using ***annotate***, create a plot of $y=\sqrt{x}$
 
 -   Use ***geom*** = "line"
@@ -483,15 +490,7 @@ Create a script file in your Project's ***scripts*** folder called ***app11.r***
 
 -   add an arrow to the end of the curve
 
-### Questions
-
-Answer the following in comments inside your application script:
-
-1.  What was your level of comfort with the lesson/application?
-
-2.  What areas of the lesson/application confused or still confuses you?
-
-3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}
 
 ## Extension: extracting the date of the outliers using code
 

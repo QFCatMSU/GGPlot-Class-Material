@@ -1,0 +1,23 @@
+---
+# special characters for highlighting code : «»
+editor: source
+---
+
+
+ 
+
+If you have any questions regarding this application, feel free to email them to {{< var instructor.name >}} at {{< var instructor.email >}}.
+
+### Questions to answer
+
+Answer the following in comments inside your application script:
+
+1.  What was your level of comfort with the lesson/application?
+
+2.  What areas of the lesson/application confused or still confuses you?
+
+3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+
+### Turn in on GitHub
+
+Save the script as ***app{{< meta short >}}.r*** in your ***scripts*** folder, ***Push*** the changes to your GitHub repository, [create an Issue in GitHub](01b-GitAndGitHubSetup.html#Issues) that says you have finished the application and assign the issue to*** {{< var instructor.githubID>}}***.

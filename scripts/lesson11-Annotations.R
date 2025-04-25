@@ -38,7 +38,10 @@
              x=1.9,         # x coordinate of annotation
              y=-28,         # y coordinate of annotation
              label="-28",   # the annotation
-             color="blue"); # can add style subcomponents
+             color="blue") +  # can add style subcomponents
+  scale_color_manual(name='Regression Model',
+                     breaks=c('Linear', 'Quadratic', 'Cubic'),
+                     values=c('Cubic'='pink', 'Quadratic'='blue', 'Linear'='purple'))
   plot(plot3);
   
   #### Part 4: Add multiple text values to the plot ####

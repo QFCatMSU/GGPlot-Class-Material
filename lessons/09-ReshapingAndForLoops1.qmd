@@ -1,5 +1,6 @@
 ---
 title: "09: Reshaping and For Loops 1"
+short: "09"
 # special characters for highlighting code : «»
 ---
 
@@ -59,7 +60,11 @@ Our goal is to create a line plot for each column in the Jan_Avg data frame in @
 
 ![7 lines plot, 1 for each column in Jan_Avg](images/GGP_1-06b_ForLoops.png){#fig-linePlots .fs}
 
-We could plot the seven columns individually, but we want a solution that can be extended to any situation (i.e., any number of columns to plot). We are going to look at two distinct ways to handle this situation.
+We could plot the seven columns individually, but we want a solution that can be extended to any situation (i.e., any number of columns to plot).
+
+ 
+
+We are going to look at two distinct ways to handle this situation.
 
 1.  Manipulating the data frame to put all the data points (e.g., temperature values) into one column. This is called [reshaping]{.hl} the data frame.
 
@@ -87,7 +92,7 @@ The original data frame has 7 columns, representing the seven years of temperatu
 
  
 
-In the reshaped data frame, we put all 217 temperature values from the seven columns in one column. This is called [melting]{.hl} a data frame.  So, the reshaped data frame will have 217 rows.
+In the reshaped data frame, we put all 217 temperature values from the seven columns in one column (in red in @fig-reshapingData). This is called [melting]{.hl} a data frame.  So, the reshaped data frame will have 217 rows.
 
  
 
@@ -541,11 +546,13 @@ And our new plot:
 
 ## Application
 
-Create a script file in your Project's ***scripts*** folder called ***app09.r*** and using the data from ***Jan_TAVG.csv***:
+Use data from ***Jan_TAVG.csv***.
+
+ 
 
 1\) In comments at the top of your script answer the following:
 
--   What happens if you take the year out of quotes in the color mapping in ***plot2*** @fig-threeColumnPlot)?  Why? 
+-   What happens if you take the year out of quotes in the color mapping in ***plot2*** @fig-threeColumnPlot)?  Why?
 
 -   Why does the ***x*** mapping (temperature) need to be numeric and the ***color*** mapping (year) need to be a string in ***plot5*** (@fig-generalizedXMap)?  How does GGPlot plot these types of values?
 
@@ -571,19 +578,7 @@ Create a script file in your Project's ***scripts*** folder called ***app09.r***
 
 -   Use a ***for*** loops to cycle through, and plot, all the rows (instead of columns)
 
- 
-
-D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
-
-### Questions
-
-Answer the following in comments inside your application script:
-
-1.  What was your level of comfort with the lesson/application?
-
-2.  What is a way you can apply the material in this lesson towards your research or area of study?
-
-3.  What are some things you would like to learn related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}
 
 ## Extension: Generalize the ***x*** mapping
 

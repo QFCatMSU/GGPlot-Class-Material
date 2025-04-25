@@ -1,5 +1,6 @@
 ---
 title: "12: Multipaneling"
+short: "12"
 # special characters for highlighting code : «»
 ---
 
@@ -561,47 +562,45 @@ If the full canvas does not get drawn when you execute the script, you can press
 
 ## Application
 
-Find how different weather conditions in the ***weatherType*** column correlate with ***tempDept***. [Note: **tempDept** is how far the temperature for the day was from the historic average temperature for that day.]{.note}
+Find how different weather conditions in the ***weatherType*** column correlate with ***tempDept***.
+
+[Note: **tempDept** is how far the temperature for the day was from the historic average temperature for that day.]{.note}
 
  
 
-1.  Create a script file in your Class Project called ***app12.r***.
+1\) Create a histogram of ***tempDept*** restricted to days that meet a condition in the ***weatherType*** column:
 
-2.  Create a histogram of ***tempDept*** restricted to days that meet a condition in the ***weatherType*** column:
-
-```         
 -   To restrict the data, you can subset with the indices that meet the condition (e.g., ***data=weatherData\[daysWithRain,\]***)
-```
 
-3.  Repeat step 2 for two more conditions in the ***weatherType*** column (so, three histograms in all)
+ 
 
-4.  Create a histogram of ***tempDept*** restricted to days where [two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy AND breezy).
+2\) Repeat step 2 for two more conditions in the ***weatherType*** column (so, three histograms in all)
 
-5.  Create a histogram of ***tempDept*** restricted to days where [one of two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy OR breezy).
+ 
 
-6.  For all histograms, place a vertical line at the average ***tempDept*** (of the restricted data) and label the line with the average value
+3\) Create a histogram of ***tempDept*** restricted to days where [two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy AND breezy).
 
-```         
+ 
+
+4\) Create a histogram of ***tempDept*** restricted to days where [one of two conditions occur]{.hl} in the ***weatherType*** column (e.g., rainy OR breezy).
+
+ 
+
+5\) For all histograms, place a vertical line at the average ***tempDept*** (of the restricted data) and label the line with the average value
+
 -   ***geom_vline*** is an option here
-```
 
-7.  Using ***arrangeGrob()***, place the 5 histograms you created in the previous steps on one canvas
+ 
 
-8.  Using ***arrangeGrob()***, pick three histograms from steps 2-4 and place them on a canvas
+6\) Using ***arrangeGrob()***, place the 5 histograms you created in the previous steps on one canvas
 
-```         
+ 
+
+7\) Using ***arrangeGrob()***, pick three histograms from steps 2-4 and place them on a canvas
+
 -   Resize at least 2 of the histogram so they take up more than 1 cell
-```
 
-### Questions
-
-Answer the following in comments inside your application script:
-
-1.  What was your level of comfort with the lesson/application?
-
-2.  What areas of the lesson/application confused or still confuses you?
-
-3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}
 
 ## Extension: Adding labels to the grid area
 

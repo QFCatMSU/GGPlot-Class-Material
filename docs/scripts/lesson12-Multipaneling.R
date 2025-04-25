@@ -159,4 +159,19 @@
                      left= grid::textGrob("left label", 
                                          gp=grid::gpar(col="red", fontsize=20)));
   plot(multi1Lab);
+  pa = ggplotGrob(plotA)
+  
+  #### Extension: Adding labels to a grob:
+  multi1Lab=arrangeGrob(plotA, plotB, plotC, plotD, plotE, plotF,
+                        nrow=3, 
+                        padding = unit(c(,10), "cm"),
+                        top="top label", 
+                        bottom = grid::textGrob("bottom label", 
+                                                gp=grid::gpar(col="blue", fontsize=40)),
+                        right=pa,
+                        left= grid::textGrob("                   left label", rot=90,
+                                             gp=grid::gpar(col="red", fontsize=20)));
+  
+  grid::grid.newpage() # stops labels from printing multiple times
+  grid::grid.draw(multi1Lab)
 }

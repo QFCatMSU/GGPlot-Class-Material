@@ -1,5 +1,6 @@
 ---
 title: "07: Faceting"
+short: "07"
 # special characters for highlighting code : «»
 ---
 
@@ -208,7 +209,7 @@ Or, use facets in a bar plot or temperature faceted by season:
 
 ### Different scales for the facets
 
-By default, ***facet_grid*** will use the same scales for each facet.  In the case of *fig \##*, this means that the y-axis range for all four facets is the same.
+By default, ***facet_grid*** will use the same scales for each facet.  In the case of @fig-facetBarplot, this means that the y-axis range for all four facets is the same.
 
  
 
@@ -362,7 +363,9 @@ GGPlot creates 12 facets, one for each combination of seasonOrdered and winSpeed
 
 ## Application
 
-Create a script file in your Project's ***scripts*** folder called ***app07.r*** and, using the data from **Lansing2016NOAA.csv:**
+Use data from **Lansing2016NOAA.csv.**
+
+ 
 
 1\) Make a scatterplot of temperature vs. humidity and
 
@@ -376,7 +379,7 @@ Create a script file in your Project's ***scripts*** folder called ***app07.r***
 
  
 
-2\) Using the plot from *fig \##*
+2\) Using the plot from @fig-orderedFacets
 
 -   The 2 tasks below both use a ***strip.\**** subcomponent in the ***theme*** component
 
@@ -412,19 +415,7 @@ Create a script file in your Project's ***scripts*** folder called ***app07.r***
 
 -   [Note 2: you want to use variables with a small number of factors!]{.note}
 
- 
-
-D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
-
-### Questions
-
-Answer the following in comments inside your application script:
-
-1.  What was your level of comfort with the lesson/application?
-
-2.  What areas of the lesson/application confused or still confuses you?
-
-3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}
 
 ## Extension: dates redux
 

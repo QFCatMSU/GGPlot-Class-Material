@@ -1,5 +1,6 @@
 ---
 title: "06: Modifying Mapped Elements"
+short: "06"
 # special characters for highlighting code : «»
 ---
 
@@ -495,7 +496,7 @@ In this plot ***shape, size***, and ***color*** are all subcomponents of ***geom
 
 ## Application
 
-Create a script file in your Project's ***scripts*** folder called ***app06.r*** and, using the data from **Lansing2016NOAA.csv:**
+Use data from **Lansing2016NOAA.csv.**
 
  
 
@@ -545,19 +546,7 @@ Create a script file in your Project's ***scripts*** folder called ***app06.r***
 
 -   set the opacity of the points to 50%
 
- 
-
-D\) [\<Instructions for GitHub – link to previous lesson\>](01c-RStudioProjects.html#application)
-
-### Questions
-
-Answer the following in comments inside your application script:
-
-1.  What was your level of comfort with the lesson/application?
-
-2.  What areas of the lesson/application confused or still confuses you?
-
-3.  What are some things you would like to know more about that is related to, but not covered in, this lesson?
+{{< include ../assets/_AppInstructions.qmd >}}
 
 ## Extension: Density Plots
 

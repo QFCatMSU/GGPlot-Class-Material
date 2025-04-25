@@ -74,7 +74,7 @@
          y = "Degrees (Fahrenheit)",
          fill = "Wind Speed");
   plot(plot5);
-  
+
   #### Part 6: Same boxplot faceted by wind speed instead of mapped ####
   plot6 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
