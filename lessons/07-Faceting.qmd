@@ -401,7 +401,7 @@ Use data from **Lansing2016NOAA.csv.**
 
 3\) Create a scatterplot of temperature vs. humidity and facet by months (in order)
 
--   For help, look at *extension: dates redux*. 
+-   For help, look at [Extension: dates redux]
 
 -   Modify the axes' ranges to only include values within the facet (i.e., ***scales*** subcomponent)
 
