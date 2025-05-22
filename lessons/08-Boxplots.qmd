@@ -395,7 +395,7 @@ Use data from **Lansing2016NOAA.csv.**
 
  
 
-2\) Give three ways to hide the outliers in the plot from the previous question? 
+2\) Give three ways to hide the outliers in the plot from the previous question.
 
 [note: the easiest options use the ***outlier.\**** subcomponents of ***geom_boxplot***.]{.note}
 

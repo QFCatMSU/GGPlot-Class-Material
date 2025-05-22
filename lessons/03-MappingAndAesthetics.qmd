@@ -241,10 +241,11 @@ By default, the title of the legend is the same as the mapping -- in all the cas
           «alpha = "Precipitation"») +
 ```
 
-The position of the legend can be changed using the ***legend.position*** subcomponent (argument) in ***theme()***.  The value of ***legend.position*** is set to a two value vector with values from **0** to **1**.  The first value represents the **x**-position of the legend, the second values represents the **y**-position:
+The position of the legend can be changed in ***theme()*** by setting the subcomponent ***legend.position*** to "inside" and using ***legend.position.inside*** to position the legend in ***theme()***.  The value of ***legend.position.inside*** is set to a two value vector with values from **0** to **1**.  The first value represents the **x**-position of the legend, the second values represents the **y**-position:
 
 ``` r
     theme( axis.text.x=element_text(angle=90, vjust=0.5),
+           «legend.position = "inside"», 
            «legend.position = c(0.15, 0.2)»);  # x=0.15, y=0.2
 ```
 
@@ -261,6 +262,7 @@ Putting the title and position together with the rest of the plot:
     scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
     theme_bw() +
     theme( axis.text.x=element_text(angle=90, vjust=0.5),
+           «legend.position = "inside"», 
            «legend.position = c(0.15, 0.2)»);  # x=0.15, y=0.2
   plot(plot5);
 ```

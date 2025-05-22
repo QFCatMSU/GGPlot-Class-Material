@@ -109,7 +109,8 @@ x = "Average Temperatures (Fahrenheit)", y = "Relative Humidity") +
     scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
     theme_bw() +
     theme( axis.text.x=element_text(angle=90, vjust=0.5),
-           legend.position = c(0.15, 0.2));
+           legend.position = "inside",
+           legend.position.inside = c(0.15, 0.2));
   plot(plot5);
   
   #### Part 6: combining size and color ####

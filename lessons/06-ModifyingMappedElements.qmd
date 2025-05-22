@@ -299,7 +299,14 @@ The ***geom_histogram*** component in GGPlot is very similar to a ***geom_point*
 
  
 
-[Note: if you want a density curve, then all you need to do is replace **geom_histogram** with **geom_density**.  Everything else will stay the same in the histogram examples.]{.note}
+You do get this message when plotting the above histogram:
+
+``` r
+>   plot(plot6); 
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+This message is a bit aggressive. It says that ggplot uses 30 bins by defult and that you can change it. We will use ***bins*** and ***binwidth*** later.
 
 ### Mapping season to fill in the histogram
 

@@ -38,10 +38,7 @@
              x=1.9,         # x coordinate of annotation
              y=-28,         # y coordinate of annotation
              label="-28",   # the annotation
-             color="blue") +  # can add style subcomponents
-  scale_color_manual(name='Regression Model',
-                     breaks=c('Linear', 'Quadratic', 'Cubic'),
-                     values=c('Cubic'='pink', 'Quadratic'='blue', 'Linear'='purple'))
+             color="blue"); # can add style subcomponents
   plot(plot3);
   
   #### Part 4: Add multiple text values to the plot ####
@@ -202,19 +199,19 @@
   
   
   ##### Part 14b: Using annotate for vertical and horizontal lines (buggy) ####
-  #     The 4 warning message are all from this plot #
-  plot14b = plot12 +
-    annotate(geom="vline",
-             xintercept = meanTemp,
-             x = meanTemp, # x must be included but is ignored (this is a bug)
-             color = "orange",
-             linewidth= 2) +
-    annotate(geom="hline",
-             yintercept = meanHum,
-             y = meanHum,  # y must be included but is ignored (this is a bug)
-             color = "purple",
-             linewidth= 2);
-  plot(plot14b);
+  #     Works, but gives 4 warning messages -- removed from lesson #
+  # plot14b = plot12 +
+  #   annotate(geom="vline",
+  #            xintercept = meanTemp,
+  #            x = meanTemp, # x must be included but is ignored (this is a bug)
+  #            color = "orange",
+  #            linewidth= 2) +
+  #   annotate(geom="hline",
+  #            yintercept = meanHum,
+  #            y = meanHum,  # y must be included but is ignored (this is a bug)
+  #            color = "purple",
+  #            linewidth= 2);
+  # plot(plot14b);
   
   
   #### Part 15: Add a simple circle ####

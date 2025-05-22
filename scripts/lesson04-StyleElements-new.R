@@ -80,8 +80,8 @@
   plot6 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=1:nrow(weatherData), y=maxTemp),
               color="violetred1") +
-    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp), 
-              color=rgb(red=0.4, green=0.7, blue=0.9)) + 
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
     
     theme_bw() +
     labs(title = "Temperature vs. Date",
@@ -94,14 +94,14 @@
   plot7 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=1:nrow(weatherData), y=maxTemp),
               color="violetred1") +
-    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp), 
-              color=rgb(red=0.4, green=0.7, blue=0.9)) +  
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
     theme_bw() +
     geom_smooth(mapping=aes(x=1:nrow(weatherData), y=avgTemp),
                 method="loess",
-                color=rgb(red=1, green=0.5, blue=0),  # orange
+                color=rgb(red=1, green=0.5, blue=0), # orange
                 linetype=4,
-                size=2, 
+                size=2,
                 fill="lightgreen") +
     labs(title = "Temperature throughout the year",
          subtitle = "Lansing, Michigan: 2016",
@@ -138,21 +138,21 @@
   plot9 = ggplot(data=weatherData) +
     geom_line(mapping=aes(x=1:nrow(weatherData), y=maxTemp),
               color="violetred1") +
-    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp), 
-              color=rgb(red=0.4, green=0.7, blue=0.9)) + 
+    geom_line(mapping=aes(x=1:nrow(weatherData), y=minTemp),
+              color=rgb(red=0.4, green=0.7, blue=0.9)) +
     
     theme_bw() +
     geom_smooth(mapping=aes(x=1:nrow(weatherData), y=avgTemp),
                 method="loess",
                 color=rgb(red=1, green=0.5, blue=0),
                 linetype=4,
-                size=2, 
+                size=2,
                 fill="lightgreen") +
     labs(title = "Temperature throughout the year",
          subtitle = "Lansing, Michigan: 2016",
          x = "Day (row) number",
          y = "Temperature (F)") +
-    theme(axis.ticks = element_line(color="red", size=1),
+    theme(axis.ticks = element_line(color="red", linewidth=1),
           panel.grid.minor = element_line(color="grey75", linetype=4),
           panel.grid.major = element_line(color="grey75"));
   plot(plot9);
@@ -167,8 +167,8 @@
          y = "Humidity (%)") +
     theme( axis.text.x=element_text(angle=90, vjust=0.5) ,
            legend.background = element_rect(color="blue", fill="grey90",
-                                            size=1),
-           panel.background = element_rect(fill="grey10", color="red")); 
+                                            linewidth=1),
+           panel.background = element_rect(fill="grey10", color="red"));
   plot(plot10);
   
   #### Part 11: Using rgb() and Unicode ####
@@ -176,7 +176,7 @@
     geom_point( mapping=aes(x=avgTemp, y=relHum),
                 color=rgb(red=0.7, green=0.5, blue=0),
                 size=3,
-                shape="\u00A5" ) +  # \u means Unicode number ...
+                shape="\u00A5" ) + # \u means Unicode number ...
     theme_bw() +
     labs(title = "Humidity vs. Temperature",
          subtitle = "Lansing, Michigan: 2016",

@@ -145,7 +145,7 @@
     geom_point( mapping=aes(x=windSusSpeed, y=relHum, fill=precip2),
                 shape = 23,
                 size=2.5,
-                color="black") +  # outline color
+                color="black") +  # outline color
     theme_bw() +
     labs(title = "Humidity vs. Wind Speed",
          subtitle = "Lansing, Michigan: 2016",
@@ -155,9 +155,3 @@
                          values=c(0,0.05,0.25,1));
   plot(plotD);
 }
-
-
-
-
-
-
