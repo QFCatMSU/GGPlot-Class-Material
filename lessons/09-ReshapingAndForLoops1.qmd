@@ -26,7 +26,7 @@ Plot multiple columns in a data frame using:
 
  
 
-[The data for this lesson (January Lansing temperatures from 2016-2022) is here](../Data/Jan_TAVG.csv)
+[The data for this lesson (January Lansing temperatures from 2016-2022) is here](../data/Jan_TAVG.csv)
 
 -   Save the CSV file, called ***Jan_TAVG.csv*** to the ***data*** folder inside your RStudio Project. 
 
