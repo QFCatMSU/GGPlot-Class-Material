@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.28">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/11-Annotations.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b719d3d4935f2b08311a76135e2bf442.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c5e6fd5a646752829aeb2af341632313.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -134,6 +135,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -343,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>&nbsp;</p>
 <p>You will also need to add the <strong><em>gridExtra</em></strong> library to your script:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span>gridExtra);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span>gridExtra);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="conditional-comparisons-of-vector-values" class="level2" data-number="2">
@@ -360,14 +365,14 @@ Figure&nbsp;1: weatherType column in weatherData
 </figure>
 </div>
 <p>The problem with the way <strong><em>weatherType</em></strong> is presented is that it makes it hard to find days with one specific weather condition (like rain, <strong><em>RA</em></strong>).&nbsp; The following code will only give you the index values of days that were exclusively rainy (i.e., no other weather event except for <strong>RA</strong>):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(weatherData<span class="sc">$</span>weatherType <span class="sc">==</span> <span class="st">"RA"</span>) <span class="co"># find rainy days</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(weatherData<span class="sc">$</span>weatherType <span class="sc">==</span> <span class="st">"RA"</span>) <span class="co"># find rainy days</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A common way to deal with this situation is to break the column up into multiple columns, each representing one weather condition (<strong>RA</strong>, <strong>HZ</strong>, <strong>BR</strong>, etc…).&nbsp; A more robust way is to use <strong><em>grep()</em></strong> to find the codes within the column.</p>
 <section id="grep-to-find-weather-event" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="grep-to-find-weather-event"><span class="header-section-number">2.1</span> grep() to find weather event</h3>
 <p>We can use <strong><em>grep()</em></strong> to find patterns within a column.&nbsp; In this case, patterns that match the characters <strong>RA</strong> and <strong>BR</strong> (rainy and breezy):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: using grep to find days with a specific weather event</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: using grep to find days with a specific weather event</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rainyDays <span class="ot">=</span> <span class="fu">grep</span>(weatherData<span class="sc">$</span>weatherType, <span class="at">pattern=</span><span class="st">"RA"</span>);   <span class="co"># any day with rain</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>breezyDays <span class="ot">=</span> <span class="fu">grep</span>(weatherData<span class="sc">$</span>weatherType, <span class="at">pattern=</span><span class="st">"BR"</span>);  <span class="co"># any breezy day</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>breezyDays <span class="ot">=</span> <span class="fu">grep</span>(weatherData<span class="sc">$</span>weatherType, <span class="at">pattern=</span><span class="st">"BR"</span>);  <span class="co"># any breezy day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>rainyDays</em></strong> has <strong>124</strong> values, meaning there were <strong>124</strong> days with some rain (the code <strong>RA</strong>)</p>
 <p><strong><em>breezyDays</em></strong> has <strong>172</strong> values, meaning there were <strong>172</strong> days with strong winds (the code <strong>BR</strong>)</p>
 <div id="fig-indexValues" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -386,11 +391,11 @@ Figure&nbsp;2: Finding the index values of the days with rain and those that wer
 <p>We will now plot humidity vs temperature for only the <strong>172</strong> days that were breezy using <strong><em>breezyDays</em></strong> to subset of <strong><em>weatherData</em></strong>.</p>
 <p>&nbsp;</p>
 <p>We usually would start the plot with:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>weatherData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>weatherData)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>But, we only want a subset of the <strong><em>weatherData</em></strong> data frame – the rows given by the values in <strong><em>breezyDays</em></strong>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>weatherData[breezyDays,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>weatherData[breezyDays,])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Otherwise, the plot should look familiar:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Scatterplot for Humidity vs. Temperature on breezy days</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Scatterplot for Humidity vs. Temperature on breezy days</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plotA <span class="ot">=</span> <span class="fu">ggplot</span>(«<span class="at">data=</span>weatherData[breezyDays,]») <span class="sc">+</span>    <span class="co"># 172 days were breezy</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
@@ -398,7 +403,7 @@ Figure&nbsp;2: Finding the index values of the days with rain and those that wer
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> <span class="st">"Degrees (Fahrenheit)"</span>,</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">"Relative Humidity"</span>);</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotA);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotA);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We have a plot with 172 points, matching the 172 days it was breezy (or, the 172 index values in <strong><em>breezyDays</em></strong>).</p>
 <div id="fig-scatterPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -429,13 +434,13 @@ Figure&nbsp;3: Scatterplot of humidity vs.&nbsp;temperature on breezy days
 </ul>
 <p>&nbsp;</p>
 <p>The following code creates a vector that contains the index values for days that were <span class="hl">both rainy and windy</span>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rainyAndBreezy <span class="ot">=</span> <span class="fu">intersect</span>(rainyDays, breezyDays);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rainyAndBreezy <span class="ot">=</span> <span class="fu">intersect</span>(rainyDays, breezyDays);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s code for the four possible combinations of windy and rainy conditions:&nbsp;</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Combine event using set operations</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Combine event using set operations</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rainyAndBreezy <span class="ot">=</span> <span class="fu">intersect</span>(rainyDays, breezyDays); <span class="co"># days with rain AND wind</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rainyOrBreezy <span class="ot">=</span> <span class="fu">union</span>(rainyDays, breezyDays);      <span class="co"># days with rain OR wind</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>rainyNotBreezy <span class="ot">=</span> <span class="fu">setdiff</span>(rainyDays, breezyDays);   <span class="co"># days with rain but NOT wind</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>breezyNotRainy <span class="ot">=</span> <span class="fu">setdiff</span>(breezyDays, rainyDays);   <span class="co"># days with wind but NOT rain</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>breezyNotRainy <span class="ot">=</span> <span class="fu">setdiff</span>(breezyDays, rainyDays);   <span class="co"># days with wind but NOT rain</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can see that there were <strong>82</strong> days that were breezy but not rainy represented by the <strong>82</strong> index values in <strong><em>breezyNotRainy</em></strong>.&nbsp; There were <strong>34</strong> days that were rainy but not breezy, represented by the <strong>34</strong> index values in <strong><em>rainyNotBreezy</em></strong> – the first of those days being the 69<sup>th</sup> day of the year, which is in early April.</p>
 <div id="fig-combinedEvents" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -450,20 +455,20 @@ Figure&nbsp;4: Vectors that contain the indexes for combined weather events
 <section id="reversing-conditions" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="reversing-conditions"><span class="header-section-number">3.1</span> Reversing conditions</h3>
 <p>You can use <strong><em>setdiff</em></strong> to get the inverse of a condition</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>notRainyAndNotBreezy <span class="ot">=</span> <span class="fu">setdiff</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), rainyOrBreezy);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>notRainyAndNotBreezy <span class="ot">=</span> <span class="fu">setdiff</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), rainyOrBreezy);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first argument, <strong><em>1:nrow(weatherData)</em></strong> creates a sequence from 1 to 366 (i.e., all values)</p>
 <p>The second argument, <strong><em>rainyOrBreezy</em></strong>, gives the <strong><em>206</em></strong> days it was rainy or breezy</p>
 <p>&nbsp;</p>
 <p><strong><em>setDiff</em></strong> returns the values in the first argument that are not in the second argument.</p>
 <p>&nbsp;</p>
 <p>So, <strong><em>setDiff</em></strong> return the <strong>366-206 = 160</strong>, values not in <strong><em>rainyOrBreezy</em></strong>.</p>
-<div class="sourceCode" id="cb10" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rainyOrBreezy<span class="sc">:</span>        int [<span class="dv">1</span><span class="sc">:</span>«<span class="dv">206</span>»] <span class="dv">8</span> <span class="dv">9</span> <span class="dv">10</span> <span class="dv">15</span> <span class="dv">25</span> ...</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>notRainyAndNotBreezy<span class="sc">:</span> int [<span class="dv">1</span><span class="sc">:</span>«<span class="dv">160</span>»] <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rainyOrBreezy<span class="sc">:</span>        int [<span class="dv">1</span><span class="sc">:</span>«<span class="dv">206</span>»] <span class="dv">8</span> <span class="dv">9</span> <span class="dv">10</span> <span class="dv">15</span> <span class="dv">25</span> ...</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>notRainyAndNotBreezy<span class="sc">:</span> int [<span class="dv">1</span><span class="sc">:</span>«<span class="dv">160</span>»] <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="hl"><strong>rainyOrBreezy</strong> does not give all the numbers in order.</span>&nbsp; Use <strong><em>sort()</em></strong> to see the numbers in order:</p>
-<div class="sourceCode" id="cb11" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sort</span>(rainyOrBreezy)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sort</span>(rainyOrBreezy)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span>]   <span class="dv">1</span>   <span class="dv">4</span>   <span class="dv">8</span>   <span class="dv">9</span>  <span class="dv">10</span>  <span class="dv">11</span>  <span class="dv">12</span>  <span class="dv">13</span>  <span class="dv">14</span>  <span class="dv">15</span>  <span class="dv">18</span>  <span class="dv">20</span>  <span class="dv">21</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">14</span>]  <span class="dv">22</span>  <span class="dv">23</span>  <span class="dv">25</span>  <span class="dv">26</span>  <span class="dv">27</span>  <span class="dv">28</span>  <span class="dv">31</span>  <span class="dv">32</span>  <span class="dv">33</span>  <span class="dv">34</span>  <span class="dv">35</span>  <span class="dv">36</span>  <span class="dv">37</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">27</span>]  <span class="dv">40</span>  <span class="dv">46</span>  <span class="dv">47</span>  <span class="dv">48</span>  <span class="dv">55</span>  <span class="dv">56</span>  <span class="dv">59</span>  <span class="dv">60</span>  <span class="dv">61</span>  <span class="dv">62</span>  <span class="dv">63</span>  <span class="dv">64</span>  <span class="dv">65</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">27</span>]  <span class="dv">40</span>  <span class="dv">46</span>  <span class="dv">47</span>  <span class="dv">48</span>  <span class="dv">55</span>  <span class="dv">56</span>  <span class="dv">59</span>  <span class="dv">60</span>  <span class="dv">61</span>  <span class="dv">62</span>  <span class="dv">63</span>  <span class="dv">64</span>  <span class="dv">65</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="set-up-for-multiple-plots" class="level2" data-number="4">
@@ -482,7 +487,7 @@ Figure&nbsp;4: Vectors that contain the indexes for combined weather events
 <p>We have already created the plot data for breezy days (#1).&nbsp; We are now going to create the plot data for combinations #2 through #6. &nbsp;<span class="hl">We are not rendering the plots yet (i.e., we are not using the <strong>plot()</strong> function) – we are just creating the data for the plots.</span></p>
 <p>&nbsp;</p>
 <p>The <strong><em>data</em></strong> for each plot will be a subset of <strong><em>weatherData</em></strong> given by variables that indexed the combined weather conditions in <a href="#fig-combinedEvents" class="quarto-xref">Figure&nbsp;4</a>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 4: Creating plots for all rainy day/breezy day combinations</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 4: Creating plots for all rainy day/breezy day combinations</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plotB <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData«[rainyDays,]») <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
@@ -521,7 +526,7 @@ Figure&nbsp;4: Vectors that contain the indexes for combined weather events
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Hum vs. Temp (Breezy and NOT Rainy)"</span>,</span>
 <span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> <span class="st">"Degrees (Fahrenheit)"</span>,</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">"Relative Humidity"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">"Relative Humidity"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-eventCombinations" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eventCombinations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -540,10 +545,10 @@ Figure&nbsp;5: Creating the plot data for each event combination
 <p>&nbsp;</p>
 <p>There is&nbsp;<a href="https://www.rdocumentation.org/packages/gridExtra/versions/2.3/topics/arrangeGrob">documentation for <strong><em>arrangeGrob()</em></strong></a> but it is not very intuitive – however, you should know that <strong><em>grob</em></strong> stands for <strong><em>gr</em></strong>aphical <strong><em>ob</em></strong>jects, and plots are considered graphical objects.</p>
 <p>Also, notice that the first argument for <strong><em>arrangeGrob</em></strong> is three dots ( <strong>…</strong> ):</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrangeGrob</span>(«...», <span class="at">grobs =</span> <span class="fu">list</span>(...), layout_matrix, <span class="at">vp =</span> <span class="cn">NULL</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrangeGrob</span>(«...», <span class="at">grobs =</span> <span class="fu">list</span>(...), layout_matrix, <span class="at">vp =</span> <span class="cn">NULL</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"arrange"</span>, <span class="at">as.table =</span> <span class="cn">TRUE</span>, <span class="at">respect =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="cn">NULL</span>, <span class="at">ncol =</span> <span class="cn">NULL</span>, <span class="at">widths =</span> <span class="cn">NULL</span>, <span class="at">heights =</span> <span class="cn">NULL</span>, <span class="at">top =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom =</span> <span class="cn">NULL</span>, <span class="at">left =</span> <span class="cn">NULL</span>, <span class="at">right =</span> <span class="cn">NULL</span>, <span class="at">padding =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"line"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom =</span> <span class="cn">NULL</span>, <span class="at">left =</span> <span class="cn">NULL</span>, <span class="at">right =</span> <span class="cn">NULL</span>, <span class="at">padding =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"line"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>( <strong>…</strong> ) means means that <strong><em>arrangePlot</em></strong> can take any number of plot variables – in our first example, we will be using six plot variables.</p>
 <p>&nbsp;</p>
 <p>We are going to arrange the six plots created above (<a href="#fig-eventCombinations" class="quarto-xref">Figure&nbsp;5</a>) on a canvas using three different methods:</p>
@@ -557,10 +562,10 @@ Figure&nbsp;5: Creating the plot data for each event combination
 <p>The plots that will be added to the canvas must go first in <strong><em>arrangeGrob()</em></strong>.&nbsp; You can put as many plots in as you want separated by commas.&nbsp; After you put in all the plot names, you set arguments (e.g., number of rows or columns) for the canvas.</p>
 <p>&nbsp;</p>
 <p>For this canvas, we set the number of rows argument, or <strong><em>nrow</em></strong> to <strong>3</strong>.&nbsp; This means <strong><em>arrangeGrob()</em></strong> will place the plots listed into 3 rows (using as many columns as necessary).&nbsp; Since there are six plots, each of the 3 rows will have 2 plots.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 5: Arranging plots on one canvas by rows</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 5: Arranging plots on one canvas by rows</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  multi1<span class="ot">=</span><span class="fu">arrangeGrob</span>(plotA, plotB, plotC, plotD, plotE, plotF,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nrow=</span><span class="dv">3</span>);</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: like <strong><em>ggplot()</em></strong>, <strong><em>arrangeGrob()</em></strong> creates plot data.</span>&nbsp; In the above case the plot data is saved to <strong><em>multi1</em></strong> and then <strong><em>plot(multi1)</em></strong> renders the data in the RStudio Viewer.</p>
 <div id="fig-byRows" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -580,10 +585,10 @@ Figure&nbsp;6: Arranging plots by rows in a canvas
 <p>Arranging plots by column works almost the same way as arranging by rows except we use the argument <strong><em>ncol.</em></strong></p>
 <p>&nbsp;</p>
 <p>For this canvas we are going to put the plots in the reverse order (<strong><em>plotF, plotE</em></strong>…) and skip the last plot (<strong><em>plotA</em></strong>) – so there are only five plots.&nbsp; Since we set <strong><em>ncol</em></strong> to <strong>3</strong> and there are <strong>5</strong> plots, <strong><em>arrangeGrob()</em></strong> creates two rows but leaves an empty space at the end of the last row.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 6: Arranging plots on canvas by columns</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 6: Arranging plots on canvas by columns</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  multi2<span class="ot">=</span><span class="fu">arrangeGrob</span>(plotF, plotE, plotD, plotB, plotA,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ncol=</span><span class="dv">3</span>);</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-byColumn" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-byColumn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -607,11 +612,11 @@ Figure&nbsp;7: Arranging plots by columns in a canvas
 <li><p>The first row on the canvas will have the 4<sup>th</sup>, 5<sup>th</sup>, and 6<sup>th</sup> plots (<strong><em>plotD</em></strong>, <strong><em>plotE</em></strong>, and <strong><em>plotF</em></strong>)</p></li>
 <li><p>The second row on the canvas will have the 3<sup>rd</sup>, 2<sup>nd</sup>, and 1<sup>st</sup> plots (<strong><em>plotC</em></strong>, <strong><em>plotB</em></strong>, and <strong><em>plotA</em></strong>)</p></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 7: Customize arrangements using matrix</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 7: Customize arrangements using matrix</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  multi3<span class="ot">=</span><span class="fu">arrangeGrob</span>(plotA, plotB, plotC, plotD, plotE, plotF,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>),   <span class="co"># plotD, plotE, plotF</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>))); <span class="co"># plotC, plotB, plotA</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: The numbers in the matrix represents the order the plots are listed.</span></p>
 <div id="fig-byMatrix" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -629,8 +634,8 @@ Figure&nbsp;8: The six plots using the matrix layout
 <p>We can use <strong><em>NA</em></strong> to represent an empty space (i.e., no plot).</p>
 <p>&nbsp;</p>
 <p>The code:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>layout_matrix <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">1</span>,<span class="dv">2</span>),     <span class="co"># row 1: nothing, 1st plot, 2nd plot</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">3</span>,<span class="cn">NA</span>,<span class="cn">NA</span>))<span class="er">)</span>;  <span class="co"># row 2: 3rd plot, nothing, nothing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>layout_matrix <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">1</span>,<span class="dv">2</span>),     <span class="co"># row 1: nothing, 1st plot, 2nd plot</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">3</span>,<span class="cn">NA</span>,<span class="cn">NA</span>))<span class="er">)</span>;  <span class="co"># row 2: 3rd plot, nothing, nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Tells <strong><em>arrangeGrob()</em></strong> to create a canvas that has 2 rows and 3 columns.&nbsp;</p>
 <ul>
 <li><p>Row 1 has nothing in the first column, the 1<sup>st</sup> plot in the second column, and the 2<sup>nd</sup> plot in the third column</p></li>
@@ -638,11 +643,11 @@ Figure&nbsp;8: The six plots using the matrix layout
 </ul>
 <p>&nbsp;</p>
 <p>In the following code, <span class="hl"><strong>plotC</strong> is the 1<sup>st</sup> plot,</span> <strong><em>plotD</em></strong> is the 2<sup>nd</sup> plot, and <strong><em>plotE</em></strong> is the 3<sup>rd</sup> plot:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 8: Add empty spaces to customized arrangement</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 8: Add empty spaces to customized arrangement</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  multi4<span class="ot">=</span><span class="fu">arrangeGrob</span>(plotC, plotD, plotE,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">1</span>,<span class="dv">2</span>),   <span class="co"># none, plotC, plotD</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">3</span>,<span class="cn">NA</span>,<span class="cn">NA</span>)));<span class="co"># plotE, none, none</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-byLayoutMatrix" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-byLayoutMatrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -664,18 +669,18 @@ Figure&nbsp;9: Using layout_matrix to customize the canvas
 <li><p>3rd plot 2 columns by 1 row</p></li>
 <li><p>4th plot 1 column by 2 rows</p></li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>layout_matrix <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>layout_matrix <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>),</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">4</span>,<span class="cn">NA</span>,<span class="cn">NA</span>))<span class="er">)</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">4</span>,<span class="cn">NA</span>,<span class="cn">NA</span>))<span class="er">)</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s put the <strong>4x3</strong> matrix in <strong><em>arrangeGrob()</em></strong>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 9: Extending plots across rows and columns</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 9: Extending plots across rows and columns</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  multi5<span class="ot">=</span><span class="fu">arrangeGrob</span>(plotA, plotB, plotC, plotD,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>),</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">4</span>,<span class="cn">NA</span>,<span class="cn">NA</span>)));</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-extending" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-extending-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -696,27 +701,27 @@ Figure&nbsp;10: Extending plots across rows and down columns
 <p>All plots listed in <strong><em>arrangeGrob()</em></strong> must be used in the matrix</p>
 <p>&nbsp;</p>
 <p>Issue: <strong><em>plotB</em></strong> is listed but not used in the matrix:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 1: Plots listed must be used in matrix</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 1: Plots listed must be used in matrix</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">####          plotB (#2) is not used in the layout_matrix</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  error1 <span class="ot">=</span> <span class="fu">arrangeGrob</span>(plotA, «plotB», plotC, plotD, plotE,</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">5</span>),</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                                            <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>),</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                                            <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                                            <span class="fu">c</span>(<span class="dv">4</span>,<span class="cn">NA</span>,<span class="cn">NA</span>)));</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(error1);  <span class="co"># Error in t:b : NA/NaN argument</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(error1);  <span class="co"># Error in t:b : NA/NaN argument</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Executing this grid without using <strong><em>plotB</em></strong> (#2) produces the unintuitive error:</p>
 <p><span class="hl">Error in t:b : NA/NaN argument</span></p>
 </section>
 <section id="invalid-index-numbers-in-matrix" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="invalid-index-numbers-in-matrix"><span class="header-section-number">6.2</span> Invalid index numbers in matrix</h3>
 <p>Issue: index <strong>5</strong> is used in the matrix but there is no 5<sup>th</sup> plot</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 2: Invalid index error (there is no 5th plot)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 2: Invalid index error (there is no 5th plot)</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  issue2 <span class="ot">=</span> <span class="fu">arrangeGrob</span>(plotA, plotB, plotC, plotD,</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">5</span>),</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>),</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>),</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">c</span>(<span class="dv">4</span>,<span class="cn">NA</span>,<span class="cn">NA</span>)));</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When executing this grid, the number will be ignored by <strong><em>layout_matrix()</em></strong> and nothing will be plotted in that area.&nbsp; No warning or error is given.</p>
 <div id="fig-invalidPlotIndex" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -739,12 +744,12 @@ Figure&nbsp;11: Nothing is plotted in the area of the grid with an invalid plot 
 <p>&nbsp;</p>
 <p>If you arrange the index numbers in the matrix in a non-rectangular fashion, <strong><em>arrangeGrob()</em></strong> will “fill” in the rest of the rectangle.</p>
 <p>In the following code, <strong><em>arrangeGrob()</em></strong> will extend <strong><em>plotA</em></strong> across the 2 rows and 2 columns</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 3: The grid will extend discontinuous plots to fill a rectangle</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 3: The grid will extend discontinuous plots to fill a rectangle</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="do">####          plotA will be extended to a rectangle that is 2x2</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  issue3 <span class="ot">=</span> <span class="fu">arrangeGrob</span>(plotA, plotB,</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(«<span class="dv">1</span>»,«NA»,<span class="dv">2</span>),</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">c</span>(«NA»,«<span class="dv">1</span>»,<span class="cn">NA</span>)));</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-extendedPlotsIssue" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-extendedPlotsIssue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -761,12 +766,12 @@ Figure&nbsp;12: Plots are extended to fill the rectangular area they represent i
 <p>In this example, <strong><em>arrangeGrob()</em></strong> assumes that <strong><em>plotA</em></strong> is <strong>2</strong> rows x <strong>3</strong> columns (it takes up the whole plot area).&nbsp; This means that <strong><em>plotA</em></strong> and <strong><em>plotB</em></strong> both use the spot on the 1st row, 3rd column.</p>
 <p>&nbsp;</p>
 <p>In this case, <strong><em>plotB</em></strong> overlaps <strong><em>plotA</em></strong> in the one grid space because <strong><em>plotB</em></strong> comes after <strong><em>plotA</em></strong> in <strong><em>arrangeGrob()</em></strong>.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 4: Overlapping plots -- priority goes to the later plot</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 4: Overlapping plots -- priority goes to the later plot</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">####          In this case, plotB overlaps plotA</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  issue4 <span class="ot">=</span> <span class="fu">arrangeGrob</span>(plotA, plotB,</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="cn">NA</span>,«<span class="dv">2</span>»),</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">c</span>(<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="dv">1</span>)));</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-overlappingPlots" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-overlappingPlots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -781,12 +786,12 @@ Figure&nbsp;13: Plots overlapping in layout_matrix(), the later plot get priorit
 <section id="hidden-plots-due-to-overlapping" class="level3" data-number="6.5">
 <h3 data-number="6.5" class="anchored" data-anchor-id="hidden-plots-due-to-overlapping"><span class="header-section-number">6.5</span> Hidden plots due to overlapping</h3>
 <p><strong><em>arrangeGrob()</em></strong> puts plots with higher indexes on top.&nbsp; So, if we reverse the previous canvas and stretch <strong><em>plotB</em></strong> across the whole canvas then <strong><em>plotB</em></strong> will still overlap <strong><em>plotA.</em></strong>&nbsp; This effectively hides <strong><em>plotA</em></strong>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 5: Hidden plots due to overlapping</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Issue 5: Hidden plots due to overlapping</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">####          In this case, plotB completely covers up plotA</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  issue5 <span class="ot">=</span> <span class="fu">arrangeGrob</span>(plotA, plotB,</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="cn">NA</span>,<span class="dv">1</span>),</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">c</span>(<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="dv">2</span>)));</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-hiddenPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hiddenPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -803,13 +808,13 @@ Figure&nbsp;14: A plot is hidden because it is overlapped by another plot.
 <p>When the canvas area is complicated, the plot will sometimes not be fully drawn.&nbsp; This is an inconsistent error that happens in RStudio on slower computers.</p>
 <p>&nbsp;</p>
 <p>Theoretically, this should show <strong><em>plotD</em></strong> across the whole canvas, covering up the other plots.&nbsp;</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 10: Error in plot placement</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 10: Error in plot placement</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  issue6 <span class="ot">=</span> <span class="fu">arrangeGrob</span>(plotA, plotB, plotC, plotD,</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">layout_matrix =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>),</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="cn">NA</span>),</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>),</span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">c</span>(<span class="dv">4</span>,<span class="cn">NA</span>,<span class="cn">NA</span>)));</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(issue6);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This code will sometimes give an elapsed time warning like:</p>
 <p><span class="hl">In unique.default(lengths(x)) : reached elapsed time limit</span></p>
 <p>&nbsp;</p>
@@ -876,7 +881,7 @@ Figure&nbsp;15: Using the Zoom button to open a plot in a new window.
 <p>You can labels to every side of the grid using the arguments <strong><em>right</em></strong>, <strong><em>left</em></strong>, <strong><em>top</em></strong>, and <strong><em>bottom</em></strong> in <strong><em>arrangeGrid()</em></strong>.&nbsp; However, the labels will all be in standard font, black, and 12px.&nbsp; Styling the labels is tricky and uses <strong><em>textGrob</em></strong> and <strong><em>gpar</em></strong> within the grid package.</p>
 <p>&nbsp;</p>
 <p>The plot below has unstyled labels for the <strong><em>top</em></strong> and <strong><em>right</em></strong> of the grid and styled labels for the <strong><em>bottom</em></strong> and <strong><em>left</em></strong>:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Extension: Adding labels to a grob:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Extension: Adding labels to a grob:</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  multi1Lab<span class="ot">=</span><span class="fu">arrangeGrob</span>(plotA, plotB, plotC, plotD, plotE, plotF,</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nrow=</span><span class="dv">3</span>,</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                     «top»<span class="ot">=</span><span class="st">"top label"</span>,    </span>
@@ -885,7 +890,7 @@ Figure&nbsp;15: Using the Zoom button to open a plot in a new window.
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                     «right»<span class="ot">=</span><span class="st">"right label"</span>,</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                     «left»<span class="ot">=</span>grid<span class="sc">::</span><span class="fu">textGrob</span>(<span class="st">"left label"</span>, </span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">gp=</span>grid<span class="sc">::</span><span class="fu">gpar</span>(<span class="at">col=</span><span class="st">"red"</span>, <span class="at">fontsize=</span><span class="dv">20</span>)));</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi1Lab);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(multi1Lab);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Styling grid labels can leads to inconsistent results – in this case the left label was turned 90 degrees.</p>
 <div id="fig-gridLabels" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">

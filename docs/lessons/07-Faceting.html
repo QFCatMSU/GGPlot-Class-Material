@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.17">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -68,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/06-ModifyingMappedElements.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-da03d714c310c60cec1d83284c92da2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5f39cfd1aee7e7785011fc5df168ee92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -134,6 +136,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -338,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="factoring-data" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="factoring-data"><span class="header-section-number">2</span> Factoring data</h2>
 <p>Let’s start with the stacked histogram from last lesson where we mapped <strong><em>x</em></strong> to temperature and <strong><em>fill</em></strong> to <strong><em>season</em></strong> – so, a temperature histogram with seasons stacked:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Factoring the values in season ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Factoring the values in season ####</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  seasonOrdered <span class="ot">=</span> <span class="fu">factor</span>(weatherData<span class="sc">$</span>season,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Spring"</span>, <span class="st">"Summer"</span>, <span class="st">"Fall"</span>, <span class="st">"Winter"</span>));</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> </span>
@@ -353,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  </span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Seasons"</span>);     </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>… and the resulting stacked histogram</p>
 <div id="fig-stackedHist" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -368,8 +374,8 @@ Figure&nbsp;1: A stacked histogram that maps temperature to the x-axis and seaso
 <section id="mapping-columns-and-environment-variables" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="mapping-columns-and-environment-variables"><span class="header-section-number">2.1</span> Mapping columns and Environment variables</h3>
 <p>If we look at the first two lines of plot1:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>«weatherData» ) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«avgTemp», <span class="at">fill=</span>«seasonOrdered»),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>«weatherData» ) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«avgTemp», <span class="at">fill=</span>«seasonOrdered»),</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We are creating a canvas area with the data frame <strong><em>weatherData</em></strong>.&nbsp; For the histogram we are mapping the <strong><em>avgTemp</em></strong> column in <strong><em>weatherData</em></strong> to the <strong><em>x</em></strong>-axis and we are mapping the vector <strong><em>seasonOrdered</em></strong> to the <strong><em>fill</em></strong> (i.e., background color).</p>
 <p>&nbsp;</p>
 <p>In a <strong><em>mapping</em></strong>, GGPlot will first check the data frame initialized in the canvas to see if there is a column with the name mapped and&nbsp;<strong><em>avgTemp</em></strong> is a column in <strong><em>weatherData</em></strong>.</p>
@@ -380,7 +386,7 @@ Figure&nbsp;1: A stacked histogram that maps temperature to the x-axis and seaso
 <section id="faceting" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="faceting"><span class="header-section-number">3</span> Faceting</h2>
 <p>Instead of using a mapping to add more variables to a plot, we can use a facet.&nbsp; A <em>facet</em> uses a variable to&nbsp;break up the plot area by rows or columns (or both).&nbsp; Let’s use a facet to add <strong><em>season</em></strong> to the temperature histogram.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 2: Faceting the histogram ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 2: Faceting the histogram ####</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
@@ -389,7 +395,7 @@ Figure&nbsp;1: A stacked histogram that maps temperature to the x-axis and seaso
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Each season now has its own row with its own temperature histogram</p>
 <div id="fig-facets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -404,13 +410,13 @@ Figure&nbsp;2: Using facets to break out the seasons
 <section id="facets-are-like-mappings" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="facets-are-like-mappings"><span class="header-section-number">3.1</span> Facets are like mappings&nbsp;</h3>
 <p>To “map” a column using <strong><em>facet_grid</em></strong>, you need to put the column name as an argument in <strong><em>vars()</em></strong>.&nbsp; This code “maps” the <strong><em>season</em></strong> column to rows in the plotting area:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(season) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">rows =</span> <span class="fu">vars</span>(season) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>facet_grid</em></strong> is buggy and will not reliably use&nbsp;<strong><em>Environment</em></strong> variables like <strong><em>seasonOrdered</em></strong>.&nbsp; The only way around all the bugs is to save <strong><em>Environment</em></strong> variables to the data frame.&nbsp; We need to first save&nbsp;<strong><em>seasonOrdered</em></strong> as a column in <strong><em>weatherData</em></strong> before using it is a facet.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  weatherData<span class="sc">$</span>seasonOrdered <span class="ot">=</span> seasonOrdered;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  weatherData<span class="sc">$</span>seasonOrdered <span class="ot">=</span> seasonOrdered;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: <strong>weatherData</strong> has added the column <strong>seasonOrdered</strong> to the end of the data frame.</span></p>
 <p>&nbsp;</p>
 <p>And then use the column <strong><em>seasonOrdered</em></strong> from the data frame.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: Reordering the seasons ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: Reordering the seasons ####</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp),</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
@@ -419,7 +425,7 @@ Figure&nbsp;2: Using facets to break out the seasons
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-orderedFacets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-orderedFacets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -435,10 +441,10 @@ Figure&nbsp;3: Reordering the facets using the variable seasonOrdered
 <h3 data-number="3.2" class="anchored" data-anchor-id="reversing-the-facet"><span class="header-section-number">3.2</span> Reversing the facet</h3>
 <p><strong><em>facet_grid</em></strong> has two “mapping” subcomponents:&nbsp;<strong>rows</strong> and <strong>cols</strong>.&nbsp; In this above case (<a href="#fig-orderedFacets" class="quarto-xref">Figure&nbsp;3</a>), <strong><em>seasonOrdered</em></strong> was mapped to <strong><em>row</em></strong>.</p>
 <p>We can facet by column by mapping <strong><em>seasonOrdered</em></strong> to <strong><em>cols</em></strong> instead.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Reversing the facet equation ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Reversing the facet equation ####</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> plot3 <span class="sc">+</span>                             <span class="co"># take all components from plot3</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( «cols» <span class="ot">=</span> <span class="fu">vars</span>(seasonOrdered) ); <span class="co"># and rewrite the facet component</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This version is not spaced as well as the previous version.&nbsp; You can change the bin sizes using the <strong><em>bin</em></strong> or <strong><em>binwidth</em></strong> components in <strong><em>geom_histogram</em></strong>.You will be using <strong><em>bin</em></strong> and <strong><em>binwidth</em></strong> in the lesson application.</p>
 <div id="fig-columnFacets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -462,7 +468,7 @@ Figure&nbsp;4: Switching the season facet to the x-axis
 <li><p>add color by mapping the <strong><em>season</em></strong> to <strong><em>fill</em></strong> (<strong><em>fill</em></strong> is the background color)</p></li>
 <li><p>change to a density plot</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 5: Adding color and switching to a density plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 5: Adding color and switching to a density plot ####</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    «geom_density»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, «<span class="at">fill=</span>season»),</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
@@ -471,7 +477,7 @@ Figure&nbsp;4: Switching the season facet to the x-axis
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-densityPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-densityPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -487,7 +493,7 @@ Figure&nbsp;5: A density plot with each facet colored using the fill mapping
 <section id="facet-in-other-plots" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="facet-in-other-plots"><span class="header-section-number">4</span> Facet in other plots</h2>
 <p>We can also use facets in a scatterplot of humidity vs.&nbsp;temperature faceted by season:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Faceting a scatterplot ####  </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Faceting a scatterplot ####  </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    «geom_point»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -495,7 +501,7 @@ Figure&nbsp;5: A density plot with each facet colored using the fill mapping
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-facetSeason" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-facetSeason-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -508,7 +514,7 @@ Figure&nbsp;6: Faceting a scatterplot by season
 </div>
 <p>&nbsp;</p>
 <p>Or, use facets in a bar plot or temperature faceted by season:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6b: Faceting a barplot ####  </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6b: Faceting a barplot ####  </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  plot6b <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    «geom_bar»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp),</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  </span>
@@ -517,7 +523,7 @@ Figure&nbsp;6: Faceting a scatterplot by season
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6b);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-facetBarplot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-facetBarplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -533,7 +539,7 @@ Figure&nbsp;7: Faceting a temperature barplot by season
 <p>By default, <strong><em>facet_grid</em></strong> will use the same scales for each facet.&nbsp; In the case of <a href="#fig-facetBarplot" class="quarto-xref">Figure&nbsp;7</a>, this means that the y-axis range for all four facets is the same.</p>
 <p>&nbsp;</p>
 <p>We can make <strong><em>facet_grid</em></strong> use a different scale for each facet by adding the subcomponent <strong><em>scales</em></strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot6c <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot6c <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp)) <span class="sc">+</span>  </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( <span class="at">cols =</span> <span class="fu">vars</span>(seasonOrdered), </span>
@@ -541,7 +547,7 @@ Figure&nbsp;7: Faceting a temperature barplot by season
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6c);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6c);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And now each facet uses a different y-axis scale to maximize space:</p>
 <div id="fig-independentFacets" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -565,7 +571,7 @@ Figure&nbsp;8: Each facet row now has an independent y-axis range
 <li><p>rows: <strong><em>seasonOrdered</em></strong></p></li>
 <li><p>cols: <strong><em>windSpeedLevel</em></strong></p></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Two-dimensional facets ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Two-dimensional facets ####</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -574,7 +580,7 @@ Figure&nbsp;8: Each facet row now has an independent y-axis range
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Again, while facets are not defined as mappings, facets also map data to an aspect of the plot.</p>
 <div id="fig-2D_Facet" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -591,7 +597,7 @@ Figure&nbsp;9: Facet by both rows and columns (two-dimensional facet)
 <p>The containers that have the labels for the facet rows and columns are called <strong><em>strips</em></strong>.&nbsp; Like everything else in the canvas area outside of the plots, the strips can be modified using <strong><em>theme</em></strong>.&nbsp; If you look at the <a href="https://ggplot2.tidyverse.org/reference/theme.html">description for <strong><em>theme</em></strong></a>, under <strong><em>Usage</em></strong> you will see that there are 14 different aspects of strip that can be modified (i.e., 14 subcomponents of&nbsp;<strong><em>theme</em></strong> that start with <strong><em>strip</em></strong>).</p>
 <p>&nbsp;</p>
 <p>Using <strong><em>theme</em></strong>, we will change the background and text colors of the strips.&nbsp; And, using the subcomponent <strong><em>switch</em></strong> inside <strong><em>facet_grid</em></strong>, we can change the position of the strips to the opposite side:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(«strip.text» <span class="ot">=</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">"purple"</span>,</span>
@@ -606,7 +612,7 @@ Figure&nbsp;9: Facet by both rows and columns (two-dimensional facet)
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>strip</em></strong>.<strong><em>text</em></strong> and <strong><em>strip.background</em></strong> will modify both axis.&nbsp; Individual axis can be modified by attaching <strong><em>.x</em></strong> or .<strong><em>y</em></strong> to the names. So,&nbsp;<strong><em>strip.text</em></strong> modifies both axis text whereas <strong><em>strip.background.x</em></strong> modifies only the x-axis.</p>
 <div id="fig-modifyStrips" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -622,8 +628,8 @@ Figure&nbsp;10: Modifying the strips in the canvas
 <section id="themes-and-element-objects" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="themes-and-element-objects"><span class="header-section-number">5.2</span> Themes and element objects</h3>
 <p>Like most <strong><em>theme</em></strong> components, you cannot directly set the properties of an object, instead you set the object to an&nbsp;<strong><em>element_*</em></strong> that has the properties you want so:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>strip.background.y <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"blue"</span>,</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fill=</span><span class="st">"lightgreen"</span>)<span class="er">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>strip.background.y <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"blue"</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fill=</span><span class="st">"lightgreen"</span>)<span class="er">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>… means set the&nbsp;<strong>strips</strong> on the <strong>y-axis</strong> to a <strong>rectangular element</strong> that is <strong>colored</strong> blue and <strong>filled</strong> lightgreen.</p>
 </section>
 </section>
@@ -639,7 +645,7 @@ Figure&nbsp;10: Modifying the strips in the canvas
 <p><strong><em>windSusDir</em></strong> gives wind by 10 degrees, so the values are 10, 20, 30, …, 360.&nbsp; This means that are <strong>36</strong> values for <strong><em>windSusDir</em></strong>.&nbsp; A regular facet would be either <strong>36</strong> rows or columns.</p>
 <p>&nbsp;</p>
 <p>With <strong><em>facet_wrap</em></strong>, we can split the facets into rows and columns by setting either <strong><em>nrow</em></strong> or <strong><em>ncol</em></strong>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">facet_wrap</span>( <span class="at">facets =</span> <span class="fu">vars</span>(windSusDir),»</span>
@@ -647,7 +653,7 @@ Figure&nbsp;10: Modifying the strips in the canvas
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We only set <strong><em>nrow</em></strong> (4)– and GGPlot calculates <strong><em>ncol</em></strong> (9).&nbsp; You could declare both <strong><em>nrow</em></strong> and <strong><em>ncol</em></strong> but that is not necessary and you are risking an error if you calculate it wrong.</p>
 <div id="fig-facetWrap" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -663,7 +669,7 @@ Figure&nbsp;11: A facet_wrap using one variable
 <section id="multi-variable-facet_wrap" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="multi-variable-facet_wrap"><span class="header-section-number">6.2</span> Multi-variable facet_wrap</h3>
 <p>You can facet with multiple variables and GGPlot will produce one facet cell for every possible combination of the variables.&nbsp; In this example, we facet by <strong><em>seasonOrdered</em></strong> and <strong><em>windSpeedLevel</em></strong>.&nbsp; <strong><em>seasonOrdered</em></strong> has <strong>4</strong> possible values and <strong><em>windSpeedLevel</em></strong> has <strong>3</strong>.&nbsp; So, the combination will produce <strong>12</strong> facet cells:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)) <span class="sc">+</span>  </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>( «<span class="at">facets =</span> <span class="fu">vars</span>(seasonOrdered, windSpeedLevel»),</span>
@@ -672,7 +678,7 @@ Figure&nbsp;11: A facet_wrap using one variable
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>GGPlot creates 12 facets, one for each combination of seasonOrdered and winSpeedLevel.&nbsp; <strong><em>ncol=4</em></strong> says to create 4 columns – and 3 rows.&nbsp; <strong><em>dir=“v”</em></strong> says arrange the facets vertically.&nbsp; The default is “h”, or horizontally.</p>
 <div id="fig-facetWrap_2Var" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -746,19 +752,19 @@ Figure&nbsp;12: Facet_wrap using 2 variables
 <section id="create-a-date-facet" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="create-a-date-facet"><span class="header-section-number">8.1</span> Create a date facet</h3>
 <p>Dates are not the easiest thing to deal with in R, so it is worth a revisit.&nbsp; Our goal is to facet by month using the <strong><em>dateYr</em></strong> column and it would really help if R could recognize the values as dates.&nbsp; Unfortunately, R does not see <strong><em>dateYr</em></strong> as Date values:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(weatherData<span class="sc">$</span>dateYr)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(weatherData<span class="sc">$</span>dateYr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>So, we need to convert <strong><em>dateYr</em></strong> into a <strong><em>Date</em></strong> format that R recognizes – we will save that to <strong><em>dateYr2</em></strong>:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  dateYr2 <span class="ot">=</span> <span class="fu">as.Date</span>(weatherData<span class="sc">$</span>dateYr, <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  dateYr2 <span class="ot">=</span> <span class="fu">as.Date</span>(weatherData<span class="sc">$</span>dateYr, <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And the <strong><em>Environment</em></strong> says <strong><em>dateYr2</em></strong> is a <strong><em>Date</em></strong> vector:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dateYr2<span class="sc">:</span>   Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>], format<span class="sc">:</span>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dateYr2<span class="sc">:</span>   Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>], format<span class="sc">:</span>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>But <strong><em>typeof()</em></strong> will classify <strong><em>dateYr2</em></strong> as numeric (double) – this is because, deep down, <strong><em>Dates</em></strong> are stored as a number that counts from January 1, 1970 (backwards and forewords).</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(dateYr2)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"double"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(dateYr2)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"double"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now we can extract the month from <strong><em>dateYr2</em></strong>, <span class="note">note: “%b” is the conversion specification for month</span></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  months <span class="ot">=</span> <span class="fu">format</span>(dateYr2, <span class="at">format=</span><span class="st">"%b"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  months <span class="ot">=</span> <span class="fu">format</span>(dateYr2, <span class="at">format=</span><span class="st">"%b"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We need to add <strong><em>months</em></strong> in the data frame before we use it as a facet:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  weatherData<span class="sc">$</span>monthsCol <span class="ot">=</span> months;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  weatherData<span class="sc">$</span>monthsCol <span class="ot">=</span> months;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="putting-the-months-in-order" class="level3" data-number="8.2">
 <h3 data-number="8.2" class="anchored" data-anchor-id="putting-the-months-in-order"><span class="header-section-number">8.2</span> Putting the months in order</h3>

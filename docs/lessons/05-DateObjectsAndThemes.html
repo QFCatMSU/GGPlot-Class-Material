@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.28">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/04-ElementsAndStyles.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b719d3d4935f2b08311a76135e2bf442.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c5e6fd5a646752829aeb2af341632313.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -135,6 +136,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -338,17 +343,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>&nbsp;</p>
 <p>In the lesson script, there is one line added to the header code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="at">file=</span><span class="st">"scripts/ggplot_theming.r"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="at">file=</span><span class="st">"scripts/ggplot_theming.r"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This line includes the code for user-created GGPlot themes that will be used later in the lesson</p>
 </section>
 </section>
 <section id="get-data" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="get-data"><span class="header-section-number">2</span> Get data</h2>
 <p>Let’s again use the weather data from the file LansingNOAA2016.csv and save it to a data frame called <strong><em>weatherData</em></strong> ( <a href="#fig-wholeYearTemp" class="quarto-xref">Figure&nbsp;1</a> ):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/LansingNOAA2016.csv"</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/LansingNOAA2016.csv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>…and look back at one of the plots from last lesson, where we plotted the high, low, and average temperatures for the whole year:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData)», <span class="at">y=</span>maxTemp),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData)», <span class="at">y=</span>minTemp),</span>
@@ -364,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-wholeYearTemp" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-wholeYearTemp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -380,8 +385,8 @@ Figure&nbsp;1: High, low, and average temperature throughout the year.
 <p>On the x-axis we kind of cheated and used the row number to represent the day (<strong><em>1:nrow(weatherData)</em></strong>) instead of the actual date.&nbsp; This is because displaying dates in GGPlot is tricky.</p>
 <p>&nbsp;</p>
 <p>The first thing to notice is that, while <strong><em>weatherData</em></strong> has a column named <strong><em>date</em></strong>, the column is not actually in <strong><em>Date</em></strong> format.&nbsp; The <strong><em>date</em></strong> column is in <strong><em>character</em></strong> (or string) format:</p>
-<div class="sourceCode" id="cb4" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(weatherData<span class="sc">$</span>date)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(weatherData<span class="sc">$</span>date)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Looking at the&nbsp;<strong><em>date</em></strong> column in a Viewer tab can see the date is not properly formatted (mostly because it does not have a year):</p>
 <div id="fig-dateMisformat" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -418,11 +423,11 @@ Figure&nbsp;2: weatherData data frame, note that the date column has only the mo
 <section id="save-the-date-column-to-a-vector" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="save-the-date-column-to-a-vector"><span class="header-section-number">3.1</span> Save the date column to a vector</h3>
 <p>There are multiple ways in R to save a column in a data frame to a vector.&nbsp; Three ways are given below, the last two are commented out but they will produce the same results:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Add year to date values ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Add year to date values ####</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a) save the date vector from the data frame to the variable theDate</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>theDate1 <span class="ot">=</span> weatherData<span class="sc">$</span>date;         <span class="co"># get all values from the dates column</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate1 = weatherData[["date"]];  # equivalent to previous line\</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate1 = weatherData[ , "date"]; # equivalent to previous 2 lines in base R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate1 = weatherData[ , "date"]; # equivalent to previous 2 lines in base R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>I choose to use the first method, which uses <strong><em>$</em></strong> to subset <strong><em>weatherData</em></strong>, for two reasons:</p>
 <ol type="1">
 <li><p>When you type in <strong><em>$</em></strong> after <strong><em>weatherData</em></strong>, RStudio will suggest a list of column names from <strong><em>weatherData</em></strong></p></li>
@@ -431,7 +436,7 @@ Figure&nbsp;2: weatherData data frame, note that the date column has only the mo
 <p><a href="#extension-r-data-frames-and-tidyverse-tibbles">Extension: R data frames and TidyVerse tibbles</a></p>
 <p>&nbsp;</p>
 <p>If we look at the <strong><em>Environment</em></strong>, we can see <strong><em>theDate1</em></strong> is a character vector with 366 values:</p>
-<div class="sourceCode" id="cb6" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>theDate1 chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01-01"</span> <span class="st">"01-02"</span> <span class="st">"01-03"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>theDate1 chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01-01"</span> <span class="st">"01-02"</span> <span class="st">"01-03"</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="#extension-getting-a-range-of-values-in-a-column">Extension: Getting a range of values in a column</a></p>
 </section>
 <section id="append-the-year-to-the-date" class="level3" data-number="3.2">
@@ -446,15 +451,15 @@ Figure&nbsp;2: weatherData data frame, note that the date column has only the mo
 <li><span class="note">note: the default value for <strong>sep</strong> is a space</span></li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># append (paste) "-2016" to all values in theDate1</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>theDate2 <span class="ot">=</span> <span class="fu">paste</span>(theDate1, <span class="st">"-2016"</span>, <span class="at">sep=</span><span class="st">""</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># append (paste) "-2016" to all values in theDate1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>theDate2 <span class="ot">=</span> <span class="fu">paste</span>(theDate1, <span class="st">"-2016"</span>, <span class="at">sep=</span><span class="st">""</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="#extension-more-about-paste">Extension: more about paste()</a> and the reason why argument names are not used for the first two values<strong><br>
 </strong></p>
 <p>Now every value has a year attached to it:</p>
 <div id="fig-dateValues" class="quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dateValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb8" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>theDate2    chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01-01-2016"</span> <span class="st">"01-02-2016"</span> <span class="st">"01-03-2016"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>theDate2    chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01-01-2016"</span> <span class="st">"01-02-2016"</span> <span class="st">"01-03-2016"</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dateValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Pasting the year to all values in the vector
@@ -487,10 +492,10 @@ Figure&nbsp;3: Pasting the year to all values in the vector
 </ul></li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Save the values in Date format</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>theDate3 <span class="ot">=</span> <span class="fu">as.Date</span>(theDate2, <span class="at">format=</span><span class="st">"%m-%d-%Y"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Save the values in Date format</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>theDate3 <span class="ot">=</span> <span class="fu">as.Date</span>(theDate2, <span class="at">format=</span><span class="st">"%m-%d-%Y"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now, R recognizes the values in the vector as <strong><em>Dates</em></strong>:</p>
-<div class="sourceCode" id="cb10" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>theDate3    Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] format<span class="sc">:</span> <span class="st">"2016-01-01"</span> <span class="st">"2016-01-02"</span> <span class="st">"2016-01-03"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>theDate3    Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] format<span class="sc">:</span> <span class="st">"2016-01-01"</span> <span class="st">"2016-01-02"</span> <span class="st">"2016-01-03"</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">note: The <strong>Environment</strong> always shows <strong>Date</strong> values in R’s standard date format (YYYY-MM-DD),&nbsp; which is not the same as the format we used to create the date.</span></p>
 <section id="date-formats-and-conversion-specifications" class="level4" data-number="3.3.1">
 <h4 data-number="3.3.1" class="anchored" data-anchor-id="date-formats-and-conversion-specifications"><span class="header-section-number">3.3.1</span> Date formats and conversion specifications</h4>
@@ -523,10 +528,10 @@ Figure&nbsp;3: Pasting the year to all values in the vector
 <p>We have the vector in <strong><em>Date</em></strong> format, now we need to save the values back to a new column in the data frame.&nbsp; This is pretty much the reverse of the first step and, again, there are multiple ways to do it – I present three ways and comment out the last two.</p>
 <p>&nbsp;</p>
 <p>In each case, we are saving <strong><em>theDate</em></strong> to the column in <strong><em>weatherData</em></strong> called <strong><em>dateYr</em></strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Save theDate back to the data frame as a new column</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Save theDate back to the data frame as a new column</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>weatherData<span class="sc">$</span>dateYr <span class="ot">=</span> theDate3;</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># weatherData[["dateYr"]] = theDate3; # equivalent to previous line</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># weatherData[, "dateYr"] = theDate3; # equivalent to previous 2 lines using data frames</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># weatherData[, "dateYr"] = theDate3; # equivalent to previous 2 lines using data frames</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-properDate" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-properDate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -544,7 +549,7 @@ Figure&nbsp;4: The data frame now has a new column, dateYr, with properly format
 <section id="using-date-values" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="using-date-values"><span class="header-section-number">4</span> Using date values</h2>
 <p>The only change from the first plot is that we are using the new <strong><em>dateYr</em></strong> column, which is in <strong><em>Date</em></strong> format, instead of using row numbers for the x-axis mappings:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Use Dates on x-axis </span><span class="al">###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Use Dates on x-axis </span><span class="al">###</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«dateYr», <span class="at">y=</span>maxTemp),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
@@ -561,7 +566,7 @@ Figure&nbsp;4: The data frame now has a new column, dateYr, with properly format
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-datesInPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-datesInPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -575,7 +580,7 @@ Figure&nbsp;5: The x-axis now has date values instead of numeric
 <section id="the-repeated-date-values" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="the-repeated-date-values"><span class="header-section-number">4.1</span> The repeated date values</h3>
 <p>Since all three plots, or <span class="hl"><strong><em>geoms</em></strong></span>as GGPlot calls them, use <strong><em>dateYr</em></strong> for the x-axis, we can move the x-axis mapping to <strong><em>ggplot().</em></strong> This says that all <strong><em>geoms</em></strong> will use <strong><em>dateYr</em></strong> as the <strong><em>x</em></strong> mapping.&nbsp; and we do not have to declare an x-mapping in the individual <strong><em>geoms</em></strong>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: Move x to canvas --</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: Move x to canvas --</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">###   only works because EVERY geom uses dateYr</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  plot3<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, «<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)») <span class="sc">+</span>  <span class="co"># x mapping here</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),     <span class="co"># no x mapping here  </span></span>
@@ -593,7 +598,7 @@ Figure&nbsp;5: The x-axis now has date values instead of numeric
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And the plot is exactly the same.&nbsp; <span class="hl">Moving the <strong>x</strong>-mapping to <strong>ggplot()</strong> works because the x-axis mapping is the same for every&nbsp;<strong>geom</strong> in the canvas.</span></p>
 <div id="fig-datesXMapping" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -632,7 +637,7 @@ Figure&nbsp;7: scale_x_date Help page – scroll down to see a description of th
 <li>&nbsp;we will use abbreviated months (<strong><em>%b</em></strong>), two-digit days (<strong><em>%d</em></strong>), and two-digit years (<strong><em>%y</em></strong>) (e.g., <strong>Apr 15, ’22</strong>)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a> <span class="do">#### Part 5: Convert date format and date breaks</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a> <span class="do">#### Part 5: Convert date format and date breaks</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  plot5<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
@@ -651,7 +656,7 @@ Figure&nbsp;7: scale_x_date Help page – scroll down to see a description of th
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-scaleDate" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-scaleDate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -667,7 +672,7 @@ Figure&nbsp;8: The x-axis has formatted dates at 5-week intervals
 <section id="theme-changes-outside-the-plots" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="theme-changes-outside-the-plots"><span class="header-section-number">5</span> theme changes (outside the plots)</h2>
 <p>Now we are going to use <strong><em>theme()</em></strong> component to modify the canvas area.&nbsp;<span class="note">Remember that <strong>theme</strong> needs to come after <strong>theme_bw()</strong> because <strong>theme_bw()</strong> will override all previous <strong>theme</strong> changes:</span></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Add theme component</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Add theme component</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  plot6<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
@@ -694,7 +699,7 @@ Figure&nbsp;8: The x-axis has formatted dates at 5-week intervals
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And our new themed plot looks like this:</p>
 <div id="fig-themedPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -765,7 +770,7 @@ Figure&nbsp;9: Our new (questionably) themed plot
 </ul></li>
 <li><p>return <strong><em>newTheme</em></strong> to the caller of the function</p></li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### 1) create a function with the name of your theme</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### 1) create a function with the name of your theme</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>«theme_ugly <span class="ot">=</span> <span class="cf">function</span>()»    </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### 2,3) Create an object and include everything from theme_bw()  </span></span>
@@ -784,13 +789,13 @@ Figure&nbsp;9: Our new (questionably) themed plot
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="do">### 4) Return newTheme to the caller</span></span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   You will often see this step skipped -- which is a bad programming practice!</span></span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(«newTheme»);</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="using-themes-from-another-script" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="using-themes-from-another-script"><span class="header-section-number">6.1</span> Using themes from another script</h3>
 <p>To use <strong><em>theme_ugly(),</em></strong> we need to include the theme’s script file in our current script file:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="at">file=</span><span class="st">"themes/ggplot_theming.r"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="at">file=</span><span class="st">"themes/ggplot_theming.r"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>theme_ugly()</em></strong> is a function that contains information about a theme and returns it to the caller.&nbsp; We can use <strong><em>theme_ugly()</em></strong> in our ggplot as if it were any other theme:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Use a theme saved elsewhere</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Use a theme saved elsewhere</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  plot7<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
@@ -809,7 +814,7 @@ Figure&nbsp;9: Our new (questionably) themed plot
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And the plot looks the same as the last plot (<strong><em>theme_bw</em></strong> with seven modified components):</p>
 <div id="fig-themedPlotFromFile" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -834,7 +839,7 @@ Figure&nbsp;10: Same plot but using theme_ugly() from a script file
 <h3 data-number="7.1" class="anchored" data-anchor-id="changing-geom-behavior"><span class="header-section-number">7.1</span> Changing geom behavior</h3>
 <p>The function <strong><em>update_geom_defaults</em></strong> is used to change the default style for <strong><em>geoms</em></strong> in GGPlot.</p>
 <p>I have created a function in <strong><em>ggplot_theming.r</em></strong> called <strong><em>modifyGeoms()</em></strong>, which calls&nbsp;<strong><em>update_geom_defaults</em></strong> three time to modify three different <strong><em>geoms</em></strong> (<strong><em>line</em></strong>, <strong><em>point</em></strong>, and <strong><em>smooth</em></strong>):</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>modifyGeoms <span class="ot">=</span> <span class="cf">function</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>modifyGeoms <span class="ot">=</span> <span class="cf">function</span>()</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>{ </span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_geom_defaults</span>(<span class="st">"line"</span>, <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"yellow"</span>));</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_geom_defaults</span>(<span class="st">"point"</span>, <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"green"</span>));</span>
@@ -842,9 +847,9 @@ Figure&nbsp;10: Same plot but using theme_ugly() from a script file
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">linetype=</span><span class="dv">4</span>,</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">linewidth=</span><span class="dv">2</span>,</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">fill=</span><span class="st">"lightblue"</span>));</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>update_geom_default</em></strong> needs to be called before you call <strong><em>ggplot()</em></strong>.&nbsp; When <strong><em>modifyGeoms()</em></strong> is called, the default color of <strong><em>geom_line</em></strong>, <strong><em>geom_point</em></strong> will be changed and the the default <strong><em>color</em></strong>, <strong><em>linetype</em></strong>, <strong><em>linewidth</em></strong>, and fill for <strong><em>geom_smooth</em></strong> will be changed.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Include geom defaults in theme </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Include geom defaults in theme </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  «<span class="fu">modifyGeoms</span>();»   <span class="co"># function that changes the geoms</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  plot7<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
@@ -859,7 +864,7 @@ Figure&nbsp;10: Same plot but using theme_ugly() from a script file
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And see the changes made by the <strong><em>theme</em></strong> and the <strong><em>update_geom_defaults</em></strong> functions in <strong><em>theme_UglyAdv()</em></strong>.&nbsp; We can still change the color of the lines as we did earlier (<a href="#fig-themedPlotFromFile" class="quarto-xref">Figure&nbsp;10</a>) – all we did here was <span class="hl">change the default color</span> of the lines to yellow.</p>
 <div id="fig-geomChanges" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -877,7 +882,7 @@ Figure&nbsp;11: A plot that uses the geom and theme changes
 <p>Once <strong><em>update_geom_default()</em></strong> is called, all subsequent <strong><em>ggplot()</em></strong> will adapt the new defaults in your R session. &nbsp;This means that every subsequent GGPlot will default to yellow lines in <strong><em>geom_line</em></strong>, green points in <strong><em>geom_point</em></strong>, and four default changes in <strong><em>geom_smooth</em></strong>.</p>
 <p>&nbsp;</p>
 <p>For the following code, <strong><em>theme_ugly()</em></strong> and <strong><em>modifyGeoms()</em></strong> has been removed:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: The defaults in GGPlot have been changed and will persist</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: The defaults in GGPlot have been changed and will persist</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  plot8<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp)) <span class="sc">+</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp)) <span class="sc">+</span></span>
@@ -889,7 +894,7 @@ Figure&nbsp;11: A plot that uses the geom and theme changes
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8); </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8); </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The theme has been removed but the changes to the <strong><em>geoms</em></strong> are still there:</p>
 <div id="fig-persistentGeoms" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -905,15 +910,15 @@ Figure&nbsp;12: The changes to the geoms are persistent
 <section id="changing-back-to-default-behavior" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="changing-back-to-default-behavior"><span class="header-section-number">7.3</span> Changing back to default behavior</h3>
 <p>The easiest way to change back to the default geom behavior is to reload the ggplot package:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">"package:ggplot2"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>);   <span class="co"># unloads ggplot package from session</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span><span class="st">"ggplot2"</span>);                 <span class="co"># reload package ggplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">"package:ggplot2"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>);   <span class="co"># unloads ggplot package from session</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span><span class="st">"ggplot2"</span>);                 <span class="co"># reload package ggplot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p>The first line unloads the ggplot2 package from the session</p></li>
 <li><p>The second line reloads the GGPlot package (effectively resetting GGPlot back to defaults).</p></li>
 </ul>
 <p>&nbsp;</p>
 <p>Now the same <strong><em>ggplot()</em></strong>:&nbsp;</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  plot9<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  plot9<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp)) <span class="sc">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp)) <span class="sc">+</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>avgTemp),</span>
@@ -924,7 +929,7 @@ Figure&nbsp;12: The changes to the geoms are persistent
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9); </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9); </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>…will go back to default behaviors:</p>
 <div id="fig-defaultGeoms" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -999,9 +1004,9 @@ Figure&nbsp;13: The geoms are back to their default properties
 </section>
 <section id="extension-getting-a-range-of-values-in-a-column" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="extension-getting-a-range-of-values-in-a-column"><span class="header-section-number">9</span> Extension: Getting a range of values in a column</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="dv">3</span>, <span class="st">"date"</span>];   <span class="co"># get the 3rd value from the date column</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="dv">3</span>, <span class="st">"date"</span>];   <span class="co"># get the 3rd value from the date column</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, <span class="st">"date"</span>];   <span class="co"># get the 3rd through 7th values from the date column</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="fu">seq</span>(<span class="at">from=</span><span class="dv">2</span>, <span class="at">by=</span><span class="dv">2</span>), <span class="st">"date"</span><span class="er">)</span>;   <span class="co"># get all even values in the date column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>weatherData[<span class="fu">seq</span>(<span class="at">from=</span><span class="dv">2</span>, <span class="at">by=</span><span class="dv">2</span>), <span class="st">"date"</span><span class="er">)</span>;   <span class="co"># get all even values in the date column</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="trap-using-the-wrong-argument-for-year" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="trap-using-the-wrong-argument-for-year"><span class="header-section-number">10</span> Trap: Using the wrong argument for year</h2>
@@ -1009,7 +1014,7 @@ Figure&nbsp;13: The geoms are back to their default properties
 <p><strong><em>%y</em></strong> means that the year is in the 2-digit format</p>
 <p>&nbsp;</p>
 <p>If you put in the wrong argument value (lowercase <strong><em>y</em></strong> instead of uppercase <strong><em>Y</em></strong>):</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> <span class="fu">as.Date</span>(theDate, <span class="at">format=</span><span class="st">"%m-%d-%y"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> <span class="fu">as.Date</span>(theDate, <span class="at">format=</span><span class="st">"%m-%d-%y"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>then you will get an unusual result:</p>
 <div id="fig-wrongYear" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1029,7 +1034,7 @@ Figure&nbsp;14: The year is now 2020 instead of 2016
 <p>The help page can be accessed in RStudio by going to the <strong><em>Help</em></strong> tab in the lower-left corner and searching for <strong>paste</strong>.</p>
 <p>&nbsp;</p>
 <p>If we go to the help page for <strong><em>paste()</em></strong>, it gives the usage for <strong><em>paste()</em></strong> as:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span> (..., <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span> (..., <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>( …, )</em></strong> means that <strong><em>paste()</em></strong> will accept any number of initials values – these are the values that <strong><em>paste()</em></strong> will attempt to paste together.&nbsp;<span class="hl">These values do not have a argument name.&nbsp;</span> When using <strong><em>paste()</em></strong>, you must use argument names for <strong><em>sep</em></strong> and <strong><em>collapse</em></strong>, otherwise <strong><em>paste()</em></strong> will see these value as part of the initial set of values to be pasted together.&nbsp; There are many functions in R that accept an indeterminate number of unnamed (i.e., no argument name) values at the beginning of a function.</p>
 <p>&nbsp;</p>
 <p><strong><em>sep</em></strong> = ” ” means the default separator value is one space.&nbsp; So, if you do not set <strong><em>sep</em></strong>, you will get one space between all the values that <strong><em>paste()</em></strong> is pasting together.</p>
@@ -1037,15 +1042,15 @@ Figure&nbsp;14: The year is now 2020 instead of 2016
 <section id="extension-r-data-frames-and-tidyverse-tibbles" class="level2" data-number="12">
 <h2 data-number="12" class="anchored" data-anchor-id="extension-r-data-frames-and-tidyverse-tibbles"><span class="header-section-number">12</span> Extension: R data frames and tidyverse tibbles</h2>
 <p>In this lesson I introduce three ways to access a column from a data frame and save it to a vector:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Add year to date values ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Add year to date values ####</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a) save the date vector from the data frame to the variable theDate</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> weatherData<span class="sc">$</span>date;         <span class="co"># get all values from the dates column</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate = weatherData[["date"]];  # equivalent to previous line</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate = weatherData[ , "date"]; # equivalent to previous 2 lines in base R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># theDate = weatherData[ , "date"]; # equivalent to previous 2 lines in base R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>All three of these methods are functionally the same on R data frames but they are functionally different if you are working with <strong><em>tibbles</em></strong>, which is a modern take on data frames used by packages in the TidyVerse.</p>
 <p>&nbsp;</p>
 <p>The first and second methods are the same in R-base and TidyVerse but the third method:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> weatherData[ , <span class="st">"date"</span>];&nbsp;&nbsp; <span class="co"># equivalent to previous 2 lines in base R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>theDate <span class="ot">=</span> weatherData[ , <span class="st">"date"</span>];&nbsp;&nbsp; <span class="co"># equivalent to previous 2 lines in base R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will save the <strong><em>date</em></strong> column <em>as a one-column tibble</em> as opposed to a vector.</p>
 <p>&nbsp;</p>
 <p>The first method also has the advantage that as soon as you type <strong><em>weatherData$</em></strong> in RStudio, RStudio will give you suggestions.&nbsp;</p>
@@ -1054,11 +1059,11 @@ Figure&nbsp;14: The year is now 2020 instead of 2016
 <h2 data-number="13" class="anchored" data-anchor-id="formatting-the-date-value-improper-ggplot-method"><span class="header-section-number">13</span> Formatting the date value (improper GGPlot method)</h2>
 <p>Let’s say you want the format to be two-digit month/ two-digit day, so <strong><em>April 15</em></strong> would be <strong><em>04/15</em></strong>.</p>
 <p>You could create a formatted vector from the <strong><em>dateYr</em></strong> column:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dateYrFormatted <span class="ot">=</span> <span class="fu">format</span>(weatherData<span class="sc">$</span>dateYr, <span class="at">format=</span><span class="st">"%m/%d"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dateYrFormatted <span class="ot">=</span> <span class="fu">format</span>(weatherData<span class="sc">$</span>dateYr, <span class="at">format=</span><span class="st">"%m/%d"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And <strong><em>dateYrFormatted</em></strong> has the dates formatted how you want:</p>
-<div class="sourceCode" id="cb30" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dateYrFormatted    chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01/01"</span> <span class="st">"01/02"</span> <span class="st">"01/03"</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dateYrFormatted    chr[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] <span class="st">"01/01"</span> <span class="st">"01/02"</span> <span class="st">"01/03"</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>But, <strong><em>dateYrFormatted</em></strong> is still a&nbsp;<strong><em>chr</em></strong> (string) value:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>  plot4<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«dateYrFormatted»)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>  plot4<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«dateYrFormatted»)) <span class="sc">+</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>maxTemp),</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>minTemp),</span>
@@ -1074,12 +1079,12 @@ Figure&nbsp;14: The year is now 2020 instead of 2016
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When you try to plot this, you will get the warning:</p>
 <div id="fig-characterDates" class="quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-characterDates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb32" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>geom_path<span class="sc">:</span> Each group consists of only one observation. Do you need to adjust the group aesthetic?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>geom_path<span class="sc">:</span> Each group consists of only one observation. Do you need to adjust the group aesthetic?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-characterDates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;15: Using the “character” date values

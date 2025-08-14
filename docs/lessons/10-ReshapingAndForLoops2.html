@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.28">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/09-ReshapingAndForLoops1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b719d3d4935f2b08311a76135e2bf442.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c5e6fd5a646752829aeb2af341632313.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -135,6 +136,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -326,8 +331,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="data"><span class="header-section-number">1.2</span> Data</h3>
 <p>For this lesson we will go back to using the 2016 Lansing weather data frame:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/Lansing2016NOAA.csv"</span>, </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/Lansing2016NOAA.csv"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="specifying-column-using-name" class="level2" data-number="2">
@@ -342,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong><em>y</em></strong> to the three temperature columns</p></li>
 <li><p><strong><em>color</em></strong> to the name we give the mapping (the name the goes in the legend)&nbsp;</p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.Date</span>(dateYr), </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>minTemp,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color =</span> <span class="st">"Min"</span>)) <span class="sc">+</span>  </span>
@@ -353,7 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>avgTemp,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">color=</span><span class="st">"Avg"</span>)) <span class="sc">+</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Temperatures"</span>);  <span class="co"># name of color mapping in the legend</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-plot3Cols" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plot3Cols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -377,7 +382,7 @@ Figure&nbsp;1: Plotting the three temperature columns in weatherData
 <p>The most common way to do this is to create a reshaped data frame.&nbsp; Again, this is not the method I prefer but it is the most commonly used method.</p>
 <p>&nbsp;</p>
 <p>It is easier to reshape a data frame that has only the columns you need – and we only need four columns from <strong><em>weatherData</em></strong> in <a href="#fig-partialDF" class="quarto-xref">Figure&nbsp;2</a>&nbsp; <strong><em>dateYr</em></strong>, <strong><em>minTemp</em></strong>, <strong><em>maxTemp</em></strong>, and <strong><em>avgTemp</em></strong>.&nbsp; We will first create a data frame that only has these four columns:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  partialWD <span class="ot">=</span> weatherData[, <span class="fu">c</span>(<span class="st">"dateYr"</span>, <span class="st">"minTemp"</span>,<span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  partialWD <span class="ot">=</span> weatherData[, <span class="fu">c</span>(<span class="st">"dateYr"</span>, <span class="st">"minTemp"</span>,<span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)];</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-partialDF" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-partialDF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -391,27 +396,27 @@ Figure&nbsp;2: The partial data frame with 366 rows and 4 column (1 date and 3 t
 <section id="reshaping-the-partial-data-frame" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="reshaping-the-partial-data-frame"><span class="header-section-number">3.1</span> Reshaping the partial data frame</h3>
 <p>And then reshape the partial data frame using <strong><em>reshape()</em></strong>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  WD_Melt <span class="ot">=</span> <span class="fu">reshape</span>(partialWD ,         <span class="co"># data frame to manipulate </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  WD_Melt <span class="ot">=</span> <span class="fu">reshape</span>(partialWD ,         <span class="co"># data frame to manipulate </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">direction=</span><span class="st">"long"</span>,         <span class="co"># how to manipulate (long form)  </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">varying=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>), <span class="co"># columns to "melt"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">v.name=</span><span class="st">"temperatures"</span>,    <span class="co"># name of melted column</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">times=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>),   <span class="co"># names for column</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">timevar =</span> <span class="st">"tempType"</span>,     <span class="co"># name of new column with all temp names</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">ids =</span> <span class="st">"dateYr"</span>,           <span class="co"># group by date</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">idvar =</span> <span class="st">"dateYr"</span>);        <span class="co"># give the name dateYr to the new column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">idvar =</span> <span class="st">"dateYr"</span>);        <span class="co"># give the name dateYr to the new column</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are eight argument used in&nbsp;<strong><em>reshape()</em></strong>, let’s take these arguments two at a time:</p>
 <p>We are reshaping the data frame <strong><em>partialWD</em></strong> in the&nbsp;<strong><em>long</em></strong> (“melted”) direction:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> partialWD</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>direction<span class="ot">=</span><span class="st">"long"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> partialWD</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>direction<span class="ot">=</span><span class="st">"long"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We are combining the three temperature columns, which will have 366*3 = <strong>1098</strong> values, and the name of the new combined column is <strong><em>temperatures</em></strong>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>varying<span class="ot">=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>v.name<span class="ot">=</span><span class="st">"temperatures"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>varying<span class="ot">=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>v.name<span class="ot">=</span><span class="st">"temperatures"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We are creating a full column from the column names (“minTemp”, “maxTemp”, “avgTemp”), essentially exploding out the 3 column names to a column with 1098 values named&nbsp;<strong>tempType</strong>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>timevar<span class="ot">=</span><span class="st">"tempType"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>timevar<span class="ot">=</span><span class="st">"tempType"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We are also exploding out the original 366 <strong><em>dateYr</em></strong> values to a&nbsp;new columns with <strong>1098</strong> values also named&nbsp;<strong><em>dateYr</em></strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="st">"dateYr"</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>idvar <span class="ot">=</span> <span class="st">"dateYr"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="st">"dateYr"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>idvar <span class="ot">=</span> <span class="st">"dateYr"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The new reshaped data frame with <strong><em>dateYr</em></strong> repeated 3 times and the temperature column names repeated 366 times:</p>
 <div id="fig-meltedDF" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -454,19 +459,19 @@ Figure&nbsp;4: The plot from the reshaped data frame
 <p>&nbsp;</p>
 <p>We can plot the three columns using a <strong><em>for</em></strong> loop.&nbsp; Unlike last lesson where we cycled through the the column index, this time we will cycle through the column names. &nbsp;</p>
 <p>To do this, we first need a vector of names to cycle through:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  columnNames <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  columnNames <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"maxTemp"</span>, <span class="st">"avgTemp"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are three values in the vector (and, hence, 3 columns to cycle through) so our for loop cycle from 1 to 3.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And we are going to map:</p>
 <ul>
 <li><p><strong><em>x</em></strong> to the <strong><em>dateYr</em></strong> column in Date form (this is true for all three cycles/plots)</p></li>
 <li><p><strong><em>y</em></strong> to the column name in <strong><em>columnNames</em></strong> indexed by <strong><em>i</em></strong></p></li>
 <li><p><strong><em>color</em></strong> to the name of the column given by <strong><em>columnNames</em></strong></p></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.Date</span>(weatherData<span class="sc">$</span>dateYr), </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.Date</span>(weatherData<span class="sc">$</span>dateYr), </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y=</span>weatherData[,columnNames[<span class="sc">!!</span>(i)]],</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color=</span>columnNames[<span class="sc">!!</span>(i)]));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>();</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color=</span>columnNames[<span class="sc">!!</span>(i)]));</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>();</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  {</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    plot3 <span class="ot">=</span> plot3 <span class="sc">+</span> </span>
@@ -474,7 +479,7 @@ Figure&nbsp;4: The plot from the reshaped data frame
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y=</span>weatherData[,columnNames[<span class="sc">!!</span>(i)]],</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">color=</span>columnNames[<span class="sc">!!</span>(i)]));</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>plot3</em></strong> looks exactly like the plot created using the reshaped data frame, <strong><em>plot2</em></strong> (<a href="#fig-meltedDF" class="quarto-xref">Figure&nbsp;3</a>)</p>
 <div id="fig-forLoopPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -502,14 +507,14 @@ Figure&nbsp;5: Plot using for loops
 <li><p><strong><em>breaks</em></strong>: how you want the breaks in the data to be ordered</p></li>
 <li><p><strong><em>values</em></strong>: the color values you want to match the newly ordered breaks</p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>   plot5 <span class="ot">=</span> plot3 <span class="sc">+</span>     <span class="co"># make copy of last plot and add...</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>   plot5 <span class="ot">=</span> plot3 <span class="sc">+</span>     <span class="co"># make copy of last plot and add...</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"minTemp"</span>, <span class="st">"avgTemp"</span>, <span class="st">"maxTemp"</span>),</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">values=</span><span class="fu">c</span>(<span class="st">"blue"</span>,    <span class="st">"green"</span>,   <span class="st">"red"</span>)) <span class="sc">+</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperatures"</span>,</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">color=</span><span class="st">"Temp Types"</span>); </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-addThemeLegend" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-addThemeLegend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -526,7 +531,7 @@ Figure&nbsp;6: Changing the legend and adding theme and labels to plots
 <p>For this section we will use <strong><em>seq()</em></strong> and <strong><em>which()</em></strong> to selectively add values to a scatterplot (in this case, add text labels using <strong><em>geom_text</em></strong>).</p>
 <p>&nbsp;</p>
 <p>We will start with a humidity vs temperature scatterplot:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span>   <span class="co"># data frame not declared here</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span>   <span class="co"># data frame not declared here</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>weatherData<span class="sc">$</span>avgTemp, </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y=</span>weatherData<span class="sc">$</span>relHum),</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">"gray"</span>) <span class="sc">+</span>    <span class="co"># color is not a mapping here -- only a style</span></span>
@@ -535,7 +540,7 @@ Figure&nbsp;6: Changing the legend and adding theme and labels to plots
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity"</span>,</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Humidity vs Temperature"</span>,</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>);</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We have moved the data frame to the <strong><em>mapping</em></strong> instead of declaring it in <strong><em>ggplot()</em></strong>.&nbsp; For this plot, it would work either way but for the next 2 plots the data frame has to be in the mapping.</p>
 <div id="fig-HumTempPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -555,12 +560,12 @@ Figure&nbsp;7: Humidity vs temperature plot
 <li><p><strong><em>x</em></strong> and <strong><em>y</em></strong>: to get the position</p></li>
 <li><p><strong><em>label</em></strong>: the text to add to the position given by <strong><em>x</em></strong> and <strong><em>y</em></strong> (the temperature and humidity)</p></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">mapping=</span><span class="fu">aes</span>(«x»<span class="ot">=</span>weatherData<span class="sc">$</span>avgTemp,   <span class="co"># at x = ...</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                          «y»<span class="ot">=</span>weatherData<span class="sc">$</span>relHum,    <span class="co"># and y = ...</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                          «label»<span class="ot">=</span>weatherData<span class="sc">$</span>date), <span class="co"># add the label ...</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"red"</span>);                        <span class="co"># in the color red</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>But plotting all 366&nbsp;<strong><em>date</em></strong> values is a bit chaotic:</p>
 <div id="fig-geomText" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -578,18 +583,18 @@ Figure&nbsp;8: Using geom_text to add the date for every point
 <p>Adding every label makes a big mess of the plot.&nbsp; Instead of plotting all value, we will selectively add labels, in this case, put every fifteenth date on the plot.</p>
 <p>&nbsp;</p>
 <p>We can do that by creating a sequence that has every fifteenth value indexed:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  every15 <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>, <span class="at">to=</span><span class="dv">366</span>, <span class="at">by=</span><span class="dv">15</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  every15 <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>, <span class="at">to=</span><span class="dv">366</span>, <span class="at">by=</span><span class="dv">15</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>every15</em></strong> has <strong>25</strong> values representing the <strong><em>date</em></strong> indexes that will be plotted&nbsp; – we can see them in the <strong><em>Console</em></strong>:</p>
-<div class="sourceCode" id="cb18" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> every15</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> every15</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]   <span class="dv">1</span>  <span class="dv">16</span>  <span class="dv">31</span>  <span class="dv">46</span>  <span class="dv">61</span>  <span class="dv">76</span>  <span class="dv">91</span> <span class="dv">106</span> <span class="dv">121</span> <span class="dv">136</span> <span class="dv">151</span> <span class="dv">166</span> <span class="dv">181</span> <span class="dv">196</span> <span class="dv">211</span> <span class="dv">226</span> <span class="dv">241</span> <span class="dv">256</span> <span class="dv">271</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">20</span>] <span class="dv">286</span> <span class="dv">301</span> <span class="dv">316</span> <span class="dv">331</span> <span class="dv">346</span> <span class="dv">361</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">20</span>] <span class="dv">286</span> <span class="dv">301</span> <span class="dv">316</span> <span class="dv">331</span> <span class="dv">346</span> <span class="dv">361</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And using <strong><em>every15</em></strong> to subset the columns mapped in <strong><em>geom_text</em></strong>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>weatherData<span class="sc">$</span>avgTemp[every15],   <span class="co"># at x = ...</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>weatherData<span class="sc">$</span>relHum[every15],    <span class="co"># and y = ...</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">label=</span>weatherData<span class="sc">$</span>date[every15]), <span class="co"># add the label ...</span></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"red"</span>);                                 <span class="co"># in the color red</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-every15thValue" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-every15thValue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -613,16 +618,16 @@ Figure&nbsp;9: Using geom_text to plot every 15th date on the scatterplot
 <p>&nbsp;</p>
 <p>There are four conditions here and <span class="hl">if any of the four conditions are TRUE</span>, then the <strong><em>date</em></strong> should be added.&nbsp; This means the four conditions are <strong><em>OR</em></strong>ed ( <strong>|</strong> ) together.&nbsp; Let’s create an index vector for these four conditions using <strong><em>which()</em></strong>:</p>
 <p>There are 10 index values that meet one of the four condition given in&nbsp;<strong><em>extremePoints</em></strong>:</p>
-<div class="sourceCode" id="cb20" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  extremePoints <span class="ot">=</span> <span class="fu">which</span>(weatherData<span class="sc">$</span>relHum <span class="sc">&gt;</span> <span class="dv">90</span>  <span class="sc">|</span> weatherData<span class="sc">$</span>relHum <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">|</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                        weatherData<span class="sc">$</span>avgTemp <span class="sc">&gt;</span> <span class="dv">80</span> <span class="sc">|</span> weatherData<span class="sc">$</span>avgTemp <span class="sc">&lt;</span> <span class="dv">10</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  extremePoints <span class="ot">=</span> <span class="fu">which</span>(weatherData<span class="sc">$</span>relHum <span class="sc">&gt;</span> <span class="dv">90</span>  <span class="sc">|</span> weatherData<span class="sc">$</span>relHum <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">|</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                        weatherData<span class="sc">$</span>avgTemp <span class="sc">&gt;</span> <span class="dv">80</span> <span class="sc">|</span> weatherData<span class="sc">$</span>avgTemp <span class="sc">&lt;</span> <span class="dv">10</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And we will use <strong><em>extremePoints</em></strong> to subset the columns in <strong><em>geom_text</em></strong>:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> plot6 <span class="sc">+</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>weatherData<span class="sc">$</span>avgTemp[extremePoints],  </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y=</span>weatherData<span class="sc">$</span>relHum[extremePoints],</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">label=</span>weatherData<span class="sc">$</span>date[extremePoints]),</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>();</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And the ten dates are added to the points on the edge of the plot:</p>
 <div id="fig-which" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">

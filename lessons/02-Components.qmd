@@ -105,11 +105,10 @@ All the scripts in this class will contain these three lines at the top:
 
 ``` r
 rm(list=ls());                        # clear the Environment tab
-options(show.error.locations = TRUE); # show line numbers on error
 library(package=ggplot2);             # include all GGPlot2 functions
 ```
 
-Copy the three lines to your new script file and save this script as ***lesson02.R*** inside the ***scripts*** folder in your Project (***File*** -\> ***Save as...*** -\> open ***scripts*** folder -\> click ***Save***).
+Copy the two lines to your new script file and save this script as ***lesson02.R*** inside the ***scripts*** folder in your Project (***File*** -\> ***Save as...*** -\> open ***scripts*** folder -\> click ***Save***).
 
 ### Cleaning the Environment
 
@@ -118,14 +117,6 @@ rm(list=ls());                        # clear the Environment tab
 ```
 
 This line removes all the variables and data from the ***Environment*** tab.  Basically, this means your script can be executed with a clean slate.  This is useful when you are creating scripts that are designed to be executed as a standalone script.
-
-### Error locations
-
-``` r
-options(show.error.locations = TRUE);  # show line numbers on error
-```
-
-This line is good to include in your R code because it instructs R to output to ***Console*** the line number that errors occur on.  However, this error detection does not work well within GGPlot functions -- so, it is of limited use in this class.
 
 ### GGPlot2 Package 
 

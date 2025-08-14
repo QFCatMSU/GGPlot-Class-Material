@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.28">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/10-ReshapingAndForLoops2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b719d3d4935f2b08311a76135e2bf442.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c5e6fd5a646752829aeb2af341632313.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,7 +124,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -164,6 +165,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -365,7 +370,7 @@ window.Quarto = {
 <section id="styling-elements-of-a-plot" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="styling-elements-of-a-plot"><span class="header-section-number">2</span> Styling elements of a plot</h2>
 <p>Let’s start with the temperature boxes separated by wind direction from the boxplots lesson:&nbsp;</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Part 1: Boxplots ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Part 1: Boxplots ####</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Re-order the directions on the x-axis using factor(s)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  windDirOrdered <span class="ot">=</span> <span class="fu">factor</span>(weatherData<span class="sc">$</span>windDir,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"East"</span>, <span class="st">"South"</span>, <span class="st">"West"</span>));</span>
@@ -379,7 +384,7 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Change in Temperature (\u00B0F)"</span>);</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-boxPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -393,7 +398,7 @@ Figure&nbsp;1: A boxplot of temperature by wind direction
 <section id="ggpot_build-and-rendered-data" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="ggpot_build-and-rendered-data"><span class="header-section-number">2.1</span> <em>ggpot_build</em> and rendered data</h3>
 <p>We might want to provide more information about the outliers on the plot.&nbsp; The first thing we need to do is get the outliers from the data.&nbsp; The way to get the outliers in GGPlot is to use <strong><em>ggplot_build()</em></strong>. &nbsp;<strong><em>ggplot_build()</em></strong> creates a List that <em>contains all the calculated data for the plot.</em>&nbsp; This is what GGPlot uses in the background to render to the plot.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  renderedData <span class="ot">=</span> <span class="fu">ggplot_build</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  renderedData <span class="ot">=</span> <span class="fu">ggplot_build</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the <strong><em>Environment</em></strong> tab you can see that <strong><em>renderedData</em></strong> is Lists within Lists.&nbsp; The structure is kind of crazy but we do see the outliers for the four temperature boxes:</p>
 <div id="fig-ggplot_build_data" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -426,11 +431,11 @@ Figure&nbsp;3: Using RStudio to navigate a List&nbsp;
 </div>
 <p>&nbsp;</p>
 <p>RStudio puts this code into the Console:</p>
-<div class="sourceCode" id="cb3" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> renderedData[[<span class="st">"data"</span>]][[<span class="dv">1</span>]][[<span class="st">"outliers"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> renderedData[[<span class="st">"data"</span>]][[<span class="dv">1</span>]][[<span class="st">"outliers"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can set that code equal to a variable named outliers and outliers&nbsp;</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">=</span> renderedData[[<span class="st">"data"</span>]][[<span class="dv">1</span>]][[<span class="st">"outliers"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">=</span> renderedData[[<span class="st">"data"</span>]][[<span class="dv">1</span>]][[<span class="st">"outliers"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or, equivalently you can use <strong><em>$</em></strong> in place of <strong><em>[[&nbsp; ]]</em></strong> for named variables:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">=</span> renderedData<span class="sc">$</span>data[[<span class="dv">1</span>]]<span class="sc">$</span>outliers;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">=</span> renderedData<span class="sc">$</span>data[[<span class="dv">1</span>]]<span class="sc">$</span>outliers;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: <strong>[[1]]</strong> means the first variable in <strong>data</strong> – this variable is unnamed so it has to be in <strong>[[ ]]</strong>.</span></p>
 </section>
 <section id="outliers-in-environment" class="level3" data-number="2.3">
@@ -441,11 +446,11 @@ Figure&nbsp;3: Using RStudio to navigate a List&nbsp;
 <div id="fig-outliers" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>▼ outliers<span class="sc">:</span>    List of <span class="dv">4</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>▼ outliers<span class="sc">:</span>    List of <span class="dv">4</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="sc">$</span> <span class="er">:</span> <span class="fu">num</span>(<span class="dv">0</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   <span class="sc">$</span> <span class="er">:</span> num <span class="sc">-</span><span class="dv">28</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>   <span class="sc">$</span> <span class="er">:</span> num [<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="sc">-</span><span class="dv">14</span> <span class="dv">18</span> <span class="dv">17</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>   <span class="sc">$</span> <span class="er">:</span> num [<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>] <span class="sc">-</span><span class="dv">22</span> <span class="sc">-</span><span class="dv">26</span> <span class="dv">18</span> <span class="sc">-</span><span class="dv">24</span> <span class="dv">20</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>   <span class="sc">$</span> <span class="er">:</span> num [<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>] <span class="sc">-</span><span class="dv">22</span> <span class="sc">-</span><span class="dv">26</span> <span class="dv">18</span> <span class="sc">-</span><span class="dv">24</span> <span class="dv">20</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: <strong>outliers</strong> for the four boxes in the <strong>Environment</strong>
@@ -459,13 +464,13 @@ Figure&nbsp;4: <strong>outliers</strong> for the four boxes in the <strong>Envir
 <p>We are going to the information from <strong><em>renderedData</em></strong> to manually label the one outlier in the second box (East).&nbsp; That outlier is at <strong>-28</strong> (meaning there was a day in which the easterly winds were associated with a 28 degree drop in temperature).</p>
 <p>&nbsp;</p>
 <p>To add text to a plot we use the annotate component. <a href="https://ggplot2.tidyverse.org/reference/annotate.html">The <strong><em>annotate</em></strong> component</a> can be used with the <strong><em>geom</em></strong> subcomponent to manually add text, lines, and other shapes to a plot.&nbsp;</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,   <span class="co"># type of annotation</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">x=</span><span class="fl">1.9</span>,         <span class="co"># x coordinate of annotation</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span><span class="sc">-</span><span class="dv">28</span>,         <span class="co"># y coordinate of annotation</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">label=</span><span class="st">"-28"</span>,   <span class="co"># the annotation</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span><span class="st">"blue"</span>); <span class="co"># can add style subcomponents</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-textAnnotation" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-textAnnotation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -487,14 +492,14 @@ Figure&nbsp;5: Adding a text annotation to a plot
 <section id="place-multiple-values-at-once" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="place-multiple-values-at-once"><span class="header-section-number">3.2</span> Place multiple values at once</h3>
 <p>The third box, <strong><em>South</em></strong>, has three outliers (<strong><em>-14, 18, 17</em></strong>), and we can add all the outlier values in one <strong><em>annotate</em></strong> by using vectors instead of single values for the subcomponents:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Add multiple text values to the plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Add multiple text values to the plot ####</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,  </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span><span class="fu">c</span>(<span class="fl">2.9</span>, <span class="fl">3.1</span>, <span class="fl">2.9</span>),        </span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">17</span>),        </span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">label=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">17</span>),   <span class="co"># could use outliers[[3]] here</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"red"</span>));</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-multipleTextObjects" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-multipleTextObjects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -509,15 +514,15 @@ Figure&nbsp;6: Adding multiple text objects in one annotate component
 <section id="adding-outliers-from-the-list" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="adding-outliers-from-the-list"><span class="header-section-number">3.3</span> Adding outliers from the List&nbsp;</h3>
 <p>We could have directly used the values from the List.&nbsp; To extract the 3 outliers from the unnamed 3rd vector (representing the third box):</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  thirdBoxOutliers <span class="ot">=</span> outliers[[<span class="dv">3</span>]];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  thirdBoxOutliers <span class="ot">=</span> outliers[[<span class="dv">3</span>]];</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then we can use <strong><em>thirdBoxOutliers</em></strong> instead of manually adding the three values:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,  </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span><span class="fu">c</span>(<span class="fl">2.9</span>, <span class="fl">3.1</span>, <span class="fl">2.9</span>),        </span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>«thirdBoxOutliers»,        </span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">label=</span>«thirdBoxOutliers»,   </span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"red"</span>));</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This code produces a plot that is exactly the same as <a href="#fig-multipleTextObjects" class="quarto-xref">Figure&nbsp;6</a>.</p>
 </section>
 </section>
@@ -526,7 +531,7 @@ Figure&nbsp;6: Adding multiple text objects in one annotate component
 <p>We are going to add the date for the highest outlier on the fourth box (West winds), which is January 28.&nbsp; There is no easy way to extract the date from the outlier value – I show one way to get the most extreme outlier in <a href="#extension-extracting-the-date-of-the-outliers-using-code">Extension: extracting the date of the outliers using code</a>.&nbsp; We can also just look in the <strong><em>Environment</em></strong> and see that a -26 degree change occurred on Feb 19, which represents the highest outlier in the <strong><em>West</em></strong> box.</p>
 <p>&nbsp;</p>
 <p>We also use <strong><em>annotate</em></strong> to add a line to a plot.&nbsp; The <strong><em>geom</em></strong> is “segment” and you need to supply four values, the x and y starting and ending points (<strong><em>x, xend, y, yend</em></strong>).&nbsp; The segment connect the text to the outlier point:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,  </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span><span class="dv">3</span>,        </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span><span class="dv">26</span>,  </span>
@@ -537,7 +542,7 @@ Figure&nbsp;6: Adding multiple text objects in one annotate component
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">xend=</span><span class="fl">3.95</span>,      <span class="co"># ends just before the fourth box</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span><span class="dv">26</span>,           <span class="co"># starts at 26 (y-direction)</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">yend=</span><span class="dv">26</span>);       <span class="co"># ends at 26 (y-direction)</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: in GGPlot, <strong>lines</strong> go across the whole plot and are horizontal or vertical,&nbsp;<strong>segments</strong> are lines that goes between any two points.</span></p>
 <div id="fs-addLine" class="quarto-figure quarto-figure-left anchored">
 <figure class="figure">
@@ -548,7 +553,7 @@ Figure&nbsp;6: Adding multiple text objects in one annotate component
 <section id="styling-the-line-and-adding-an-arrow" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="styling-the-line-and-adding-an-arrow"><span class="header-section-number">4.1</span> Styling the line and adding an arrow</h3>
 <p>You can style the line with <strong><em>linewidth</em></strong>, <strong><em>linetype</em></strong>, and <strong><em>color</em></strong> just like in <strong><em>geom_line</em></strong>.&nbsp; You can also add an arrow to the line using the function <strong><em>arrow().</em></strong> <span class="note">Note: <strong>arrow()</strong> comes from the package <strong>grid</strong>, which is already included with the package&nbsp;<strong>ggplot2</strong>.</span></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8 Style the line and add an arrow ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8 Style the line and add an arrow ####</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> plot1 <span class="sc">+</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"text"</span>,  </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span><span class="dv">3</span>,        </span>
@@ -564,7 +569,7 @@ Figure&nbsp;6: Adding multiple text objects in one annotate component
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype=</span><span class="dv">2</span>,</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">linewidth =</span> <span class="fl">0.5</span>,</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">arrow =</span> <span class="fu">arrow</span>());</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-arrow" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-arrow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -580,7 +585,7 @@ Figure&nbsp;7: Styling the line and adding an arrow
 <section id="adding-a-rectangle-to-the-plot" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="adding-a-rectangle-to-the-plot"><span class="header-section-number">5</span> Adding a rectangle to the plot</h2>
 <p>Adding a rectangle to the plot is very similar to adding a segment except the subcomponents name change slightly.&nbsp; Instead of <strong><em>x, xend, y, yend,</em></strong> you use <strong><em>xmin, xmax, ymin, ymax</em></strong>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 9 Adding a box to the plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 9 Adding a box to the plot ####</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> plot8 <span class="sc">+</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"rect"</span>,   <span class="co"># rectangle</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xmin =</span> <span class="fl">2.8</span>,    <span class="co"># starting x</span></span>
@@ -591,7 +596,7 @@ Figure&nbsp;7: Styling the line and adding an arrow
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype=</span><span class="dv">2</span>,</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"red"</span>,</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> <span class="st">"grey80"</span>);</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-addBox" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-addBox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -610,7 +615,7 @@ Figure&nbsp;8: Adding a box to the plot
 <section id="adding-points" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="adding-points"><span class="header-section-number">6</span> Adding points</h2>
 <p>We can add points to the plot using <strong><em>annotate</em></strong> – it is very similar to adding text:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 10: Adding a point to a plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 10: Adding a point to a plot ####</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span>  plot1 <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"point"</span>,</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> <span class="dv">2</span>,</span>
@@ -619,7 +624,7 @@ Figure&nbsp;8: Adding a box to the plot
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">0</span>, <span class="at">green=</span>.<span class="dv">3</span>, <span class="at">blue=</span>.<span class="dv">7</span>),</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> <span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="dv">1</span>, <span class="at">blue=</span><span class="dv">0</span>),</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">24</span>);</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-addPoint" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-addPoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -635,14 +640,14 @@ Figure&nbsp;9: Adding a point to the plot
 <p>And like text, we can add multiple points using vectors.&nbsp; We are going to manually add 5 points to the plot using one <strong><em>annotate</em></strong> component:</p>
 <p>&nbsp;</p>
 <p>First we define the position, size, and color of the 5 points – and save them to vectors:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 11: Adding multiple points to a plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 11: Adding multiple points to a plot ####</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">### data for 5 points</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  xVector <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">1.3</span>, <span class="fl">1.6</span>, <span class="fl">1.9</span>, <span class="fl">2.2</span>);</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  yVector <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">23</span>);</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  pointSize <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>);</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  pointFill <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"pink"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  pointFill <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"pink"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then use the vectors above to populate the subcomponents of annotate:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot11 <span class="ot">=</span>  plot1 <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  plot11 <span class="ot">=</span>  plot1 <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"point"</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> xVector,</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> yVector,</span>
@@ -650,7 +655,7 @@ Figure&nbsp;9: Adding a point to the plot
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span><span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">0</span>, <span class="at">green=</span>.<span class="dv">3</span>, <span class="at">blue=</span>.<span class="dv">7</span>),  <span class="co"># same for all points</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> pointFill,</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">24</span>);                           <span class="co"># same for all points</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot11);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot11);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-addMultiplePoints" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-addMultiplePoints-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -665,7 +670,7 @@ Figure&nbsp;10: Adding multiple points to a plot
 <section id="creating-a-scatterplot" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="creating-a-scatterplot"><span class="header-section-number">6.2</span> Creating a scatterplot</h3>
 <p>You could even recreate a complete scatterplot using&nbsp;<strong><em>annotate</em></strong> and&nbsp;<strong><em>geom=“point”</em></strong>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  plot12 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="co"># creating a canvas without a data frame</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  plot12 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="co"># creating a canvas without a data frame</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"point"</span>,</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> weatherData<span class="sc">$</span>avgTemp,  <span class="co"># adding every point in avgTemp</span></span>
@@ -677,7 +682,7 @@ Figure&nbsp;10: Adding multiple points to a plot
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Scatterplot using annotate"</span>,</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Average Temperature"</span>,</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Relative Humidity"</span>);</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot12);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot12);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-annotateScatterplot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-annotateScatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -693,7 +698,7 @@ Figure&nbsp;11: A scatterplot using annotate to add all the points
 <section id="polygons" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="polygons"><span class="header-section-number">7</span> Polygons</h2>
 <p>You can also use points to create a polygon using <strong><em>geom=“polygon”</em></strong>.&nbsp; The number of sides for the polygon is the number of points given in <strong><em>x</em></strong> and <strong><em>y</em></strong> <span class="hl">plus 1</span>.&nbsp;</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 13: Polygons ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 13: Polygons ####</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  plot13 <span class="ot">=</span> plot12 <span class="sc">+</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"polygon"</span>,  <span class="co"># connects all the points</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           «<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">60</span>,<span class="dv">55</span>,<span class="dv">30</span>,<span class="dv">35</span>),  <span class="co"># 4 points -- 5 sided polygon»</span></span>
@@ -702,7 +707,7 @@ Figure&nbsp;11: A scatterplot using annotate to add all the points
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"green"</span>,</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">linetype =</span> <span class="dv">4</span>,</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> <span class="fl">0.4</span>);</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot13);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot13);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A polygon will connect all the <strong><em>x,y</em></strong> values and create a final connection back to the original <strong><em>x,y</em></strong> values – in this case, <strong><em>60,60</em></strong>.&nbsp;</p>
 <div id="fig-addPolygon" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -720,22 +725,22 @@ Figure&nbsp;12: Adding a polygon to the plot
 <p>We can use <strong><em>annotate</em></strong> with <strong><em>geom</em></strong>=“segment” to add any line to a plot.&nbsp; But, there is an easier way if you just want to add a vertical or horizontal line that goes all the way across the plot.&nbsp; For that, we use the <strong><em>geom_vline</em></strong> and <strong><em>geom_hline</em></strong> components.</p>
 <p>&nbsp;</p>
 <p>First, let’s get the mean average temperature and mean relative humidity:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  meanTemp <span class="ot">=</span> <span class="fu">mean</span>(weatherData<span class="sc">$</span>avgTemp);</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  meanHum <span class="ot">=</span> <span class="fu">mean</span>(weatherData<span class="sc">$</span>relHum);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  meanTemp <span class="ot">=</span> <span class="fu">mean</span>(weatherData<span class="sc">$</span>avgTemp);</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  meanHum <span class="ot">=</span> <span class="fu">mean</span>(weatherData<span class="sc">$</span>relHum);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The values are:</p>
-<div class="sourceCode" id="cb20" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>meanTemp<span class="sc">:</span> <span class="dv">50</span>.<span class="dv">6584</span>...</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>meanHum<span class="sc">:</span> <span class="dv">68</span>.<span class="dv">7704</span>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>meanTemp<span class="sc">:</span> <span class="dv">50</span>.<span class="dv">6584</span>...</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>meanHum<span class="sc">:</span> <span class="dv">68</span>.<span class="dv">7704</span>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now, let’s create a horizontal line that represents the mean temperature and a vertical line that represents the mean humidity.</p>
 <p>&nbsp;</p>
 <p>In this case the mappings are <strong><em>xintercept</em></strong> (for the vertical line) and <strong><em>yintercept</em></strong> (for the horizontal line)</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  plot14 <span class="ot">=</span> plot12 <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  plot14 <span class="ot">=</span> plot12 <span class="sc">+</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xintercept =</span> meanTemp),</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"orange"</span>,</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">yintercept =</span> meanHum),</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">"purple"</span>,</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">linewidth=</span><span class="dv">2</span>);</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot14);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot14);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-addLines" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-addLines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -752,7 +757,7 @@ Figure&nbsp;13: Adding a horizontal and vertical line to the plot
 <section id="adding-circles-and-ellipses" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="adding-circles-and-ellipses"><span class="header-section-number">9</span> Adding circles and ellipses</h2>
 <p>Neither <strong><em>annotate</em></strong> nor GGPlot provides a convenient way to add circles and ellipses to a plot – we will use the <strong><em>ggforce</em></strong> package to do this.&nbsp; <strong><em>ggforce</em></strong> adds two new plot components <a href="https://ggforce.data-imaginist.com/reference/geom_circle.html"><strong><em>geom_circle</em></strong></a>and <a href="https://ggforce.data-imaginist.com/reference/geom_ellipse.html"><strong><em>geom_ellipse</em></strong></a>.&nbsp; Both components use subcomponents that are similar to the subcomponents used in other ggplot plotting components.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 15: Add a simple circle ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 15: Add a simple circle ####</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## The circle is skewed because the plot axes are not the same scale</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  plot14 <span class="ot">=</span> plot12 <span class="sc">+</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>     <span class="co"># coord_fixed() +  # sets axes to same scale so circle is visually a circle</span></span>
@@ -762,7 +767,7 @@ Figure&nbsp;13: Adding a horizontal and vertical line to the plot
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"green"</span>,</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth=</span><span class="dv">3</span>,</span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linetype=</span><span class="dv">3</span>);</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot15);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot15);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The main difference in setup between <strong><em>geom_circle</em></strong> and other plotting components is that you need to map three value: <strong><em>x0, y0</em></strong>, and <strong><em>r</em></strong>.&nbsp; <strong><em>x0</em></strong> and <strong><em>y0</em></strong> represent the circle’s center and <strong><em>r</em></strong> represents the radius.</p>
 <p>&nbsp;</p>
 <p>Axes often have different scales that will skew the circle.&nbsp; If you want to visually maintain the circle then you need to rescale the axes – this is done using <strong><em>coord_fixed()</em></strong>, which is commented out in my code.</p>
@@ -784,14 +789,14 @@ Figure&nbsp;14: Adding a circle to the plot
 <li><p><strong><em>a, b</em></strong>: the two radii of the ellipse</p></li>
 <li><p><strong><em>angle</em></strong>: spins the ellipse&nbsp;</p></li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  plot16 <span class="ot">=</span> plot12 <span class="sc">+</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  plot16 <span class="ot">=</span> plot12 <span class="sc">+</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ellipse</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x0 =</span> <span class="dv">50</span>, <span class="at">y0 =</span> <span class="dv">50</span>, <span class="at">a =</span> <span class="dv">20</span>, <span class="at">b=</span><span class="dv">10</span>, <span class="at">angle=</span><span class="sc">-</span><span class="dv">90</span>),</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>,   </span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"blue"</span>,</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"green"</span>,</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth=</span><span class="dv">3</span>,</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linetype=</span><span class="dv">3</span>);</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot16);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot16);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-addEllipse" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-addEllipse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -862,7 +867,7 @@ Figure&nbsp;16: Polygon and ellipse for question 2 in the application
 <section id="extension-extracting-the-date-of-the-outliers-using-code" class="level2" data-number="11">
 <h2 data-number="11" class="anchored" data-anchor-id="extension-extracting-the-date-of-the-outliers-using-code"><span class="header-section-number">11</span> Extension: extracting the date of the outliers using code</h2>
 <p>The code is beyond the scope of this class and finding other outlier values gets even trickier…&nbsp;</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the index of all days with west winds</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the index of all days with west winds</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  «westWindDays» <span class="ot">=</span> <span class="fu">which</span>(weatherData<span class="sc">$</span>windDir <span class="sc">==</span> <span class="st">"West"</span>); </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># find the maximum change in temperature on days with west winds</span></span>
@@ -873,12 +878,12 @@ Figure&nbsp;16: Polygon and ellipse for question 2 in the application
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  «dayMaxChange» <span class="ot">=</span> <span class="fu">which.max</span>(weatherData<span class="sc">$</span>changeMaxTemp[«westWindDays»]);</span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the date from the index (2-19)</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  date <span class="ot">=</span> weatherData<span class="sc">$</span>date[westWindDays[dayMaxChange]];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  date <span class="ot">=</span> weatherData<span class="sc">$</span>date[westWindDays[dayMaxChange]];</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="extension-add-horizontal-and-vertical-lines-using-annotate" class="level2" data-number="12">
 <h2 data-number="12" class="anchored" data-anchor-id="extension-add-horizontal-and-vertical-lines-using-annotate"><span class="header-section-number">12</span> Extension: Add horizontal and vertical lines using annotate</h2>
 <p>When we used <strong><em>geom_hline</em></strong> and <strong><em>geom_vline</em></strong> to create line, we put the information needed for the line (<strong><em>xintercept</em></strong> and <strong><em>yintercept</em></strong>) inside the <strong><em>mapping</em></strong>.&nbsp; This is inconsistent with what <strong><em>mapping</em></strong> is intended for because we are hardcoding, not mapping<em>,</em> the value from the data.&nbsp; There is a more conceptually consistent way to plot horizontal and vertical lines using <strong><em>annotate</em></strong> but there is a bug:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">##### Part 14b: Using annotate for vertical and horizontal lines (buggy) ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">##### Part 14b: Using annotate for vertical and horizontal lines (buggy) ####</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  plot14b <span class="ot">=</span> plot12 <span class="sc">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"vline"</span>,</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xintercept =</span> meanTemp,</span>
@@ -890,7 +895,7 @@ Figure&nbsp;16: Polygon and ellipse for question 2 in the application
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> meanHum,  <span class="co"># y must be included but is ignored (this is a bug)</span></span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"purple"</span>,</span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">linewidth=</span> <span class="dv">2</span>);</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot14b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot14b);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The above code produces the same plot as <a href="#fig-addLines" class="quarto-xref">Figure&nbsp;13</a> but uses <strong><em>annotate</em></strong>, which is designed for hardcoded (i.e., non-mapped) values.&nbsp; The problem is that you need to include the intercept values twice: once for the axis (<strong><em>x, y</em></strong>) and once for the intercept (<strong><em>xintercept, yintercept</em></strong>) – and you will get a warning regarding <strong><em>x</em></strong> and <strong><em>y</em></strong>.&nbsp; Otherwise, the code works fine.&nbsp;</p>
 
 

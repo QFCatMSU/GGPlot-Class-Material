@@ -299,7 +299,7 @@ The titles on the legend for ***size*** and ***precip2*** can also be changed i
 
 ### Setting legend to a fixed position
 
-One other change to the plot in @fig-sizeAndColorwas to move the legend to the left side of the plot:
+One other change to the plot in @fig-sizeAndColor was to move the legend to the left side of the plot:
 
 ``` r
     theme( axis.text.x=element_text(angle=90, vjust=0.5) ,

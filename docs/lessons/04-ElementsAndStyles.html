@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.28">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/03-MappingAndAesthetics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b719d3d4935f2b08311a76135e2bf442.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c5e6fd5a646752829aeb2af341632313.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -135,6 +136,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -367,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong><em>color</em></strong> is mapped to season</p></li>
 <li><p><strong><em>size</em></strong> is mapped to precipitation</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Mapping the points ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Mapping the points ####</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(«<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2»)) <span class="sc">+</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -375,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  <span class="co"># 00B0 is the Unicode degree symbol</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>);     <span class="co"># 0025 is the Unicode percentage symbol</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Extension: <a href="#unicode-characters">Unicode Characters</a></p>
 <p><a href="#extension-using-run-on-a-ggplot">Extension: Using Run on a GGPlot</a></p>
 <p>&nbsp;</p>
@@ -395,7 +400,7 @@ Figure&nbsp;1: Using mapping to style the points based on data in a column
 <p>We can also use properties like <strong><em>color, size</em></strong>, and <strong><em>shape</em></strong> to style all the points <span class="hl">exactly the same.</span></p>
 <p>&nbsp;</p>
 <p>We are going to start by styling the points in the same scatterplot using <strong><em>color</em></strong>, <strong><em>size</em></strong>, and <strong><em>shape</em></strong> <span class="hl">as&nbsp;subcomponents of <strong><em>geom_point()</em></strong> instead of mappings:</span></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Styling the points ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Styling the points ####</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),  <span class="co"># mapping</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">color=</span><span class="st">"darkgreen"</span>», <span class="co"># NOT a mapping</span></span>
@@ -406,7 +411,7 @@ Figure&nbsp;1: Using mapping to style the points based on data in a column
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (%)"</span>);</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this example, we used four subcomponents in <strong><em>geom_point()</em></strong>:</p>
 <ul>
 <li><p><strong><em>mapping</em></strong>: maps the column data <strong><em>relHum</em></strong> vs <strong><em>avgTemp</em></strong> to the plot</p>
@@ -432,7 +437,7 @@ Figure&nbsp;2: Directly styling the points on a plot
 <section id="mapping-properties-vs.-subcomponents" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="mapping-properties-vs.-subcomponents"><span class="header-section-number">3.2</span> Mapping properties vs.&nbsp;subcomponents</h3>
 <p>Properties like <strong><em>color, size, and shape</em></strong> can be used to map data to a plot component (arguments for <strong><em>aes()</em></strong> as in <a href="#fig-mappings" class="quarto-xref">Figure&nbsp;1</a>) or they can be used to directly set the property of a plot component (subcomponents of the plot as in <a href="#fig-directStyle" class="quarto-xref">Figure&nbsp;2</a>).&nbsp; <span class="hl">They can not be used for both.</span>&nbsp; If you use these properties as both a mapping and a subcomponent, the subcomponent will override the mapping.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Overriding mapped styles ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Overriding mapped styles ####</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>season», <span class="at">size=</span>precip2),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">color=</span><span class="st">"darkgreen"</span>, <span class="co"># this overrides the color mapping»</span></span>
@@ -442,7 +447,7 @@ Figure&nbsp;2: Directly styling the points on a plot
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (%)"</span>);</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-override" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-override-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -488,7 +493,7 @@ Figure&nbsp;3: The color subcomponent overrode the color mapping
 <p>When you have a lot of points overlapping each-other, it is often helpful to make the points partially transparent so you can better see the clustering of points.&nbsp; To do this we change the <strong><em>alpha</em></strong> subcomponent – <strong><em>alpha</em></strong> is a value between <strong>0</strong> (completely transparent) and <strong>1</strong> (completely opaque).</p>
 <p>&nbsp;</p>
 <p>For this example, we use an <strong><em>alpha</em></strong> of <strong>0.4</strong> (i.e., 40% opaque):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 4: Make points semi-transparent ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 4: Make points semi-transparent ####</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color=</span><span class="st">"darkgreen"</span>,</span>
@@ -500,7 +505,7 @@ Figure&nbsp;3: The color subcomponent overrode the color mapping
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">x =</span> <span class="st">"Temperature (F)"</span>,</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (%)"</span>);</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-alpha" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-alpha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -527,7 +532,7 @@ Figure&nbsp;4: Adding an alpha value (transparency) to the points to better see 
 <p>So, <strong><em>x</em></strong> equals the sequence <strong><em>1:366</em></strong> or <strong><em>c(1,2,3, …, 364, 365, 366)</em></strong></p>
 <p>&nbsp;</p>
 <p>The code below says that we are going to put two <strong><em>geom_line()</em></strong> components in the plot area.&nbsp; Both plots components map <strong><em>x</em></strong> to the row number and map <strong><em>y</em></strong> to a temperature column:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 5: Add lines to a plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 5: Add lines to a plot ####</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp))» <span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>minTemp))» <span class="sc">+</span></span>
@@ -536,7 +541,7 @@ Figure&nbsp;4: Adding an alpha value (transparency) to the points to better see 
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: Adding in the actual date to the x-axis is a little trickier and will be covered in the next lesson.</span></p>
 <div id="fig-linePlots" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -551,7 +556,7 @@ Figure&nbsp;5: Two line graphs: maxTemp vs day number and minTemp vs day number
 <section id="add-labels-and-coloring" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="add-labels-and-coloring"><span class="header-section-number">4.1</span> Add labels and coloring</h3>
 <p>The black lines representing both temperature plots is hard to distinguish.&nbsp; Let’s visually separate the two plots by setting the <strong><em>color</em></strong> subcomponent in <strong><em>geom_line()</em></strong>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Add colors by name and using rgb() </span><span class="al">###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Add colors by name and using rgb() </span><span class="al">###</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp),</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              «<span class="at">color=</span><span class="st">"violetred1"</span>») <span class="sc">+</span></span>
@@ -562,7 +567,7 @@ Figure&nbsp;5: Two line graphs: maxTemp vs day number and minTemp vs day number
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Date"</span>,</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-colorChanges" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-colorChanges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -587,7 +592,7 @@ Figure&nbsp;6: Changing the line plot colors using color names and rgb()
 <p>On the graph, we are going to add another component that represents the average temperature (<strong><em>avgTemp</em></strong>) and use a method that smooths out the values.&nbsp; Like last lesson, we use <strong><em>geom_smooth()</em></strong>, but we will use a different smoothing method this time (<strong><em>loess</em></strong>).</p>
 <p>&nbsp;</p>
 <p>The line is styled using <strong><em>color, linetype, linewidth</em></strong>, and <strong><em>fill</em></strong>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Add smoothing function </span><span class="al">###</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Add smoothing function </span><span class="al">###</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp),</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
@@ -604,7 +609,7 @@ Figure&nbsp;6: Changing the line plot colors using color names and rgb()
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Day (row) number"</span>,</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Temperature (F)"</span>);</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-lineColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lineColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -698,7 +703,7 @@ Figure&nbsp;10: Information about the three element types in GGPlot (4 if you co
 <div id="fig-elementTextArgs" class="quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elementTextArgs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb8" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_text</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_text</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="cn">NULL</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="cn">NULL</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
@@ -711,7 +716,7 @@ Figure&nbsp;10: Information about the three element types in GGPlot (4 if you co
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">margin =</span> <span class="cn">NULL</span>,</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug =</span> <span class="cn">NULL</span>,</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementTextArgs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11: Arguments for element_text()
@@ -738,7 +743,7 @@ Figure&nbsp;11: Arguments for element_text()
 <li>This should be used with caution as the font needs to be installed on the viewer’s computer – it is best to only use common fonts</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 8: Changing component text ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 8: Changing component text ####</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">"darkgreen"</span>,</span>
@@ -756,7 +761,7 @@ Figure&nbsp;11: Arguments for element_text()
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span><span class="st">"darkblue"</span>),</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>           «plot.subtitle»<span class="ot">=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>, <span class="at">face=</span><span class="st">"bold.italic"</span>,</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span><span class="st">"brown"</span>, «family»<span class="ot">=</span><span class="st">"serif"</span>));</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot8);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="#trap-changing-a-theme-after-modifying">Trap: Changing a theme after modifying</a></p>
 <div id="fig-elementText" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -774,7 +779,7 @@ Figure&nbsp;12: Styling labels and titles using element_text()
 <p>Let’s look a little deeper at how <strong><em>element_text()</em></strong> works to set font properties.</p>
 <p>&nbsp;</p>
 <p>In the following code, we change the size and color of the x-axis title:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>axis.title.x <span class="ot">=</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"orangered2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>axis.title.x <span class="ot">=</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">color=</span><span class="st">"orangered2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notice that&nbsp;<span class="hl">you do not directly set the <strong>size</strong> and <strong>color</strong> of <strong>axis.title.x.</strong></span></p>
 <p>&nbsp;</p>
 <p>Instead you set <strong><em>axis.title.x</em></strong> to a text element,&nbsp;<strong><em>element_text()</em></strong>, that has the&nbsp;<strong><em>size</em></strong> and <strong><em>color</em></strong> you want – in this case, <strong><em>14</em></strong> and <strong><em>orangered2</em></strong>.</p>
@@ -785,7 +790,7 @@ Figure&nbsp;12: Styling labels and titles using element_text()
 <section id="styling-lines-using-element_line" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="styling-lines-using-element_line"><span class="header-section-number">7</span> Styling lines using element_line()</h2>
 <p>The function <strong><em>element_line()</em></strong> has these arguments:</p>
-<div class="sourceCode" id="cb11" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_line</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_line</span>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
@@ -794,7 +799,7 @@ Figure&nbsp;12: Styling labels and titles using element_text()
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">arrow =</span> <span class="cn">NULL</span>,</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: <strong>size = deprecated()</strong> because <strong>linewidth</strong> has replaced <strong>size</strong> – <strong>size</strong> works for now but is no longer supported (that is what deprecated means).</span></p>
 <p>&nbsp;</p>
 <p>The line components in a plot include the axis ticks, the axis lines, and the grid lines.</p>
@@ -808,7 +813,7 @@ Figure&nbsp;12: Styling labels and titles using element_text()
 <li><p>the minor grid lines (grid lines halfway between breaks)</p></li>
 <li><p>the major grid lines (grid lines attached to the breaks)</p></li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 9: Changing component lines ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 9: Changing component lines ####</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(weatherData), <span class="at">y=</span>maxTemp),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"violetred1"</span>) <span class="sc">+</span></span>
@@ -828,7 +833,7 @@ Figure&nbsp;12: Styling labels and titles using element_text()
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(«<span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"red"</span>, <span class="at">linewidth=</span><span class="dv">1</span>),»</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>          «<span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey75"</span>, <span class="at">linetype=</span><span class="dv">4</span>),»</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>          «<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color=</span><span class="st">"grey75"</span>)»);</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-elementLine" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elementLine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -862,7 +867,7 @@ Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
 <section id="styling-lines-using-element_rect" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="styling-lines-using-element_rect"><span class="header-section-number">8</span> Styling lines using element_rect()</h2>
 <p>The last of the main GGPlot elements is <strong><em>element_rect()</em></strong>, which has the following arguments:</p>
-<div class="sourceCode" id="cb13" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_rect</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-tab="Help"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">element_rect</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="cn">NULL</span>,</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
@@ -870,7 +875,7 @@ Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p><strong><em>fill</em></strong> is the background color of the rectangle</p></li>
 <li><p><strong><em>color</em></strong> (or <strong><em>colour</em></strong>) is the outline color of the rectangle&nbsp;</p></li>
@@ -884,7 +889,7 @@ Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
 <li><p><strong><em>panel.background</em></strong>: the background of the plot area (i.e., inside the axes)</p></li>
 <li><p><strong><em>legend.background</em></strong>: the background of the legend</p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 10: Modifying rectangular components ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 10: Modifying rectangular components ####</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -896,7 +901,7 @@ Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>           «legend.background» <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"blue"</span>, <span class="at">fill=</span><span class="st">"grey90"</span>,</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">linewidth=</span><span class="dv">1</span>),</span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>           «panel.background» <span class="ot">=</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"grey10"</span>, <span class="at">color=</span><span class="st">"red"</span>)); </span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: I changed the theme from <strong>theme_bw()</strong> to <strong>theme_minimal()</strong> because <strong>theme_bw()</strong> was interfering with the <strong>panel.background</strong> outline.&nbsp; I do not know why.</span></p>
 <div id="fig-elementRect" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -924,9 +929,9 @@ Figure&nbsp;15: Plot canvas to replicate
 </figure>
 </div>
 <p><span class="note">Note: <strong><em>\n</em></strong> acts like an enter in a string… an example:</span></p>
-<div class="sourceCode" id="cb15" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cat</span>(<span class="st">"first</span><span class="sc">\n</span><span class="st">second"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cat</span>(<span class="st">"first</span><span class="sc">\n</span><span class="st">second"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>first</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>second</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>&nbsp;</p>
 <p>If you have any questions regarding this application, feel free to email them to Charlie Belinsky at belinsky@msu.edu.</p>
 <section id="questions-to-answer" class="level3" data-number="9.1">
@@ -946,22 +951,22 @@ Figure&nbsp;15: Plot canvas to replicate
 <section id="extension-using-run-on-a-ggplot" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="extension-using-run-on-a-ggplot"><span class="header-section-number">10</span> Extension: Using Run on a GGPlot</h2>
 <p>When you see GGPlot examples online they often skip the steps of saving the plot to a variable and using <strong><em>plot()</em></strong> – the parts highlighted below:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>«plot1» <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>«plot1» <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  <span class="co"># 00B0 is the Unicode degree symbol</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>);     <span class="co"># 0025 is the Unicode percentage symbol</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>«<span class="fu">plot</span>(plot1)»;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>«<span class="fu">plot</span>(plot1)»;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Instead they just click <strong><em>Run</em></strong> (or Control-Enter) on code that looks similar to this:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  <span class="co"># 00B0 is the Unicode degree symbol</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>)      <span class="co"># 0025 is the Unicode percentage symbol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>)      <span class="co"># 0025 is the Unicode percentage symbol</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When <strong><em>Source</em></strong> is clicked, the bottom codeblock will do nothing because there is no instruction to send the canvas to the plot tab (i.e., no&nbsp;<strong><em>plot()</em></strong>).&nbsp; But when <strong><em>Run</em></strong> is clicked, R makes an assumption that you want to view the plot and will execute <strong><em>plot()</em></strong> in the background.&nbsp; This is fine if you are testing code or if the plot is temporary – it is not good programming practice if the code is a permanent part of your script.&nbsp; It is best to be explicit with your code and add the <strong><em>plot()</em></strong> instruction.</p>
 </section>
 <section id="extension-rgb-colors-and-unicode-characters" class="level2" data-number="11">
@@ -1009,8 +1014,8 @@ Figure&nbsp;16: Unicode characters on Wikipedia, and the hexadecimal number used
 <p>So, Unicode character 00A2 (the cent sign) would be written as “\u00A2”.</p>
 <p>Unicode characters can be directly used in a text output:</p>
 <p>&nbsp;</p>
-<div class="sourceCode" id="cb18" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cat</span>(<span class="st">"10\u00A2"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>¢</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cat</span>(<span class="st">"10\u00A2"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>¢</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can add Unicode characters to any text in a plot or use Unicode as the shape of a point.</p>
 <p>&nbsp;</p>
 <p><span class="hl">Warning: no font type supports all 150,000+ Unicode characters</span> (many are not even close).&nbsp; Sticking to more common font makes it more likely that the Unicode character is available.</p>
@@ -1037,7 +1042,7 @@ Figure&nbsp;17: Using color codes and Unicode
 <section id="trap-changing-a-theme-after-modifying" class="level2" data-number="12">
 <h2 data-number="12" class="anchored" data-anchor-id="trap-changing-a-theme-after-modifying"><span class="header-section-number">12</span> Trap: Changing a theme after modifying</h2>
 <p>Is this example, <strong><em>theme()</em></strong> is used to modify various label and title components, but then <strong><em>theme_bw()</em></strong> is called.&nbsp; <strong><em>theme_bw()</em></strong> reset all components of the theme basically undoing the changes we made beforehand.&nbsp;&nbsp; Make sure <strong><em>theme_bw()</em></strong> is called before other theme changes are made.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/reference.R"</span>);   <span class="co"># include the script file reference.r</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/reference.R"</span>);   <span class="co"># include the script file reference.r</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/LansingNOAA2016.csv"</span>,</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>);</span>
@@ -1056,7 +1061,7 @@ Figure&nbsp;17: Using color codes and Unicode
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>, <span class="at">face=</span><span class="st">"bold.italic"</span>,</span>
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">color =</span><span class="st">"brown"</span>, <span class="at">family=</span><span class="st">"serif"</span>)) <span class="sc">+</span></span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>           «<span class="fu">theme_bw</span>()»;</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-resetTheme" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-resetTheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

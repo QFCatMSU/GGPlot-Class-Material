@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/07-Faceting.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c5e6fd5a646752829aeb2af341632313.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -135,6 +136,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -333,14 +338,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="boxplots" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="boxplots"><span class="header-section-number">2</span> Boxplots</h2>
 <p>We are going to create a boxplot of Change in Temperature vs Wind Direction using <strong><em>geom_boxplot</em></strong>.&nbsp; The code for a boxplot is much like a scatterplot – you need to map the <strong><em>x</em></strong> and <strong><em>y</em></strong> axes.&nbsp; The difference is that the x-axis is mapped to a discrete variable (in this case, wind direction, which has only four possible values):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDir, <span class="at">y=</span>changeMaxTemp))» <span class="sc">+</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Temperature vs. Wind Direction"</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Change in Temperature (\u00B0F)"</span>);</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>geom_boxplot</em></strong> will, by default, categorize (or <strong><em>factor</em></strong>) the <strong><em>x</em></strong>-mapping – in this case, <strong><em>windDir,</em></strong>&nbsp; in alphabetical order:</p>
 <div id="fig-boxplot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -355,17 +360,17 @@ Figure&nbsp;1: A boxplot of Change in Temperature vs.&nbsp;the four cardinal Win
 <section id="ordering-the-boxes" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="ordering-the-boxes"><span class="header-section-number">2.1</span> Ordering the boxes</h3>
 <p>We can customize the order of the directions using <strong><em>factor()</em></strong>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> windDirOrdered <span class="ot">=</span> <span class="fu">factor</span>(weatherData<span class="sc">$</span>windDir,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"East"</span>, <span class="st">"South"</span>, <span class="st">"West"</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> windDirOrdered <span class="ot">=</span> <span class="fu">factor</span>(weatherData<span class="sc">$</span>windDir,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"East"</span>, <span class="st">"South"</span>, <span class="st">"West"</span>));</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And then use the customized factor, <strong><em>windDirOrdered</em></strong>, as the <strong><em>x</em></strong>-axis mapping:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«windDirOrdered», <span class="at">y=</span>changeMaxTemp)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Temperature vs. Wind Direction"</span>,</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Change in Temperature (\u00B0F)"</span>);</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And the order of the four boxes has changed:</p>
 <div id="fig-boxesReordered" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -391,14 +396,14 @@ Figure&nbsp;2: Boxes reordered
 <section id="changing-the-boxplot-axis" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="changing-the-boxplot-axis"><span class="header-section-number">3</span> Changing the boxplot axis</h2>
 <p>When you create a boxplot, there is always one discrete variable (e.g., <strong><em>windDir</em></strong>) and one continuous variable (e.g., <strong><em>changeMaxTemp</em></strong>).&nbsp; If you reverse the axis on the variables, then <strong><em>geom_boxplot</em></strong> will change the axis of the boxes:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(«<span class="at">x=</span>changeMaxTemp, <span class="at">y=</span>windDir»)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Temperature vs. Wind Direction"</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Change in Temperature (\u00B0F)"</span>);</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now the boxes are horizontal instead of vertical</p>
 <div id="fig-boxAxisChange" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -414,13 +419,13 @@ Figure&nbsp;3: Boxplots in the horizontal direction
 <section id="overlaying-the-points-on-the-boxes" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="overlaying-the-points-on-the-boxes"><span class="header-section-number">4</span> Overlaying the points on the boxes</h2>
 <p>For the next example, we will be creating some random effects.&nbsp; But, I want the “random” effect to be the same every time someone execute the code.&nbsp; To do that I will first set the seed value:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="at">seed=</span><span class="dv">12</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="at">seed=</span><span class="dv">12</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: it does not matter what <strong>seed</strong> value is used… each <strong>seed</strong> value will just present a different set of “random” values.</span></p>
 <p>&nbsp;</p>
 <p>We are going to overlay the plot in <a href="#fig-boxAxisChange" class="quarto-xref">Figure&nbsp;3</a> with all the actual points.&nbsp; If we did this as a scatterplot (<strong><em>geom_point</em></strong>), then all of the points would fall on one of the four horizontal lines (in the application, I will ask you to explain why this is true).&nbsp; To better see all of the point, we will add a random vertical component to the values.&nbsp; This can be done using <strong><em>geom_jitter</em></strong>.</p>
 <p>&nbsp;</p>
 <p>We set the range of randomness using <strong><em>height</em></strong> and <strong><em>width</em></strong>.&nbsp; 0 means there is no random component.&nbsp; 0.3 means there is a random values between -0.3 and 0.3 added to the value:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>windDir, <span class="at">x=</span>changeMaxTemp)) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    «geom_jitter»(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>windDir, <span class="at">x=</span>changeMaxTemp), </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                «<span class="at">height=</span><span class="fl">0.3</span>»,   <span class="co"># range of random vertical component (-0.3 -&gt; 0.3)</span></span>
@@ -432,7 +437,7 @@ Figure&nbsp;3: Boxplots in the horizontal direction
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Change in Temperature (\u00B0F)"</span>);</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The alpha argument is added to make the points semi-transparent so we can see overlay points.</p>
 <div id="fig-overlayPoints" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -448,7 +453,7 @@ Figure&nbsp;4: Boxplots with the actual points overlayed with a random vertical 
 <section id="mappings-with-a-boxplot" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="mappings-with-a-boxplot"><span class="header-section-number">5</span> Mappings with a boxplot</h2>
 <p>We are going to use daily wind speed levels (given as Low, Medium, or High) as a <strong><em>fill</em></strong> (i.e., background color) mapping in our boxplot.&nbsp;&nbsp;</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDirOrdered, <span class="at">y=</span>changeMaxTemp, «<span class="at">fill=</span>windSpeedLevel»),</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span>  <span class="co"># gets rid of warning about non-finite values</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -457,7 +462,7 @@ Figure&nbsp;4: Boxplots with the actual points overlayed with a random vertical 
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>,</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Wind Speed"</span>);</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We now have 12 boxes – 3 wind speeds for each of the 4 directions. The mapping maps the background color (<strong><em>fill</em></strong>) to the wind speeds.</p>
 <div id="fig-boxplotFilled" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -473,7 +478,7 @@ Figure&nbsp;5: Boxplot with a fill mapping
 <section id="faceting-with-a-boxplot" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="faceting-with-a-boxplot"><span class="header-section-number">6</span> Faceting with a boxplot</h2>
 <p>Next we will do something similar but using facets to “map” the wind speed levels.&nbsp; We will facet by the columns – so we will get three sets of boxplots, one for each wind speed level.&nbsp; And each set will have 4 boxes, one for each cardinal direction:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Same boxplot faceted by wind speed instead of mapped ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Same boxplot faceted by wind speed instead of mapped ####</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDirOrdered, <span class="at">y=</span>changeMaxTemp),</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
@@ -483,7 +488,7 @@ Figure&nbsp;5: Boxplot with a fill mapping
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>);</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-boxplotFacet" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxplotFacet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -497,7 +502,7 @@ Figure&nbsp;6: Boxplot with a facet by column
 <section id="alternative-violin-plot" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="alternative-violin-plot"><span class="header-section-number">6.1</span> Alternative: Violin Plot</h3>
 <p>A variation on the boxplot is to do a violin plot.&nbsp; The only difference is that <strong><em>geom_boxplot</em></strong> get replaced with <strong><em>geom_violin</em></strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: violin plot (make this earlier!) ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: violin plot (make this earlier!) ####</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    «geom_violin»(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDirOrdered, <span class="at">y=</span>changeMaxTemp),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
@@ -507,7 +512,7 @@ Figure&nbsp;6: Boxplot with a facet by column
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>);</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-violinPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-violinPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -525,7 +530,7 @@ Figure&nbsp;7: A violin plot with the same data and facets
 <p>The problem with using facets instead of <strong><em>fill</em></strong> to map wind speed level is that we lose the color.&nbsp; If you want to bring color back, you could add a <strong><em>fill</em></strong> mapping to or you could set the colors manually.</p>
 <p>&nbsp;</p>
 <p>Let’s start with setting all the boxes manually to the same outline color (<strong><em>color=“brown”</em></strong>) and background color (<strong><em>fill = “grey70”</em></strong>):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: Manually setting colors (not mapped!) ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: Manually setting colors (not mapped!) ####</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  plot11 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDirOrdered, <span class="at">y=</span>changeMaxTemp),</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.rm =</span> <span class="cn">TRUE</span>,  </span>
@@ -538,7 +543,7 @@ Figure&nbsp;7: A violin plot with the same data and facets
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>,</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill=</span><span class="st">"Wind Speed"</span>);</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-unmappedProperties" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-unmappedProperties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -554,14 +559,14 @@ Figure&nbsp;8: Changing unmapped properties of all the boxes
 <p>In <a href="#fig-unmappedProperties" class="quarto-xref">Figure&nbsp;8</a> there are 12 boxes, and we can manually set the color for each box using a vector with 12 colors values.</p>
 <p>&nbsp;</p>
 <p>We want to highlight the first three boxes, because that is where the dramatic changes are happening so we will set the first 3 boxes to blue and the last 9 to brown.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  boxColors <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"blue"</span>, <span class="st">"blue"</span>, <span class="st">"brown"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  boxColors <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"blue"</span>, <span class="st">"blue"</span>, <span class="st">"brown"</span>,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or, we could shorten the code using the repeat, <strong><em>rep()</em></strong>,&nbsp; function:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  boxColors <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"blue"</span>, <span class="dv">3</span>),     <span class="co"># 3 blue boxes followed by...</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">"brown"</span>, <span class="dv">9</span>));   <span class="co"># 9 brown boxes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  boxColors <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"blue"</span>, <span class="dv">3</span>),     <span class="co"># 3 blue boxes followed by...</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="st">"brown"</span>, <span class="dv">9</span>));   <span class="co"># 9 brown boxes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And then set the subcomponent <strong><em>color</em></strong> to the 12 value vector <strong><em>boxColors</em></strong>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDirOrdered, <span class="at">y=</span>changeMaxTemp),</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.rm =</span> <span class="cn">TRUE</span>,  </span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> «boxColors»,</span>
@@ -572,7 +577,7 @@ Figure&nbsp;8: Changing unmapped properties of all the boxes
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>);</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: the size of the vector must match the number of boxes or you will get an error.</span></p>
 <div id="fig-customColors" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -591,7 +596,7 @@ Figure&nbsp;9: Customizing the color for each box in the boxplot
 <section id="outlier-properties" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="outlier-properties"><span class="header-section-number">8</span> Outlier properties</h2>
 <p>If you look at the <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html"><strong><em>geom_boxplot</em></strong>help page</a>, there are many subcomponents that can be used to modify the outliers.&nbsp; I will use two of them and change the <strong><em>outlier.color</em></strong> and <strong><em>outlier.shape</em></strong>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 10: Messing with the outliers ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 10: Messing with the outliers ####</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  plot10 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDirOrdered, <span class="at">y=</span>changeMaxTemp),</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.rm =</span> <span class="cn">TRUE</span>,   <span class="co"># gets rid of warning about non-finite values</span></span>
@@ -605,7 +610,7 @@ Figure&nbsp;9: Customizing the color for each box in the boxplot
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>);</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot10);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>outlier.shape</em></strong> is set to a Unicode value.&nbsp; <a href="https://en.wikipedia.org/wiki/List_of_Unicode_characters">Unicode values allow you to access all possible characters</a> (whereas your keyboard is quite limited).</p>
 <p><strong><em>\u053e</em></strong>&nbsp; means get Unicode character <strong><em>053e</em></strong> (this is a hexadecimal number)</p>
 <div id="fig-outliersChange" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -631,16 +636,16 @@ Figure&nbsp;10: Boxplot with the outliers’ color and shape changed
 <section id="components-of-facet-labeling" class="level3" data-number="9.1">
 <h3 data-number="9.1" class="anchored" data-anchor-id="components-of-facet-labeling"><span class="header-section-number">9.1</span> Components of facet labeling</h3>
 <p>We need to create a vector that maps the wind speed values (<strong>Low</strong>, <strong>Medium</strong>, <strong>High</strong>) with the label we want for each value:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>windLabels <span class="ot">=</span> <span class="fu">c</span>(<span class="at">Low =</span> <span class="st">"Light Winds"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>windLabels <span class="ot">=</span> <span class="fu">c</span>(<span class="at">Low =</span> <span class="st">"Light Winds"</span>,</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">Medium =</span> <span class="st">"Medium Winds"</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">High =</span> <span class="st">"Strong Winds"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">High =</span> <span class="st">"Strong Winds"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and then use the argument&nbsp;<strong><em>labeller</em></strong> in the component <strong><em>facet_grid()</em></strong> to add these labels to the legend.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>labeller<span class="ot">=</span><span class="fu">as_labeller</span>(windLabels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>labeller<span class="ot">=</span><span class="fu">as_labeller</span>(windLabels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: the function <strong><em>as_labeller()</em></strong> explicitly says the vector is a vector of labels</span></p>
 </section>
 <section id="putting-the-code-together" class="level3" data-number="9.2">
 <h3 data-number="9.2" class="anchored" data-anchor-id="putting-the-code-together"><span class="header-section-number">9.2</span> Putting the code together</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Part 11: Changing facet labels</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Part 11: Changing facet labels</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  «windLabels <span class="ot">=</span> <span class="fu">c</span>(<span class="at">Low =</span> <span class="st">"Light Winds"</span>,»</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                 «<span class="at">Medium =</span> <span class="st">"Medium Winds"</span>,»</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                 «<span class="at">High =</span> <span class="st">"Strong Winds"</span>»);</span>
@@ -659,7 +664,7 @@ Figure&nbsp;10: Boxplot with the outliers’ color and shape changed
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>);</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot11);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot11);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-labelsOnFacet" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-labelsOnFacet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -725,7 +730,7 @@ Figure&nbsp;11: Changing labels on a facet
 <section id="extension-adding-whisker-ends" class="level2" data-number="11">
 <h2 data-number="11" class="anchored" data-anchor-id="extension-adding-whisker-ends"><span class="header-section-number">11</span> Extension: adding whisker ends</h2>
 <p>The standard boxplot in GGPlot does not include the end at the top whiskers.&nbsp;&nbsp; You can add it if you want, but you have to put another component, <strong><em>stat_boxplot</em></strong>, on the plot.&nbsp; <strong><em>stat_boxplot</em></strong> uses the subcomponent as <strong><em>geom_boxplot</em></strong> as it is replicating the data.&nbsp;</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Extension : Error bars  ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Extension : Error bars  ####</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  plotA <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span>          </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>      «stat_boxplot»(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDirOrdered, <span class="at">y=</span>changeMaxTemp),</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">na.rm=</span><span class="cn">TRUE</span>,</span>
@@ -744,7 +749,7 @@ Figure&nbsp;11: Changing labels on a facet
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>);</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(plotA);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(plotA);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: If you put <strong>stat_boxplot</strong> after the <strong>geom_boxplot</strong> then you will see the whisker line go all the way through the box.</span></p>
 <div id="fig-whiskerEnds" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">

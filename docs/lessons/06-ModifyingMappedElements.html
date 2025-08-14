@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/05-DateObjectsAndThemes.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f98ea211b99fe8356d6469e598480a52.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c5e6fd5a646752829aeb2af341632313.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fac7000a542ad838aabeb25de73c93bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -135,6 +136,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -330,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="styling-elements-of-a-plot" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="styling-elements-of-a-plot"><span class="header-section-number">2</span> Styling elements of a plot</h2>
 <p>Let’s start with a plot from a few lessons ago where we mapped&nbsp;<strong><em>color</em></strong> to season and <strong><em>shape</em></strong> to precipitation:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Mapping point size and color ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Mapping point size and color ####</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -338,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>);     </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>… and the resulting plot with the default mapped colors and default sizes for season and precipitation:</p>
 <div id="fig-defaultMap" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -357,9 +362,9 @@ Figure&nbsp;1: Mapping color and size to points on a scatterplot
 <section id="ordering-factoring-the-season" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="ordering-factoring-the-season"><span class="header-section-number">3.1</span> Ordering (factoring) the season</h3>
 <p>We need to change the order outside of the GGPlot and we do that by categorizing the season column using <strong><em>factor()</em></strong>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 2: Factoring the values in season ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 2: Factoring the values in season ####</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  seasonOrdered <span class="ot">=</span> <span class="fu">factor</span>(weatherData<span class="sc">$</span>season,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                         «levels»<span class="ot">=</span><span class="fu">c</span>(<span class="st">"Spring"</span>, <span class="st">"Summer"</span>, <span class="st">"Fall"</span>, <span class="st">"Winter"</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                         «levels»<span class="ot">=</span><span class="fu">c</span>(<span class="st">"Spring"</span>, <span class="st">"Summer"</span>, <span class="st">"Fall"</span>, <span class="st">"Winter"</span>));</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>factor()</em></strong> creates an ordering to the values in a vector and the order is determined by the argument&nbsp;<strong><em>levels</em></strong>.</p>
 <p>&nbsp;</p>
 <p>In this case we have:</p>
@@ -372,19 +377,19 @@ Figure&nbsp;1: Mapping color and size to points on a scatterplot
 <p>If you look in the <strong><em>Environment</em></strong> tab, <strong><em>seasonOrdered</em></strong> is a <strong><em>Factor w/ 4 levels “Spring”…</em></strong></p>
 <p>&nbsp;</p>
 <p>If you put&nbsp;<strong><em>seasonOrdered</em></strong> in the <strong><em>Console</em></strong> tab, you see the values are the same as <strong><em>season</em></strong>:</p>
-<div class="sourceCode" id="cb3" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> seasonOrdered</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> seasonOrdered</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span>] Winter Winter Winter Winter Winter Winter Winter Winter Winter</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">10</span>] Winter Winter Winter Winter Winter Winter Winter Winter Winter ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">10</span>] Winter Winter Winter Winter Winter Winter Winter Winter Winter ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With the <strong><em>levels</em></strong> given at the end:</p>
-<div class="sourceCode" id="cb4" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">353</span>] Fall   Fall   Fall   Fall   Winter Winter Winter Winter Winter Winter Winter</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">353</span>] Fall   Fall   Fall   Fall   Winter Winter Winter Winter Winter Winter Winter</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">364</span>] Winter Winter Winter</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>«Levels<span class="sc">:</span> Spring Summer Fall Winter»</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>«Levels<span class="sc">:</span> Spring Summer Fall Winter»</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>Levels</em></strong> is <span class="hl">metadata</span>in the vector <strong><em>seasonOrdered</em></strong> – or information about the data.</p>
 </section>
 <section id="using-the-factored-vector-in-ggplot" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="using-the-factored-vector-in-ggplot"><span class="header-section-number">3.2</span> Using the factored vector in GGPlot</h3>
 <p>Now we will use the factored value <strong><em>seasonOrdered</em></strong> instead of <strong><em>season</em></strong> in <strong><em>geom_point()</em></strong>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the factored values in the plot</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the factored values in the plot</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color=</span>«seasonOrdered», <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
@@ -393,7 +398,7 @@ Figure&nbsp;1: Mapping color and size to points on a scatterplot
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  </span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>);     </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And GGPlot recognizes the new order of the seasons:</p>
 <div id="fig-factorVal" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -412,18 +417,18 @@ Figure&nbsp;2: Using a factored value in GGPlot
 <p>We have already dealt with changing the way mapped values get presented on the <strong><em>x</em></strong> and <strong><em>y</em></strong> mapping.&nbsp; This was done using <strong><em>scale_*_continuous</em></strong> components.</p>
 <p>&nbsp;</p>
 <p>The following code will change the <strong><em>limits</em></strong> of the <strong><em>x</em></strong> and <strong><em>y</em></strong> axes and set the <strong><em>breaks</em></strong>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">85</span>),</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">85</span>),</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">50</span>,<span class="dv">70</span>)) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">100</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">70</span>,<span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">70</span>,<span class="dv">90</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We could create another plot that contains all the code from <strong><em>plot2</em></strong> with the above code attached.&nbsp; Or, we can use <strong><em>plot2</em></strong>, which is a saved variable , add the above <strong><em>scale_*_continuous</em></strong> components to it, and then save the results to a new plot variable, <strong><em>plot3</em></strong>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Appending scale components to a previous plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Appending scale components to a previous plot ####</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>«plot3 <span class="ot">=</span> plot2» <span class="sc">+</span>    <span class="co"># get the components from plot2</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">85</span>),           <span class="co"># add these components</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">50</span>,<span class="dv">70</span>)) <span class="sc">+</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">100</span>),</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">70</span>,<span class="dv">90</span>));</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);       <span class="co"># plot3 combines plot2 components with the new components</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);       <span class="co"># plot3 combines plot2 components with the new components</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And <strong><em>plot3</em></strong> will contain all the components from <strong><em>plot2</em></strong> along with the <strong><em>scale_*_continuous</em></strong> components (the change in axes <strong><em>values</em></strong> and <strong><em>breaks</em></strong>):</p>
 <div id="fig-appending" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -437,10 +442,10 @@ Figure&nbsp;3: Appending component to saved plots
 </div>
 <p>&nbsp;</p>
 <p><span class="note">Note: The warning you get in the <strong>Console</strong> when you plot <strong>plot3</strong> is because the new axes limits cuts off 11 (of 366) values from the plot</span></p>
-<div class="sourceCode" id="cb8" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="fu">plot</span>(plot3);</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="fu">plot</span>(plot3);</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Warning message<span class="sc">:</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Removed <span class="dv">11</span> rows containing missing values</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(geom_point). </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(geom_point). </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="changing-color-and-size-mapped-properties" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="changing-color-and-size-mapped-properties"><span class="header-section-number">5</span> Changing color and size mapped properties</h2>
@@ -478,11 +483,11 @@ Figure&nbsp;3: Appending component to saved plots
 </ul>
 <p>&nbsp;</p>
 <p>Again, we are just going to append the new components to the last plot:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Remapping the size and color values ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Remapping the size and color values ####</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  plot4 <span class="ot">=</span> plot3 <span class="sc">+</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    «scale_color_manual»(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"yellow"</span>, <span class="st">"blue"</span>)) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    «scale_size_continuous»(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>));  <span class="co"># could also be scale_size()</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-changeSizeColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-changeSizeColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -499,24 +504,24 @@ Figure&nbsp;4: Changing the mapped color and size properties
 <p><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="uri">https://ggplot2.tidyverse.org/reference/scale_manual.html</a></p>
 <p>&nbsp;</p>
 <p>All the components look pretty similar and most of the time, you are only going to change the <strong><em>values</em></strong> subcomponent:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_colour_manual</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_colour_manual</span>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  ...,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  «values»,</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">aesthetics =</span> <span class="st">"colour"</span>,</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">waiver</span>(),</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.value =</span> <span class="st">"grey50"</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>So, for the color mapping, we put four colors in values to map to the four seasons:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"yellow"</span>, <span class="st">"blue"</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"yellow"</span>, <span class="st">"blue"</span>));</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: you can be more explicit and map values to color directly:</span></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"Fall"</span> <span class="ot">=</span> <span class="st">"yellow"</span>, <span class="st">"Winter"</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Summer"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"Spring"</span> <span class="ot">=</span> <span class="st">"green"</span> ));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"Fall"</span> <span class="ot">=</span> <span class="st">"yellow"</span>, <span class="st">"Winter"</span> <span class="ot">=</span> <span class="st">"blue"</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Summer"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"Spring"</span> <span class="ot">=</span> <span class="st">"green"</span> ));</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the above case, the order of the seasons no longer matters – but spelling does.</p>
 </section>
 <section id="continuous-scale-components" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="continuous-scale-components"><span class="header-section-number">5.2</span> Continuous scale components</h3>
 <p>The <strong><em>scale_size</em></strong> or <strong><em>scale_size_continuous</em></strong>, is used to map the precipitation amounts to the size of the point, with a range of 0 to 5:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Precipitation goes from <strong>0</strong> to <strong>1.76</strong>, so <strong>0</strong> maps to <strong><em>size=0</em></strong> and <strong>1.76</strong> maps to <strong><em>size=5</em></strong>.</p>
 <p>&nbsp;</p>
 <p>But, if you notice that even zero precipitation values, of which there are a lot, still is mapped to a very small dot on the plot (so, close to, but not quite 0).&nbsp; If you really want to remove points from the plot, you need to give a negative value for the first value in the range.</p>
@@ -524,13 +529,13 @@ Figure&nbsp;4: Changing the mapped color and size properties
 <section id="reorder-legend" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="reorder-legend"><span class="header-section-number">5.3</span> Reorder legend</h3>
 <p>For our last trick we will change the <strong><em>color</em></strong> and <strong><em>size</em></strong> labels in the legend and reorder the legend using the<a href="https://ggplot2.tidyverse.org/reference/guides.html"><strong><em>guides</em></strong> component</a> so that season comes first.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 5: Reordering the legend and changing labels ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 5: Reordering the legend and changing labels ####</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> plot4 <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Seasons"</span>,</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">size =</span> <span class="st">"Precipitation"</span>) <span class="sc">+</span>    </span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">order=</span><span class="dv">1</span>),</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="at">order=</span><span class="dv">2</span>));</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this case,&nbsp;<strong><em>plot4</em></strong> already used a <strong><em>labs</em></strong> component that we want to add to.&nbsp; So we just use labs again with the new subcomponents <strong><em>color</em></strong> and <strong><em>size</em></strong>.</p>
 <div id="fig-labComponents" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -547,14 +552,14 @@ Figure&nbsp;5: Redo the labs component to add color and size labels
 <section id="histograms-and-fill-color-mapping" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="histograms-and-fill-color-mapping"><span class="header-section-number">6</span> Histograms and fill (color) mapping</h2>
 <p>The <strong><em>geom_histogram</em></strong> component in GGPlot is very similar to a <strong><em>geom_point</em></strong>.&nbsp; <strong><em>x</em></strong> is mapped to the column you want to make into a histogram ( <strong><em>avgTemp</em></strong> ) and <strong><em>y</em></strong> is not mapped to any value.&nbsp; The y-axis represents the count of the values on the x-axis:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Our first histogram -- note there is only an x-mapping ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 6: Our first histogram -- note there is only an x-mapping ####</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  plot6 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    «geom_histogram»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>«avgTemp»)) <span class="sc">+</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Temperature (\u00B0F)"</span>,</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>);     </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot6);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-basicHistogram" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-basicHistogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -567,8 +572,8 @@ Figure&nbsp;6: A basic GGPlot histogram of temperature values
 </div>
 <p>&nbsp;</p>
 <p>You do get this message when plotting the above histogram:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="fu">plot</span>(plot6); </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">stat_bin()</span><span class="st">`</span> using <span class="st">`</span><span class="at">bins = 30</span><span class="st">`</span>. Pick better value with <span class="st">`</span><span class="at">binwidth</span><span class="st">`</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="fu">plot</span>(plot6); </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">stat_bin()</span><span class="st">`</span> using <span class="st">`</span><span class="at">bins = 30</span><span class="st">`</span>. Pick better value with <span class="st">`</span><span class="at">binwidth</span><span class="st">`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This message is a bit aggressive. It says that ggplot uses 30 bins by defult and that you can change it. We will use <strong><em>bins</em></strong> and <strong><em>binwidth</em></strong> later.</p>
 <section id="mapping-season-to-fill-in-the-histogram" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="mapping-season-to-fill-in-the-histogram"><span class="header-section-number">6.1</span> Mapping season to fill in the histogram</h3>
@@ -577,7 +582,7 @@ Figure&nbsp;6: A basic GGPlot histogram of temperature values
 <p>To change the mapped <strong><em>fill</em></strong> colors, we use <strong><em>scale_fill_manual</em></strong>, which operates just like <strong><em>scale_color_manual</em></strong>.</p>
 <p>&nbsp;</p>
 <p>Similarly, changing the <strong><em>fill</em></strong> label in the legend is done by adding <strong><em>fill</em></strong> to <strong><em>labs()</em></strong>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Mapping fill color in a histogram ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Mapping fill color in a histogram ####</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  plot7 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, «<span class="at">fill=</span>seasonOrdered»),</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span>  <span class="co"># color is the outline color</span></span>
@@ -588,7 +593,7 @@ Figure&nbsp;6: A basic GGPlot histogram of temperature values
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  </span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>         «<span class="at">fill =</span> <span class="st">"Seasons"</span>»);       <span class="co"># change the label in the legend for fill</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot7);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-filledHist" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-filledHist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -603,7 +608,7 @@ Figure&nbsp;7: A temperature histogram with fill mapped to season
 <section id="adding-an-outline-color" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="adding-an-outline-color"><span class="header-section-number">6.2</span> Adding an outline color</h3>
 <p>The histogram would be a bit easier to see if we added on outline.&nbsp; In a <strong><em>geom_histogram</em></strong>, <strong><em>color</em></strong> represents the outline color, and we will set it to <strong>black</strong>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: Add outline color subcomponent to the histogram ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8: Add outline color subcomponent to the histogram ####</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  plot8 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">fill=</span>seasonOrdered),</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                    «<span class="at">color=</span><span class="st">"black"</span>») <span class="sc">+</span>  <span class="co"># color is the outline color</span></span>
@@ -614,7 +619,7 @@ Figure&nbsp;7: A temperature histogram with fill mapped to season
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  </span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Seasons"</span>);      </span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="hl"><strong>color</strong> in this plot is not mapped</span>, <strong><em>color</em></strong> is a subcomponent of <strong><em>geom_histogram()</em></strong>.&nbsp; You can use <strong><em>color</em></strong> as a mapping in a histogram – that will be part of the application.</p>
 <div id="fig-histOutlineColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -640,7 +645,7 @@ Figure&nbsp;8: Adding an outline color to the histogram
 <li><p><strong><em>y</em></strong> to humidity</p></li>
 <li><p><strong><em>color</em></strong> to precipitation</p></li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Mapping the continuous values of precipitation to color #### </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Mapping the continuous values of precipitation to color #### </span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  plot9 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windSusSpeed, <span class="at">y=</span>relHum, «<span class="at">color=</span>precip2»)) <span class="sc">+</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
@@ -648,7 +653,7 @@ Figure&nbsp;8: Adding an outline color to the histogram
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Wind Speed (miles/hour)"</span>,  </span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>); </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot9);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The default in GGPlot is to create a gradient for the values that goes from dark blue to light blue</p>
 <div id="fig-colorGradient" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -665,10 +670,10 @@ Figure&nbsp;9: Mapping color to precipitation generates a gradient of colors
 <p>A gradient from dark blue to light blue is probably not the best choice, luckily you can change this using the component <strong><em>scale_color_gradient</em></strong>.</p>
 <p>&nbsp;</p>
 <p>The subcomponents are the <strong><em>low</em></strong> and <strong><em>high</em></strong> end colors of the gradient spectrum, in this case: <strong>orange</strong> and <strong>blue</strong>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### mapping precipitation to a gradient with two specified colors #### </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### mapping precipitation to a gradient with two specified colors #### </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  plotA <span class="ot">=</span> plot9 <span class="sc">+</span> </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_gradient</span>(<span class="at">low=</span><span class="st">"orange"</span>, <span class="at">high=</span><span class="st">"blue"</span>);</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotA);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotA);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: orange and blue were specifically picked because they are on opposite sides of the color wheel, and colors on the opposite sides of the wheel create the most distinctive gradients.</span></p>
 <div id="fig-modifyGradient" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -684,10 +689,10 @@ Figure&nbsp;10: Choosing our own gradient spectrum for the mapped color
 <section id="multiple-colors-in-the-gradient" class="level3" data-number="7.2">
 <h3 data-number="7.2" class="anchored" data-anchor-id="multiple-colors-in-the-gradient"><span class="header-section-number">7.2</span> Multiple colors in the gradient</h3>
 <p>The real problem is that over half of the precipitation values are zero – and we really want to better distinguish the precipitation values beyond zero.&nbsp; So, let’s add more gradient colors using the <strong><em>scale_color_gradientn</em></strong> component.&nbsp; <strong><em>scale_color_gradientn</em></strong> allows you to choose any (<strong><em>n</em></strong>)umber of gradient colors</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### mapping precipitation to 4 specified colors #### </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### mapping precipitation to 4 specified colors #### </span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  plotB <span class="ot">=</span> plot9 <span class="sc">+</span> </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">c</span>(<span class="st">"gray"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"blue"</span>)); </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotB);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotB);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The colors gray and blue are at the top and bottom with green at the 1/3<sup>rd</sup> point and yellow at the 2/3<sup>rd</sup> point.&nbsp; In other words, the four colors are equidistant apart.</p>
 <div id="fig-N_Gradients" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -719,11 +724,11 @@ Figure&nbsp;11: Using four gradient colors instead of two.
 <li><p>yellow: 0.25 – or 25%</p></li>
 <li><p>blue: 1 – or 100%&nbsp; (no change)</p></li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### set the boundary on the 4 colors #### </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### set the boundary on the 4 colors #### </span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  plotC <span class="ot">=</span> plot9 <span class="sc">+</span> </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">c</span>(<span class="st">"gray"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"blue"</span>),</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                          «<span class="at">values=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>,<span class="fl">0.25</span>,<span class="dv">1</span>)»); </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotC);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotC);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="hl"><strong>values</strong> is not the same as precipitation values,</span> <strong><em>values</em></strong> represent percentages – so the boundary for yellow is at <strong>1.76*0.25</strong> = <strong>0.44</strong>.</p>
 <div id="fig-gradientBoundaries" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -742,7 +747,7 @@ Figure&nbsp;12: Setting the boundaries of the gradient colors using values
 <p>Finally, there are some shapes (#21-25) and some Unicode characters that have two colors associated with them: the outline color and the background color.&nbsp; In these cases <strong><em>fill</em></strong> maps to the background color and <strong><em>color</em></strong> maps to the outline color.</p>
 <p>&nbsp;</p>
 <p>The only difference with these shapes is the we map <strong><em>fill</em></strong> to the “inside” color and use <strong><em>scale_fill_gradientn</em></strong> to modify the mapping:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Some shapes (21-25) have a fill -- use fill mapping instead of color #### </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Some shapes (21-25) have a fill -- use fill mapping instead of color #### </span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  plotD <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windSusSpeed, <span class="at">y=</span>relHum, «<span class="at">fill=</span>precip2»),</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                «<span class="at">shape =</span> <span class="dv">23</span>»,</span>
@@ -755,7 +760,7 @@ Figure&nbsp;12: Setting the boundaries of the gradient colors using values
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>) <span class="sc">+</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    «scale_fill_gradientn»(<span class="at">colors=</span><span class="fu">c</span>(<span class="st">"gray"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>, <span class="st">"blue"</span>),</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>,<span class="fl">0.25</span>,<span class="dv">1</span>));     </span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotD);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plotD);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this plot <strong><em>shape, size</em></strong>, and <strong><em>color</em></strong> are all subcomponents of <strong><em>geom_point</em></strong> – not mapped properties.&nbsp; Only <strong><em>fill</em></strong> is a mapped property.</p>
 <div id="fig-shapesFillAndColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -830,7 +835,7 @@ Figure&nbsp;13: Shapes with fill and outline colors – using fill to map the in
 <li><p>change the component <strong><em>geom_histogram</em></strong> to <strong><em>geom_density</em></strong></p></li>
 <li><p>add an <strong><em>alpha</em></strong> subcomponent to geom_density so you can see through the plots</p></li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8b: Change from a histogram to a density plot ####</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 8b: Change from a histogram to a density plot ####</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  plot8b <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    «geom_density»( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">fill=</span>seasonOrdered),</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color =</span> <span class="st">"black"</span>,</span>
@@ -842,7 +847,7 @@ Figure&nbsp;13: Shapes with fill and outline colors – using fill to map the in
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Temperature (\u00B0F)"</span>,  </span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Seasons"</span>);     </span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8b);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot8b);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The last value (Winter) in the legend is the plot that is in “front”.</p>
 <div id="fig-densityPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
