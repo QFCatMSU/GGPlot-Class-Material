@@ -8,3 +8,4 @@
 lessons/crawler.r
 lessons/firewall.r
 *_fw.*
+**/*.quarto_ipynb

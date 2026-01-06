@@ -159,8 +159,7 @@
     labs(title = "Change in Temperature vs. Wind Direction",
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
-         y = "Degrees (Fahrenheit)",
-         fill="Wind Speed");
+         y = "Degrees (Fahrenheit)");
   plot(plot11);
 
   

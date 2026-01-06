@@ -264,7 +264,7 @@ But, if you notice that even zero precipitation values, of which there are a lot
 
 ### Reorder legend
 
-For our last trick we will change the ***color*** and ***size*** labels in the legend and reorder the legend using the[***guides*** component](https://ggplot2.tidyverse.org/reference/guides.html) so that season comes first.
+For our last trick we will change the ***color*** and ***size*** labels in the legend and reorder the legend using the [***guides*** component](https://ggplot2.tidyverse.org/reference/guides.html) so that season comes first.
 
 ``` r
   #### Part 5: Reordering the legend and changing labels ####

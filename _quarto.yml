@@ -21,6 +21,7 @@ format:
   html:
     page-layout: full
     css: "https://qfcatmsu.github.io/assets/quarto/qfc_styles.css"
+    # css: "_test/qfc_styles.css"
     toc: true
     toc-title: "<b>Lesson Content</b>"
     toc-location: left
@@ -30,10 +31,12 @@ format:
     number-sections: true
     grid: 
       body-width: 1000px
+    # note: you can only include url using text
     include-in-header:
       - text: |
           <link rel = "shortcut icon" href = "https://qfcatmsu.github.io/assets/quarto/qfc_icon.png" />
-          <script>mod=true; menuCollapse=true;</script>
+          <script>mod=true; // menuCollapse=true;</script>
           <script src="https://qfcatmsu.github.io/assets/quarto/qfc_styles.js"></script>
+          <!--script src="../_test/qfc_styles.js"></script-->
            
 editor: visual

@@ -223,8 +223,7 @@ Let's start with setting all the boxes manually to the same outline color (***co
     labs(title = "Change in Temperature vs. Wind Direction",
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
-         y = "Degrees (Fahrenheit)",
-         fill="Wind Speed");
+         y = "Degrees (Fahrenheit)");
   plot(plot8);
 ```
 

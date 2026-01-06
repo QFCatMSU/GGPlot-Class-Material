@@ -1,4 +1,4 @@
-rm(list=ls());                         # clear Console Window
+rm(list=ls());                         # clear Environment
 options(show.error.locations = TRUE);  # show line numbers on error
 library(package=ggplot2);              # include all GGPlot2 functions
 

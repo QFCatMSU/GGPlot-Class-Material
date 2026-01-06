@@ -99,7 +99,7 @@ plot7 = ggplot(data=weatherData) +
               method="loess",
               color=rgb(red=1, green=0.5, blue=0), # orange
               linetype=4,
-              size=2,
+              linewidth=2,
               fill="lightgreen") +
   labs(title = "Temperature throughout the year",
        subtitle = "Lansing, Michigan: 2016",
