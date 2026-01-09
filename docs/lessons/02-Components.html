@@ -328,14 +328,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="to-do" class="level3" data-number="0.1">
 <h3 data-number="0.1" class="anchored" data-anchor-id="to-do"><span class="header-section-number">0.1</span> To-do</h3>
-<ul>
-<li>Reword RStudio Project Windows</li>
-</ul>
 </section>
 <section id="purpose" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
 <ul>
-<li><p>Create a script file to be read from other scripts</p></li>
+<li><p>Structure GGplotcode</p></li>
 <li><p>Create a scatterplot in GGPlot</p></li>
 <li><p>Modify the scatterplot using components</p></li>
 </ul>
@@ -349,10 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="../data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a></p>
 <ul>
 <li><p>Save the CSV file, called <strong><em>Lansing2016NOAA.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project (this is the same file as last lesson).&nbsp;</p></li>
-<li><p><span class="hl">It is best to use the operating system’s File Explorer/Finder</span> to move the CSV file to the proper folder.&nbsp;&nbsp;&nbsp;</p>
-<ul>
-<li><a href="#trap-using-excel-to-move-files">Trap: Using Excel to move files</a></li>
-</ul></li>
+<li><p><span class="hl">It is best to use the operating system’s File Explorer/Finder</span> to move the CSV file to the proper folder. <a href="#trap-using-excel-to-move-files">Trap: Using Excel to move files</a></p></li>
 </ul>
 </section>
 </section>
@@ -360,12 +354,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2" class="anchored" data-anchor-id="spacing-code"><span class="header-section-number">2</span> Spacing Code</h2>
 <p>In GGPlot, you create a plot by initializing a GGPlot canvas, with <strong><em>ggplot()</em></strong>, and then add components (e.g., a boxplot) to the canvas.&nbsp; Most components will, in turn, have subcomponents, (e.g., color or size).</p>
 <p>&nbsp;</p>
-<p><a href="#fig-spaceCode" class="quarto-xref">Figure&nbsp;1</a> shows a plot that has:</p>
+<p><a href="#fig-spaceCode" class="quarto-xref">Figure&nbsp;1</a> shows GGPlot code from the <a href="../scripts/RSProj_Setup.R">RStudio Setup lesson</a>. The GGPlot code has:</p>
 <ul>
 <li><p>A function to initialize GGPlot – highlighted in blue</p></li>
 <li><p>Five components – highlighted in yellow&nbsp;</p></li>
 <li><p><strong>+</strong> to “add” components to the canvas – highlighted in green</p></li>
-<li><p>10 subcomponents – highlighted in red</p></li>
+<li><p>11 subcomponents – highlighted in red</p></li>
 </ul>
 <div id="fig-spaceCode" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -379,14 +373,25 @@ Figure&nbsp;1: Spacing code to emphasize the different components of a plot
 </div>
 <section id="component-and-subcomponent-spacing" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="component-and-subcomponent-spacing"><span class="header-section-number">2.1</span> Component and subcomponent spacing</h3>
-<p>We will be going over the code in <a href="#fig-spaceCode" class="quarto-xref">Figure&nbsp;1</a> in much more detail in later lessons.&nbsp; For now, we are going to focus on the spacing.&nbsp; As you can see in <a href="#fig-poorSpacing" class="quarto-xref">Figure&nbsp;2</a>, <span class="hl">the code for a plot can quickly get unwieldy</span>– that is why it is important to consider code spacing from the very beginning.&nbsp; For this class, all components and subcomponents on a GGPlot will get its own line of code.&nbsp; This is also a requirement for all the lesson applications as it makes the code much easier to read.</p>
-<div id="fig-poorSpacing" class="fs quarto-float quarto-figure quarto-figure-left anchored">
+<p>We will be going over the code in <a href="#fig-spaceCode" class="quarto-xref">Figure&nbsp;1</a> in much more detail in later lessons.&nbsp; For now, we are going to focus on the spacing.&nbsp; <a href="../scripts/lesson02-poor_spacing.R">In this script file</a>, the GGPlot code was functionally kept the same but the spacing was change to something pretty unreadable. R does not care about spacing, but humans do. <span class="hl">GGplot code for can quickly get unwieldy</span>– that is why it is important to consider code spacing from the very beginning.&nbsp; For this class, all components and subcomponents on a GGPlot will get their own line of code.&nbsp; This makes the code easier to read and is a requirement for all the lesson applications.</p>
+<p>&nbsp;</p>
+<div id="fig-poor-spacing" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-poorSpacing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/GGP-01-BadCode.jpg" class="fs img-fluid figure-img">
+<div aria-describedby="fig-poor-spacing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Boxplots of Change in Temperature vs. Wind Direction </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#           at different wind speeds (terribly spaced, but still works)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>thePlot <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>windDir,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>changeMaxTemp), <span class="at">na.rm=</span><span class="cn">TRUE</span>, <span class="at">color=</span><span class="fu">c</span>(<span class="st">"blue"</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"black"</span>, <span class="dv">3</span>), <span class="st">"green"</span>, <span class="fu">rep</span>(<span class="st">"black"</span>, <span class="dv">3</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"orange"</span>, <span class="fu">rep</span>(<span class="st">"black"</span>, <span class="dv">3</span>)), <span class="at">fill=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="st">"red"</span>, <span class="dv">3</span>), <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span><span class="fu">facet_grid</span>(<span class="at">rows=</span>.<span class="sc">~</span><span class="fu">factor</span>(windSpeedLevel, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>)),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">labeller=</span><span class="fu">as_labeller</span>(windLabels)) <span class="sc">+</span><span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"East"</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">"South"</span>, <span class="st">"West"</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Temperature vs. Wind Direction"</span>, <span class="at">subtitle =</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">"Lansing, Michigan: 2016"</span>, <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>); <span class="fu">plot</span>(thePlot);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poorSpacing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Poorly spaced code – it works but it is too hard to read!
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poor-spacing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The same GGPlot code poorly spaced – but it works the same
 </figcaption>
 </figure>
 </div>
@@ -396,16 +401,16 @@ Figure&nbsp;2: Poorly spaced code – it works but it is too hard to read!
 <p>The components of a GGPlot are really the <a href="https://ggplot2.tidyverse.org/reference/">functions in the GGPlot package</a>.&nbsp; The subcomponents are the arguments of those functions.</p>
 <p>&nbsp;</p>
 <p>One component (i.e., function) in the GGPlot package is <a href="https://ggplot2.tidyverse.org/reference/labs.html"><strong><em>labs()</em></strong></a>, which is the labeling component in GGPlot. <strong><em>labs()</em></strong> has multiple subcomponents (i.e., arguments) representing the different parts of the plot that can be labelled.&nbsp; <strong><em>labs()</em></strong> was used in <a href="#fig-spaceCode" class="quarto-xref">Figure&nbsp;1</a> to add a <strong><em>title</em></strong> and <strong><em>subtitle</em></strong> and <strong><em>x</em></strong>-axis and <strong><em>y</em></strong>-axis labels. It looks like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Temperature vs. Wind Direction"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In this class, we will refer to <strong><em>labs()</em></strong> as a component and <strong><em>title</em></strong>, <strong><em>subtitle</em></strong>, <strong><em>x</em></strong>, and <strong><em>y</em></strong> as subcomponents.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Temperature vs. Wind Direction"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"Wind Direction"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Degrees (Fahrenheit)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In this class, we will refer to <strong><em>labs()</em></strong> as a <span class="hl">component</span>and <strong><em>title</em></strong>, <strong><em>subtitle</em></strong>, <strong><em>x</em></strong>, and <strong><em>y</em></strong> as <span class="hl">subcomponents</span>.</p>
 </section>
 </section>
 <section id="how-to-make-comments-in-r" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="how-to-make-comments-in-r"><span class="header-section-number">3</span> How to make comments in R</h2>
-<p>In the R language, comments are created using the number-sign ( <strong><em>#</em></strong> ) key.&nbsp; Any text on the line after the ( <strong><em>#</em></strong> ) will be treated by R as a comment and it will not be executed. In <a href="#fig-poorSpacing" class="quarto-xref">Figure&nbsp;2</a>, there are comments on lines 2, 3, 4, 8, 11, and 12.&nbsp; These comments are colored light green but the color of the comments depends on your color scheme ([Color Schemes (extension)]).</p>
+<p>In the R language, comments are created using the number-sign ( <strong><em>#</em></strong> ) key.&nbsp; Any text on the line after the ( <strong><em>#</em></strong> ) will be treated by R as a comment and it will not be executed. In <a href="#fig-spaceCode" class="quarto-xref">Figure&nbsp;1</a>, there are comments on lines 1, 2, 3, 7, 12, and 13.&nbsp; These comments are colored light green but the color of the comments depends on your RStudio color scheme (<strong><em>Tools -&gt; Global Options -&gt; Appearance</em></strong>).</p>
 <p>&nbsp;</p>
 <p><span class="hl">You are required to make use of comments for your project in this class.</span>&nbsp; Aside from being a good practice, it significantly reduces the frustration level of people who are trying to evaluate your work! Commenting also significantly reduces the frustration you will feel when trying to read your own code after an extended absence.</p>
 </section>
@@ -422,20 +427,22 @@ Figure&nbsp;2: Poorly spaced code – it works but it is too hard to read!
 </section>
 <section id="starting-a-new-script" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="starting-a-new-script"><span class="header-section-number">5</span> Starting a new script</h2>
+<p><span class="note">Note: All the code from this point on in the lesson is also in the script downloaded in <a href="#code-for-the-lesson">Code for the lesson</a></span></p>
+<p>&nbsp;</p>
 <p>To create a new script in RStudio, click <strong><em>File</em></strong> -&gt; <strong><em>New File</em></strong> -&gt; <strong><em>R Script.</em></strong></p>
 <p>&nbsp;</p>
-<p>All the scripts in this class will contain these three lines at the top:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>());                        <span class="co"># clear the Environment tab</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span>ggplot2);             <span class="co"># include all GGPlot2 functions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>All the scripts in this class will contain these two lines at the top:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>());                        <span class="co"># clear the Environment tab</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span>ggplot2);             <span class="co"># include all GGPlot2 functions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Copy the two lines to your new script file and save this script as <strong><em>lesson02.R</em></strong> inside the <strong><em>scripts</em></strong> folder in your Project (<strong><em>File</em></strong> -&gt; <strong><em>Save as…</em></strong> -&gt; open <strong><em>scripts</em></strong> folder -&gt; click <strong><em>Save</em></strong>).</p>
 <section id="cleaning-the-environment" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="cleaning-the-environment"><span class="header-section-number">5.1</span> Cleaning the Environment</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>());                        <span class="co"># clear the Environment tab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>());                        <span class="co"># clear the Environment tab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This line removes all the variables and data from the <strong><em>Environment</em></strong> tab.&nbsp; Basically, this means your script can be executed with a clean slate.&nbsp; This is useful when you are creating scripts that are designed to be executed as a standalone script.</p>
 </section>
 <section id="ggplot2-package" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="ggplot2-package"><span class="header-section-number">5.2</span> GGPlot2 Package&nbsp;</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span>ggplot2);            <span class="co"># include all GGPlot2 functions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span>ggplot2);            <span class="co"># include all GGPlot2 functions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This line gives your script access to all of the functions in the GGPlot2 package.&nbsp; This package is technically the third version of GGPlot – but no one uses the first two versions (<strong><em>ggplot</em></strong> and <strong><em>ggplot1</em></strong>) anymore.</p>
 </section>
 </section>
@@ -452,14 +459,16 @@ Figure&nbsp;2: Poorly spaced code – it works but it is too hard to read!
 <p>&nbsp;</p>
 <p>And a helpful resource for many R packages is the cheat sheets – the most recent cheat sheet for GGPlot2 can be downloaded here:</p>
 <p><a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf</a></p>
+<p>&nbsp;</p>
+<p>The cheat sheet can also be access in <strong><em>RStudio -&gt; Help -&gt; Cheat Sheets</em></strong>.</p>
 </section>
 <section id="opening-the-data-file" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="opening-the-data-file"><span class="header-section-number">7</span> Opening the data file</h2>
 <p>The data file, Lansing2016NOAA.csv, contains weather information from the NOAA for 2016.</p>
 <p>&nbsp;</p>
 <p>We will use <strong><em>read.csv()</em></strong> to open the file and save the data to a data frame named <strong><em>weatherData</em></strong>. <strong><em>read.csv()</em></strong> reads in the data from the CSV file – and saves the data to a variable named <strong><em>weatherData</em></strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in CSV file and save the content to weatherData</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/Lansing2016NOAA.csv"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in CSV file and save the content to weatherData</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>weatherData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/Lansing2016NOAA.csv"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="viewing-the-data-frame" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="viewing-the-data-frame"><span class="header-section-number">7.1</span> Viewing the data frame</h3>
 <p><strong><em>weatherData</em></strong> is a <span class="hl">data frame variable</span> and it appears in the <strong><em>Environment</em></strong> tab under <strong><em>Data</em></strong> as <span class="hl">366 obs. of 29 variables</span>. (i.e., 366 rows and 29 columns)</p>
@@ -484,10 +493,10 @@ Figure&nbsp;3: Viewing the data inside the data frame
 <p>Next, we will create a scatterplot of average temperature <em>(<strong>avgTemp</strong> column)</em> vs.&nbsp;humidity (<strong><em>relHum</em></strong> column) from <strong><em>weatherData</em></strong>.</p>
 <p>&nbsp;</p>
 <p>The code to create a scatterplot using GGPlot is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Create a scatterplot ####</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) );</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Create a scatterplot ####</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) );</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>&nbsp;</p>
 <p>Click the <strong><em>Source</em></strong> button&nbsp;the script and this plot appears:</p>
 <div id="fig-firstPlot" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -503,15 +512,15 @@ Figure&nbsp;4: Our first plot using GGPlot with argument names highlighted
 <section id="taking-out-argument-names" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="taking-out-argument-names"><span class="header-section-number">8.1</span> Taking out argument names</h3>
 <p>Below I highlight the argument names in the code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Create a scatterplot ####</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( «data»<span class="ot">=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( «mapping»<span class="ot">=</span><span class="fu">aes</span>(«x»<span class="ot">=</span>avgTemp, «y»<span class="ot">=</span>relHum) );</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 1: Create a scatterplot ####</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( «data»<span class="ot">=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( «mapping»<span class="ot">=</span><span class="fu">aes</span>(«x»<span class="ot">=</span>avgTemp, «y»<span class="ot">=</span>relHum) );</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the script below, the argument names are removed but it will still create the same plot:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Same scatterplot without argument names ####</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( weatherData ) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>( <span class="fu">aes</span>(avgTemp, relHum) );</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Same scatterplot without argument names ####</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( weatherData ) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>( <span class="fu">aes</span>(avgTemp, relHum) );</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot2);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="benefits-of-using-argument-names" class="level3" data-number="8.2">
 <h3 data-number="8.2" class="anchored" data-anchor-id="benefits-of-using-argument-names"><span class="header-section-number">8.2</span> Benefits of using argument names</h3>
@@ -528,11 +537,12 @@ Figure&nbsp;4: Our first plot using GGPlot with argument names highlighted
 <li><p>means that you can order the arguments however you want</p></li>
 <li><p>avoids bad assumptions about the ordering of arguments and their default values</p></li>
 </ul>
+<p>&nbsp;</p>
 <p>The one exception where we will not use argument names is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData)   <span class="co"># no argument name here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData)   <span class="co"># no argument name here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>instead of</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>plotData) <span class="co"># x is the argument name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>There are multiple functions in R and GGPlot where the argument name <strong><em>x</em></strong> is used generically as the name for the first argument in a function.&nbsp; This is not intuitive when plotting because <strong><em>x</em></strong> is also used to refer to data that maps to the x-axis.&nbsp;</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>plotData) <span class="co"># x is the argument name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There are multiple functions in R and GGPlot where the argument name <strong><em>x</em></strong> is used generically as the name for the first argument in a function.&nbsp; This is not intuitive when plotting because <strong><em>x</em></strong> is refers to data that maps to the x-axis.&nbsp;</p>
 <p>&nbsp;</p>
 <p>We will use the argument name <strong><em>x</em></strong> when <strong><em>x</em></strong> refers to the x-axis (e.g., <strong><em>x=avgTemp</em></strong>) but not when <strong><em>x</em></strong> is a generic name for the first argument (e.g., <strong><em>x=plotData</em></strong>).</p>
 </section>
@@ -541,39 +551,39 @@ Figure&nbsp;4: Our first plot using GGPlot with argument names highlighted
 <h2 data-number="9" class="anchored" data-anchor-id="components-of-a-ggplot"><span class="header-section-number">9</span> Components of a GGPlot</h2>
 <p>Let’s take a more detailed look at the three lines of code that created the scatterplot.</p>
 <p>The function <strong><em>ggplot()</em></strong> creates a canvas where the plots will be drawn.&nbsp; The argument <strong><em>data</em></strong> gives the data frame that will be used for the plots,&nbsp;<strong><em>weatherData</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> «<span class="fu">ggplot</span>( <span class="at">data=</span>weatherData )» <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) );</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Next, we add the component, <strong><em>geom_point()</em></strong>, which creates a scatterplot using the <strong><em>avgTemp</em></strong> and <strong><em>relHum</em></strong> columns from <strong><em>weatherData</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>          «<span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) )»;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> «<span class="fu">ggplot</span>( <span class="at">data=</span>weatherData )» <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) );</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The canvas is saved to a <strong>List</strong> variable named <strong><em>plot1:</em></strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  «plot1» <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) );</span>
+<p>Next, we add the component, <strong><em>geom_point()</em></strong>, which creates a scatterplot using the <strong><em>avgTemp</em></strong> and <strong><em>relHum</em></strong> columns from <strong><em>weatherData</em></strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>          «<span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) )»;</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>And then <strong><em>plot()</em></strong> is used to display the canvas saved in <strong><em>plot1</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<p>The canvas is saved to a <strong>List</strong> variable named <strong><em>plot1:</em></strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  «plot1» <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) );</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  «<span class="fu">plot</span>(plot1)»;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And then <strong><em>plot()</em></strong> is used to display the canvas saved in <strong><em>plot1</em></strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  plot1 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) );</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  «<span class="fu">plot</span>(plot1)»;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="#extension-the-yellow-warning-sign">Extension: The yellow warning sign</a> (which you might or might not see)</p>
 <section id="ggplot-components" class="level3" data-number="9.1">
 <h3 data-number="9.1" class="anchored" data-anchor-id="ggplot-components"><span class="header-section-number">9.1</span> GGPlot components</h3>
 <p>In GGPlot, you initialize a canvas and then add components to the canvas.&nbsp; The ( <strong><em>+</em></strong> ) symbol is used to add components, and you can string multiple components together.&nbsp; In the above example, there is the initializing canvas function, <strong><em>ggplot()</em></strong>, and one component, <strong><em>geom_point()</em></strong>:</p>
 <p>&nbsp;</p>
 <p>1) <strong><em>ggplot()</em></strong> is used to initialize a GGPlot canvas with the data from <strong><em>weatherData</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>           «<span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) )»;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>2) <strong><em>geom_point()</em></strong> is a plotting component that creates a scatterplot</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span>«<span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)» );</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>           «<span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) )»;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>2) <strong><em>geom_point()</em></strong> is a plotting component that creates a scatterplot</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span>«<span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)» );</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="ggplot-mapping-and-aesthetics-aes" class="level3" data-number="9.2">
 <h3 data-number="9.2" class="anchored" data-anchor-id="ggplot-mapping-and-aesthetics-aes"><span class="header-section-number">9.2</span> GGPlot mapping and aesthetics (aes)</h3>
-<p><span class="hl">All plotting components in GGPlot contain a subcomponent called <strong>mappings</strong>.</span>&nbsp; <strong><em>mapping</em></strong> is used to describe the relationship between the data and the plot.&nbsp; Or, another way to put it, <strong><em>mapping</em></strong> defines what data gets represented on the plot (e.g.,&nbsp;<strong><em>avgTemp</em></strong> and <strong><em>relHum</em></strong>) and how the data gets represented (e.g., <strong><em>avgTemp</em></strong> on x-axis, <strong><em>relHum</em></strong> on y-axis):&nbsp; <em><br>
+<p>All plotting components in GGPlot contain a subcomponent called <strong>mappings</strong>.&nbsp; <span class="hl"><strong><em>mapping</em></strong> describes the relationship between the data and the plot</span>.&nbsp; Or, another way to put it, <strong><em>mapping</em></strong> defines what data gets represented on the plot (e.g.,&nbsp;<strong><em>avgTemp</em></strong> and <strong><em>relHum</em></strong>) and how the data gets represented (e.g., <strong><em>avgTemp</em></strong> on x-axis, <strong><em>relHum</em></strong> on y-axis):&nbsp; <em><br>
 </em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span>«<span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)» );</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span>«<span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum)» );</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <strong><em>mapping</em></strong> is set to a <span class="hl">mapping element</span> called an <strong><em>aesthetic</em></strong> (<strong><em>aes</em></strong>).&nbsp; The concept of an aesthetic comes into play when we are generating legends and creating data categories, which we will talk about in future lessons.&nbsp; In the meantime, it is easier to just think of <strong><em>aes</em></strong> as a mapping element.</p>
 </section>
 </section>
@@ -586,24 +596,22 @@ Figure&nbsp;4: Our first plot using GGPlot with argument names highlighted
 <li><p>change the direction of the x-axis labels&nbsp;</p></li>
 </ol>
 <p>&nbsp;</p>
-<p>To do this we will add <em>three new components</em> to the canvas:</p>
-<ol type="1">
-<li><p><strong><em>labs()</em></strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # label component</p></li>
-<li><p><strong><em>scale_x_continuous()</em></strong> &nbsp;&nbsp; # x-scaling component (there is a corresponding y-scaling component)</p></li>
-<li><p><strong><em>theme()</em></strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # theme component</p></li>
-</ol>
+<p>To do this we will add <span class="hl">three new components</span> to the canvas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="er">)</span> <span class="fu">labs</span>()                <span class="co"># label component</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="er">)</span> <span class="fu">scale_x_continuous</span>()  <span class="co"># x-scaling component (there is a corresponding y-scaling component)</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="er">)</span> <span class="fu">theme</span>()               <span class="co"># theme component</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: you can also add more plotting components to the canvas (e.g., line plot, histogram) – this will be shown next lesson.</span></p>
 <p>&nbsp;</p>
 <p>We add components using ( <strong><em>+</em></strong> ) and subcomponents are the arguments within the components:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    «labs»( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    «scale_x_continuous»( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    «theme»( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    «labs»( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    «scale_x_continuous»( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    «theme»( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="#trap-putting-the-on-the-next-line">Trap: putting the ( + ) on the next line</a></p>
 <div id="fig-components" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -617,10 +625,10 @@ Figure&nbsp;5: Scatterplot with a few added components
 </div>
 <section id="the-components-in-detail-labs" class="level3" data-number="10.1">
 <h3 data-number="10.1" class="anchored" data-anchor-id="the-components-in-detail-labs"><span class="header-section-number">10.1</span> The Components in detail – labs()</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When we search in the <strong><em>Help</em></strong> tab for <strong><em>labs()</em></strong> ( <a href="#fig-labs" class="quarto-xref">Figure&nbsp;6</a>) we see that it has many subcomponents (or arguments) to change including:</p>
 <ul>
 <li><p><strong><em>label</em></strong>: the title</p></li>
@@ -645,7 +653,7 @@ Figure&nbsp;6: Using the Help Tab in RStudio to find info about GGPlot component
 </section>
 <section id="the-components-in-detail-scale_x_continuous" class="level3" data-number="10.2">
 <h3 data-number="10.2" class="anchored" data-anchor-id="the-components-in-detail-scale_x_continuous"><span class="header-section-number">10.2</span> The Components in detail – scale_x_continuous()</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>scale_x_continuous()</em></strong> is the component used when you want to modify an x-axis that has continuous values.&nbsp; There are many subcomponents (<a href="#fig-scale_cont" class="quarto-xref">Figure&nbsp;7</a>) that can be changed in <strong><em>scale_x_continuous()</em></strong> and the corresponding <strong><em>scale_y_continuous()</em></strong>.&nbsp; We modified one subcomponent, <em><strong>breaks</strong>,</em> by setting it to a sequence from <strong>10</strong> to <strong>80</strong> with numeric values place at intervals of <strong>10</strong>.&nbsp;</p>
 <p>&nbsp;</p>
 <p><span class="note">note: there is also a corresponding component named <strong><em>scale_x_discrete,</em></strong> which modifies x-axes with discrete values</span></p>
@@ -662,17 +670,17 @@ Figure&nbsp;7: scale_x_continuous help page
 </section>
 <section id="the-components-in-detail-theme" class="level3" data-number="10.3">
 <h3 data-number="10.3" class="anchored" data-anchor-id="the-components-in-detail-theme"><span class="header-section-number">10.3</span> The Components in detail – theme()</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this example we changed one subcomponent in <strong><em>theme()</em></strong> called <strong><em>axis.text.x</em></strong> and set it to an <strong><em>element_text()</em></strong> that modifies the text by rotating it to an <strong><em>angle</em></strong> of <strong>90</strong> degrees and centering the text (<strong><em>vjust=0.5</em></strong>).&nbsp;<span class="note">Note: the default for <strong>vjust is 1,</strong> meaning the text will be vertically justified to the bottom.&nbsp; <strong>vjust=0</strong> means the text will be vertically justified to the top.</span></p>
 <p>&nbsp;</p>
-<p>Broadly speaking, <strong><em>theme()</em></strong> is used to make modifications to the canvas (the plots and the background) that are not related to the data.&nbsp; <strong><em>theme()</em></strong> is probably the most used component in GGPlot and we could spend many lessons going through all the subcomponents of <strong><em>theme()</em></strong>.&nbsp; We will be using <strong><em>theme()</em></strong> a lot more in future lessons and talking more about elements (e.g., <strong><em>element_text()</em></strong>).</p>
+<p><strong><em>theme()</em></strong> is mostly used to make modifications to the canvas (the plots and the background) that are not related to the data.&nbsp; <strong><em>theme()</em></strong> is probably the most used component in GGPlot and we could spend many lessons going through all the subcomponents of <strong><em>theme()</em></strong>.&nbsp; We will be using <strong><em>theme()</em></strong> a lot more in future lessons and talking more about elements (e.g., <strong><em>element_text()</em></strong>).</p>
 <div id="fig-theme" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-theme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/GGP-01-02-Theme.PNG" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-theme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: theme() component help page&nbsp; in the Help tab (yes, there is a lot there!)
+Figure&nbsp;8: theme() component help page (yes, there is a lot there!)
 </figcaption>
 </figure>
 </div>
@@ -685,17 +693,17 @@ Figure&nbsp;8: theme() component help page&nbsp; in the Help tab (yes, there is 
 <section id="getting-rid-of-the-grey-themes" class="level2" data-number="11">
 <h2 data-number="11" class="anchored" data-anchor-id="getting-rid-of-the-grey-themes"><span class="header-section-number">11</span> Getting rid of the grey (themes)</h2>
 <p>The default GGplot theme, which uses the gray background is not one of my favorite.&nbsp; Luckily, GGPlot makes it easy to change the theme. &nbsp;<a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">The components that do this, called <strong><em>complete themes</em></strong>, are on this page.</a> &nbsp;I will change to the black-white theme, <strong><em>theme_bw()</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Changing the theme ####</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">theme_bw</span>()» <span class="sc">+</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 4: Changing the theme ####</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">theme_bw</span>()» <span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-black_white" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-black_white-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -709,17 +717,17 @@ Figure&nbsp;9: Setting the GGPlot theme to black and white
 <section id="complete-themes-must-come-before-theme-changes" class="level3" data-number="11.1">
 <h3 data-number="11.1" class="anchored" data-anchor-id="complete-themes-must-come-before-theme-changes"><span class="header-section-number">11.1</span> Complete themes must come before theme changes</h3>
 <p><span class="hl">A complete theme (e.g., <strong>theme_bw()</strong>) overwrites the whole theme for the canvas.</span>&nbsp; This means it will overwrite any <strong><em>theme</em></strong> changes you previously made:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 5: Changing the theme --- oops, undoes theme ####</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) )» <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">theme_bw</span>();  <span class="co"># this complete theme change will remove the theme change above»</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r mod code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 5: Changing the theme --- oops, undoes theme ####</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  plot5 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) )» <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    «<span class="fu">theme_bw</span>();  <span class="co"># this complete theme change will remove the theme change above»</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot5);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>So, make sure you put your <strong><em>theme</em></strong> changes after your complete theme.</p>
 <div id="fig-completeTheme" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -738,12 +746,11 @@ Figure&nbsp;10: The complete theme change removed the theme change above it (the
 <p>A) Looking at the GGPlot cheat sheet (or the GGPlot functions page) from <a href="#sec-components" class="quarto-xref">Section&nbsp;6</a>, answer the following in comments in your script file</p>
 <ol type="1">
 <li><p>What component (function) would be used to create a text plot?</p></li>
-<li><p>What component would you use to change the breaks on the x-axis if the values were in date format?</p></li>
+<li><p>What component would you use to change the breaks on the y-axis if the values were in date format?</p></li>
 </ol>
 <p>&nbsp;</p>
-<p>C) Create a scatterplot in GGPlot in the <strong><em>app1-02.r</em></strong> script:</p>
+<p>B) Create a scatterplot of <strong><em>stnPressure</em></strong> vs <strong><em>windSpeed</em></strong> using the data from Lansing2016NOAA.csv</p>
 <ol type="1">
-<li><p>Create a scatterplot of <strong><em>stnPressure</em></strong> vs <strong><em>windSpeed</em></strong> using the data from Lansing2016NOAA.csv</p></li>
 <li><p>Add a title and labels the axes appropriately</p></li>
 <li><p>Change the plot theme to one of your choice</p></li>
 <li><p>Change the angle of the <strong><em>stnPressure</em></strong> axis labels to 45 degrees</p></li>
@@ -772,7 +779,7 @@ Figure&nbsp;10: The complete theme change removed the theme change above it (the
 </section>
 <section id="extension-rstudio-project-windows" class="level2" data-number="13">
 <h2 data-number="13" class="anchored" data-anchor-id="extension-rstudio-project-windows"><span class="header-section-number">13</span> Extension: RStudio Project windows</h2>
-<p>An RStudio Project takes the whole RStudio window – also called an <span class="hl">RStudio Session</span>.&nbsp; If you want to open up a second RStudio Project, you need to start a new RStudio Session (i.e., a new RStudio window).&nbsp; This can be done by clicking <strong><em>File -&gt; Open Project in New Session…</em></strong></p>
+<p>An RStudio Project takes the whole RStudio window – also called an <span class="hl">RStudio Session</span>.&nbsp; If you want to open up a second RStudio Project, you need to start a new RStudio Session (i.e., a new RStudio window).&nbsp; This can be done by clicking <strong><em>File -&gt; Open Project in New Session…</em></strong> or <strong><em>Session -&gt; New Session</em></strong> and then open the new Project</p>
 </section>
 <section id="trap-using-excel-to-move-files" class="level2" data-number="14">
 <h2 data-number="14" class="anchored" data-anchor-id="trap-using-excel-to-move-files"><span class="header-section-number">14</span> Trap: Using Excel to move files</h2>
@@ -781,7 +788,7 @@ Figure&nbsp;10: The complete theme change removed the theme change above it (the
 <p>There are a couple of issues with using Excel to move CSV files:</p>
 <ol type="1">
 <li><p>Some versions of Excel will ask you to save the file with an XLSX extension – make sure you ignore that.&nbsp; This will convert the file from a CSV to an XLSX, and the file will be unreadable in R if&nbsp; you use <strong><em>read.csv()</em></strong>.&nbsp; There are packages that can read XLSX files but you are unnecessarily adding complexity.</p></li>
-<li><p>Excel will occasionally change the format of a column.&nbsp; For instance, if you have a column with values that look like this: <strong><em>01-01, 01-02, 01-03</em></strong> then Excel will likely switch those values to dates like this: <strong><em>Jan-1, Jan-2, Jan-3</em></strong></p></li>
+<li><p>Excel will change the format of certain types of columns.&nbsp; For instance, if you have a column with values that look like this: <strong><em>01-01, 01-02, 01-03</em></strong> then Excel will likely switch those values to dates like this: <strong><em>Jan-1, Jan-2, Jan-3</em></strong></p></li>
 </ol>
 <p>&nbsp;</p>
 <p>You should not use Excel to move a CSV.&nbsp; Instead, use the system’s File Explorer (Windows) / Finder (Mac) to move the file.&nbsp; You can also safely open the CSV file in RStudio and save it to another location.</p>
@@ -789,32 +796,26 @@ Figure&nbsp;10: The complete theme change removed the theme change above it (the
 <section id="trap-putting-the-on-the-next-line" class="level2" data-number="15">
 <h2 data-number="15" class="anchored" data-anchor-id="trap-putting-the-on-the-next-line"><span class="header-section-number">15</span> Trap: Putting the ( + ) on the next line</h2>
 <p>The ( <strong>+</strong> ) commands strings together the components of a GGPlot.&nbsp; A common mistake is to put the ( + ) at the beginning of the following line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="at">file=</span><span class="st">"scripts/reference.R"</span>);</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>packageData <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"data/CRANpackages.csv"</span>);</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>packageData )</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>Packages) )</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="at">label=</span><span class="st">"Packages in CRAN (2001-2014)"</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">6000</span>, <span class="at">by=</span><span class="dv">500</span>))</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">hjust=</span><span class="dv">1</span>));</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plotData);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This will result in an error and a surprisingly wise assessment of the problem fro the R debugger.</p>
-<div id="fig-plusError" class="fs quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-plusError-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/GGP-01-02-NewLineError.PNG" class="fs img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plusError-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Error when putting the ( + ) on the next line
-</figcaption>
-</figure>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3: Adding components to the scatterplot ####</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span>  <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span>  <span class="fu">labs</span>( <span class="at">title=</span><span class="st">"Humidity vs Temperature"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle=</span><span class="st">"Lansing, MI -- 2016"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Relative Humidity"</span>) </span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span>  <span class="fu">scale_x_continuous</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>, <span class="at">to=</span><span class="dv">80</span>, <span class="at">by=</span><span class="dv">10</span>) ) </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will result in an error and a surprisingly wise assessment of the problem from the R debugger.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">+.gg</span><span class="st">`</span><span class="sc">:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span> Cannot use <span class="st">`</span><span class="at">+</span><span class="st">`</span> with a single argument.</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>ℹ Did you accidentally put <span class="st">`</span><span class="at">+</span><span class="st">`</span> on a new line?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The reason for this error is that R thinks that line 5:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plotData <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>packageData )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>is a fully-formed and completed command&nbsp;</p>
 <p>&nbsp;</p>
-<p>And R does not understand why line 6 starts a new command with a ( <strong>+</strong> )</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a> <span class="sc">+</span> <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>Packages) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And R does not understand why the next line starts a new command with a ( <strong>+</strong> )</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span>  <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A ( <strong>+</strong> ) at the end of a line tells R to append the next line to the current line.&nbsp; A ( <strong>+</strong> ) at the beginning of a line tells R to perform the mathematical operation addition.</p>
 </section>
 <section id="extension-the-yellow-warning-sign" class="level2" data-number="16">
@@ -826,11 +827,11 @@ Figure&nbsp;11: Error when putting the ( + ) on the next line
 <img src="images/GGP_1-02_Warning-01.jpg" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yellowTriangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: The diagnostic features in RStudio – the highlighted line is causing the scope warning
+Figure&nbsp;11: The diagnostic features in RStudio – the highlighted line is causing the scope warning
 </figcaption>
 </figure>
 </div>
-<p>You will almost always see multiple yellow warning signs on the side of your code (<a href="#fig-warnings" class="quarto-xref">Figure&nbsp;13</a>)&nbsp; The warning <span class="hl">no symbol named ‘Date’ in scope</span> means that RStudio does not recognize <strong><em>Date</em></strong> as a variable or a function. This is because <strong><em>Date</em></strong> is a variable within the GGPlot function <strong><em>geom_point()</em></strong>, and the debugger is not sophisticated enough to always search through the GGPlot functions.</p>
+<p>You will almost always see multiple yellow warning signs on the side of your code (<a href="#fig-warnings" class="quarto-xref">Figure&nbsp;12</a>)&nbsp; The warning <span class="hl">no symbol named ‘Date’ in scope</span> means that RStudio does not recognize <strong><em>Date</em></strong> as a variable or a function. This is because <strong><em>Date</em></strong> is a variable within the GGPlot function <strong><em>geom_point()</em></strong>, and the debugger is not sophisticated enough to always search through the GGPlot functions.</p>
 <p>&nbsp;</p>
 <p>This is just a limitation of the RStudio debugger and does not reflect an actual issue.&nbsp;</p>
 <div id="fig-warnings" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -839,7 +840,7 @@ Figure&nbsp;12: The diagnostic features in RStudio – the highlighted line is c
 <img src="images/GGP-01-02-Warning.PNG" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-warnings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Warning about variables within the GGPlot functions
+Figure&nbsp;12: Warning about variables within the GGPlot functions
 </figcaption>
 </figure>
 </div>
