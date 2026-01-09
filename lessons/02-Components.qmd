@@ -8,7 +8,7 @@ short: "02"
 
 ## Purpose
 
--   Structure GGplotcode
+-   Structure GGplot code
 
 -   Create a scatterplot in GGPlot
 

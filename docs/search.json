@@ -576,7 +576,7 @@
     "href": "lessons/02-Components.html#purpose",
     "title": "02: Components",
     "section": "1 Purpose",
-    "text": "1 Purpose\n\nStructure GGplotcode\nCreate a scatterplot in GGPlot\nModify the scatterplot using components\n\n\n1.1 Code for the lesson\nThe script for this lesson is here\n\nSave the R file, called lesson02-Components.R to the scripts folder inside your RStudio Project\n\n \nThe data for this lesson (Lansing weather in 2016) is here\n\nSave the CSV file, called Lansing2016NOAA.csv to the data folder inside your RStudio Project (this is the same file as last lesson). \nIt is best to use the operating system’s File Explorer/Finder to move the CSV file to the proper folder. Trap: Using Excel to move files",
+    "text": "1 Purpose\n\nStructure GGplot code\nCreate a scatterplot in GGPlot\nModify the scatterplot using components\n\n\n1.1 Code for the lesson\nThe script for this lesson is here\n\nSave the R file, called lesson02-Components.R to the scripts folder inside your RStudio Project\n\n \nThe data for this lesson (Lansing weather in 2016) is here\n\nSave the CSV file, called Lansing2016NOAA.csv to the data folder inside your RStudio Project (this is the same file as last lesson). \nIt is best to use the operating system’s File Explorer/Finder to move the CSV file to the proper folder. Trap: Using Excel to move files",
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "02: Components"
