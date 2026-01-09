@@ -6,11 +6,9 @@ short: "02"
 
 ### To-do
 
--   Reword RStudio Project Windows
-
 ## Purpose
 
--   Create a script file to be read from other scripts
+-   Structure GGplotcode
 
 -   Create a scatterplot in GGPlot
 
@@ -28,9 +26,7 @@ short: "02"
 
 -   Save the CSV file, called ***Lansing2016NOAA.csv*** to the ***data*** folder inside your RStudio Project (this is the same file as last lesson). 
 
--   [It is best to use the operating system's File Explorer/Finder]{.hl} to move the CSV file to the proper folder.   
-
-    -   [Trap: Using Excel to move files]
+-   [It is best to use the operating system's File Explorer/Finder]{.hl} to move the CSV file to the proper folder. [Trap: Using Excel to move files]
 
 ## Spacing Code
 
@@ -38,7 +34,7 @@ In GGPlot, you create a plot by initializing a GGPlot canvas, with ***ggplot()**
 
  
 
-@fig-spaceCode shows a plot that has:
+@fig-spaceCode shows GGPlot code from the [RStudio Setup lesson](../scripts/RSProj_Setup.R). The GGPlot code has:
 
 -   A function to initialize GGPlot -- highlighted in blue
 
@@ -46,15 +42,33 @@ In GGPlot, you create a plot by initializing a GGPlot canvas, with ***ggplot()**
 
 -   **+** to "add" components to the canvas -- highlighted in green
 
--   10 subcomponents -- highlighted in red
+-   11 subcomponents -- highlighted in red
 
 ![Spacing code to emphasize the different components of a plot](images/GGP-01-01-PlotComponents.PNG){#fig-spaceCode .fs}
 
 ### Component and subcomponent spacing
 
-We will be going over the code in @fig-spaceCode in much more detail in later lessons.  For now, we are going to focus on the spacing.  As you can see in @fig-poorSpacing, [the code for a plot can quickly get unwieldy]{.hl}-- that is why it is important to consider code spacing from the very beginning.  For this class, all components and subcomponents on a GGPlot will get its own line of code.  This is also a requirement for all the lesson applications as it makes the code much easier to read.
+We will be going over the code in @fig-spaceCode in much more detail in later lessons.  For now, we are going to focus on the spacing.  [In this script file](../scripts/lesson02-poor_spacing.R), the GGPlot code was functionally kept the same but the spacing was change to something pretty unreadable. R does not care about spacing, but humans do. [GGplot code for can quickly get unwieldy]{.hl}-- that is why it is important to consider code spacing from the very beginning.  For this class, all components and subcomponents on a GGPlot will get their own line of code.  This makes the code easier to read and is a requirement for all the lesson applications.
 
-![Poorly spaced code -- it works but it is too hard to read!](images/GGP-01-BadCode.jpg){#fig-poorSpacing .fs}
+ 
+
+::: {#fig-poor-spacing .fs}
+``` r
+#### Boxplots of Change in Temperature vs. Wind Direction 
+#           at different wind speeds (terribly spaced, but still works)
+thePlot = ggplot(data=weatherData) + geom_boxplot(mapping=aes(x=windDir,
+  y=changeMaxTemp), na.rm=TRUE, color=c("blue", 
+    rep("black", 3), "green", rep("black", 3),
+                 "orange", rep("black", 3)), fill=c(rep(NA, 8), rep("red", 3), NA)) +
+  theme_bw() +facet_grid(rows=.~factor(windSpeedLevel, levels=c("Low", "Medium", "High")),
+labeller=as_labeller(windLabels)) +scale_x_discrete(limits=c("North", "East", 
+"South", "West")) + labs(title = "Change in Temperature vs. Wind Direction", subtitle =
+"Lansing, Michigan: 2016", x = "Wind Direction",
+       y = "Degrees (Fahrenheit)"); plot(thePlot);
+```
+
+The same GGPlot code poorly spaced – but it works the same
+:::
 
 ### GGPlot Functions are components
 
@@ -71,11 +85,11 @@ labs(title = "Change in Temperature vs. Wind Direction",
      y = "Degrees (Fahrenheit)")
 ```
 
-In this class, we will refer to ***labs()*** as a component and ***title***, ***subtitle***, ***x***, and ***y*** as subcomponents.
+In this class, we will refer to ***labs()*** as a [component ]{.hl}and ***title***, ***subtitle***, ***x***, and ***y*** as [subcomponents]{.hl}.
 
 ## How to make comments in R
 
-In the R language, comments are created using the number-sign ( ***\#*** ) key.  Any text on the line after the ( ***\#*** ) will be treated by R as a comment and it will not be executed. In @fig-poorSpacing, there are comments on lines 2, 3, 4, 8, 11, and 12.  These comments are colored light green but the color of the comments depends on your color scheme (\[Color Schemes (extension)\]).
+In the R language, comments are created using the number-sign ( ***\#*** ) key.  Any text on the line after the ( ***\#*** ) will be treated by R as a comment and it will not be executed. In @fig-spaceCode, there are comments on lines 1, 2, 3, 7, 12, and 13.  These comments are colored light green but the color of the comments depends on your RStudio color scheme (***Tools -\> Global Options -\> Appearance***).
 
  
 
@@ -97,11 +111,15 @@ We are going to open the RStudio Project we created in the last lesson.  You ca
 
 ## Starting a new script
 
+[Note: All the code from this point on in the lesson is also in the script downloaded in [Code for the lesson]]{.note}
+
+ 
+
 To create a new script in RStudio, click ***File*** -\> ***New File*** -\> ***R Script.***
 
  
 
-All the scripts in this class will contain these three lines at the top:
+All the scripts in this class will contain these two lines at the top:
 
 ``` r
 rm(list=ls());                        # clear the Environment tab
@@ -149,6 +167,10 @@ The full list of functions in the GGPlot package is here:
 And a helpful resource for many R packages is the cheat sheets -- the most recent cheat sheet for GGPlot2 can be downloaded here:
 
 <https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf>
+
+ 
+
+The cheat sheet can also be access in ***RStudio -\> Help -\> Cheat Sheets***.
 
 ## Opening the data file
 
@@ -234,6 +256,8 @@ In this class, [we will (almost always) use argument names]{.hl} because using a
 
 -   avoids bad assumptions about the ordering of arguments and their default values
 
+ 
+
 The one exception where we will not use argument names is:
 
 ``` r
@@ -246,7 +270,7 @@ instead of
 plot(x=plotData) # x is the argument name
 ```
 
-There are multiple functions in R and GGPlot where the argument name ***x*** is used generically as the name for the first argument in a function.  This is not intuitive when plotting because ***x*** is also used to refer to data that maps to the x-axis. 
+There are multiple functions in R and GGPlot where the argument name ***x*** is used generically as the name for the first argument in a function.  This is not intuitive when plotting because ***x*** is refers to data that maps to the x-axis. 
 
  
 
@@ -312,7 +336,7 @@ plotData = ggplot( data=weatherData ) +
 
 ### GGPlot mapping and aesthetics (aes)
 
-[All plotting components in GGPlot contain a subcomponent called **mappings**.]{.hl}  ***mapping*** is used to describe the relationship between the data and the plot.  Or, another way to put it, ***mapping*** defines what data gets represented on the plot (e.g., ***avgTemp*** and ***relHum***) and how the data gets represented (e.g., ***avgTemp*** on x-axis, ***relHum*** on y-axis):  *\
+All plotting components in GGPlot contain a subcomponent called **mappings**.  [***mapping*** describes the relationship between the data and the plot]{.hl}.  Or, another way to put it, ***mapping*** defines what data gets represented on the plot (e.g., ***avgTemp*** and ***relHum***) and how the data gets represented (e.g., ***avgTemp*** on x-axis, ***relHum*** on y-axis):  *\
 *
 
 ``` {.r .mod}
@@ -334,13 +358,13 @@ Let's make the three following modifications to the plot:
 
  
 
-To do this we will add *three new components* to the canvas:
+To do this we will add [three new components]{.hl} to the canvas:
 
-1.  ***labs()***                       \# label component
-
-2.  ***scale_x_continuous()***    \# x-scaling component (there is a corresponding y-scaling component)
-
-3.  ***theme()***                   \# theme component
+``` R
+1) labs()                # label component
+2) scale_x_continuous()  # x-scaling component (there is a corresponding y-scaling component)
+3) theme()               # theme component
+```
 
 [Note: you can also add more plotting components to the canvas (e.g., line plot, histogram) -- this will be shown next lesson.]{.note}
 
@@ -352,9 +376,9 @@ We add components using ( ***+*** ) and subcomponents are the arguments within t
   plot3 = ggplot( data=weatherData ) +
     geom_point( mapping=aes(x=avgTemp, y=relHum) ) +
     «labs»( title="Humidity vs Temperature",
-          subtitle="Lansing, MI -- 2016",
-          x = "Average Temperatures (Fahrenheit)",
-          y = "Relative Humidity") +
+            subtitle="Lansing, MI -- 2016",
+            x = "Average Temperatures (Fahrenheit)",
+            y = "Relative Humidity") +
     «scale_x_continuous»( breaks = seq(from=10, to=80, by=10) ) +
     «theme»( axis.text.x=element_text(angle=90, vjust=0.5) );
   plot(plot3);
@@ -413,9 +437,9 @@ In this example we changed one subcomponent in ***theme()*** called ***axis.text
 
  
 
-Broadly speaking, ***theme()*** is used to make modifications to the canvas (the plots and the background) that are not related to the data.  ***theme()*** is probably the most used component in GGPlot and we could spend many lessons going through all the subcomponents of ***theme()***.  We will be using ***theme()*** a lot more in future lessons and talking more about elements (e.g., ***element_text()***).
+***theme()*** is mostly used to make modifications to the canvas (the plots and the background) that are not related to the data.  ***theme()*** is probably the most used component in GGPlot and we could spend many lessons going through all the subcomponents of ***theme()***.  We will be using ***theme()*** a lot more in future lessons and talking more about elements (e.g., ***element_text()***).
 
-![theme() component help page  in the Help tab (yes, there is a lot there!)](images/GGP-01-02-Theme.PNG){#fig-theme .fs}
+![theme() component help page (yes, there is a lot there!)](images/GGP-01-02-Theme.PNG){#fig-theme .fs}
 
 ### For more help with components
 
@@ -469,25 +493,23 @@ A\) Looking at the GGPlot cheat sheet (or the GGPlot functions page) from @sec-c
 
 1.  What component (function) would be used to create a text plot?
 
-2.  What component would you use to change the breaks on the x-axis if the values were in date format?
+2.  What component would you use to change the breaks on the y-axis if the values were in date format?
 
  
 
-C\) Create a scatterplot in GGPlot in the ***app1-02.r*** script:
+B\) Create a scatterplot of ***stnPressure*** vs ***windSpeed*** using the data from Lansing2016NOAA.csv
 
-1.  Create a scatterplot of ***stnPressure*** vs ***windSpeed*** using the data from Lansing2016NOAA.csv
+1.  Add a title and labels the axes appropriately
 
-2.  Add a title and labels the axes appropriately
+2.  Change the plot theme to one of your choice
 
-3.  Change the plot theme to one of your choice
+3.  Change the angle of the ***stnPressure*** axis labels to 45 degrees
 
-4.  Change the angle of the ***stnPressure*** axis labels to 45 degrees
+4.  Change the ***stnPressure*** breaks to go up by 0.1
 
-5.  Change the ***stnPressure*** breaks to go up by 0.1
+5.  Have the **wind-speed** axis only display three values: **3, 12, 21**
 
-6.  Have the **wind-speed** axis only display three values: **3, 12, 21**
-
-7.  Challenge: Use the ***limits*** argument in ***scale_x_continuous*** and ***scale_y_continuous*** to remove the top and right parts of the plot where there are only a couple points.
+6.  Challenge: Use the ***limits*** argument in ***scale_x_continuous*** and ***scale_y_continuous*** to remove the top and right parts of the plot where there are only a couple points.
 
     -   ***limits*** is set equal to a vector with two values -- so ***limits = c(0,100)*** would mean the axis would go from 0 to 100
 
@@ -495,7 +517,7 @@ C\) Create a scatterplot in GGPlot in the ***app1-02.r*** script:
 
 ## Extension: RStudio Project windows
 
-An RStudio Project takes the whole RStudio window -- also called an [RStudio Session]{.hl}.  If you want to open up a second RStudio Project, you need to start a new RStudio Session (i.e., a new RStudio window).  This can be done by clicking ***File -\> Open Project in New Session...***
+An RStudio Project takes the whole RStudio window -- also called an [RStudio Session]{.hl}.  If you want to open up a second RStudio Project, you need to start a new RStudio Session (i.e., a new RStudio window).  This can be done by clicking ***File -\> Open Project in New Session...*** or ***Session -\> New Session*** and then open the new Project
 
 ## Trap: Using Excel to move files
 
@@ -507,7 +529,7 @@ There are a couple of issues with using Excel to move CSV files:
 
 1.  Some versions of Excel will ask you to save the file with an XLSX extension -- make sure you ignore that.  This will convert the file from a CSV to an XLSX, and the file will be unreadable in R if  you use ***read.csv()***.  There are packages that can read XLSX files but you are unnecessarily adding complexity.
 
-2.  Excel will occasionally change the format of a column.  For instance, if you have a column with values that look like this: ***01-01, 01-02, 01-03*** then Excel will likely switch those values to dates like this: ***Jan-1, Jan-2, Jan-3***
+2.  Excel will change the format of certain types of columns.  For instance, if you have a column with values that look like this: ***01-01, 01-02, 01-03*** then Excel will likely switch those values to dates like this: ***Jan-1, Jan-2, Jan-3***
 
  
 
@@ -518,35 +540,40 @@ You should not use Excel to move a CSV.  Instead, use the system's File Explore
 The ( **+** ) commands strings together the components of a GGPlot.  A common mistake is to put the ( + ) at the beginning of the following line:
 
 ``` r
-source(file="scripts/reference.R");
-packageData = read.csv(file="data/CRANpackages.csv");
-
-plotData = ggplot( data=packageData )
-    + geom_point( mapping=aes(x=Date, y=Packages) )
-    + ggtitle(label="Packages in CRAN (2001-2014)")
-    + scale_y_continuous(breaks = seq(from=0, to=6000, by=500))
-    + theme(axis.text.x=element_text(angle=90, hjust=1));
-plot(plotData);
+#### Part 3: Adding components to the scatterplot ####
+plot3 = ggplot( data=weatherData ) 
+  +  geom_point( mapping=aes(x=avgTemp, y=relHum) ) 
+  +  labs( title="Humidity vs Temperature",
+        subtitle="Lansing, MI -- 2016",
+        x = "Average Temperatures (Fahrenheit)",
+        y = "Relative Humidity") 
+  +  scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) 
+  + theme( axis.text.x=element_text(angle=90, vjust=0.5) );
+plot(plot3);
 ```
 
-This will result in an error and a surprisingly wise assessment of the problem fro the R debugger.
+This will result in an error and a surprisingly wise assessment of the problem from the R debugger.
 
-![Error when putting the ( + ) on the next line](images/GGP-01-02-NewLineError.PNG){#fig-plusError .fs}
+``` {.r tab="Console"}
+Error in `+.gg`:
+! Cannot use `+` with a single argument.
+ℹ Did you accidentally put `+` on a new line?
+```
 
 The reason for this error is that R thinks that line 5:
 
 ``` r
-plotData = ggplot( data=packageData )
+plot3 = ggplot( data=weatherData ) 
 ```
 
 is a fully-formed and completed command 
 
  
 
-And R does not understand why line 6 starts a new command with a ( **+** )
+And R does not understand why the next line starts a new command with a ( **+** )
 
 ``` r
- + geom_point( mapping=aes(x=Date, y=Packages) )
+  +  geom_point( mapping=aes(x=avgTemp, y=relHum) ) 
 ```
 
 A ( **+** ) at the end of a line tells R to append the next line to the current line.  A ( **+** ) at the beginning of a line tells R to perform the mathematical operation addition.
