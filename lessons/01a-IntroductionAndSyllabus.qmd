@@ -28,23 +28,13 @@ Graphing with GGPlot is a self-paced and asynchronous online class. The amount o
 
 **About me...**
 
-I started my career as a Software Engineer for Motorola in Arizona where I developed software for military radios. From there I became a high school teacher in Port Huron, MI where I taught Computer Science, Web Design, and Physical Science. After that, I worked as an Instructional Designer for the College of Education at MSU where my main project was developing the hybrid graduate program. I currently work at the QFC where my primary job is developing and teaching online classes, including this one.  In my free time you will often find me with a backpack deep in a forest or, as my picture testifies to, hanging out on a mountain in the Northern Cascades.
+I started my career as a Software Engineer for Motorola in Arizona where I developed software for military radios. From there I became a high school teacher in Port Huron, MI where I taught Computer Science, Web Design, and Physical Science. After that, I worked as an Instructional Designer for the College of Education at MSU where my main project was developing the hybrid graduate program. I currently work at the QFC where my primary job is developing and teaching online classes, including this one.  In my free time you will often find me with a backpack deep in a forest or, as my picture testifies to, hanging out in the West Rim of Zion National Park.
 
-![](images/belinsky2.JPG){.fs width="800"}
+![](images/belinsky_2025.jpg){width="450"}
 
 ### Technical Support
 
 You can contact me, Charlie, regarding technical issues.
-
- 
-
-MSU also offers [**24 hour technical support**](https://tech.msu.edu/support/help/) for MSU and MSU Guest students.
-
--   517-432-6200 or 844-678-6200 (toll free)
-
--   email: ithelp\@msu.edu
-
--   You can [get an MSU Guest ID here](https://community.idm.msu.edu/).
 
 ## Class Requirements
 
@@ -66,7 +56,7 @@ Students should be familiar with basic programming structures covered in a typic
 
 [To test your hardware in Zoom]{.hl}, open Zoom and make sure you are on the ***Home*** tab and click the ***Settings Icon*** (@fig-zoomImg) and the **Settings** Window will open @fig-zoomImg.  Go to the ***Audio*** and ***Video*** tabs to test your microphone, speakers, and webcam.  If you are using a Mac, the view is different but the buttons are the same.
 
-![Testing the audio and video in Zoom (click on picture to resize).](images/R-00-Zoom.PNG){#fig-zoomImg .fs fig-align="left"}
+![Testing the audio and video in Zoom (click on picture to resize)](images/zoom_2025.jpg){#fig-zoomImg .fs}
 
 ### Accessing the class
 
@@ -170,17 +160,17 @@ If the figure is not on the screen, then the page will scroll to the figure and 
 
 ### Printing lessons and saving lessons to PDF
 
-You can print any lesson or save it as a PDF by clicking on the ***Printer** icon* at the top of every lesson (and this syllabus).  This will bring up a print dialog (@fig-printPDF) and you can print the lesson to a printer.  On most machines, you can also choose a PDF device as a printer -- this will save the lesson as a PDF document.
+You can print any lesson or save it as a PDF by clicking on the ***Printer** icon* at the top of every lesson (and this syllabus).  This will bring up a print dialog ([Figure 4](https://qfcatmsu.github.io/FundProgUsingR/lessons/0-01-IntroductionAndSyllabus.html#fig-printPDF)) and you can print the lesson to a printer.  On most machines, you can also choose a PDF device as a printer – this will save the lesson as a PDF document. [Trap: Bloatware](https://qfcatmsu.github.io/FundProgUsingR/lessons/0-01-IntroductionAndSyllabus.html#trap-bloatware)
+
+ 
+
+If you are saving the lesson to PDF or printing in color then I recommend you check ***Print background*** in the print options. This will help codeblocks and highlights stand out. If you are printing the lesson in grayscale then I recommend you uncheck ***Print background***.
 
  
 
 [Note: Using your browser's print feature instead on the ***Print*** link will print out the whole webpage instead of just the lesson.]{.note}
 
 ![This author has two print-to-PDF devices -- the Microsoft Print to PDF, which comes with Windows 10 and 11, works fine](images/R-00-PDFPrinter.PNG){#fig-printPDF .fs}
-
-#### Print-to-PDF Software
-
-If you are using Windows 7 or 8 you might not have a PDF device and you will need to download ***Print-to-PDF*** software. You can see if you have a PDF device by going to the print options in any program and see if any of the devices have "PDF" in their name (@fig-printPDF).  If you don't have a PDF device, then I recommend you install [CutePDF](http://www.cutepdf.com/products/cutepdf/writer.asp) (direct link to the [file download](http://cutepdf.com/download/CuteWriter.exe)).  CutePDF is simple and powerful print-to-PDF software that does not try to install any extra software on your computer. [Trap: Bloatware]
 
 ### Codeblocks
 
