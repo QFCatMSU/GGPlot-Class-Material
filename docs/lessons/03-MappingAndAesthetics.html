@@ -323,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Save the R file, called <strong><em>lesson03-Aesthetics.R</em></strong> to the <strong><em>scripts</em></strong> folder inside your RStudio Project</li>
 </ul>
 <p>&nbsp;</p>
-<p><a href="../Data/Lansing2016NOAA.csv?">The data, same as previous lessons, Lansing weather in 2016 is here</a></p>
+<p><a href="../data/Lansing2016NOAA.csv">The data, same as previous lessons, Lansing weather in 2016 is here</a></p>
 <ul>
 <li><p>Save the CSV file, called <strong><em>Lansing2016Data.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.&nbsp;</p></li>
 <li><p><span class="hl">It is best to use the operating system’s File Explorer/Finder</span> to move the CSV file to the proper folder.</p></li>
@@ -382,13 +382,13 @@ Figure&nbsp;2: Both GGPlot codeblocks above produce the same plot
 <h2 data-number="3" class="anchored" data-anchor-id="mapping-and-aesthetics"><span class="header-section-number">3</span> Mapping and aesthetics</h2>
 <p>Almost every plot will have an&nbsp;<strong><em>aes()</em></strong> function that maps data to a component of the plot.&nbsp; In the previous example the mapping is:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>( «mapping»<span class="ot">=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The line above tells GGPlot to map the column <strong><em>avgTemp</em></strong> to the <strong><em>x</em></strong>-axis and map the column <strong><em>relHum</em></strong> to the <strong><em>y</em></strong>-axis.&nbsp; The function, <strong><em>aes()</em></strong>, stands for aesthetics.&nbsp; I find the argument name, <strong><em>mapping</em></strong>, to be much more intuitive than the function name, <strong><em>aes()</em></strong>.</p>
+<p>The line above tells GGPlot to map the <strong><em>avgTemp</em></strong> column to the <strong><em>x</em></strong>-axis and map the <strong><em>relHum</em></strong> column to the <strong><em>y</em></strong>-axis.&nbsp; The function, <strong><em>aes()</em></strong>, stands for aesthetics and refers to the visual properties of a plot.&nbsp;</p>
 <p>&nbsp;</p>
-<p><strong><em>aes()</em></strong> maps data (often a column from a data frame) to a component of the plot.&nbsp; And there many more components of the plot that we can map data to – the most common ones are <strong><em>size</em></strong>, <strong><em>color</em></strong>, and <strong><em>shape</em></strong>.&nbsp; We will first take a look at <strong><em>color</em></strong>.</p>
+<p><strong><em>aes()</em></strong> maps data (often a column from a data frame) to a visual component of the plot.&nbsp; There are many components of the plot that we can map data to – the most common ones are <strong><em>size</em></strong>, <strong><em>color</em></strong>, and <strong><em>shape</em></strong>.&nbsp; We will first take a look at <strong><em>color</em></strong>.</p>
 </section>
 <section id="mapping-color-to-the-plot" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="mapping-color-to-the-plot"><span class="header-section-number">4</span> Mapping color to the plot</h2>
-<p>We have a humidity vs.&nbsp;temperature plot but we might want to add more data (i.e., another dimension) to this plot, like <strong><em>season</em></strong>.&nbsp; Since there are just four seasons, one way to do it is to represent each season with a different color.&nbsp; The four seasons can be mapped on to the existing plot using the mapping <strong><em>color</em></strong>.</p>
+<p>We have a humidity vs.&nbsp;temperature plot but we might want to add more data (e.g., another dimension) to this plot, like <strong><em>season</em></strong>.&nbsp; Since there are just four seasons, one way to do it is to represent each season with a different color.&nbsp; The four seasons can be mapped on to the existing plot using the mapping <strong><em>color</em></strong>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: adding color to represent season ####</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>season») ) <span class="sc">+</span></span>
@@ -400,7 +400,7 @@ Figure&nbsp;2: Both GGPlot codeblocks above produce the same plot
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot3);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now the plot has an added dimension: point colors that represent season:</p>
+<p>Now the plot has an added dimension – point colors that represent season:</p>
 <div id="fig-mappingColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mappingColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -411,7 +411,7 @@ Figure&nbsp;3: Mapping season to the color of the point in the scatterplot
 </figcaption>
 </figure>
 </div>
-<p><span class="note">Note: For those of you thinking that winter is much drier than summer – you are correct, but the plot gives <strong>relative</strong> humidity – not total moisture in the air.</span></p>
+<p><span class="note">Note: For those of you thinking that winter is much drier than summer – you are correct. However, the plot gives <strong>relative</strong> humidity, not total moisture in the air.</span></p>
 <section id="legend-and-mapping" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="legend-and-mapping"><span class="header-section-number">4.1</span> Legend and mapping</h3>
 <p>Whenever you put a mapping in to GGPlot beyond <strong><em>x</em></strong> and <strong><em>y</em></strong>, GGPlot will create a legend for that mapping.&nbsp; In <a href="#fig-mappingColor" class="quarto-xref">Figure&nbsp;3</a> the legend gives the colors for each season, and the title of the legend (<strong><em>season</em></strong>) is the column name.&nbsp; Summer days (colored blue) is clearly on the high end of the temperature axis, where winter (colored purple) is on the low end.</p>
@@ -420,9 +420,9 @@ Figure&nbsp;3: Mapping season to the color of the point in the scatterplot
 </section>
 <section id="mapping-color-using-numeric-values" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="mapping-color-using-numeric-values"><span class="header-section-number">4.2</span> Mapping color using numeric values</h3>
-<p><strong><em>season</em></strong> is a string value with four distinct values, or categories: Summer, Fall, Winter, and Spring.&nbsp; A small number of discrete values maps well to <strong><em>color</em></strong>.</p>
+<p><strong><em>season</em></strong> is a string value with four discrete values, or categories: Summer, Fall, Winter, and Spring.&nbsp; A small number of discrete values maps well to <strong><em>color</em></strong>.</p>
 <p>&nbsp;</p>
-<p>Continuous values can also be mapped to <strong><em>color</em></strong> –&nbsp; GGPlot will create a gradient of colors to handle the continuous values.&nbsp; For instance, if we use the <strong><em>precip2</em></strong> column, which gives precipitation in inches and goes from <strong>0</strong> to about <strong>1.5</strong>, we get a default blue gradient of colors to represent the values:</p>
+<p>Continuous values can also be mapped to <strong><em>color</em></strong> –&nbsp; GGPlot will create a gradient of colors to handle continuous values.&nbsp; For instance, if we use the <strong><em>precip2</em></strong> column, which gives precipitation in inches and goes from <strong>0</strong> to about <strong>1.5</strong>, we get a default blue gradient of colors to represent the values:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 3b: adding color to represent precipitation ####</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  plot3 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, «<span class="at">color=</span>preicp2») ) <span class="sc">+</span></span>
@@ -451,7 +451,7 @@ Figure&nbsp;4: Mapping a numeric value to color – this creates a gradient
 <p>Sometimes columns that look numeric are not treated as numeric – this is because they contain some string values.&nbsp; <span class="hl">In R, if a vector/column has one string value, the whole vector/column is treated as a string</span>.&nbsp; For instance, the <strong><em>precip</em></strong> column uses <strong><em>T</em></strong> to indicate a trace of precipitation (less than 0.01 inch).&nbsp; We can see “T” values if we look at the first <strong>10</strong> values of <strong><em>precip</em></strong>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> weatherData<span class="sc">$</span>precip[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">"0.04"</span> <span class="st">"0.00"</span> <span class="st">"T"</span>    <span class="st">"T"</span>    <span class="st">"0.00"</span> <span class="st">"0.00"</span> <span class="st">"0.00"</span> <span class="st">"0.15"</span> <span class="st">"0.53"</span> <span class="st">"0.18"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we try to map <strong><em>precip</em></strong> to <strong><em>color</em></strong>, GGPlot treats each unique “string” value as distinct and discrete value, creating a very busy legend:</p>
+<p>If we try to map <strong><em>precip</em></strong> to <strong><em>color</em></strong>, GGPlot treats each unique “string” value as a distinct (and discrete) value, creating a very busy legend:</p>
 <div id="fig-busyLegend" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-busyLegend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -478,9 +478,7 @@ Figure&nbsp;5: Mapping a column with numerous “string” values
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>) );</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(plot4);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Again, anytime you map something other than <strong><em>x</em></strong> or <strong><em>y</em></strong>,&nbsp; GGPlot creates a legend.&nbsp; The title on the legend is <strong><em>precip2</em></strong> because the column’s name is <strong><em>precip2</em></strong>.</p>
-<p>&nbsp;</p>
-<p><span class="note">Note: GGPlot does not directly translate the <strong>precip2</strong> values to size, otherwise half of the values would be 0 since half the days had no precipitation.</span></p>
+<p>Again, anytime you map something other than <strong><em>x</em></strong> or <strong><em>y</em></strong>,&nbsp; GGPlot creates a legend.&nbsp; The title on the legend is <strong><em>precip2</em></strong> because the column’s name is <strong><em>precip2</em></strong>. This plot better shows the relationship between humidity and precipitation.</p>
 <div id="fig-pointSize" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pointSize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -491,6 +489,8 @@ Figure&nbsp;6: Mapping the precipitation to the size of the points
 </figcaption>
 </figure>
 </div>
+<p>&nbsp;</p>
+<p><span class="note">Note: GGPlot does not directly translate the <strong>precip2</strong> values to size, otherwise half of the values would be 0 since half the days had no precipitation.</span></p>
 <section id="mapping-size-to-a-string-value" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="mapping-size-to-a-string-value"><span class="header-section-number">5.1</span> Mapping size to a string value</h3>
 <p>You can also map <strong><em>size</em></strong> to a string value, like <strong><em>season</em></strong>, but discrete values generally do not work with <strong><em>size</em></strong>:</p>
@@ -521,7 +521,7 @@ Figure&nbsp;7: Mapping size to a string value
 </section>
 <section id="mapping-alpha" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="mapping-alpha"><span class="header-section-number">6</span> Mapping alpha</h2>
-<p><strong><em>Alpha</em></strong> measures the transparency of an object and is often used to help deal with overlapping object or when the plot is too busy.&nbsp; When you map <strong><em>alpha</em></strong> to a numeric value, the lowest value will be mapped to an <strong><em>alpha</em></strong> of <span class="hl">almost</span><strong>0</strong> (i.e., almost transparent) and the highest value will be mapped to an <strong><em>alpha</em></strong> of <strong>1</strong> (i.e., completely opaque), with in-between values mapped between <strong>0</strong> and <strong>1</strong>.</p>
+<p><strong><em>Alpha</em></strong> measures the transparency of an object and is often used to help deal with overlapping objects or when the plot is too busy.&nbsp; When you map <strong><em>alpha</em></strong> to a numeric value, the lowest value will be mapped to an <strong><em>alpha</em></strong> of <span class="hl">almost</span> <strong>0</strong> (i.e., almost transparent) and the highest value will be mapped to an <strong><em>alpha</em></strong> of <strong>1</strong> (i.e., completely opaque), with in-between values mapped between <strong>0</strong> and <strong>1</strong>.</p>
 <p>&nbsp;</p>
 <p>We can map the precipitation column, <strong><em>precip2,</em></strong> to <strong><em>alpha</em></strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  plot4c <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
@@ -554,7 +554,9 @@ Figure&nbsp;8: Mapping alpha to a numeric value
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Average Temperatures (Fahrenheit)"</span>,</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"Relative Humidity"</span>,</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>          «<span class="at">alpha =</span> <span class="st">"Precipitation"</span>») <span class="sc">+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The position of the legend can be changed in <strong><em>theme()</em></strong> by setting the subcomponent <strong><em>legend.position</em></strong> to “inside” and using <strong><em>legend.position.inside</em></strong> to position the legend in <strong><em>theme()</em></strong>.&nbsp; The value of <strong><em>legend.position.inside</em></strong> is set to a two value vector with values from <strong>0</strong> to <strong>1</strong>.&nbsp; The first value represents the <strong>x</strong>-position of the legend, the second values represents the <strong>y</strong>-position:</p>
+<p>The position of the legend can be changed in <strong><em>theme()</em></strong> by setting the subcomponent <strong><em>legend.position</em></strong> to “inside” and using <strong><em>legend.position.inside</em></strong> to position the legend in <strong><em>theme()</em></strong>.</p>
+<p>&nbsp;</p>
+<p>The value of <strong><em>legend.position.inside</em></strong> is set to a two value vector with values from <strong>0</strong> to <strong>1</strong>.&nbsp; The first value represents the <strong>x</strong>-position of the legend (as a percentage), the second values represents the <strong>y</strong>-position:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>),</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="st">"inside"</span>», </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>           «<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.2</span>)»);  <span class="co"># x=0.15, y=0.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -628,7 +630,7 @@ Figure&nbsp;10: Using both size and color in the mapping
 </section>
 <section id="adding-a-linear-models" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="adding-a-linear-models"><span class="header-section-number">9</span> Adding a linear models</h2>
-<p>Next, we will add a regression line to the canvas. &nbsp;<a href="https://ggplot2.tidyverse.org/reference/#geoms">GGPlot calls its plotting component <span class="hl">geoms</span></a>, and the geom to use is <strong><em>geom_smooth()</em></strong>.</p>
+<p>Next, we will add a regression line to the canvas. &nbsp;<a href="https://ggplot2.tidyverse.org/reference/#geoms">GGPlot calls plotting component <span class="hl">geoms</span></a>, and the geom to use is <strong><em>geom_smooth()</em></strong>.</p>
 <p>&nbsp;</p>
 <p>Since <strong><em>geom_smooth()</em></strong> adds data to the plot area, we need to use the <strong><em>mapping</em></strong> subcomponent to tell <strong><em>GGPlot</em></strong> what data is being mapped to the plot area and how. In this case we are mapping&nbsp;<strong><em>relHum</em></strong> vs.&nbsp;<strong><em>avgTemp</em></strong>.</p>
 <p>&nbsp;</p>
@@ -692,17 +694,15 @@ Figure&nbsp;12: Switching the order of the components to change which plot is on
 <section id="application" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="application"><span class="header-section-number">10</span> Application</h2>
 <p>1) For the linear model in the last plot, add a mapping of <strong><em>color=season</em></strong>.</p>
-<p>&nbsp;&nbsp; In comments in your script:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Explain what happens to the plot when you add the mapping <strong><em>color=season</em></strong> to the linear model</p>
+<ul>
+<li>In comments in your script: Explain what happens to the plot when you add the mapping <strong><em>color=season</em></strong> to the linear model</li>
+</ul>
 <p>&nbsp;</p>
 <p><span class="note">Note: the only other meaningful mapping you can make with lines is <strong><em>linetype</em></strong> (try <strong><em>linetype = season</em></strong>)</span></p>
 <p>&nbsp;</p>
-<p>2) Create a scatterplot that maps the four columns <strong><em>windDir</em></strong>, <strong><em>windSpeed</em></strong>, <strong><em>precip2</em></strong>, and <strong><em>tempDept</em></strong> to a scatterplot</p>
+<p>2) Create a scatterplot that maps the four columns <strong><em>windDir</em></strong>, <strong><em>windSpeed</em></strong>, <strong><em>precip2</em></strong>, and <strong><em>tempDept</em></strong> to a scatterplot (<span class="note">note: <strong>tempDept</strong> is how far the temperature was from average</span>)</p>
 <ul>
-<li><p>you choose the mappings</p>
-<ul>
-<li><span class="note">note: <strong>tempDept</strong> is how far the temperature was from average</span></li>
-</ul></li>
+<li><p>you choose the mappings</p></li>
 <li><p>Give a title and label the axes and legend</p></li>
 <li><p>Change the theme of the plot</p></li>
 <li><p>Move the legend to the area inside the plot with the most whitespace</p>
@@ -711,11 +711,9 @@ Figure&nbsp;12: Switching the order of the components to change which plot is on
 </ul></li>
 </ul>
 <p>&nbsp;</p>
-<p>3) In comments in your script:</p>
-<p>&nbsp; &nbsp;&nbsp; &nbsp; What patterns can you find in the plot?</p>
+<p>3) In comments in your script answer: What patterns can you find in the plot?</p>
 <p>&nbsp;</p>
-<p>4) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component.&nbsp;</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; <span class="note">Note: <strong><em>shape</em></strong> is a common mapping that was not used in this lesson.</span></p>
+<p>4) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component. <span class="note">Note: <strong><em>shape</em></strong> is a common mapping that was not used in this lesson.</span></p>
 <p>&nbsp;</p>
 <p>If you have any questions regarding this application, feel free to email them to Charlie Belinsky at belinsky@msu.edu.</p>
 <section id="questions-to-answer" class="level3" data-number="10.1">

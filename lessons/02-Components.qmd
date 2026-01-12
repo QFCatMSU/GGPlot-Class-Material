@@ -85,7 +85,7 @@ labs(title = "Change in Temperature vs. Wind Direction",
      y = "Degrees (Fahrenheit)")
 ```
 
-In this class, we will refer to ***labs()*** as a [component ]{.hl}and ***title***, ***subtitle***, ***x***, and ***y*** as [subcomponents]{.hl}.
+In this class, we will refer to ***labs()*** as a [component]{.hl}and ***title***, ***subtitle***, ***x***, and ***y*** as [subcomponents]{.hl}.
 
 ## How to make comments in R
 
@@ -360,7 +360,7 @@ Let's make the three following modifications to the plot:
 
 To do this we will add [three new components]{.hl} to the canvas:
 
-``` R
+``` r
 1) labs()                # label component
 2) scale_x_continuous()  # x-scaling component (there is a corresponding y-scaling component)
 3) theme()               # theme component

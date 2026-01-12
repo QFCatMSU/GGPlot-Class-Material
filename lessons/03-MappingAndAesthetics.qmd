@@ -22,7 +22,7 @@ short: "03"
 
  
 
-[The data, same as previous lessons, Lansing weather in 2016 is here](../Data/Lansing2016NOAA.csv?)
+[The data, same as previous lessons, Lansing weather in 2016 is here](../data/Lansing2016NOAA.csv)
 
 -   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
 
@@ -77,15 +77,15 @@ Almost every plot will have an ***aes()*** function that maps data to a compone
 geom_point( «mapping»=aes(x=avgTemp, y=relHum) )
 ```
 
-The line above tells GGPlot to map the column ***avgTemp*** to the ***x***-axis and map the column ***relHum*** to the ***y***-axis.  The function, ***aes()***, stands for aesthetics.  I find the argument name, ***mapping***, to be much more intuitive than the function name, ***aes()***.
+The line above tells GGPlot to map the ***avgTemp*** column to the ***x***-axis and map the ***relHum*** column to the ***y***-axis.  The function, ***aes()***, stands for aesthetics and refers to the visual properties of a plot. 
 
  
 
-***aes()*** maps data (often a column from a data frame) to a component of the plot.  And there many more components of the plot that we can map data to -- the most common ones are ***size***, ***color***, and ***shape***.  We will first take a look at ***color***.
+***aes()*** maps data (often a column from a data frame) to a visual component of the plot.  There are many components of the plot that we can map data to -- the most common ones are ***size***, ***color***, and ***shape***.  We will first take a look at ***color***.
 
 ## Mapping color to the plot
 
-We have a humidity vs. temperature plot but we might want to add more data (i.e., another dimension) to this plot, like ***season***.  Since there are just four seasons, one way to do it is to represent each season with a different color.  The four seasons can be mapped on to the existing plot using the mapping ***color***.
+We have a humidity vs. temperature plot but we might want to add more data (e.g., another dimension) to this plot, like ***season***.  Since there are just four seasons, one way to do it is to represent each season with a different color.  The four seasons can be mapped on to the existing plot using the mapping ***color***.
 
 ``` r
   #### Part 3: adding color to represent season ####
@@ -101,11 +101,11 @@ We have a humidity vs. temperature plot but we might want to add more data (i.e.
   plot(plot3);
 ```
 
-Now the plot has an added dimension: point colors that represent season:
+Now the plot has an added dimension – point colors that represent season:
 
 ![Mapping season to the color of the point in the scatterplot](images/GGP-1-03-ColorMap.png){#fig-mappingColor .fs}
 
-[Note: For those of you thinking that winter is much drier than summer -- you are correct, but the plot gives **relative** humidity -- not total moisture in the air.]{.note}
+[Note: For those of you thinking that winter is much drier than summer -- you are correct. However, the plot gives **relative** humidity, not total moisture in the air.]{.note}
 
 ### Legend and mapping
 
@@ -117,11 +117,11 @@ Everything in the legend can be modified, something we will do next lesson*.*
 
 ### Mapping color using numeric values
 
-***season*** is a string value with four distinct values, or categories: Summer, Fall, Winter, and Spring.  A small number of discrete values maps well to ***color***.
+***season*** is a string value with four discrete values, or categories: Summer, Fall, Winter, and Spring.  A small number of discrete values maps well to ***color***.
 
  
 
-Continuous values can also be mapped to ***color*** --  GGPlot will create a gradient of colors to handle the continuous values.  For instance, if we use the ***precip2*** column, which gives precipitation in inches and goes from **0** to about **1.5**, we get a default blue gradient of colors to represent the values:
+Continuous values can also be mapped to ***color*** --  GGPlot will create a gradient of colors to handle continuous values.  For instance, if we use the ***precip2*** column, which gives precipitation in inches and goes from **0** to about **1.5**, we get a default blue gradient of colors to represent the values:
 
 ``` r
 #### Part 3b: adding color to represent precipitation ####
@@ -150,7 +150,7 @@ Sometimes columns that look numeric are not treated as numeric -- this is becaus
  [1] "0.04" "0.00" "T"    "T"    "0.00" "0.00" "0.00" "0.15" "0.53" "0.18"
 ```
 
-If we try to map ***precip*** to ***color***, GGPlot treats each unique "string" value as distinct and discrete value, creating a very busy legend:
+If we try to map ***precip*** to ***color***, GGPlot treats each unique "string" value as a distinct (and discrete) value, creating a very busy legend:
 
 ![Mapping a column with numerous "string" values](images/GGP-1-03-PrecipStringColor.png){#fig-busyLegend .fs}
 
@@ -172,13 +172,13 @@ The values in ***precip2*** are probably better represented by ***size*** than *
   plot(plot4);
 ```
 
-Again, anytime you map something other than ***x*** or ***y***,  GGPlot creates a legend.  The title on the legend is ***precip2*** because the column's name is ***precip2***.
+Again, anytime you map something other than ***x*** or ***y***,  GGPlot creates a legend.  The title on the legend is ***precip2*** because the column's name is ***precip2***. This plot better shows the relationship between humidity and precipitation.
+
+![Mapping the precipitation to the size of the points](images/GGP-1-03-SizeMap-02.png){#fig-pointSize .fs}
 
  
 
 [Note: GGPlot does not directly translate the **precip2** values to size, otherwise half of the values would be 0 since half the days had no precipitation.]{.note}
-
-![Mapping the precipitation to the size of the points](images/GGP-1-03-SizeMap-02.png){#fig-pointSize .fs}
 
 ### Mapping size to a string value
 
@@ -206,7 +206,7 @@ And you will also get this warning message in the ***Console*** from GGPlot: 
 
 ## Mapping alpha
 
-***Alpha*** measures the transparency of an object and is often used to help deal with overlapping object or when the plot is too busy.  When you map ***alpha*** to a numeric value, the lowest value will be mapped to an ***alpha*** of [almost]{.hl}**0** (i.e., almost transparent) and the highest value will be mapped to an ***alpha*** of **1** (i.e., completely opaque), with in-between values mapped between **0** and **1**.
+***Alpha*** measures the transparency of an object and is often used to help deal with overlapping objects or when the plot is too busy.  When you map ***alpha*** to a numeric value, the lowest value will be mapped to an ***alpha*** of [almost]{.hl} **0** (i.e., almost transparent) and the highest value will be mapped to an ***alpha*** of **1** (i.e., completely opaque), with in-between values mapped between **0** and **1**.
 
  
 
@@ -241,7 +241,11 @@ By default, the title of the legend is the same as the mapping -- in all the cas
           «alpha = "Precipitation"») +
 ```
 
-The position of the legend can be changed in ***theme()*** by setting the subcomponent ***legend.position*** to "inside" and using ***legend.position.inside*** to position the legend in ***theme()***.  The value of ***legend.position.inside*** is set to a two value vector with values from **0** to **1**.  The first value represents the **x**-position of the legend, the second values represents the **y**-position:
+The position of the legend can be changed in ***theme()*** by setting the subcomponent ***legend.position*** to "inside" and using ***legend.position.inside*** to position the legend in ***theme()***.
+
+ 
+
+The value of ***legend.position.inside*** is set to a two value vector with values from **0** to **1**.  The first value represents the **x**-position of the legend (as a percentage), the second values represents the **y**-position:
 
 ``` r
     theme( axis.text.x=element_text(angle=90, vjust=0.5),
@@ -318,7 +322,7 @@ If you want to remove the legend, then set ***legend.position = "none"***, which
 
 ## Adding a linear models
 
-Next, we will add a regression line to the canvas.  [GGPlot calls its plotting component [geoms]{.hl}](https://ggplot2.tidyverse.org/reference/#geoms), and the geom to use is ***geom_smooth()***.
+Next, we will add a regression line to the canvas.  [GGPlot calls plotting component [geoms]{.hl}](https://ggplot2.tidyverse.org/reference/#geoms), and the geom to use is ***geom_smooth()***.
 
  
 
@@ -377,9 +381,7 @@ When two plots overlap, as the linear model and the scatterplot do in @fig-linea
 
 1\) For the linear model in the last plot, add a mapping of ***color=season***.
 
-   In comments in your script:
-
-        Explain what happens to the plot when you add the mapping ***color=season*** to the linear model
+-   In comments in your script: Explain what happens to the plot when you add the mapping ***color=season*** to the linear model
 
  
 
@@ -387,11 +389,9 @@ When two plots overlap, as the linear model and the scatterplot do in @fig-linea
 
  
 
-2\) Create a scatterplot that maps the four columns ***windDir***, ***windSpeed***, ***precip2***, and ***tempDept*** to a scatterplot
+2\) Create a scatterplot that maps the four columns ***windDir***, ***windSpeed***, ***precip2***, and ***tempDept*** to a scatterplot ([note: **tempDept** is how far the temperature was from average]{.note})
 
 -   you choose the mappings
-
-    -   [note: **tempDept** is how far the temperature was from average]{.note}
 
 -   Give a title and label the axes and legend
 
@@ -403,14 +403,10 @@ When two plots overlap, as the linear model and the scatterplot do in @fig-linea
 
  
 
-3\) In comments in your script:
-
-       What patterns can you find in the plot?
+3\) In comments in your script answer: What patterns can you find in the plot?
 
  
 
-4\) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component. 
-
-     [Note: ***shape*** is a common mapping that was not used in this lesson.]{.note}
+4\) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component. [Note: ***shape*** is a common mapping that was not used in this lesson.]{.note}
 
 {{< include ../assets/_AppInstructions.qmd >}}
