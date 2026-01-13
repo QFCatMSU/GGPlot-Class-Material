@@ -1,6 +1,6 @@
 ---
-title: "01b: RStudio Projects Setup"
-short: "01b"
+title: "01a: RStudio Projects Setup"
+short: "01a"
 # special characters for highlighting code : «»
 # Assets used in this lesson are:
 # - images/RSProj_*.*

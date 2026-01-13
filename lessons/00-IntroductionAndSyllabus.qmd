@@ -1,6 +1,6 @@
 ---
-title: "01a: Introduction and Syllabus"
-short: "01a"
+title: "Introduction and Syllabus"
+short: "00"
 # special characters for highlighting code : «»
 ---
 

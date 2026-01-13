@@ -6,7 +6,12 @@ website:
     collapse-level: 2   # does not work because a page within is opened
     contents:
       - section: "<b>Graphing With GGPlot class</b>"
-        contents: lessons/*.qmd  # using regex will add another menu level (don't know why)
+        contents: lessons/*[0-9]*.qmd
+          # - section: "Intro and Setup"
+          #   contents: lessons/*01*.qmd  # need * at beginning or quarto will add a menu level 
+          # - section: "Lessons"
+          #   collapse: false
+          #   contents: "lessons/!(01)*.qmd"  # need * at beginning or quarto will add a menu level
 
 language:
   search-box-placeholder: Search All Lessons # does not work...

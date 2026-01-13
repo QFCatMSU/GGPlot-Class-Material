@@ -20,7 +20,7 @@ short: "04"
 
  
 
-[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as last lesson)
+[The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv) (same as last lesson)
 
 -   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
 
@@ -32,7 +32,7 @@ Pretty much everything in a GGPlot canvas can be customized. How you customized 
 
  
 
-The are basically three categories of components:
+The are basically three categories of components in GGPlot:
 
 1.  Plot properties that are not mapped to data (e.g., ***size*** of all points set to a specific value)
 
