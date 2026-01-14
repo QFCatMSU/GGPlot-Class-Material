@@ -10,7 +10,9 @@ short: "01b"
 
 -   Setup Git on your computer
 
--   Use Git to connect your RStudio Project to a GitHub repository
+-   Create a GitHub repository for your class project
+
+-   Use Git to connect your RStudio Project to the GitHub repository
 
 -   Share your GitHub repository
 

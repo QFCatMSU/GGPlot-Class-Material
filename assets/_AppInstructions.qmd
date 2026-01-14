@@ -20,4 +20,8 @@ Answer the following in comments inside your application script:
 
 ### Turn in on GitHub
 
-Save the script as ***app{{< meta short >}}.r*** in your ***scripts*** folder, ***Push*** the changes to your GitHub repository, [create an Issue in GitHub](01b-GitAndGitHubSetup.html#Issues) that says you have finished the application and assign the issue to*** {{< var instructor.githubID>}}***.
+1. Save the script as ***app{{< meta short >}}.r*** in your ***scripts*** folder
+2. ***Add***, ***Commit***, and ***Push*** the changes to your GitHub repository
+3. Inform {{< var instructor.name >}} that the application is complete by either:
+   - email {{< var instructor.email >}} or 
+   - [create an Issue in GitHub](01b-GitAndGitHubSetup.html#Issues) that says you have finished the application and assign the issue to*** {{< var instructor.githubID>}}***.
