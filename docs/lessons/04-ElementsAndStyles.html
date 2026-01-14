@@ -339,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Save the R file, called <strong><em>lesson04-StyleElements.R</em></strong> to the <strong><em>scripts</em></strong> folder inside your RStudio Project</li>
 </ul>
 <p>&nbsp;</p>
-<p><a href="../Data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as last lesson)</p>
+<p><a href="../data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as last lesson)</p>
 <ul>
 <li><p>Save the CSV file, called <strong><em>Lansing2016Data.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.&nbsp;</p></li>
 <li><p><span class="hl">It is best to use the operating system’s File Explorer/Finder</span> to move the CSV file to the proper folder.</p></li>
@@ -350,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2" class="anchored" data-anchor-id="styling-elements-of-a-plot"><span class="header-section-number">2</span> Styling elements of a plot</h2>
 <p>Pretty much everything in a GGPlot canvas can be customized. How you customized a component depends largely on what type of component it is.</p>
 <p>&nbsp;</p>
-<p>The are basically three categories of components:</p>
+<p>The are basically three categories of components in GGPlot:</p>
 <ol type="1">
 <li><p>Plot properties that are not mapped to data (e.g., <strong><em>size</em></strong> of all points set to a specific value)</p></li>
 <li><p>Plot properties that are mapped to data (e.g.,&nbsp;<strong><em>size</em></strong> of point is dependent upon the value of the point)</p></li>
@@ -396,7 +396,7 @@ Figure&nbsp;1: Using mapping to style the points based on data in a column
 <h3 data-number="3.1" class="anchored" data-anchor-id="unampped-styling-of-points"><span class="header-section-number">3.1</span> Unampped styling of points</h3>
 <p>We can also use properties like <strong><em>color, size</em></strong>, and <strong><em>shape</em></strong> to style all the points <span class="hl">exactly the same.</span></p>
 <p>&nbsp;</p>
-<p>We are going to start by styling the points in the same scatterplot using <strong><em>color</em></strong>, <strong><em>size</em></strong>, and <strong><em>shape</em></strong> <span class="hl">as&nbsp;subcomponents of <strong><em>geom_point()</em></strong> instead of mappings:</span></p>
+<p>We are going to start by styling the points in the same scatterplot using <strong><em>color</em></strong>, <strong><em>size</em></strong>, and <strong><em>shape</em></strong> <span class="hl">as subcomponents of <strong><em>geom_point()</em></strong> instead of mappings:</span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Styling the points ####</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),  <span class="co"># mapping</span></span>

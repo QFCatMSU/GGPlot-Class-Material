@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#open-a-script-file-in-your-project" id="toc-open-a-script-file-in-your-project" class="nav-link" data-scroll-target="#open-a-script-file-in-your-project"><span class="header-section-number">7.2</span> Open a script file in your Project</a></li>
   <li><a href="#setting-up-rstudio-tabs-for-scripts" id="toc-setting-up-rstudio-tabs-for-scripts" class="nav-link" data-scroll-target="#setting-up-rstudio-tabs-for-scripts"><span class="header-section-number">7.3</span> Setting up RStudio tabs for scripts</a></li>
   <li><a href="#common-buttons-used-in-rstudio" id="toc-common-buttons-used-in-rstudio" class="nav-link" data-scroll-target="#common-buttons-used-in-rstudio"><span class="header-section-number">7.4</span> Common buttons used in RStudio</a></li>
-  <li><a href="#cleaning-up-the-rstudio-windows" id="toc-cleaning-up-the-rstudio-windows" class="nav-link" data-scroll-target="#cleaning-up-the-rstudio-windows"><span class="header-section-number">7.5</span> Cleaning up the RStudio windows</a></li>
+  <li><a href="#cleaning-up-the-rstudio-panes" id="toc-cleaning-up-the-rstudio-panes" class="nav-link" data-scroll-target="#cleaning-up-the-rstudio-panes"><span class="header-section-number">7.5</span> Cleaning up the RStudio panes</a></li>
   </ul></li>
   <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">8</span> Application</a>
   <ul class="collapse">
@@ -341,17 +341,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="to-do" class="level3" data-number="0.1">
 <h3 data-number="0.1" class="anchored" data-anchor-id="to-do"><span class="header-section-number">0.1</span> To do</h3>
-<ul>
-<li>Include checklist</li>
-</ul>
 </section>
 <section id="purpose" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
 <ul>
-<li><p>Install and test the software you will need for this class</p></li>
-<li><p>Provide a basic overview of how RStudio works and its relationship to R</p></li>
-<li><p>Execute, using the Source button, an R script</p></li>
-<li><p>Show how commenting works and the importance of commenting</p></li>
+<li><p>Install, setup, and test the software you will need for this class</p></li>
+<li><p>View hidden files and file extensions</p></li>
+<li><p>Provide a basic overview of the RStudio environment</p></li>
+<li><p>Execute an R script using the Source button</p></li>
 </ul>
 <section id="special-note-about-images-in-the-lessons-for-this-class" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="special-note-about-images-in-the-lessons-for-this-class"><span class="header-section-number">1.1</span> Special note about images in the lessons for this class</h3>
@@ -366,9 +363,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3" class="anchored" data-anchor-id="viewing-file-extensions-and-hidden-files"><span class="header-section-number">3</span> Viewing file extensions and hidden files</h2>
 <p>By default, Windows and Mac hides file extensions from you (e.g., your Word document file is listed in the file manager as <strong><em>stuff</em></strong> instead of <strong><em>stuff.docx</em></strong>).&nbsp; This is not convenient when you are programming as you are working with many file types (e.g., *.txt, *.r, *.csv) and, many times, the only difference between the name of two files is the extension.&nbsp; For instance, you might have two files called <strong><em>weather.r</em></strong> and <strong><em>weather.csv</em></strong> in your folder – without file extensions they are both listed as <strong>weather</strong>.</p>
 <p>&nbsp;</p>
-<p>Also, when you are programming, there are files you will need to access that are hidden by default by the operating system.</p>
+<p>Also, when you are programming, there are files you will need to access that are hidden by default in the operating system.</p>
 <p>&nbsp;</p>
-<p>This section is optional, but I would highly recommend you learn how to view all files and file extensions – it will greatly assist you when programming.</p>
+<p>This section is optional, but I would highly recommend you learn how to view all hidden files and file extensions – it will greatly assist you when programming.</p>
 <section id="viewing-in-newer-versions-of-windows-11" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="viewing-in-newer-versions-of-windows-11"><span class="header-section-number">3.1</span> Viewing in newer versions of Windows 11</h3>
 <p>This is easy to to do in newer versions of Windows 11:</p>
@@ -446,7 +443,7 @@ Figure&nbsp;3: Change settings to view all file extensions on a Mac
 <h2 data-number="4" class="anchored" data-anchor-id="install-r-and-rstudio-on-your-computer"><span class="header-section-number">4</span> Install R and RStudio on your computer</h2>
 <p>We are going to install <strong>R</strong> and <strong>RStudio</strong> on your computer. R is a programming language and RStudio provides a structured environment for the R programming language, similar to the way Microsoft Word provides a structured environment for document editing. RStudio is patterned on other popular programming environments like <a href="https://visualstudio.microsoft.com/">Microsoft’s Visual Studio</a>.</p>
 <p>&nbsp;</p>
-<p>On Windows the default installation can be used for R and RStudio. For Mac, installation is a bit trickier – details below.</p>
+<p>On Windows, R and RStudio installation is straightforward and you can use the default settings. For Macs the installation is a bit trickier, the details are below.</p>
 <p>&nbsp;</p>
 <p><span class="note">Note: Even if you already have the software installed, it is a good idea to verify you have a recent version.</span></p>
 <section id="install-or-update-r-need-version-4.4-or-higher" class="level3" data-number="4.1">
@@ -467,7 +464,7 @@ The&nbsp;<a href="https://cran.r-project.org/bin/macosx/">R for Mac download is 
 </section>
 <section id="install-or-update-rstudio" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="install-or-update-rstudio"><span class="header-section-number">4.2</span> Install or update RStudio</h3>
-<p>You need version <strong>2023.12</strong> or higher for this class and you should have <strong>2025.04</strong> or higher if you are using Git.</p>
+<p>It is highly recommended that you have version <strong>2025.04</strong> or higher.</p>
 <p>&nbsp;</p>
 <p>You can download the <a href="https://posit.co/download/rstudio-desktop/">RStudio Installer</a> here. Download the appropriate file for your computer under <strong>Installers</strong>, open the file, and use the default installation options.</p>
 <section id="special-instructions-for-mac-users" class="level4" data-number="4.2.1">
@@ -675,7 +672,7 @@ Figure&nbsp;13: RStudio opened with an RStudio Project (named My_Project)
 <p>&nbsp;</p>
 <p><strong><em>RSProj_Setup.R</em></strong> takes weather data from the other downloaded file, <strong><em>RSProj_Setup.csv</em></strong> and creates boxplots showing how Wind Direction and Wind Speed relate to the Change In Temperature.</p>
 <p>&nbsp;</p>
-<p>We are executing the script to test your setup and help you become familiar with the RStudio environment. If you are taking the GGPlot class, the code in <strong><em>RSProj_Setup.R</em></strong> is something you will learn throughout the course. For this lesson,</p>
+<p>For now, we are executing the script to test your setup and help you become familiar with the RStudio environment. The code in this script is something you will learn as the class progresses.</p>
 <section id="open-your-rstudio-project" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="open-your-rstudio-project"><span class="header-section-number">7.1</span> Open your RStudio Project</h3>
 <p>There are multiple ways to open an RStudio Project – three of them are:</p>
@@ -704,61 +701,52 @@ Figure&nbsp;14: Opening your first script in RStudio
 </figcaption>
 </figure>
 </div>
-<p>The script will only execute if <span class="hl">it is opened inside your RStudio Project</span>.</p>
+<p>The script will only execute properly if <span class="hl">it is opened inside your RStudio Project</span>.</p>
 </section>
 <section id="setting-up-rstudio-tabs-for-scripts" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="setting-up-rstudio-tabs-for-scripts"><span class="header-section-number">7.3</span> Setting up RStudio tabs for scripts</h3>
-<p>When we are editing and executing an R script, we generally have the following RStudio tabs open (<a href="#fig-tabs" class="quarto-xref">Figure&nbsp;15</a>):</p>
+<p>When we are editing and executing an R script, we generally have the following RStudio tabs open (<a href="#fig-openScript" class="quarto-xref">Figure&nbsp;14</a>):</p>
 <ol type="1">
-<li><p><strong>File Viewer</strong> – text viewer and editor for the opened script files (upper-left corner)</p></li>
-<li><p><strong>Console</strong> – displays information about the execution of your script file (lower-left corner)</p></li>
-<li><p><strong>Environment</strong> – displays data points, or variables, from the execution of your script file (upper-right corner)</p></li>
-<li><p><strong>Plots</strong> – plots produced by the execution of your script file are displayed here (lower-right corner)</p></li>
+<li><p><strong>File Editor</strong> – text viewer and editor for the opened script files (upper-left pane)</p></li>
+<li><p><strong>Console</strong> – displays information about the execution of your script file (lower-left pane)</p></li>
+<li><p><strong>Environment</strong> – displays data points, or variables, from the execution of your script file (upper-right pane)</p></li>
+<li><p><strong>Files</strong> – the file manager (lower-right pane)</p>
+<ul>
+<li>After execution of this script, this will switch to <strong>Plots</strong> (<a href="#fig-source" class="quarto-xref">Figure&nbsp;15</a>) – all plots created by the scrtipt are displayed here</li>
+</ul>
+<p>&nbsp;</p></li>
 </ol>
-<p>&nbsp;</p>
-<p>The fourth (lower-right corner) tab is on&nbsp;<strong><em>Files</em></strong>, so we switched the tab to <strong><em>Plots</em></strong>:</p>
-<div id="fig-tabs" class="fs quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tabs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/RSProj_RStudioTabs.png" class="fs img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tabs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: The Tabs most commonly used in RStudio
-</figcaption>
-</figure>
-</div>
-<p>&nbsp;</p>
 <p><span class="note">Note: the <strong>Help</strong> tab in the lower-right corner is something you might find useful.</span> <a href="#extension-the-help-tab">Extension: The Help Tab</a></p>
 </section>
 <section id="common-buttons-used-in-rstudio" class="level3" data-number="7.4">
 <h3 data-number="7.4" class="anchored" data-anchor-id="common-buttons-used-in-rstudio"><span class="header-section-number">7.4</span> Common buttons used in RStudio</h3>
 <p>The script file, <strong><em>RSProj_Setup.r</em></strong>, is a fully functioning script that takes temperature and wind data from the Comma Separated Value (CSV) file, <strong><em>RSProj_Setup.csv</em></strong>, and plots out the data. I am going to use this program to demonstrate a few of the useful buttons in RStudio.</p>
 <p>&nbsp;</p>
-<p>The one button you will use most in R is <strong><em>Source</em></strong>, which executes your whole script.&nbsp; Press the <strong><em>Source</em></strong> button to execute the script (<a href="#fig-source" class="quarto-xref">Figure&nbsp;16</a>).</p>
+<p>The one button you will use most in R is <strong><em>Source</em></strong>, which executes your whole script.&nbsp; Press the <strong><em>Source</em></strong> button to execute the script (<a href="#fig-source" class="quarto-xref">Figure&nbsp;15</a>).</p>
 <p>&nbsp;</p>
-<p><span class="note">Note: If you have already used R, there is a good chance you highlight lines of code and click <strong>Run</strong> to execute just those lines.&nbsp; We are not using this method in this class.&nbsp; For this class, you should always use <strong>Source</strong> to execute your code.</span>&nbsp; For more information go to <a href="#extension-run-vs.-source">Extension: Run vs.&nbsp;Source</a></p>
+<p><span class="note">Note: If you have already used R, there is a good chance you highlight lines of code and click <strong>Run</strong> to execute just those lines.&nbsp;This is fine but, in this class, your code must work when executed using <strong>Source</strong>.</span>&nbsp; For more information go to <a href="#extension-run-vs.-source">Extension: Run vs.&nbsp;Source</a></p>
 <div id="fig-source" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-source-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RSProj_Source.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-source-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Running (Sourcing) the script
+Figure&nbsp;15: Executing the whole the script (Source)
 </figcaption>
 </figure>
 </div>
 <p>After the script is run:</p>
 <ul>
-<li><p>The <strong>Environment</strong> tab&nbsp;displays values for the data (variables) in the script (e.g., <strong><em>weatherData</em></strong>, <strong><em>windLabels</em></strong>).</p></li>
-<li><p>The <strong>Console</strong> tab&nbsp;displays information about the execution of the script.</p></li>
-<li><p>The <strong>Plot</strong> tab&nbsp;displays the box plots.&nbsp; If there are multiple plots, you can use the arrow buttons to switch between the plots.</p></li>
+<li><p>The <strong>Environment</strong> tab displays values for the data (variables) in the script (e.g., <strong><em>weatherData</em></strong>, <strong><em>windLabels</em></strong>).</p></li>
+<li><p>The <strong>Console</strong> tab displays information about the execution of the script.</p></li>
+<li><p>The <strong>Plot</strong> tab displays the box plots. If there are multiple plots, you can use the arrow buttons to switch between the plots.</p></li>
 </ul>
 </section>
-<section id="cleaning-up-the-rstudio-windows" class="level3" data-number="7.5">
-<h3 data-number="7.5" class="anchored" data-anchor-id="cleaning-up-the-rstudio-windows"><span class="header-section-number">7.5</span> Cleaning up the RStudio windows</h3>
-<p>There many times where you want to clean up the windows, which can get very crowded with information from old script executions.</p>
+<section id="cleaning-up-the-rstudio-panes" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="cleaning-up-the-rstudio-panes"><span class="header-section-number">7.5</span> Cleaning up the RStudio panes</h3>
+<p>There many times where you want to clean up the panes, which can get very crowded with information from old script executions.</p>
 <ul>
-<li>To clean the <strong>Environment,</strong> <strong>Plot</strong>, and <strong>Console</strong> tabs&nbsp;use the brush button (<a href="#fig-source" class="quarto-xref">Figure&nbsp;16</a>).</li>
+<li>To clean the <strong>Environment,</strong> <strong>Plot</strong>, and <strong>Console</strong> panes, use the brush button (<a href="#fig-cleanTabs" class="quarto-xref">Figure&nbsp;16</a>).</li>
 </ul>
 <div id="fig-cleanTabs" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -766,7 +754,7 @@ Figure&nbsp;16: Running (Sourcing) the script
 <img src="images/RSProj_CleanWindows.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cleanTabs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Cleaning out the windows
+Figure&nbsp;16: Cleaning out the panes
 </figcaption>
 </figure>
 </div>
@@ -781,7 +769,7 @@ Figure&nbsp;17: Cleaning out the windows
 <li><p>Copy and paste this lesson’s script, <strong><em>RSProj_Setup1.r</em></strong>, to the new script.</p></li>
 <li><p>Change the colors in the boxplot (edit lines 17-21)</p>
 <ul>
-<li>Here is a <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">comprehensive list of color names</a> you can use in R</li>
+<li>Here is a <a href="images/rcolornames.pdf">comprehensive list of color names</a> you can use in R</li>
 </ul></li>
 <li><p>Save the script as <strong><em>app01.r</em></strong>, and to your <strong><em>script</em></strong> folder</p></li>
 </ol>
@@ -823,14 +811,14 @@ Figure&nbsp;17: Cleaning out the windows
 </section>
 <section id="extension-color-schemes" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="extension-color-schemes"><span class="header-section-number">9</span> Extension: Color Schemes</h2>
-<p>I am not a big fan of the default color scheme in RStudio.&nbsp; It does not create enough differentiation between the different components of a script.&nbsp; For instance, comments (red arrows) are in green and quoted items (blue arrows) are in just a slightly different green (<a href="#fig-colors" class="quarto-xref">Figure&nbsp;18</a>).</p>
+<p>I am not a big fan of the default color scheme in RStudio.&nbsp; It does not create enough differentiation between the different components of a script.&nbsp; For instance, comments (red arrows) are in green and quoted items (blue arrows) are in just a slightly different green (<a href="#fig-colors" class="quarto-xref">Figure&nbsp;17</a>).</p>
 <div id="fig-colors" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-colors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RSProj_CommentsVsQuotes.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-colors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: The text color for comments and quotes
+Figure&nbsp;17: The text color for comments and quotes
 </figcaption>
 </figure>
 </div>
@@ -840,9 +828,9 @@ Figure&nbsp;18: The text color for comments and quotes
 <p>&nbsp;</p>
 <p>RStudio offers many color schemes – you can change the color scheme by:</p>
 <ol type="1">
-<li><p>clicking on <strong><em>Tools</em></strong> in the main menu (circled in <a href="#fig-colorSchemes" class="quarto-xref">Figure&nbsp;19</a>)</p></li>
+<li><p>clicking on <strong><em>Tools</em></strong> in the main menu (circled in <a href="#fig-colorSchemes" class="quarto-xref">Figure&nbsp;18</a>)</p></li>
 <li><p>choose <strong><em>Global Options</em></strong></p></li>
-<li><p>When the <strong><em>Global Options</em></strong> window open (in <a href="#fig-colorSchemes" class="quarto-xref">Figure&nbsp;19</a>), click on <strong><em>Appearance</em></strong></p></li>
+<li><p>When the <strong><em>Global Options</em></strong> window open (in <a href="#fig-colorSchemes" class="quarto-xref">Figure&nbsp;18</a>), click on <strong><em>Appearance</em></strong></p></li>
 </ol>
 <div id="fig-colorSchemes" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -850,12 +838,12 @@ Figure&nbsp;18: The text color for comments and quotes
 <img src="images/RSProj_ColorScheme.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-colorSchemes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Color schemes for RStudio (note: the Editor font might be different in your window – that is OK)
+Figure&nbsp;18: Color schemes for RStudio (note: the Editor font might be different in your window – that is OK)
 </figcaption>
 </figure>
 </div>
 <p>&nbsp;</p>
-<p>The image above shows the <strong>Xcode</strong> color scheme ( <a href="#fig-colorSchemes" class="quarto-xref">Figure&nbsp;19</a>).&nbsp; I prefer <strong>Xcode</strong> because it does a good job differentiating the different aspects of the script. Notice how the comments (in green) are now clearly distinguished from the quotes (in red).</p>
+<p>The image above shows the <strong>Xcode</strong> color scheme ( <a href="#fig-colorSchemes" class="quarto-xref">Figure&nbsp;18</a>).&nbsp; I prefer <strong>Xcode</strong> because it does a good job differentiating the different aspects of the script. Notice how the comments (in green) are now clearly distinguished from the quotes (in red).</p>
 <p>&nbsp;</p>
 <p>You can choose from around 20 themes in the <strong>Editor theme</strong> window and you can change the theme anytime without affecting anything else.</p>
 </section>
@@ -879,7 +867,7 @@ Figure&nbsp;19: Color schemes for RStudio (note: the Editor font might be differ
 <img src="images/RSProj_ConsoleWindow-01.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-consoleChanges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20: Console Window changes
+Figure&nbsp;19: Console Window changes
 </figcaption>
 </figure>
 </div>
@@ -901,7 +889,7 @@ Figure&nbsp;20: Console Window changes
 <img src="images/RSProj_EndParensQuotes.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stopAutoInsert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: Stop RStudio from automatically ending your parenthesis and quotes.
+Figure&nbsp;20: Stop RStudio from automatically ending your parenthesis and quotes.
 </figcaption>
 </figure>
 </div>
@@ -977,7 +965,7 @@ Figure&nbsp;21: Stop RStudio from automatically ending your parenthesis and quot
 <img src="images/RSProj_UsingConsole.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packageInstallation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;22: Using the RStudio Console to install a package
+Figure&nbsp;21: Using the RStudio Console to install a package
 </figcaption>
 </figure>
 </div>
@@ -991,7 +979,7 @@ Figure&nbsp;22: Using the RStudio Console to install a package
 <img src="images/RSProj_InstallPackages.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RStudioInstall-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;23: RStudio looking for packages needed by the script– click Install and RStudio installs the required package(s)
+Figure&nbsp;22: RStudio looking for packages needed by the script– click Install and RStudio installs the required package(s)
 </figcaption>
 </figure>
 </div>
@@ -1006,12 +994,12 @@ Figure&nbsp;23: RStudio looking for packages needed by the script– click Insta
 <img src="images/RSProj_HelpWindow.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-helpTab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;24: The R plot help page in the online documentation.
+Figure&nbsp;23: The R plot help page in the online documentation.
 </figcaption>
 </figure>
 </div>
 <p>&nbsp;</p>
-<p>The page that appears in the <strong>Help</strong> tab&nbsp;(<a href="#fig-helpTab" class="quarto-xref">Figure&nbsp;24</a>) is this page: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/plot.html">https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/plot.html</a></p>
+<p>The page that appears in the <strong>Help</strong> tab&nbsp;(<a href="#fig-helpTab" class="quarto-xref">Figure&nbsp;23</a>) is this page: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/plot.html">https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/plot.html</a></p>
 <p>&nbsp;</p>
 <p>https://stat.ethz.ch is where the official documentation for R is located.&nbsp; So, you will see this website appear quite often when you do an internet search for something R related.</p>
 <p>&nbsp;</p>

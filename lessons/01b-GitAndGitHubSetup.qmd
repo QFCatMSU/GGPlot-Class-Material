@@ -6,8 +6,6 @@ short: "01b"
 
 ### To-dos
 
--   Add instructions to replace section 7 for when the instructors provides the GitHub URL
-
 ## Purpose
 
 -   Setup Git on your computer
@@ -34,7 +32,7 @@ For this class, we will use Git and GitHub for your class assignments.
 
  
 
-While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to getting started. This lesson is designed to allow you to do the very basics in Git and GitHub.
+While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to getting started. This lesson is designed to allow you to do the very basics in Git and GitHub, which is all you will need for this class.
 
 ## Install Git on your computer (need version 2.44 or higher)
 
@@ -42,7 +40,7 @@ For ***Windows***, [go here to download and install Git](https://git-scm.com/dow
 
  
 
-For ***Mac***, [there is no direct installation of Git]{.hl}. I recommend using **Homebrew**, which is a useful tool for any programmer using a Mac because it gives you access to a bunch of programming tools.
+For ***Mac***, [there is no direct installation of Git](https://git-scm.com/install/mac). I recommend using **Homebrew**, which is a useful tool for any programmer using a Mac because it gives you access to a bunch of programming tools.
 
 ### Homebrew installation of Git on Mac:
 
@@ -84,10 +82,6 @@ Most of the Terminal command used in this lesson will only work if you are in th
 
 Before you use Git, you first need to configure Git on your computer with your GitHub username and email (i.e., the email you use to sign up for your GitHub account). The username and email are used by Git to identify who made what changes in the project history – this is especially important when you are collaborating on a project.
 
- 
-
-[Git will not check if you put in a wrong or invalid username or email]{.hl}.
-
 ### Adding the username and email
 
 We will use the RStudio ***Terminal*** tab to enter these values.
@@ -110,14 +104,14 @@ git config --global user.email "email"
 
 ### Viewing the configured values
 
-You can check if you successfully changed the username and email by executing these lines in the ***Terminal*** tab:
+Git will not check your ***user.name*** and ***user.email*** are valid. You can check if you successfully changed the username and email by executing these lines in the ***Terminal*** tab:
 
 ``` {.bash tab="Terminal"}
 git config user.name 
 git config user.email
 ```
 
-After executing the two above command, [your **Terminal** tab should look similar]{.hl} to this:
+After executing the two above command, your **Terminal** tab should look similar to this:
 
 ::: {#fig-testGitConfig}
 ``` {.bash tab="Terminal"}
@@ -152,7 +146,7 @@ Both RStudio Projects and Git Repositories are set up in your Project Folder (i.
 
 ### RStudio Git tab
 
-After you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This tab is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. It is not necessary to use the ***Git*** tab.
+After you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This tab is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. It is not necessary to use the ***Git*** tab for this class.
 
 ![The Git tab has been added to the RStudio Project](images/GH_02_GitTab.png){#fig-GitTab .fs}
 
@@ -186,9 +180,9 @@ The GitHub repository link is the URL that takes you directly to the online proj
 `https://github.com/<github_user_name>/<github_repository_name>.git`**\
 **
 
-So, if my GitHub username is ***QFCatMSU*** and my repository name is ***gitHubTest*** then the link is:
+So, if my GitHub username is ***belinskyc*** and my repository name is ***gitHubTest*** then the link is:
 
-`https://github.com/qfcatmsu/githubtest.git`
+`https://github.com/belinskyc/githubtest.git`
 
 [Note: capital/lowercase does not matter and .git is optional]{.note}
 
@@ -323,7 +317,7 @@ Alternatively, you can use the Git tab: [Extension: Use Git Tab]
  
 
 ::: {#Issues}
-C\) Inform your instructor the application is done by creating an Issue in the Github repostiory:
+C\) Inform your instructor the application is done by creating an ***Issue*** in the Github repository:
 :::
 
 1.  Click on ***Issues*** (top of page)
@@ -350,7 +344,7 @@ Answer the following in comments inside your application script:
 
 ## Extension: Use Git Tab
 
-The ***Git*** tab can be used to sync changes from your Project Folder to your GitHub repository.
+The ***Git*** tab can be used instead of the Terminal to sync changes from your Project Folder to your GitHub repository.
 
 1.  In the ***Git*** tab, click ***Commit*** and the ***RStudio Review Changes*** window appears
 

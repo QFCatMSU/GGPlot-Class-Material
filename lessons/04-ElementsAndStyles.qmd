@@ -86,7 +86,7 @@ We can also use properties like ***color, size***, and ***shape*** to style all 
 
  
 
-We are going to start by styling the points in the same scatterplot using ***color***, ***size***, and ***shape*** [as subcomponents of ***geom_point()*** instead of mappings:]{.hl}
+We are going to start by styling the points in the same scatterplot using ***color***, ***size***, and ***shape*** [as subcomponents of ***geom_point()*** instead of mappings:]{.hl}
 
 ``` r
 #### Part 2: Styling the points ####

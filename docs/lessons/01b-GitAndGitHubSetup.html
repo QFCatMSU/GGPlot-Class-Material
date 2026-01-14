@@ -315,9 +315,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="to-dos" class="level3" data-number="0.1">
 <h3 data-number="0.1" class="anchored" data-anchor-id="to-dos"><span class="header-section-number">0.1</span> To-dos</h3>
-<ul>
-<li>Add instructions to replace section 7 for when the instructors provides the GitHub URL</li>
-</ul>
 </section>
 <section id="purpose" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1</span> Purpose</h2>
@@ -339,13 +336,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>&nbsp;</p>
 <p><span class="hl">GitHub</span> is an online software development platform and a place to store, sync, and share your Git repository. When combined, Git and GitHub make a very powerful project-management system.</p>
 <p>&nbsp;</p>
-<p>While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to getting started. This lesson is designed to allow you to do the very basics in Git and GitHub.</p>
+<p>While Git and GitHub are very powerful tools, they are not intuitive and there is a pretty high-barrier to getting started. This lesson is designed to allow you to do the very basics in Git and GitHub, which is all you will need for this class.</p>
 </section>
 <section id="install-git-on-your-computer-need-version-2.44-or-higher" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="install-git-on-your-computer-need-version-2.44-or-higher"><span class="header-section-number">3</span> Install Git on your computer (need version 2.44 or higher)</h2>
 <p>For <strong><em>Windows</em></strong>, <a href="https://git-scm.com/downloads">go here to download and install Git</a> – click on <strong><em>Download for Windows</em></strong>. Git asks a lot of questions during installation and you can choose the default option for everything.</p>
 <p>&nbsp;</p>
-<p>For <strong><em>Mac</em></strong>, <span class="hl">there is no direct installation of Git</span>. I recommend using <strong>Homebrew</strong>, which is a useful tool for any programmer using a Mac because it gives you access to a bunch of programming tools.</p>
+<p>For <strong><em>Mac</em></strong>, <a href="https://git-scm.com/install/mac">there is no direct installation of Git</a>. I recommend using <strong>Homebrew</strong>, which is a useful tool for any programmer using a Mac because it gives you access to a bunch of programming tools.</p>
 <section id="homebrew-installation-of-git-on-mac" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="homebrew-installation-of-git-on-mac"><span class="header-section-number">3.1</span> Homebrew installation of Git on Mac:</h3>
 <ul>
@@ -387,8 +384,6 @@ Figure&nbsp;1: RStudio Terminal tab (don’t forget to check the Project Folder)
 <section id="configuring-git-on-your-computer" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="configuring-git-on-your-computer"><span class="header-section-number">5</span> Configuring Git on your computer</h2>
 <p>Before you use Git, you first need to configure Git on your computer with your GitHub username and email (i.e., the email you use to sign up for your GitHub account). The username and email are used by Git to identify who made what changes in the project history – this is especially important when you are collaborating on a project.</p>
-<p>&nbsp;</p>
-<p><span class="hl">Git will not check if you put in a wrong or invalid username or email</span>.</p>
 <section id="adding-the-username-and-email" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="adding-the-username-and-email"><span class="header-section-number">5.1</span> Adding the username and email</h3>
 <p>We will use the RStudio <strong><em>Terminal</em></strong> tab to enter these values.</p>
@@ -410,10 +405,10 @@ Figure&nbsp;2: Changing Git username and email using the Terminal tab
 </section>
 <section id="viewing-the-configured-values" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="viewing-the-configured-values"><span class="header-section-number">5.2</span> Viewing the configured values</h3>
-<p>You can check if you successfully changed the username and email by executing these lines in the <strong><em>Terminal</em></strong> tab:</p>
+<p>Git will not check your <strong><em>user.name</em></strong> and <strong><em>user.email</em></strong> are valid. You can check if you successfully changed the username and email by executing these lines in the <strong><em>Terminal</em></strong> tab:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-tab="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.name </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.email</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>After executing the two above command, <span class="hl">your <strong>Terminal</strong> tab should look similar</span> to this:</p>
+<p>After executing the two above command, your <strong>Terminal</strong> tab should look similar to this:</p>
 <div id="fig-testGitConfig" class="quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-testGitConfig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -451,7 +446,7 @@ Figure&nbsp;3: Testing the git configuration using the RStudio Terminal tab
 </ol>
 <section id="rstudio-git-tab" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="rstudio-git-tab"><span class="header-section-number">6.1</span> RStudio Git tab</h3>
-<p>After you add Git to an RStudio Project folder, a&nbsp;<strong><em>Git</em></strong> tab will appear in the upper-right window. This tab is RStudio’s built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. It is not necessary to use the <strong><em>Git</em></strong> tab.</p>
+<p>After you add Git to an RStudio Project folder, a&nbsp;<strong><em>Git</em></strong> tab will appear in the upper-right window. This tab is RStudio’s built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. It is not necessary to use the <strong><em>Git</em></strong> tab for this class.</p>
 <div id="fig-GitTab" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-GitTab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -506,8 +501,8 @@ Figure&nbsp;6: The URL of your GitHub repository
 <p>The GitHub repository link is the URL that takes you directly to the online project.&nbsp; A GitHub repository link is always in this format:</p>
 <p><code>https://github.com/&lt;github_user_name&gt;/&lt;github_repository_name&gt;.git</code><strong><br>
 </strong></p>
-<p>So, if my GitHub username is <strong><em>QFCatMSU</em></strong> and my repository name is <strong><em>gitHubTest</em></strong> then the link is:</p>
-<p><code>https://github.com/qfcatmsu/githubtest.git</code></p>
+<p>So, if my GitHub username is <strong><em>belinskyc</em></strong> and my repository name is <strong><em>gitHubTest</em></strong> then the link is:</p>
+<p><code>https://github.com/belinskyc/githubtest.git</code></p>
 <p><span class="note">Note: capital/lowercase does not matter and .git is optional</span></p>
 <p>&nbsp;</p>
 <p>If you lose the <strong><em>Quick Setup</em></strong> page then the URL is going to be the part of the URL for your repository circled in <a href="#fig-GitHubURL" class="quarto-xref">Figure&nbsp;6</a></p>
@@ -633,7 +628,7 @@ Figure&nbsp;10: GitHub after a new Commit was pushed
 <p>Alternatively, you can use the Git tab: <a href="#extension-use-git-tab">Extension: Use Git Tab</a></p>
 <p>&nbsp;</p>
 <div id="Issues">
-<p>C) Inform your instructor the application is done by creating an Issue in the Github repostiory:</p>
+<p>C) Inform your instructor the application is done by creating an <strong><em>Issue</em></strong> in the Github repository:</p>
 </div>
 <ol type="1">
 <li><p>Click on <strong><em>Issues</em></strong> (top of page)</p></li>
@@ -664,7 +659,7 @@ Figure&nbsp;11: Creating an Issue in GitHub
 </section>
 <section id="extension-use-git-tab" class="level2" data-number="12">
 <h2 data-number="12" class="anchored" data-anchor-id="extension-use-git-tab"><span class="header-section-number">12</span> Extension: Use Git Tab</h2>
-<p>The <strong><em>Git</em></strong> tab can be used to sync changes from your Project Folder to your GitHub repository.</p>
+<p>The <strong><em>Git</em></strong> tab can be used instead of the Terminal to sync changes from your Project Folder to your GitHub repository.</p>
 <ol type="1">
 <li><p>In the <strong><em>Git</em></strong> tab, click <strong><em>Commit</em></strong> and the <strong><em>RStudio Review Changes</em></strong> window appears</p></li>
 <li><p>On the left, check the files you want to sync with your GitHub repository (you do not have to check all of them)</p></li>
