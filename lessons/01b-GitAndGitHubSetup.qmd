@@ -138,13 +138,24 @@ Both RStudio Projects and Git Repositories are set up in your Project Folder (i.
 
     -   Look for your Project name in the upper-right corner (In @fig-RStudioTermProj it is ***My_Project***)
 
-2.  Type `git init -b main` in the Terminal
+2.  Type in the Terminal:
+
+    ``` bash
+    git init -b main
+    ```
 
     -   This command ***init***ializes ***git*** and sets the initial ***b***ranch name to ***main***
     -   You should get a message in the Terminal like:
-        -   `Initialized empty Git repository in C:/Users/Charlie/...`
 
-3.  Restart RStudio
+3.  <div>
+
+    ``` bash
+    Initialized empty Git repository in C:/Users/Charlie/...
+    ```
+
+    </div>
+
+    Restart RStudio
 
 ### RStudio Git tab
 
@@ -204,7 +215,7 @@ To invite a user (or, as GitHub calls them, ***collaborator***) to your reposito
 
     -   You can use either the person's GitHub ID or their email address associated with their GitHub ID
 
-    -   invite your instructor: ***belinsky\@msu.edu*** or ***belinskyc***
+    -   invite your instructor: {{< var instructor.email >}}
 
 ![Inviting a user to your GitHub Repository](images/GH_AddUser.png){#fig-invite .fs}
 
@@ -310,7 +321,11 @@ git commit -m "Finished lesson 1b application"
 git push -u origin main
 ```
 
-[Note: after the first push, the third line can be reduced to `git push`]{.note}
+[Note: after the first push, the third line can be reduced to]{.note}
+
+``` bash
+git push
+```
 
  
 

@@ -375,11 +375,9 @@ Figure&nbsp;1: RStudio Terminal tab (don’t forget to check the Project Folder)
 </section>
 <section id="configuring-git-on-your-computer" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="configuring-git-on-your-computer"><span class="header-section-number">4</span> Configuring Git on your computer</h2>
-<p>Before you can use Git, you need to configure Git on your computer with your GitHub username and email (i.e., the email you use to sign up for your GitHub account).</p>
+<p>Before you use Git, you need to configure Git on your computer with your GitHub username and email (i.e., the email you use to sign up for your GitHub account). We will use the RStudio <strong><em>Terminal</em></strong> tab to enter these values.</p>
 <section id="adding-the-username-and-email" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="adding-the-username-and-email"><span class="header-section-number">4.1</span> Adding the username and email</h3>
-<p>We will use the RStudio <strong><em>Terminal</em></strong> tab to enter these values.</p>
-<p>&nbsp;</p>
 <p>The first command sets the user name in Git (replace&nbsp;<strong><em>userName</em></strong> with your GitHub ID):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-tab="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"userName"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The second command sets the user <strong><em>email</em></strong> in Git (replace <strong><em>email</em></strong> with the email you used to signup for GitHub):</p>
@@ -420,21 +418,14 @@ Figure&nbsp;3: Testing the git configuration using the RStudio Terminal tab
 <h2 data-number="5" class="anchored" data-anchor-id="add-git-repository-to-your-rstudio-project-folder"><span class="header-section-number">5</span> Add Git Repository to your RStudio Project folder</h2>
 <p>Both RStudio Projects and Git Repositories are set up in your Project Folder (i.e., the root folder for your project).</p>
 <p>&nbsp;</p>
-<p><strong>To add a Git repository to your Project Folder</strong></p>
-<ol type="1">
-<li><p>Make sure your RStudio Project is open (<a href="#fig-RStudioTermProj" class="quarto-xref">Figure&nbsp;1</a>)</p></li>
-<li><p>Type <code>git init -b main</code> in the Terminal</p>
-<ul>
-<li>You should get a message in the Terminal like:
-<ul>
-<li><code>Initialized empty Git repository in C:/Users/Charlie/...</code></li>
-</ul></li>
-</ul></li>
-<li><p>Restart RStudio</p></li>
-</ol>
+<p>To add a Git repository to your Project Folder,make sure your RStudio Project is open (<a href="#fig-RStudioTermProj" class="quarto-xref">Figure&nbsp;1</a>) and type in the Terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init <span class="at">-b</span> main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should get a message in the Terminal like:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Initialized</span> empty Git repository in C:/Users/Charlie/...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now restart RStudio and Git should be ready to go</p>
 <section id="rstudio-git-tab" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="rstudio-git-tab"><span class="header-section-number">5.1</span> RStudio Git tab</h3>
-<p>After you add Git to an RStudio Project folder, a&nbsp;<strong><em>Git</em></strong> tab will appear in the upper-right window. This tab is RStudio’s built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. The <strong><em>Git</em></strong> tab is often helpful, but not necessary, to use.</p>
+<p>After you add Git to an RStudio Project folder, a&nbsp;<strong><em>Git</em></strong> tab will appear in the upper-right window. This tab is RStudio’s built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. The <strong><em>Git</em></strong> tab is often helpful but not necessary.</p>
 <div id="fig-GitTab" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-GitTab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -449,17 +440,17 @@ Figure&nbsp;4: The Git tab has been added to the RStudio Project
 </section>
 <section id="linking-your-git-repository-to-a-github-repository" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="linking-your-git-repository-to-a-github-repository"><span class="header-section-number">6</span> Linking your Git repository to a GitHub repository</h2>
-<p>In this section we are going to link your Git repository, which is in the same folder as your RStudio Project, with your GitHub Repository.&nbsp; The GitHub repository will become the online version of your Git repository.</p>
+<p>In this section we are going to link your Git repository, which is in the same folder as your RStudio Project, with the GitHub Repository provided be your instructor.&nbsp; The GitHub repository will become the online version of your Git repository.</p>
 <p>&nbsp;</p>
 <p>Type the line below into the <strong><em>Terminal</em></strong>. <span class="hl">Replace the URL with the URL given to you by your instructor.</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: In Windows, <strong>Control-V</strong> does not paste in a Terminal window, but <strong>right-click</strong> -&gt; <strong>Paste</strong> works</span></p>
 <section id="if-you-added-the-wrong-repository-name" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="if-you-added-the-wrong-repository-name"><span class="header-section-number">6.1</span> If you added the wrong repository name</h3>
 <p>Then you first need to remove the current GitHub repository (i.e., the <strong><em>origin</em></strong>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote rm origin</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote rm origin</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and then repeat this line (using the correct GitHub URL)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="uploading-to-the-github-repository" class="level2" data-number="7">
@@ -467,9 +458,9 @@ Figure&nbsp;4: The Git tab has been added to the RStudio Project
 <p><span class="hl">Changes to your local project are not automatically uploaded to GitHub</span> – you need to explicitly upload the changes.</p>
 <p>&nbsp;</p>
 <p>To upload your changes to GitHub, in the <strong><em>Terminal</em></strong> type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"A message about the changes to your project"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"A message about the changes to your project"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You will repeat these lines every time you turn in an application.</p>
 <ul>
 <li><p>The first line compiles all the changes you have made to your project</p></li>
@@ -511,14 +502,16 @@ Figure&nbsp;6: The Authentication Successful window
 <h2 data-number="8" class="anchored" data-anchor-id="application"><span class="header-section-number">8</span> Application</h2>
 <p>A) Append to the top of your <strong><em>app01.r</em></strong> the <a href="#questions-to-answer">Questions to answer</a> for this lesson.</p>
 <p>B) Send the change to GitHub by executing these lines in the <strong><em>Terminal</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Finished lesson 1b application"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Finished lesson 1b application"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Alternatively, you can use the Git tab to add, commit, and push: <a href="#extension-use-git-tab">Extension: Use Git Tab</a></p>
 <p>&nbsp;</p>
+<p><span class="note">The first time you <strong><em>push</em></strong> your project you have to use this command and the Git tab will not work:</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>C) Email your instructor the application is done</p>
 <ul>
-<li>note: when you Push, the instructor should get an email, so this part is just to double-check</li>
+<li>When you Push, the instructor should get an email from GitHub, so this part is just to double-check that everything is working</li>
 </ul>
 <section id="questions-to-answer" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="questions-to-answer"><span class="header-section-number">8.1</span> Questions to answer</h3>

@@ -66,7 +66,11 @@ You need a [GitHub ID](http://github.com) to access the class and hand in assign
 
 The course has 12 lessons:
 
-1.  **RStudio Projects and GGPlot Setup**: Set up software and the programming environment for the class, go over the programming environment
+1.  **Setup**:
+
+    a.  **RStudio Project:** Set up software and the programming environment for the class, go over the programming environment
+
+    b.  **Git and GitHub:** Set up the Environment for sharing your project with the instructor. There are two versions of this lesson, the second is simpler but less robust
 
 2.  **Components**: Getting data from a CSV file, scatterplots, breaking down GGPlot components
 

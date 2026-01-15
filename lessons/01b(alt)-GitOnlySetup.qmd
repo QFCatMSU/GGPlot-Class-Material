@@ -70,13 +70,9 @@ Most of the Terminal command used in this lesson will only work if you are in th
 
 ## Configuring Git on your computer
 
-Before you can use Git, you need to configure Git on your computer with your GitHub username and email (i.e., the email you use to sign up for your GitHub account).
+Before you use Git, you need to configure Git on your computer with your GitHub username and email (i.e., the email you use to sign up for your GitHub account). We will use the RStudio ***Terminal*** tab to enter these values.
 
 ### Adding the username and email
-
-We will use the RStudio ***Terminal*** tab to enter these values.
-
- 
 
 The first command sets the user name in Git (replace ***userName*** with your GitHub ID):
 
@@ -120,26 +116,29 @@ Both RStudio Projects and Git Repositories are set up in your Project Folder (i.
 
  
 
-**To add a Git repository to your Project Folder**
+To add a Git repository to your Project Folder,make sure your RStudio Project is open (@fig-RStudioTermProj) and type in the Terminal:
 
-1.  Make sure your RStudio Project is open (@fig-RStudioTermProj)
+``` bash
+git init -b main
+```
 
-2.  Type `git init -b main` in the Terminal
+You should get a message in the Terminal like:
 
-    -   You should get a message in the Terminal like:
-        -   `Initialized empty Git repository in C:/Users/Charlie/...`
+``` bash
+Initialized empty Git repository in C:/Users/Charlie/...
+```
 
-3.  Restart RStudio
+Now restart RStudio and Git should be ready to go
 
 ### RStudio Git tab
 
-After you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This tab is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. The ***Git*** tab is often helpful, but not necessary, to use.
+After you add Git to an RStudio Project folder, a ***Git*** tab will appear in the upper-right window. This tab is RStudio's built-in Git interface and it can handle many commonly performed Git functions, including most of the things needed for class. The ***Git*** tab is often helpful but not necessary.
 
 ![The Git tab has been added to the RStudio Project](images/GH_02_GitTab.png){#fig-GitTab .fs}
 
 ## Linking your Git repository to a GitHub repository
 
-In this section we are going to link your Git repository, which is in the same folder as your RStudio Project, with your GitHub Repository.  The GitHub repository will become the online version of your Git repository.
+In this section we are going to link your Git repository, which is in the same folder as your RStudio Project, with the GitHub Repository provided be your instructor.  The GitHub repository will become the online version of your Git repository.
 
  
 
@@ -219,9 +218,15 @@ Alternatively, you can use the Git tab to add, commit, and push: [Extension: Use
 
  
 
+[The first time you ***push*** your project you have to use this command and the Git tab will not work:]{.note}
+
+``` bash
+git push -u origin main
+```
+
 C\) Email your instructor the application is done
 
--   note: when you Push, the instructor should get an email, so this part is just to double-check
+-   When you Push, the instructor should get an email from GitHub, so this part is just to double-check that everything is working
 
 ### Questions to answer
 

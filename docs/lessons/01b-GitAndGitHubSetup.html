@@ -441,15 +441,16 @@ Figure&nbsp;3: Testing the git configuration using the RStudio Terminal tab
 <ul>
 <li>Look for your Project name in the upper-right corner (In <a href="#fig-RStudioTermProj" class="quarto-xref">Figure&nbsp;1</a> it is <strong><em>My_Project</em></strong>)</li>
 </ul></li>
-<li><p>Type <code>git init -b main</code> in the Terminal</p>
+<li><p>Type in the Terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init <span class="at">-b</span> main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>This command <strong><em>init</em></strong>ializes <strong><em>git</em></strong> and sets the initial <strong><em>b</em></strong>ranch name to <strong><em>main</em></strong></li>
-<li>You should get a message in the Terminal like:
-<ul>
-<li><code>Initialized empty Git repository in C:/Users/Charlie/...</code></li>
+<li>You should get a message in the Terminal like:</li>
 </ul></li>
-</ul></li>
-<li><p>Restart RStudio</p></li>
+<li><div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Initialized</span> empty Git repository in C:/Users/Charlie/...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Restart RStudio</p></li>
 </ol>
 <section id="rstudio-git-tab" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="rstudio-git-tab"><span class="header-section-number">6.1</span> RStudio Git tab</h3>
@@ -523,7 +524,7 @@ Figure&nbsp;6: The URL of your GitHub repository
 <li><p>Click <strong><em>Add people</em></strong></p>
 <ul>
 <li><p>You can use either the person’s GitHub ID or their email address associated with their GitHub ID</p></li>
-<li><p>invite your instructor: <strong><em>belinsky@msu.edu</em></strong> or <strong><em>belinskyc</em></strong></p></li>
+<li><p>invite your instructor: belinsky@msu.edu</p></li>
 </ul></li>
 </ol>
 <div id="fig-invite" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -544,14 +545,14 @@ Figure&nbsp;7: Inviting a user to your GitHub Repository
 <p><span class="hl">Warning: This only works if the GitHub repository is empty .</span></p>
 <p>&nbsp;</p>
 <p>Type the line below into the <strong><em>Terminal</em></strong>. Replace the URL with the URL for your GitHub repository. Make sure your are in your RStudio Project.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: In Windows, <strong>Control-V</strong> does not paste in a Terminal window, but <strong>right-click</strong> -&gt; <strong>Paste</strong> works</span></p>
 <section id="if-you-added-the-wrong-repository-name" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="if-you-added-the-wrong-repository-name"><span class="header-section-number">8.1</span> If you added the wrong repository name…</h3>
 <p>Then you first need to remove the current GitHub repository (i.e., the <strong><em>origin</em></strong>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote rm origin</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote rm origin</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and then repeat this line (using the correct GitHub URL)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="st">"https://github.com/myUserName/myRepository.git"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="uploading-to-the-github-repository" class="level2" data-number="9">
@@ -559,9 +560,9 @@ Figure&nbsp;7: Inviting a user to your GitHub Repository
 <p>Git/GitHub is asynchronous. <span class="hl">Changes to your local project are not automatically uploaded to GitHub</span> – you need to explicitly upload the changes.</p>
 <p>&nbsp;</p>
 <p>To upload your changes to GitHub, in the <strong><em>Terminal</em></strong> type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"A message about the changes to your project"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"A message about the changes to your project"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You will repeat these lines every time you turn in an application.</p>
 <ul>
 <li><p>The first line compiles all the changes you have made to your project</p></li>
@@ -627,10 +628,11 @@ Figure&nbsp;10: GitHub after a new Commit was pushed
 <h2 data-number="11" class="anchored" data-anchor-id="application"><span class="header-section-number">11</span> Application</h2>
 <p>A) Append to the top of your <strong><em>app01.r</em></strong> the <a href="#questions-to-answer">Questions to answer</a> for this lesson.</p>
 <p>B) Send the change to GitHub by executing these lines in the <strong><em>Terminal</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Finished lesson 1b application"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><span class="note">Note: after the first push, the third line can be reduced to <code>git push</code></span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-A</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Finished lesson 1b application"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="note">Note: after the first push, the third line can be reduced to</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>&nbsp;</p>
 <p>Alternatively, you can use the Git tab: <a href="#extension-use-git-tab">Extension: Use Git Tab</a></p>
 <p>&nbsp;</p>
