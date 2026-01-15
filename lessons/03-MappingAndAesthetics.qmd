@@ -52,22 +52,58 @@ The last example from the last lesson shows the subcomponents (i.e., arguments) 
 
 ![Plot from last showing components (on each line) and subcomponents (highlighted)](images/GGP-1-01-ChangeTheme-01.png){#fig-spacing .fs}
 
-### Spacing does not matter to R
+## Explicit coding
 
-R, like most programming languages, gives you a lot of flexibility when it comes to spacing code.  The code below is functionally the same as the previous code and, when Sourced, will produce the exact same plot:
+Most of the time you will see ggplot code written like this:
 
 ``` r
-  #### Part 2: Same plot with awful code spacing. «Please don't do this.»  ####
-  plot2 = ggplot( data=weatherData ) + geom_point( mapping=aes(x=avgTemp, 
-y=relHum) ) + labs( title="Humidity vs Temperature", subtitle="Lansing, MI -- 2016",
-x = "Average Temperatures (Fahrenheit)", y = "Relative Humidity") +
-    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) + theme_bw() +
- theme( axis.text.x=element_text(angle=90, vjust=0.5) );  plot(plot2);
+  #### Part 2: Last lesson's plot -- implicitly coded ####
+  ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum) ) +
+    labs( title="Humidity vs Temperature -- implicitly coded",
+          subtitle="Lansing, MI -- 2016",
+          x = "Average Temperatures (Fahrenheit)",
+          y = "Relative Humidity") +
+    scale_x_continuous( breaks = seq(from=10, to=80, by=10) ) +
+    theme_bw() +   # has no subcomponents
+    theme( axis.text.x=element_text(angle=90, vjust=0.5) )
 ```
 
-But, I would hate to ever have to read or modify the code above!
+The above code produces the same plot as @fig-spacing (with a minor change to the title), except that it:
 
-![Both GGPlot codeblocks above produce the same plot](images/GGP-1-01-ChangeTheme-02.png){#fig-badSpacing .fs}
+-    does not save the plot to a variable\
+    `plot1 = ggplot(...)`
+
+-    does not explicitly print the plot\
+    `plot(plot1)`
+
+ 
+
+This code will produce a plot if you execute it interactively (using ***Run*** or ***Control-Enter***), but it will not produce a plot if you ***Source*** the script.
+
+ 
+
+When you run code interactively, R makes assumptions about what you want. In this case, it assumes that the object created by the code should be rendered and displayed.
+
+ 
+
+When you ***Source*** a script, no such assumptions are made. As a result, nothing is displayed unless you are explicit. One way to be explicit is to tell R to:
+
+1.  store the plot in an object (`plot1`)
+
+2.  print the plot using `plot()`
+
+ 
+
+As a general rule, [it is best to be explicit with your code]{.hl}. Explicit code:
+
+-   behaves consistently whether it is run interactively or sourced
+
+-   makes your intent clearer to readers (including your future self)
+
+-   allows you to save objects—such as plots—to variables that can be later reused or modified (something we will do in a later lesson)
+
+-   gives you more control over the script – for example, you can choose when to call `print(plot1)`
 
 ## Mapping and aesthetics
 
@@ -271,7 +307,7 @@ Putting the title and position together with the rest of the plot:
   plot(plot5);
 ```
 
-[Note: ***theme()*** must come after ***theme_bw()***, otherwise the changes will be overwritten by ***theme_bw()***]{.note}
+[Note: ***theme()*** must come after ***theme_bw()***, otherwise the changes will be overwritten]{.note}
 
 ![Changing the legend's title and position](images/GGP-1-03-LegendTitlePosition.png){#fig-legendChange .fs}
 
