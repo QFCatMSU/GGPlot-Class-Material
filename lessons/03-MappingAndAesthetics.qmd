@@ -71,10 +71,10 @@ Most of the time you will see ggplot code written like this:
 
 The above code produces the same plot as @fig-spacing (with a minor change to the title), except that it:
 
--    does not save the plot to a variable\
+-   does not save the plot to a variable\
     `plot1 = ggplot(...)`
 
--    does not explicitly print the plot\
+-   does not explicitly print the plot\
     `plot(plot1)`
 
  
@@ -415,7 +415,7 @@ When two plots overlap, as the linear model and the scatterplot do in @fig-linea
 
 ## Application
 
-1\) For the linear model in the last plot, add a mapping of ***color=season***.
+1\) For the linear model in the last plot (the ***geom_smooth()*** component), add a mapping of ***color=season***.
 
 -   In comments in your script: Explain what happens to the plot when you add the mapping ***color=season*** to the linear model
 
@@ -425,9 +425,9 @@ When two plots overlap, as the linear model and the scatterplot do in @fig-linea
 
  
 
-2\) Create a scatterplot that maps the four columns ***windDir***, ***windSpeed***, ***precip2***, and ***tempDept*** to a scatterplot ([note: **tempDept** is how far the temperature was from average]{.note})
+2\) Create a scatterplot that maps the four columns , ***windSpeed***, ***precip2***, ***windDir*** and ***tempDept*** ([note: **tempDept** is how far the temperature was from average]{.note})
 
--   you choose the mappings
+-   you choose the mappings except use ***shape*** for one (shape will only work for one)
 
 -   Give a title and label the axes and legend
 
@@ -439,10 +439,10 @@ When two plots overlap, as the linear model and the scatterplot do in @fig-linea
 
  
 
-3\) In comments in your script answer: What patterns can you find in the plot?
+3\) In comments in your script answer: What patterns can you find in the plot from #2?
 
  
 
-4\) Create a scatterplot that (somewhat intelligently) makes use of five mappings in one component. [Note: ***shape*** is a common mapping that was not used in this lesson.]{.note}
+4\) Create a scatterplot that shows a relationship between temperature departure (***tempDept***) and some other column. Add a linear model of the relationship to the plot. Label everything appropriately and add one more mapping to the plot.
 
 {{< include ../assets/_AppInstructions.qmd >}}
