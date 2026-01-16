@@ -4,7 +4,7 @@ short: "01c"
 # special characters for highlighting code : «»
 ---
 
-### Git and GitHub setup:
+### Two options for setup
 
 The QFC is moving all student work to GitHub. Using GitHub (and Git) can be tricky for new students, so we’ve created two setup lessons to help you get started:
 
