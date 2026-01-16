@@ -14,7 +14,11 @@ The QFC is moving all student work to GitHub. Using GitHub (and Git) can be a bi
 
  
 
-You can choose which lesson to do. If you choose the basic lesson, you will need to request a GitHub URL from {{< var instructor.email >}} before starting.
+Both lessons require a GitHub account, which you can [sign up for here: https://github.com](https://github.com).
+
+ 
+
+You can choose which lesson to do. If you choose the ***basic*** lesson, you must first email {{< var instructor.email >}} with you GitHub username. Your instructor will send you a GitHub URL to use.
 
 ## Purpose
 

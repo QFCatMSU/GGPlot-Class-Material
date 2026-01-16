@@ -752,7 +752,7 @@
     "href": "lessons/01b-GitHubSetupAdv.html",
     "title": "01b: Git and GitHub Setup (Advanced)",
     "section": "",
-    "text": "The QFC is moving all student work to GitHub. Using GitHub (and Git) can be a bit tricky for new students, so we’ve created two setup lessons to help you get started:\n\nAdvanced (this lesson): Student works directly in GitHub giving you a more complete experience.\nBasic: Hides most of GitHub from view, making it simpler to get started.\n\n \nYou can choose which lesson to do. If you choose the basic lesson, you will need to request a GitHub URL from belinsky@msu.edu before starting.",
+    "text": "The QFC is moving all student work to GitHub. Using GitHub (and Git) can be a bit tricky for new students, so we’ve created two setup lessons to help you get started:\n\nAdvanced (this lesson): Student works directly in GitHub giving you a more complete experience.\nBasic: Hides most of GitHub from view, making it simpler to get started.\n\n \nBoth lessons require a GitHub account, which you can sign up for here: https://github.com.\n \nYou can choose which lesson to do. If you choose the basic lesson, you must first email belinsky@msu.edu with you GitHub username. Your instructor will send you a GitHub URL to use.",
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "01b: Git and GitHub Setup (Advanced)"
@@ -1181,7 +1181,7 @@
     "href": "lessons/01c-GitHubSetupBasic.html",
     "title": "01c: Git and GitHub Setup (Basic)",
     "section": "",
-    "text": "The QFC is moving all student work to GitHub. Using GitHub (and Git) can be a bit tricky for new students, so we’ve created two setup lessons to help you get started:\n\nAdvanced: Student works directly in GitHub giving you a more complete experience.\nBasic (this lesson): Hides most of GitHub from view, making it simpler to get started.\n\n \nYou can choose which lesson to do. If you choose the basic lesson, you will need to request a GitHub URL from belinsky@msu.edu before starting.",
+    "text": "The QFC is moving all student work to GitHub. Using GitHub (and Git) can be tricky for new students, so we’ve created two setup lessons to help you get started:\n\nAdvanced: work directly in GitHub, giving you a more complete experience\nBasic (this lesson): Hides most of GitHub from view, making it simpler to get started.\n\n \nBoth lessons require a GitHub account, which you can sign up for here: https://github.com.\n \nYou can choose which lesson to do. If you choose the basic lesson, you must first email belinsky@msu.edu with you GitHub username. Your instructor will send you a GitHub URL to use.",
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "01c: Git and GitHub Setup (Basic)"
@@ -1192,7 +1192,7 @@
     "href": "lessons/01c-GitHubSetupBasic.html#purpose",
     "title": "01c: Git and GitHub Setup (Basic)",
     "section": "1 Purpose",
-    "text": "1 Purpose\n\nSetup Git on your computer\nUse Git to connect your RStudio Project to an instructor supplied GitHub repository\nUpload changes to your project to the GitHub repository\n\n\n1.1 Prerequisite\nYou will need a GitHub account to complete this lesson. You can sign up for an account at https://github.com.",
+    "text": "1 Purpose\n\nSetup Git on your computer\nUse Git to connect your RStudio Project to an instructor supplied GitHub repository\nUpload changes to your project to the GitHub repository",
     "crumbs": [
       "<b>Graphing With GGPlot class</b>",
       "01c: Git and GitHub Setup (Basic)"
