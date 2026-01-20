@@ -5,14 +5,7 @@ library(package=ggplot2);              # get the GGPlot package
 weatherData = read.csv(file="data/Lansing2016NOAA.csv", 
                        stringsAsFactors = FALSE);  # for people still using R v3
 
-#### Part 0: Will only work if you click Run ####
-ggplot( data=weatherData ) +
-  geom_point( mapping=aes(x=avgTemp, y=relHum, color=season, size=precip2)) +
-  theme_bw() +
-  labs(title = "Humidity vs. Temperature",
-       subtitle = "Lansing, Michigan: 2016",
-       x = "Temperature (\u00B0F)",  # 00B0 is the degree symbol
-       y = "Humidity (\u0025)")
+
 
 #### Part 1: Mapping the points (with some Unicode added) ####
 plot1 = ggplot( data=weatherData ) +
@@ -181,3 +174,12 @@ plot11 = ggplot( data=weatherData ) +
        x = "Temperature (F)",
        y = "Humidity (%)");
 plot(plot11);
+
+#### Extension: Will only work if you click Run ####
+ggplot( data=weatherData ) +
+  geom_point( mapping=aes(x=avgTemp, y=relHum, color=season, size=precip2)) +
+  theme_bw() +
+  labs(title = "Humidity vs. Temperature",
+       subtitle = "Lansing, Michigan: 2016",
+       x = "Temperature (\u00B0F)",  # 00B0 is the degree symbol
+       y = "Humidity (\u0025)")
