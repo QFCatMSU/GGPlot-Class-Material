@@ -5,7 +5,7 @@ library(package=ggplot2);              # get the GGPlot package
 weatherData = read.csv(file="data/Lansing2016NOAA.csv", 
                        stringsAsFactors = FALSE);  # for people still using R v3
 
-#### Part 0: Will work if your Run -- but not well-structured! ####
+#### Part 0: Will only work if you click Run ####
 ggplot( data=weatherData ) +
   geom_point( mapping=aes(x=avgTemp, y=relHum, color=season, size=precip2)) +
   theme_bw() +

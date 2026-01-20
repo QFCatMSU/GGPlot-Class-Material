@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#questions-to-answer" id="toc-questions-to-answer" class="nav-link" data-scroll-target="#questions-to-answer"><span class="header-section-number">9.1</span> Questions to answer</a></li>
   <li><a href="#turn-in-on-github" id="toc-turn-in-on-github" class="nav-link" data-scroll-target="#turn-in-on-github"><span class="header-section-number">9.2</span> Turn in on GitHub</a></li>
   </ul></li>
-  <li><a href="#extension-using-run-on-a-ggplot" id="toc-extension-using-run-on-a-ggplot" class="nav-link" data-scroll-target="#extension-using-run-on-a-ggplot"><span class="header-section-number">10</span> Extension: Using Run on a GGPlot</a></li>
+  <li><a href="#extension-saving-and-plotting-ggplot" id="toc-extension-saving-and-plotting-ggplot" class="nav-link" data-scroll-target="#extension-saving-and-plotting-ggplot"><span class="header-section-number">10</span> Extension: Saving and plotting GGPlot</a></li>
   <li><a href="#extension-rgb-colors-and-unicode-characters" id="toc-extension-rgb-colors-and-unicode-characters" class="nav-link" data-scroll-target="#extension-rgb-colors-and-unicode-characters"><span class="header-section-number">11</span> Extension: RGB Colors and Unicode Characters</a>
   <ul class="collapse">
   <li><a href="#rgb-colors" id="toc-rgb-colors" class="nav-link" data-scroll-target="#rgb-colors"><span class="header-section-number">11.1</span> RGB colors</a></li>
@@ -354,20 +354,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="styling-elements-of-a-plot" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="styling-elements-of-a-plot"><span class="header-section-number">2</span> Styling elements of a plot</h2>
-<p>Pretty much everything in a GGPlot canvas can be customized. How you customized a component depends largely on what type of component it is.</p>
+<p>Pretty much everything in a GGPlot canvas can be customized. How you customized a element depends largely on what type of element it is.</p>
 <p>&nbsp;</p>
-<p>The are basically three categories of components in GGPlot:</p>
+<p>For styling purposes, there are three types of elements in GGPlot:</p>
 <ol type="1">
 <li><p>Plot properties that are not mapped to data (e.g., <strong><em>size</em></strong> of all points set to a specific value)</p></li>
 <li><p>Plot properties that are mapped to data (e.g.,&nbsp;<strong><em>size</em></strong> of point is dependent upon the value of the point)</p></li>
-<li><p>Non-plot components (everything in the canvas that is not part of the plot)</p></li>
+<li><p>Non-plot components (everything in the canvas that is not part of the plot, e.g., grid lines)</p></li>
 </ol>
 <p>&nbsp;</p>
-<p>Each of the categories above have a distinct method of styling.&nbsp; We will cover #1 and #3 in this lesson and #2 in a later lesson where we talk more about customizing mappings.</p>
+<p>Each of these element categories above have a distinct method of styling.&nbsp; We will cover #1 and #3 in this lesson and #2 in a later lesson when we customize mappings.</p>
 </section>
 <section id="styling-plot-components-points" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="styling-plot-components-points"><span class="header-section-number">3</span> Styling Plot Components: Points</h2>
 <p>In the previous lesson we mapped columns in <strong><em>weatherData</em></strong> to points (and their properties) on a scatterplot.</p>
+<p>&nbsp;</p>
 <p>In last lesson, we used the mapping function&nbsp;<strong><em>aes()</em></strong> with the following arguments:</p>
 <ul>
 <li><p><strong><em>x</em></strong> is mapped to temperature</p></li>
@@ -385,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">"Humidity (\u0025)"</span>);     <span class="co"># 0025 is the Unicode percentage symbol</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot1);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Extension: <a href="#unicode-characters">Unicode Characters</a></p>
-<p><a href="#extension-using-run-on-a-ggplot">Extension: Using Run on a GGPlot</a></p>
+<p><a href="#extension-saving-and-plotting-ggplot">Extension: Saving and plotting GGPlot</a></p>
 <p>&nbsp;</p>
 <p>And the result of the four mappings:</p>
 <div id="fig-mappings" class="fs quarto-float quarto-figure quarto-figure-left anchored">
@@ -400,15 +401,15 @@ Figure&nbsp;1: Using mapping to style the points based on data in a column
 </div>
 <section id="unampped-styling-of-points" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="unampped-styling-of-points"><span class="header-section-number">3.1</span> Unampped styling of points</h3>
-<p>We can also use properties like <strong><em>color, size</em></strong>, and <strong><em>shape</em></strong> to style all the points <span class="hl">exactly the same.</span></p>
+<p>We can also use properties like <strong><em>color, size</em></strong>, and <strong><em>shape</em></strong> to style all the points exactly the same (i.e., irrespective of the data).</p>
 <p>&nbsp;</p>
 <p>We are going to start by styling the points in the same scatterplot using <strong><em>color</em></strong>, <strong><em>size</em></strong>, and <strong><em>shape</em></strong> <span class="hl">as subcomponents of <strong><em>geom_point()</em></strong> instead of mappings:</span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 2: Styling the points ####</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum),  <span class="co"># mapping</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">color=</span><span class="st">"darkgreen"</span>», <span class="co"># NOT a mapping</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">size=</span><span class="fl">2.5</span>,»          <span class="co"># NOT a mapping</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">shape=</span><span class="dv">17</span>» ) <span class="sc">+</span>       <span class="co"># NOT a mapping</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">color=</span><span class="st">"darkgreen"</span>», <span class="co"># subcomponent, not a mapping</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">size=</span><span class="fl">2.5</span>,»          <span class="co"># subcomponent, not a mapping</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                       «<span class="at">shape=</span><span class="dv">17</span>» ) <span class="sc">+</span>       <span class="co"># subcomponent, not a mapping</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Humidity vs. Temperature"</span>,</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">"Lansing, Michigan: 2016"</span>,</span>
@@ -482,8 +483,8 @@ Figure&nbsp;3: The color subcomponent overrode the color mapping
 <li><p><strong><em>shape</em></strong>: there are three options for shape</p>
 <ul>
 <li><p><a href="http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r">the standard R shapes</a> (numbered 0 through 25)</p></li>
-<li><p>any character on the keyboard in quotes (so, <strong><em>shape = “~”</em></strong> would use the tilde as a point character) &nbsp;&nbsp;</p></li>
-<li><p>any <a href="#unicode-characters">Unicode Characters</a> (Unicode U+018F, which is <strong>Ə</strong>, would be:&nbsp;<strong>shape = “\u018f”</strong>)</p></li>
+<li><p>any character on the keyboard in quotes (so, <strong><em>shape = “~”</em></strong> would use the <strong><em>tilde</em></strong> as a point shape) &nbsp;&nbsp;</p></li>
+<li><p>any <a href="#unicode-characters">Unicode Characters</a> (Unicode <strong><em>U+018F</em></strong>, which is <strong>Ə</strong>, would be:&nbsp;<strong>shape = “\u018f”</strong>)</p></li>
 </ul></li>
 <li><p><strong><em>fill</em></strong>: a background color that only works for <strong><em>shape</em></strong> #21-25 and some Unicode characters</p></li>
 <li><p><strong><em>alpha</em></strong>: opacity of points – a value between <strong>0</strong> (transparent) and <strong>1</strong> (opaque)</p></li>
@@ -524,6 +525,7 @@ Figure&nbsp;4: Adding an alpha value (transparency) to the points to better see 
 <section id="styling-plot-components-lines" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="styling-plot-components-lines"><span class="header-section-number">4</span> Styling plot components: Lines</h2>
 <p>Last lesson we used <strong><em>geom_smooth()</em></strong> to create a line than represent the linear regression between humidity and temperature.&nbsp; In this lesson, we will create two line plots using <strong><em>geom_line(),</em></strong>&nbsp; <strong><em>geom_line()</em></strong> is basically <strong><em>geom_point()</em></strong> with the points connected.</p>
+<p>&nbsp;</p>
 <p>We are going to use <strong><em>geom_line()</em></strong> twice, to plot:</p>
 <ol type="1">
 <li><p><em><strong>maxTemp</strong> vs</em> <strong>day (row) number</strong></p></li>
@@ -549,7 +551,7 @@ Figure&nbsp;4: Adding an alpha value (transparency) to the points to better see 
 <div id="fig-linePlots" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-linePlots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/GGP1-04-Alpha-01.png" class="fs img-fluid figure-img">
+<img src="images/GGP-1-04_Line_Plots.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linePlots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: Two line graphs: maxTemp vs day number and minTemp vs day number
@@ -584,15 +586,15 @@ Figure&nbsp;6: Changing the line plot colors using color names and rgb()
 </section>
 <section id="properties-of-lines-and-their-possible-values" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="properties-of-lines-and-their-possible-values"><span class="header-section-number">4.2</span> Properties of lines and their possible values</h3>
-<p>Lines and points both use the properties <strong><em>color</em></strong>, <strong><em>fill</em></strong>, and <strong><em>alpha</em></strong>.&nbsp; The difference is that <strong><em>linetype</em></strong> and <strong><em>linewidth</em></strong> is used instead point <strong><em>shape</em></strong> and point <strong><em>size</em></strong>.</p>
+<p>Lines and points both use the properties <strong><em>color</em></strong>, <strong><em>fill</em></strong>, and <strong><em>alpha</em></strong>.&nbsp; The difference is that point <strong><em>shape</em></strong> and point <strong><em>size</em></strong>.is replaced with <strong><em>linetype</em></strong> and <strong><em>linewidth</em></strong></p>
 <p>&nbsp;</p>
 <p>There are 6 values for <strong><em>linetype</em></strong> and they are given the number 1-6 (<a href="https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html">1 is a solid line and the rest are variations of a dotted or dashed lines</a>).</p>
 <p>&nbsp;</p>
-<p><span class="note">Note: You can create more customized lines in GGPlot by setting the size and frequency of the dots and dashes, but that involves hexadecimals number and will be a topic for another day!</span></p>
+<p><span class="note">Note: You can create more customized lines in GGPlot by setting the size and frequency of the dots and dashes, but that involves hexadecimals number and is an advanced topic</span>.</p>
 </section>
 <section id="add-a-smoothing-function" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="add-a-smoothing-function"><span class="header-section-number">4.3</span> Add a smoothing function</h3>
-<p>On the graph, we are going to add another component that represents the average temperature (<strong><em>avgTemp</em></strong>) and use a method that smooths out the values.&nbsp; Like last lesson, we use <strong><em>geom_smooth()</em></strong>, but we will use a different smoothing method this time (<strong><em>loess</em></strong>).</p>
+<p>On the graph, we are going to add another component that represents the average temperature (<strong><em>avgTemp</em></strong>) and smooth out the values.&nbsp; Like last lesson, we use <strong><em>geom_smooth()</em></strong>, but we will use a different smoothing method this time (<strong><em>loess</em></strong>).</p>
 <p>&nbsp;</p>
 <p>The line is styled using <strong><em>color, linetype, linewidth</em></strong>, and <strong><em>fill</em></strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 7: Add smoothing function </span><span class="al">###</span></span>
@@ -616,7 +618,7 @@ Figure&nbsp;6: Changing the line plot colors using color names and rgb()
 <div id="fig-lineColor" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lineColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/GGP1-04-LineColors-01.png" class="fs img-fluid figure-img">
+<img src="images/GGP_1-04b_TempPlot.png" class="fs img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lineColor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: Adding avgTemp as a smoothed plot and styled the line
@@ -659,6 +661,7 @@ Figure&nbsp;8: Many of the theme subcomponents are either text, line, or rectang
 <section id="subcomponent-groups" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="subcomponent-groups"><span class="header-section-number">5.1</span> Subcomponent groups</h3>
 <p>The <strong><em>theme()</em></strong> page can be a bit tricky to read.&nbsp; Many of the subcomponents are grouped together (<a href="#fig-elements" class="quarto-xref">Figure&nbsp;8</a>) and the groupings can be hard to see.</p>
+<p>&nbsp;</p>
 <p>In the image below (<a href="#fig-elementGroups" class="quarto-xref">Figure&nbsp;9</a>), there are three groupings highlighted:</p>
 <ul>
 <li><p>axis titles</p></li>
@@ -718,8 +721,9 @@ Figure&nbsp;10: Information about the three element types in GGPlot (4 if you co
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">margin =</span> <span class="cn">NULL</span>,</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug =</span> <span class="cn">NULL</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elementTextArgs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11: Arguments for element_text()
@@ -799,10 +803,12 @@ Figure&nbsp;12: Styling labels and titles using element_text()
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineend =</span> <span class="cn">NULL</span>,</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">arrow =</span> <span class="cn">NULL</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">linejoin =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">arrow =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>(),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="note">Note: <strong>size = deprecated()</strong> because <strong>linewidth</strong> has replaced <strong>size</strong> – <strong>size</strong> works for now but is no longer supported (that is what deprecated means).</span></p>
 <p>&nbsp;</p>
 <p>The line components in a plot include the axis ticks, the axis lines, and the grid lines.</p>
@@ -850,7 +856,7 @@ Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
 </section>
 <section id="greyscaling" class="level3" data-number="7.2">
 <h3 data-number="7.2" class="anchored" data-anchor-id="greyscaling"><span class="header-section-number">7.2</span> Greyscaling</h3>
-<p>We are using <span class="hl">greyscale</span>to set the color of the various objects in <a href="#fig-elementLine" class="quarto-xref">Figure&nbsp;13</a>.&nbsp; In GGPlot, you can choose greyscale colors between <strong><em>grey0</em></strong> (black) and <strong><em>grey100</em></strong> (white).&nbsp; You can think of the number after <strong><em>grey</em></strong> as the percentage of light from <strong><em>0</em></strong> (none – black) to&nbsp;<strong><em>100</em></strong> (all – white). So, the <strong><em>grey75</em></strong> used in <a href="#fig-elementLine" class="quarto-xref">Figure&nbsp;13</a> is a light grey.</p>
+<p>We are using <span class="hl">greyscale</span> to set the color of the various objects in <a href="#fig-elementLine" class="quarto-xref">Figure&nbsp;13</a>.&nbsp; In GGPlot, you can choose greyscale colors between <strong><em>grey0</em></strong> (black) and <strong><em>grey100</em></strong> (white).&nbsp; You can think of the number after <strong><em>grey</em></strong> as the percentage of light from <strong><em>0</em></strong> (none – black) to&nbsp;<strong><em>100</em></strong> (all – white). So, the <strong><em>grey75</em></strong> used in <a href="#fig-elementLine" class="quarto-xref">Figure&nbsp;13</a> is a light grey.</p>
 </section>
 <section id="lineend-and-arrow" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="lineend-and-arrow"><span class="header-section-number">7.3</span> lineend and arrow</h3>
@@ -858,7 +864,7 @@ Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
 <p>&nbsp;</p>
 <p><strong><em>lineend</em></strong> has three options: “butt” (default), “round”, and “square”.&nbsp; For the lines we are using right now you will not see much of a difference.</p>
 <p>&nbsp;</p>
-<p><strong><em>arrow</em></strong> is more complicated as it does not have simple options.</p>
+<p><strong><em>arrow</em></strong> is complicated – there are no simple options.</p>
 <p>&nbsp;</p>
 <p>If you want to use an arrow you:</p>
 <ul>
@@ -876,9 +882,11 @@ Figure&nbsp;13: Styling grid lines and axis-ticks using element_text()
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="cn">NULL</span>,</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>()</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">linejoin =</span> <span class="cn">NULL</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.blank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fu">deprecated</span>(),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p><strong><em>fill</em></strong> is the background color of the rectangle</p></li>
 <li><p><strong><em>color</em></strong> (or <strong><em>colour</em></strong>) is the outline color of the rectangle&nbsp;</p></li>
@@ -959,8 +967,8 @@ Figure&nbsp;15: Plot canvas to replicate
 </ol>
 </section>
 </section>
-<section id="extension-using-run-on-a-ggplot" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="extension-using-run-on-a-ggplot"><span class="header-section-number">10</span> Extension: Using Run on a GGPlot</h2>
+<section id="extension-saving-and-plotting-ggplot" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="extension-saving-and-plotting-ggplot"><span class="header-section-number">10</span> Extension: Saving and plotting GGPlot</h2>
 <p>When you see GGPlot examples online they often skip the steps of saving the plot to a variable and using <strong><em>plot()</em></strong> – the parts highlighted below:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>«plot1» <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="at">data=</span>weatherData ) <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>( <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>avgTemp, <span class="at">y=</span>relHum, <span class="at">color=</span>season, <span class="at">size=</span>precip2)) <span class="sc">+</span></span>
@@ -987,7 +995,7 @@ Figure&nbsp;15: Plot canvas to replicate
 <h3 data-number="11.1" class="anchored" data-anchor-id="rgb-colors"><span class="header-section-number">11.1</span> RGB colors</h3>
 <p>The are over 16 million colors we can choose from and to access all these colors, we need to use their <strong><em>rgb</em></strong> color codes.</p>
 <p>&nbsp;</p>
-<p><strong><em>rgb</em></strong> stands for <em>red, green, blue</em> and represents the three <em>primary light colors</em>.&nbsp; You are probably more familiar with the primary pigment colors, which are red, yellow, blue (more accurately: magenta, yellow, cyan).&nbsp; The different is that <em>primary light colors combine to make white</em> (they are additive), whereas the <em>primary pigment colors combine to make black/dark brown</em> (they are subtractive).</p>
+<p><strong><em>rgb</em></strong> stands for red, green, blue and represents the three <span class="hl">primary light colors</span>.&nbsp; You are probably more familiar with the primary pigment colors, which are red, yellow, blue (more accurately: magenta, yellow, cyan).&nbsp; The different is that primary light colors combine to make white (they are <span class="hl">additive</span>), whereas the primary pigment colors combine to make black/dark brown (they are <span class="hl">subtractive</span>).</p>
 <p>&nbsp;</p>
 <p>In R, you can set color to an <strong><em>rgb</em></strong> value using the function <strong><em>rgb()</em></strong>.</p>
 <p>&nbsp;</p>
@@ -1029,13 +1037,13 @@ Figure&nbsp;16: Unicode characters on Wikipedia, and the hexadecimal number used
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>¢</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can add Unicode characters to any text in a plot or use Unicode as the shape of a point.</p>
 <p>&nbsp;</p>
-<p><span class="hl">Warning: no font type supports all 150,000+ Unicode characters</span> (many are not even close).&nbsp; Sticking to more common font makes it more likely that the Unicode character is available.</p>
+<p><span class="hl">Warning: no font type supports all 280,000+ Unicode characters</span> (many are not even close).&nbsp; Sticking to more common font makes it more likely that the Unicode character is available.</p>
 </section>
 <section id="script-using-rgb-colors-and-unicode-characters" class="level3" data-number="11.3">
 <h3 data-number="11.3" class="anchored" data-anchor-id="script-using-rgb-colors-and-unicode-characters"><span class="header-section-number">11.3</span> Script using RGB colors and Unicode characters</h3>
 <p>In the following script, I used <strong>RGB</strong> colors to set the color of the points, and <strong>Unicode</strong> to represent the shape of the points.</p>
 <ul>
-<li><p>The color <strong><em>rgb(red=0.7, green=0.5, blue=0)</em></strong> is a lot of red light, half green light, and no blue light.&nbsp; It is yellowish-brown (remember these are light color, not pigment colors)</p></li>
+<li><p>The color <strong><em>rgb(red=0.7, green=0.5, blue=0)</em></strong> is 70% of red light, half green light, and no blue light.&nbsp; It is yellowish-brown (remember these are light color, not pigment colors)</p></li>
 <li><p>The shape is Unicode character <strong>00A5</strong>, which is the Yen sign: ¥&nbsp;</p></li>
 </ul>
 <div id="fig-rgbAndUnicode" class="fs quarto-float quarto-figure quarto-figure-left anchored">
