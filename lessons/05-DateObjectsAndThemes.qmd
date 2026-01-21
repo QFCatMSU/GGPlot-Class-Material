@@ -24,7 +24,7 @@ Scripts for this lesson (save both to the ***scripts*** folder inside your RStud
 
  
 
-[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as previous lessons)
+[The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv) (same as previous lessons)
 
 -   Save the CSV file, called ***Lansing2016NOAA.csv*** to the ***data*** folder inside your RStudio Project.
 
@@ -84,7 +84,7 @@ The first thing to notice is that, while ***weatherData*** has a column named **
 [1] "character"
 ```
 
-Looking at the ***date*** column in a Viewer tab can see the date is not properly formatted (mostly because it does not have a year):
+Looking at the ***date*** column in a Viewer tab can see the date is not properly formatted (for instance, it does not have a year):
 
 ![weatherData data frame, note that the date column has only the month and day (no year)](images/GGP-01-04-DateWithoutYear.PNG){#fig-dateMisformat .fs}
 
@@ -100,7 +100,7 @@ Otherwise, GGPlot will treat the column as string (character) values.
 
 ## Adding the year to the date values
 
-We are going to create a new column in ***weatherData*** that has properly formatted date values.  Since[it is generally not a good idea to directly modify values in a data frame]{.hl}, we are going to make a copy of the ***date*** column, called ***dateYr***, and modify the ***dateYr*** column instead.
+We are going to create a new column in ***weatherData*** that has properly formatted date values.  Since [it is generally not a good idea to directly modify values in a data frame]{.hl}, we are going to make a copy of the ***date*** column, called ***dateYr***, and modify the ***dateYr*** column instead.
 
  
 
@@ -120,7 +120,7 @@ This process will be broken into four steps: 
 
 ### Save the date column to a vector
 
-There are multiple ways in R to save a column in a data frame to a vector.  Three ways are given below, the last two are commented out but they will produce the same results:
+There are multiple ways in R to save a column in a data frame to a vector.  Three ways are given below, the last two are commented out, but they will produce the same results:
 
 ``` r
 #### Part 1: Add year to date values ####
@@ -150,7 +150,7 @@ theDate1 chr[1:366] "01-01" "01-02" "01-03" ...
 
 ### Append the year to the date
 
-Now we want to append, or ***paste***,the year on to every date value in the string vector ***theDate1***. 
+Now we want to append, or ***paste***, the year on to every date value in the string vector ***theDate1***. 
 
 We will use ***paste()*** and there are three arguments to set:
 
@@ -170,7 +170,7 @@ theDate2 = paste(theDate1, "-2016", sep="");
 [Extension: more about paste()](#extension-more-about-paste) and the reason why argument names are not used for the first two values**\
 **
 
-Now every value has a year attached to it:
+Every value in ***theDate2*** has a year attached to it:
 
 ::: {#fig-dateValues}
 ``` {.r tab="Environment"}
@@ -220,14 +220,14 @@ theDate3 = as.Date(theDate2, format="%m-%d-%Y");
 Now, R recognizes the values in the vector as ***Dates***:
 
 ``` {.r tab="Environment"}
-theDate3    Date[1:366] format: "2016-01-01" "2016-01-02" "2016-01-03" ...
+theDate3    «Date»[1:366] format: "2016-01-01" "2016-01-02" "2016-01-03" ...
 ```
 
-[note: The **Environment** always shows **Date** values in R's standard date format (YYYY-MM-DD),  which is not the same as the format we used to create the date.]{.note}
+[note: The **Environment** always shows **Date** values in R's standard date format (YYYY-MM-DD), which is not the same as the format we used to create the date.]{.note}
 
 #### Date formats and conversion specifications
 
-The official term for the representation of the different parts of the ***Date*** (e.g., ***%m***, ***%d***, ***%Y***)is [conversion specifications,]{.hl} which you can find here under the ***details*** section: <https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html>
+The official term for the representation of the different parts of the ***Date*** (e.g., ***%m***, ***%d***, ***%Y***) is [conversion specifications,]{.hl} which you can find here under the ***details*** section: <https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html>
 
  
 
@@ -313,7 +313,7 @@ The only change from the first plot is that we are using the new ***dateYr*** co
 
 ### The repeated date values
 
-Since all three plots, or [***geoms***]{.hl}as GGPlot calls them, use ***dateYr*** for the x-axis, we can move the x-axis mapping to ***ggplot().*** This says that all ***geoms*** will use ***dateYr*** as the ***x*** mapping.  and we do not have to declare an x-mapping in the individual ***geoms***:
+Since all three plots, or [***geoms***]{.hl}as GGPlot calls them, use ***dateYr*** for the x-axis, we can move the x-axis mapping to ***ggplot().*** This says that all ***geoms*** will use ***dateYr*** as the ***x*** mapping, meaning we do not have to declare an x-mapping in the individual ***geoms***:
 
 ``` r
   #### Part 3: Move x to canvas --
@@ -363,7 +363,7 @@ And we are going to modify two subcomponents in ***scale_x_date***:
 
 -   ***date_labels***: The formatting of the date -- using conversion specifications
 
-    -    we will use abbreviated months (***%b***), two-digit days (***%d***), and two-digit years (***%y***) (e.g., **Apr 15, '22**)
+    -   we will use abbreviated months (***%b***), two-digit days (***%d***), and two-digit years (***%y***) (e.g., **Apr 15, '22**)
 
 ``` r
  #### Part 5: Convert date format and date breaks
@@ -499,17 +499,15 @@ Let's say you like this theme and want to use it in other ggplots in other scrip
 
  
 
-In the ***scripts*** folder, I created a new script file named ***ggplot_theming.R*** and inside the script file:
+In the ***scripts*** folder, I created a new script file named ***ggplot_theming.R*** and inside the script file there is a function named **theme_ugly()** that:
 
-1.  create a function named **theme_ugly()**
+1.  create an object that contains the new theme (I called the object ***newTheme***)
 
-2.  create an object that contains the new theme (I called the object ***newTheme***)
-
-3.  set ***newTheme*** to the ***theme*** changes
+2.  set ***newTheme*** to the ***theme*** changes
 
     -   In this case, it is ***theme_bw()*** with seven modified subcomponents (just like in @fig-themedPlot)
 
-4.  return ***newTheme*** to the caller of the function
+3.  return ***newTheme*** to the caller of the function
 
 ``` r
 #### 1) create a function with the name of your theme
@@ -656,7 +654,7 @@ The theme has been removed but the changes to the ***geoms*** are still there:
 
 ### Changing back to default behavior
 
-The easiest way to change back to the default geom behavior is to reload the ggplot package:
+There is no function that resets GGPlot to the default geom behavior. Instead you unload the GGPlot package and then reload it.
 
 ``` r
 detach("package:ggplot2", unload = TRUE);   # unloads ggplot package from session
@@ -665,7 +663,7 @@ library(package="ggplot2");                 # reload package ggplot
 
 -   The first line unloads the ggplot2 package from the session
 
--   The second line reloads the GGPlot package (effectively resetting GGPlot back to defaults).
+-   The second line loads the GGPlot package (effectively resetting GGPlot back to defaults).
 
  
 
@@ -714,7 +712,7 @@ Now the same ***ggplot()***: 
 
  
 
-4\) On the GGPlot from #3:
+4\) On the GGPlot canvas from #3:
 
 -   display dates in this format: (28-Jun-'16)
 
@@ -724,7 +722,7 @@ Now the same ***ggplot()***: 
 
  
 
-5\) Using ***update_geom_defaults(),***on the ggplot from #3
+5\) Using ***update_geom_defaults(),*** on the ggplot from #3
 
 -   change the point shape to triangles and doubles the size of the points
 

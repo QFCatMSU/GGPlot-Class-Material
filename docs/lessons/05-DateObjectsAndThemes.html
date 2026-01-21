@@ -340,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><a href="../scripts/ggplot_theming.R">theme scripts used in lesson</a> (ggplot_theming.R)</p></li>
 </ul>
 <p>&nbsp;</p>
-<p><a href="../Data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as previous lessons)</p>
+<p><a href="../data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as previous lessons)</p>
 <ul>
 <li>Save the CSV file, called <strong><em>Lansing2016NOAA.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.</li>
 </ul>
@@ -390,7 +390,7 @@ Figure&nbsp;1: High, low, and average temperature throughout the year.
 <p>The first thing to notice is that, while <strong><em>weatherData</em></strong> has a column named <strong><em>date</em></strong>, the column is not actually in <strong><em>Date</em></strong> format.&nbsp; The <strong><em>date</em></strong> column is in <strong><em>character</em></strong> (or string) format:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(weatherData<span class="sc">$</span>date)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Looking at the&nbsp;<strong><em>date</em></strong> column in a Viewer tab can see the date is not properly formatted (mostly because it does not have a year):</p>
+<p>Looking at the&nbsp;<strong><em>date</em></strong> column in a Viewer tab can see the date is not properly formatted (for instance, it does not have a year):</p>
 <div id="fig-dateMisformat" class="fs quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dateMisformat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -412,7 +412,7 @@ Figure&nbsp;2: weatherData data frame, note that the date column has only the mo
 </section>
 <section id="adding-the-year-to-the-date-values" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="adding-the-year-to-the-date-values"><span class="header-section-number">3</span> Adding the year to the date values</h2>
-<p>We are going to create a new column in&nbsp;<strong><em>weatherData</em></strong> that has properly formatted date values.&nbsp; Since<span class="hl">it is generally not a good idea to directly modify values in a data frame</span>, we are going to make a copy of the <strong><em>date</em></strong> column, called <strong><em>dateYr</em></strong>, and modify the <strong><em>dateYr</em></strong> column instead.</p>
+<p>We are going to create a new column in&nbsp;<strong><em>weatherData</em></strong> that has properly formatted date values.&nbsp; Since <span class="hl">it is generally not a good idea to directly modify values in a data frame</span>, we are going to make a copy of the <strong><em>date</em></strong> column, called <strong><em>dateYr</em></strong>, and modify the <strong><em>dateYr</em></strong> column instead.</p>
 <p>&nbsp;</p>
 <p>This process will be broken into four steps:&nbsp;</p>
 <ol type="1">
@@ -425,7 +425,7 @@ Figure&nbsp;2: weatherData data frame, note that the date column has only the mo
 <p><span class="note">Note: There are quicker ways to do this but it is important to understand the individual steps.</span></p>
 <section id="save-the-date-column-to-a-vector" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="save-the-date-column-to-a-vector"><span class="header-section-number">3.1</span> Save the date column to a vector</h3>
-<p>There are multiple ways in R to save a column in a data frame to a vector.&nbsp; Three ways are given below, the last two are commented out but they will produce the same results:</p>
+<p>There are multiple ways in R to save a column in a data frame to a vector.&nbsp; Three ways are given below, the last two are commented out, but they will produce the same results:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Part 1: Add year to date values ####</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a) save the date vector from the data frame to the variable theDate</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>theDate1 <span class="ot">=</span> weatherData<span class="sc">$</span>date;         <span class="co"># get all values from the dates column</span></span>
@@ -444,7 +444,7 @@ Figure&nbsp;2: weatherData data frame, note that the date column has only the mo
 </section>
 <section id="append-the-year-to-the-date" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="append-the-year-to-the-date"><span class="header-section-number">3.2</span> Append the year to the date</h3>
-<p>Now we want to append, or <strong><em>paste</em></strong>,the year on to every date value in the string vector <strong><em>theDate1</em></strong>.&nbsp;</p>
+<p>Now we want to append, or <strong><em>paste</em></strong>, the year on to every date value in the string vector <strong><em>theDate1</em></strong>.&nbsp;</p>
 <p>We will use <strong><em>paste()</em></strong> and there are three arguments to set:</p>
 <ol type="1">
 <li><p>The initial values: <strong><em>theDate</em></strong></p></li>
@@ -458,7 +458,7 @@ Figure&nbsp;2: weatherData data frame, note that the date column has only the mo
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>theDate2 <span class="ot">=</span> <span class="fu">paste</span>(theDate1, <span class="st">"-2016"</span>, <span class="at">sep=</span><span class="st">""</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="#extension-more-about-paste">Extension: more about paste()</a> and the reason why argument names are not used for the first two values<strong><br>
 </strong></p>
-<p>Now every value has a year attached to it:</p>
+<p>Every value in <strong><em>theDate2</em></strong> has a year attached to it:</p>
 <div id="fig-dateValues" class="quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dateValues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -498,11 +498,11 @@ Figure&nbsp;3: Pasting the year to all values in the vector
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Save the values in Date format</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>theDate3 <span class="ot">=</span> <span class="fu">as.Date</span>(theDate2, <span class="at">format=</span><span class="st">"%m-%d-%Y"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now, R recognizes the values in the vector as <strong><em>Dates</em></strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>theDate3    Date[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] format<span class="sc">:</span> <span class="st">"2016-01-01"</span> <span class="st">"2016-01-02"</span> <span class="st">"2016-01-03"</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><span class="note">note: The <strong>Environment</strong> always shows <strong>Date</strong> values in R’s standard date format (YYYY-MM-DD),&nbsp; which is not the same as the format we used to create the date.</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-tab="Environment"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>theDate3    «Date»[<span class="dv">1</span><span class="sc">:</span><span class="dv">366</span>] format<span class="sc">:</span> <span class="st">"2016-01-01"</span> <span class="st">"2016-01-02"</span> <span class="st">"2016-01-03"</span> ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="note">note: The <strong>Environment</strong> always shows <strong>Date</strong> values in R’s standard date format (YYYY-MM-DD), which is not the same as the format we used to create the date.</span></p>
 <section id="date-formats-and-conversion-specifications" class="level4" data-number="3.3.1">
 <h4 data-number="3.3.1" class="anchored" data-anchor-id="date-formats-and-conversion-specifications"><span class="header-section-number">3.3.1</span> Date formats and conversion specifications</h4>
-<p>The official term for the representation of the different parts of the <strong><em>Date</em></strong> (e.g., <strong><em>%m</em></strong>, <strong><em>%d</em></strong>, <strong><em>%Y</em></strong>)is <span class="hl">conversion specifications,</span> which you can find here under the <strong><em>details</em></strong> section: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html</a></p>
+<p>The official term for the representation of the different parts of the <strong><em>Date</em></strong> (e.g., <strong><em>%m</em></strong>, <strong><em>%d</em></strong>, <strong><em>%Y</em></strong>) is <span class="hl">conversion specifications,</span> which you can find here under the <strong><em>details</em></strong> section: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/base/html/strptime.html</a></p>
 <p>&nbsp;</p>
 <p>This includes all the different specification for time (e.g., hours, minutes), most of which are not used in this lesson.&nbsp; <a href="https://www.geeksforgeeks.org/how-to-use-date-formats-in-r/">A more concise conversion specification sheet for this lesson, which only includes specifications for dates can be found here.</a></p>
 <p>&nbsp;</p>
@@ -582,7 +582,7 @@ Figure&nbsp;5: The x-axis now has date values instead of numeric
 </div>
 <section id="the-repeated-date-values" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="the-repeated-date-values"><span class="header-section-number">4.1</span> The repeated date values</h3>
-<p>Since all three plots, or <span class="hl"><strong><em>geoms</em></strong></span>as GGPlot calls them, use <strong><em>dateYr</em></strong> for the x-axis, we can move the x-axis mapping to <strong><em>ggplot().</em></strong> This says that all <strong><em>geoms</em></strong> will use <strong><em>dateYr</em></strong> as the <strong><em>x</em></strong> mapping.&nbsp; and we do not have to declare an x-mapping in the individual <strong><em>geoms</em></strong>:</p>
+<p>Since all three plots, or <span class="hl"><strong><em>geoms</em></strong></span>as GGPlot calls them, use <strong><em>dateYr</em></strong> for the x-axis, we can move the x-axis mapping to <strong><em>ggplot().</em></strong> This says that all <strong><em>geoms</em></strong> will use <strong><em>dateYr</em></strong> as the <strong><em>x</em></strong> mapping, meaning we do not have to declare an x-mapping in the individual <strong><em>geoms</em></strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Part 3: Move x to canvas --</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">###   only works because EVERY geom uses dateYr</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  plot3<span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>weatherData, «<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>dateYr)») <span class="sc">+</span>  <span class="co"># x mapping here</span></span>
@@ -637,7 +637,7 @@ Figure&nbsp;7: scale_x_date Help page – scroll down to see a description of th
 <li><p><strong><em>date_breaks</em></strong>: The distance between axis lines – we will use 5 weeks</p></li>
 <li><p><strong><em>date_labels</em></strong>: The formatting of the date – using conversion specifications</p>
 <ul>
-<li>&nbsp;we will use abbreviated months (<strong><em>%b</em></strong>), two-digit days (<strong><em>%d</em></strong>), and two-digit years (<strong><em>%y</em></strong>) (e.g., <strong>Apr 15, ’22</strong>)</li>
+<li>we will use abbreviated months (<strong><em>%b</em></strong>), two-digit days (<strong><em>%d</em></strong>), and two-digit years (<strong><em>%y</em></strong>) (e.g., <strong>Apr 15, ’22</strong>)</li>
 </ul></li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a> <span class="do">#### Part 5: Convert date format and date breaks</span></span>
@@ -763,9 +763,8 @@ Figure&nbsp;9: Our new (questionably) themed plot
 <h2 data-number="6" class="anchored" data-anchor-id="saving-the-theme-for-later-use"><span class="header-section-number">6</span> Saving the theme for later use</h2>
 <p>Let’s say you like this theme and want to use it in other ggplots in other scripts.&nbsp; To do this, you create your own theme in a separate script file.</p>
 <p>&nbsp;</p>
-<p>In the <strong><em>scripts</em></strong> folder,&nbsp;I created a new script file named <strong><em>ggplot_theming.R</em></strong> and inside the script file:</p>
+<p>In the <strong><em>scripts</em></strong> folder,&nbsp;I created a new script file named <strong><em>ggplot_theming.R</em></strong> and inside the script file there is a function named <strong>theme_ugly()</strong> that:</p>
 <ol type="1">
-<li><p>create a function named <strong>theme_ugly()</strong></p></li>
 <li><p>create an object that contains the new theme (I called the object&nbsp;<strong><em>newTheme</em></strong>)</p></li>
 <li><p>set&nbsp;<strong><em>newTheme</em></strong> to the <strong><em>theme</em></strong> changes</p>
 <ul>
@@ -912,12 +911,12 @@ Figure&nbsp;12: The changes to the geoms are persistent
 </section>
 <section id="changing-back-to-default-behavior" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="changing-back-to-default-behavior"><span class="header-section-number">7.3</span> Changing back to default behavior</h3>
-<p>The easiest way to change back to the default geom behavior is to reload the ggplot package:</p>
+<p>There is no function that resets GGPlot to the default geom behavior. Instead you unload the GGPlot package and then reload it.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">"package:ggplot2"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>);   <span class="co"># unloads ggplot package from session</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">package=</span><span class="st">"ggplot2"</span>);                 <span class="co"># reload package ggplot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p>The first line unloads the ggplot2 package from the session</p></li>
-<li><p>The second line reloads the GGPlot package (effectively resetting GGPlot back to defaults).</p></li>
+<li><p>The second line loads the GGPlot package (effectively resetting GGPlot back to defaults).</p></li>
 </ul>
 <p>&nbsp;</p>
 <p>Now the same <strong><em>ggplot()</em></strong>:&nbsp;</p>
@@ -963,14 +962,14 @@ Figure&nbsp;13: The geoms are back to their default properties
 <li><p>linear regression of&nbsp;<strong><em>coolDays</em></strong> vs <strong><em>newDate</em></strong></p></li>
 </ul>
 <p>&nbsp;</p>
-<p>4) On the GGPlot from #3:</p>
+<p>4) On the GGPlot canvas from #3:</p>
 <ul>
 <li><p>display dates in this format: (28-Jun-’16)</p></li>
 <li><p><strong><em>heatDay</em></strong> - change to red points and red regression line</p></li>
 <li><p><strong><em>coolDays</em></strong> - change to blue points and blue regression line</p></li>
 </ul>
 <p>&nbsp;</p>
-<p>5) Using <strong><em>update_geom_defaults(),</em></strong>on the ggplot from #3</p>
+<p>5) Using <strong><em>update_geom_defaults(),</em></strong> on the ggplot from #3</p>
 <ul>
 <li><p>change the point shape to triangles and doubles the size of the points</p></li>
 <li><p>don’t forget to unload the defaults</p></li>

@@ -3,7 +3,7 @@
   options(show.error.locations = TRUE);  # show line numbers on error
   library(package=ggplot2);              # include all GGPlot2 functions
   
-  weatherData = read.csv(file="data/lesson01.csv");
+  weatherData = read.csv(file="data/RSProj_Setup.csv");
   
   #### Labels for the facets of the plot
   windLabels = c(Low = "Light Winds",

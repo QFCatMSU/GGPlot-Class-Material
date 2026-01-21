@@ -173,7 +173,7 @@ plot7= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
        y = "Temperature (F)");
 plot(plot7);
 
-#### Part 8: The defaults in GGPlot have been changed and will persist
+#### Part 8: The defaults in GGPlot have been changed and will persist...
 plot8= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
   geom_line(mapping=aes(y=maxTemp)) +
   geom_line(mapping=aes(y=minTemp)) +
@@ -187,7 +187,7 @@ plot8= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
        y = "Temperature (F)");
 plot(plot8); 
 
-#### Part 9: Until you remove/reload GGPlot (or restart R) 
+#### Part 9: ...until you remove/reload GGPlot (or restart R) 
 detach("package:ggplot2", unload = TRUE);   # remove ggplot package from session
 library(package="ggplot2");                 # reload package ggplot
 
