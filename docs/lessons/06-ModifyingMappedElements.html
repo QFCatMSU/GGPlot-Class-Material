@@ -329,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Save the R file, called <strong><em>lesson06-ModifyingMappedElements.R</em></strong> to the <strong><em>scripts</em></strong> folder inside your RStudio Project</li>
 </ul>
 <p>&nbsp;</p>
-<p><a href="../Data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as previous lessons)</p>
+<p><a href="../data/Lansing2016NOAA.csv">The data for this lesson (Lansing weather in 2016) is here</a> (same as previous lessons)</p>
 <ul>
 <li>Save the CSV file, called <strong><em>Lansing2016Data.csv</em></strong> to the <strong><em>data</em></strong> folder inside your RStudio Project.</li>
 </ul>
@@ -361,7 +361,7 @@ Figure&nbsp;1: Mapping color and size to points on a scatterplot
 </section>
 <section id="changing-order-of-the-seasons" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="changing-order-of-the-seasons"><span class="header-section-number">3</span> Changing order of the seasons</h2>
-<p>The season are given in alphabetical order, which is the default for GGPlot when no order is given. Also, the colors are probably not the ones we would choose to represent the seasons.</p>
+<p>The season are given in alphabetical order, which is the default for GGPlot when no order is given by the caller. Also, the colors are probably not the ones we would choose to represent the seasons.</p>
 <section id="ordering-factoring-the-season" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="ordering-factoring-the-season"><span class="header-section-number">3.1</span> Ordering (factoring) the season</h3>
 <p>We need to change the order outside of the GGPlot and we do that by categorizing the season column using <strong><em>factor()</em></strong>:</p>
@@ -383,11 +383,11 @@ Figure&nbsp;1: Mapping color and size to points on a scatterplot
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> seasonOrdered</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span>] Winter Winter Winter Winter Winter Winter Winter Winter Winter</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">10</span>] Winter Winter Winter Winter Winter Winter Winter Winter Winter ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>With the <strong><em>levels</em></strong> given at the end:</p>
+<p>With the four <strong><em>levels</em></strong> given at the end:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-tab="Console"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">353</span>] Fall   Fall   Fall   Fall   Winter Winter Winter Winter Winter Winter Winter</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">364</span>] Winter Winter Winter</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>«Levels<span class="sc">:</span> Spring Summer Fall Winter»</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong><em>Levels</em></strong> is <span class="hl">metadata</span>in the vector <strong><em>seasonOrdered</em></strong> – or information about the data.</p>
+<p><strong><em>Levels</em></strong> is <span class="hl">metadata</span> in the vector <strong><em>seasonOrdered</em></strong> – or information about the data.</p>
 </section>
 <section id="using-the-factored-vector-in-ggplot" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="using-the-factored-vector-in-ggplot"><span class="header-section-number">3.2</span> Using the factored vector in GGPlot</h3>
@@ -458,9 +458,9 @@ Figure&nbsp;3: Appending component to saved plots
 <li><p>the size of the points that maps the <strong><em>precipitation</em></strong></p></li>
 </ul>
 <p>&nbsp;</p>
-<p>For all mapped elements, <a href="https://ggplot2.tidyverse.org/reference/#section-scales">there is a scale component</a> that can modify the properties of the mapped element.</p>
+<p>For all mapped elements, <a href="https://ggplot2.tidyverse.org/reference/#scales">there is a scale component</a> that can modify the properties of the mapped element.</p>
 <p>&nbsp;</p>
-<p>The <a href="https://ggplot2.tidyverse.org/reference/#section-scales">scale components reference page</a> is a bit intimidating at first!</p>
+<p>The <a href="https://ggplot2.tidyverse.org/reference/#scales">scale components reference page</a> is a bit intimidating at first!</p>
 <p>&nbsp;</p>
 <p>Most scale components have this naming format:</p>
 <ul>
@@ -576,8 +576,8 @@ Figure&nbsp;6: A basic GGPlot histogram of temperature values
 <p>&nbsp;</p>
 <p>You do get this message when plotting the above histogram:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="fu">plot</span>(plot6); </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">stat_bin()</span><span class="st">`</span> using <span class="st">`</span><span class="at">bins = 30</span><span class="st">`</span>. Pick better value with <span class="st">`</span><span class="at">binwidth</span><span class="st">`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This message is a bit aggressive. It says that ggplot uses 30 bins by defult and that you can change it. We will use <strong><em>bins</em></strong> and <strong><em>binwidth</em></strong> later.</p>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">stat_bin()</span><span class="st">`</span> using <span class="st">`</span><span class="at">bins = 30</span><span class="st">`</span>. Pick better value <span class="st">`</span><span class="at">binwidth</span><span class="st">`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This message is a bit aggressive. It says that ggplot uses 30 bins by default and that you can change it. We will do this with <strong><em>bins</em></strong> and <strong><em>binwidth</em></strong> later.</p>
 <section id="mapping-season-to-fill-in-the-histogram" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="mapping-season-to-fill-in-the-histogram"><span class="header-section-number">6.1</span> Mapping season to fill in the histogram</h3>
 <p>We can add another dimension to the histogram by mapping <strong><em>fill</em></strong> to <strong><em>seasonOrdered</em></strong>.&nbsp; In <strong><em>geom_histogram()</em></strong>, <strong><em>fill</em></strong> is the background color of the bars (<strong><em>color</em></strong> is the outline color).</p>
@@ -670,7 +670,7 @@ Figure&nbsp;9: Mapping color to precipitation generates a gradient of colors
 </div>
 <section id="choose-our-own-gradient-colors" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="choose-our-own-gradient-colors"><span class="header-section-number">7.1</span> Choose our own gradient colors</h3>
-<p>A gradient from dark blue to light blue is probably not the best choice, luckily you can change this using the component <strong><em>scale_color_gradient</em></strong>.</p>
+<p>A gradient from dark blue to light blue is probably not the best choice and you can change this using the component <strong><em>scale_color_gradient</em></strong>.</p>
 <p>&nbsp;</p>
 <p>The subcomponents are the <strong><em>low</em></strong> and <strong><em>high</em></strong> end colors of the gradient spectrum, in this case: <strong>orange</strong> and <strong>blue</strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### mapping precipitation to a gradient with two specified colors #### </span></span>

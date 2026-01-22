@@ -20,7 +20,7 @@ short: "06"
 
  
 
-[The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as previous lessons)
+[The data for this lesson (Lansing weather in 2016) is here](../data/Lansing2016NOAA.csv) (same as previous lessons)
 
 -   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project.
 
@@ -46,7 +46,7 @@ Let's start with a plot from a few lessons ago where we mapped ***color*** to s
 
 ## Changing order of the seasons
 
-The season are given in alphabetical order, which is the default for GGPlot when no order is given. Also, the colors are probably not the ones we would choose to represent the seasons.
+The season are given in alphabetical order, which is the default for GGPlot when no order is given by the caller. Also, the colors are probably not the ones we would choose to represent the seasons.
 
 ### Ordering (factoring) the season
 
@@ -84,7 +84,7 @@ If you put ***seasonOrdered*** in the ***Console*** tab, you see the values are
  [10] Winter Winter Winter Winter Winter Winter Winter Winter Winter ...
 ```
 
-With the ***levels*** given at the end:
+With the four ***levels*** given at the end:
 
 ``` {.r tab="Console"}
 [353] Fall   Fall   Fall   Fall   Winter Winter Winter Winter Winter Winter Winter
@@ -92,7 +92,7 @@ With the ***levels*** given at the end:
 «Levels: Spring Summer Fall Winter»
 ```
 
-***Levels*** is [metadata]{.hl}in the vector ***seasonOrdered*** -- or information about the data.
+***Levels*** is [metadata]{.hl} in the vector ***seasonOrdered*** -- or information about the data.
 
 ### Using the factored vector in GGPlot
 
@@ -167,11 +167,11 @@ Now we want to change the:
 
  
 
-For all mapped elements, [there is a scale component](https://ggplot2.tidyverse.org/reference/#section-scales) that can modify the properties of the mapped element.
+For all mapped elements, [there is a scale component](https://ggplot2.tidyverse.org/reference/#scales) that can modify the properties of the mapped element.
 
  
 
-The [scale components reference page](https://ggplot2.tidyverse.org/reference/#section-scales) is a bit intimidating at first!
+The [scale components reference page](https://ggplot2.tidyverse.org/reference/#scales) is a bit intimidating at first!
 
  
 
@@ -303,10 +303,10 @@ You do get this message when plotting the above histogram:
 
 ``` r
 >   plot(plot6); 
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 ```
 
-This message is a bit aggressive. It says that ggplot uses 30 bins by defult and that you can change it. We will use ***bins*** and ***binwidth*** later.
+This message is a bit aggressive. It says that ggplot uses 30 bins by default and that you can change it. We will do this with ***bins*** and ***binwidth*** later.
 
 ### Mapping season to fill in the histogram
 
@@ -396,7 +396,7 @@ The default in GGPlot is to create a gradient for the values that goes from dark
 
 ### Choose our own gradient colors
 
-A gradient from dark blue to light blue is probably not the best choice, luckily you can change this using the component ***scale_color_gradient***.
+A gradient from dark blue to light blue is probably not the best choice and you can change this using the component ***scale_color_gradient***.
 
  
 
