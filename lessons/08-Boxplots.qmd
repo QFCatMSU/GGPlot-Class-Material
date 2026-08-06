@@ -6,25 +6,25 @@ short: "08"
 
 ### To-do
 
--   mention what happened when you set only one axis on a boxplot
+- mention what happened when you set only one axis on a boxplot
 
 ## Purpose
 
--   Creating boxplots
+- Creating boxplots
 
--   Faceting and mapping data on a boxplot
+- Faceting and mapping data on a boxplot
 
--   Changing outlier properties
+- Changing outlier properties
 
 ### Code for the lesson
 
 [Script for this lesson](../scripts/lesson08-Boxplots.R)
 
--   Save the R file, called ***lesson08-Boxplots.R*** to the ***scripts*** folder inside your RStudio Project
+- Save the R file, called ***lesson08-Boxplots.R*** to the ***scripts*** folder inside your RStudio Project
 
 [The data for this lesson (Lansing weather in 2016) is here](../Data/Lansing2016NOAA.csv) (same as previous lessons)
 
--   Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
+- Save the CSV file, called ***Lansing2016Data.csv*** to the ***data*** folder inside your RStudio Project. 
 
 ## Boxplots
 
@@ -368,29 +368,29 @@ Use data from **Lansing2016NOAA.csv.**
 
 1\) Using the plot from @fig-customColors
 
--   Change the axis of the boxes (put boxes on y-axis)
+- Change the axis of the boxes (put boxes on y-axis)
 
--   Reorder the wind speed to ***low*** -\> ***medium*** -\> ***high***
+- Reorder the wind speed to ***low*** -\> ***medium*** -\> ***high***
 
--   Set the outline colors so that:
+- Set the outline colors so that:
 
-    -   all boxes in low facet are blue
+  - all boxes in low facet are blue
 
-    -   all boxes in medium facet are green
+  - all boxes in medium facet are green
 
-    -   all boxes in the high facet are red
+  - all boxes in the high facet are red
 
-    -   extra points for using ***rep()***
+  - extra points for using ***rep()***
 
--   Change the fill colors so the every other box is **lightyellow**
+- Change the fill colors so the every other box is **lightyellow**
 
--   Triple the outlier point size
+- Triple the outlier point size
 
--   Change the outlier color to [this color]{style="color:#e87511;"} using ***rgb()*** 
+- Change the outlier color to [this color]{style="color:#e87511;"} using ***rgb()*** 
 
-    -   color does not have to be exact but extra points if you know how to use a color picker to get the exact color
+  - color does not have to be exact but extra points if you know how to use a color picker to get the exact color
 
--   Change the outlier shape to the ampersand ( ***&*** )
+- Change the outlier shape to the ampersand ( ***&*** )
 
  
 
@@ -402,9 +402,9 @@ Use data from **Lansing2016NOAA.csv.**
 
 3\) For the plot in @fig-overlayPoints:
 
--   If ***geom_point*** is used instead of ***geom_jitter***, why do all the points fall along the four lines?
+- If ***geom_point*** is used instead of ***geom_jitter***, why do all the points fall along the four lines?
 
--   What happens if you change the ***width*** component in ***geom_jitter*** to a non-zero value?
+- What happens if you change the ***width*** component in ***geom_jitter*** to a non-zero value?
 
  
 
