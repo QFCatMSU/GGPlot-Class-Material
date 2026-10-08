@@ -3,6 +3,7 @@ website:
   page-navigation: true
   sidebar:
     search: true
+    header: I, Charlie, will be working in Vietnam from Oct 22 to Dec 10 -- so expect emails at weird times!         
     collapse-level: 2   # does not work because a page within is opened
     contents:
       - section: "<b>Graphing With GGPlot class</b>"
